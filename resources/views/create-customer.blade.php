@@ -40,7 +40,7 @@
                         <b>Company product :&nbsp</b> {{ Form::text('company_name', 'Xxxxx Xxxxx') }} <br/><br/>
                         <b>Company tel no :&nbsp</b> {{ Form::text('company_telephone', 'Xxxxx Xxxxx') }} <br/><br/>
                         <b>Company email :&nbsp</b> {{ Form::text('company_email', 'Xxxxx Xxxxx') }} <br/><br/>
-                        <b style="font-size:20px;">Contact person : </b><br/><br/>
+                        <b style="font-size:18px;">Contact person </b><br/><hr/>
                         <b>Company name :&nbsp</b> {{ Form::text('company_name', 'Xxxxx Xxxxx') }} &nbsp {{ Form::text('company_surname', 'Xxxxx Xxxxx') }}<br/><br/>
                         <b>Company name :&nbsp</b> {{ Form::text('company_name', 'Xxxxx Xxxxx') }} <br/><br/>
                         <b>Company name :&nbsp</b> {{ Form::text('company_name', 'Xxxxx Xxxxx') }} <br/><br/>

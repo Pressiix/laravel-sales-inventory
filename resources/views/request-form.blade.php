@@ -22,7 +22,7 @@
         width : 100px;
     }
 </style>
-
+<script>window.history.pushState('request-save', 'Title', '/request-form');</script>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -36,11 +36,11 @@
                 
                 {!! Form::open(['action' => ['AppController@review', 'method' => 'POST']])!!}
                         <br/>
-                        <b>Sales name :&nbsp</b> {{ Form::text('sales_name', auth()->user()->name) }} <br/><br/>
+                        <b>Sales name :&nbsp</b> {{ Form::text('sales_name', $sales_name) }} <br/><br/>
                         <b>Sales Type :&nbsp</b> {{ Form::radio('sales_type', 'Direct') }} Direct &nbsp{{ Form::radio('sales_type', 'Agency') }} Agency<br/><br/>
                         <b>Customer name :&nbsp</b> {{ Form::select('customer_name', array('L' => 'Large', 'S' => 'Small')) }} 
                         &nbsp<a href="create-customer" target="_blank"><u><b>or create new customer</b></u></a><br/><br/>
-                        <b>Campaign name :&nbsp</b> {{ Form::text('campaign_name', 'xxxx') }}<br/><br/>
+                        <b>Campaign name :&nbsp</b> {{ Form::text('campaign_name', (!empty($campaign_name) ? $campaign_name : '')) }}<br/><br/>
                         <b>Advertiser name :&nbsp</b> {{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small')) }} 
                         &nbsp<a href="#"><u><b>or create new advertiser</b></u></a><br/><br/>
                          

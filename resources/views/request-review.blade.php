@@ -88,8 +88,8 @@
                             {!! Form::hidden('facebook', $facebook  ) !!}
                             {!! Form::hidden('facebook_type', $facebook_type  ) !!}
                             {!! Form::hidden('create_at', $create_at  ) !!}
-
-                            {!! Form::submit('Confirm', array( 'class'=>'btn btn-primary form-control' )) !!}
+                            {!! Form::submit('Edit', array('name'=>'action', 'class'=>'btn btn-warning form-control' )) !!}
+                            {!! Form::submit('Confirm', array('name'=>'action','class'=>'btn btn-primary form-control')) !!}
                         </div>
                     {!! Form::close() !!}
                     

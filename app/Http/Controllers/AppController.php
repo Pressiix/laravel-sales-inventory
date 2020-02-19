@@ -23,8 +23,22 @@ class AppController extends Controller
     public function request(Request $request)
     {
         if(isset($request)){
-            $user = Auth::user();
-            return view('request-form', compact('user'));
+            $user = compact(Auth::user());
+            return view('request-form',['sales_name' => auth()->user()->name]);
+        }
+        else{
+            if($sales_name)
+            {
+                return view('request-form', [
+                    'sales_name' => $sales_name,
+                    'sales_type' => $sales_type,
+                    'customer_name' => $customer_name,
+                    'campaign_name' => $campaign_name,
+                    'facebook' => $facebook,
+                    'facebook_type' => $facebook_type,
+                    'create_at' => $create_at
+                ]);
+            }
         }
         
     }
@@ -39,33 +53,51 @@ class AppController extends Controller
             'facebook' => $request->facebook,
             'facebook_type' => $request->facebook_type[0].'/'.$request->facebook_type[1],
             'create_at' => $request->create_at
-            
         ]);
     }
 
     public function storeRequest(Request $request)
     {
-         DB::connection('mysql')->insert('
-            insert into request values (
-                    NULL,
-                    \'1\',
-                    \''.$request->sales_name.'\',
-                    \''.$request->sales_type.'\',
-                    \''.$request->campaign_name.'\',
-                    \''.$request->facebook.'\',
-                    \''.$request->facebook_type.'\',
-                    \'Waiting\',
-                    \''.$request->create_at.'\',
-                    \'1\',
-                    \'1\',
-                    \'1\'
-            )'
-        );
+        if($request->input('action') === 'Edit')
+        {
+            
+            return view('request-form', [
+                'sales_name' => $request->sales_name,
+                'sales_type' => $request->sales_type,
+                'customer_name' => $request->customer_name,
+                'campaign_name' => $request->campaign_name,
+                'facebook' => $request->facebook,
+                'facebook_type' => $request->facebook_type,
+                'create_at' => $request->create_at
+            ]);
+        }
+        else
+        {
+            DB::connection('mysql')->insert('
+                insert into request values (
+                        NULL,
+                        \'1\',
+                        \''.$request->sales_name.'\',
+                        \''.$request->sales_type.'\',
+                        \''.$request->campaign_name.'\',
+                        \''.$request->facebook.'\',
+                        \''.$request->facebook_type.'\',
+                        \'Waiting\',
+                        \''.$request->create_at.'\',
+                        \'1\',
+                        \'1\',
+                        \'1\'
+                )'
+            );
 
-        //Send email to ...
-        $this->sendEmail();
+            //Send email to ...
+            $this->sendEmail();
+            
+            return Redirect::to('request-form');
+        }
+         
+
         
-        return Redirect::to('request-form');
     }
 
     private function sendEmail()
