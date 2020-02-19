@@ -22,14 +22,14 @@
                     </div>
                     <hr>
                     <a href="/profile">MY ACCOUNT</a><br/>
-                    <a href="/request-show">INBOX</a><br/>
+                    <a href="/pending-list">INBOX</a><br/>
                     <a href="#">MY ACTIVITIES</a>
                 </div>
             </div><div class="col-md-1"></div>
             <div class="card col-md-8">
 
                 <div class="card-body">
-                <h3>My Account</h3><br/>
+                <h3>INBOX - PENDING LISTS</h3><br/>
                 
                 <?php if($someModel){ ?>
                         <table class="table table-hover">

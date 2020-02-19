@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sale Inventory') }}</title>
+    <title>Sale Inventory</title>
+    <link rel="icon" href="image/avatar.png"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

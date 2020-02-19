@@ -22,7 +22,7 @@
                     </div>
                     <hr>
                     <a href="/profile">MY ACCOUNT</a><br/>
-                    <a href="/request-show">INBOX</a><br/>
+                    <a href="/pending-list">INBOX</a><br/>
                     <a href="#">MY ACTIVITIES</a>
                 </div>
             </div><div class="col-md-1"></div>

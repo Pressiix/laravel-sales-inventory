@@ -77,7 +77,7 @@
                         <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>
                         </div></div>
                        <br/><br/>
-                        <b>Campaign budget (THB): </b>xxxxxxxxxxx<br/><br/>
+                        <b>Campaign budget (THB): </b>{{ $campaign_budget }}<br/><br/>
                         <b>Detail : </b>xxxxxxxxxxx<br/><br/>
                         <b>File : </b>xxxxxxxxxxx<br/><br/>
                         
@@ -85,9 +85,10 @@
                             {!! Form::hidden('sales_name', $sales_name  ) !!}
                             {!! Form::hidden('sales_type', $sales_type  ) !!}
                             {!! Form::hidden('campaign_name', $campaign_name  ) !!}
-                            {!! Form::hidden('facebook', $facebook  ) !!}
+                            {!! Form::hidden('facebook', $facebook) !!}
                             {!! Form::hidden('facebook_type', $facebook_type  ) !!}
                             {!! Form::hidden('create_at', $create_at  ) !!}
+                            {!! Form::hidden('campaign_budget', $campaign_budget  ) !!}
                             {!! Form::submit('Edit', array('name'=>'action', 'class'=>'btn btn-warning form-control' )) !!}
                             {!! Form::submit('Confirm', array('name'=>'action','class'=>'btn btn-primary form-control')) !!}
                         </div>

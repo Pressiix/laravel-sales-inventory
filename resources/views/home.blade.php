@@ -21,15 +21,15 @@
                         <h4><b>{{ $user->name }}</b></h4>
                     </div>
                     <hr>
-                    <a href="#">MY ACCOUNT</a><br/>
-                    <a href="#">INBOX</a><br/>
+                    <a href="/profile">MY ACCOUNT</a><br/>
+                    <a href="/pending-list">INBOX</a><br/>
                     <a href="#">MY ACTIVITIES</a>
                 </div>
             </div><div class="col-md-1"></div>
             <div class="card col-md-8">
 
                 <div class="card-body">
-                <h3>Home</h3><br/>
+                <h3>HOME</h3><br/>
                 
                 
                 

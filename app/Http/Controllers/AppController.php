@@ -36,7 +36,8 @@ class AppController extends Controller
                     'campaign_name' => $campaign_name,
                     'facebook' => $facebook,
                     'facebook_type' => $facebook_type,
-                    'create_at' => $create_at
+                    'create_at' => $create_at,
+                    'campaign_budget' => $campaign_budget
                 ]);
             }
         }
@@ -51,8 +52,9 @@ class AppController extends Controller
             'customer_name' => $request->customer_name,
             'campaign_name' => $request->campaign_name,
             'facebook' => $request->facebook,
-            'facebook_type' => $request->facebook_type[0].'/'.$request->facebook_type[1],
-            'create_at' => $request->create_at
+            'facebook_type' => $request->facebook_type,
+            'create_at' => $request->create_at,
+            'campaign_budget' => $request->campaign_budget
         ]);
     }
 
@@ -68,7 +70,8 @@ class AppController extends Controller
                 'campaign_name' => $request->campaign_name,
                 'facebook' => $request->facebook,
                 'facebook_type' => $request->facebook_type,
-                'create_at' => $request->create_at
+                'create_at' => $request->create_at,
+                'campaign_budget' => $request->campaign_budget
             ]);
         }
         else
@@ -84,6 +87,7 @@ class AppController extends Controller
                         \''.$request->facebook_type.'\',
                         \'Waiting\',
                         \''.$request->create_at.'\',
+                        \''.$request->campaign_budget.'\',
                         \'1\',
                         \'1\',
                         \'1\'
@@ -141,19 +145,18 @@ class AppController extends Controller
     public function storeCustomer(Request $request)
     {
          DB::connection('mysql')->insert('
-            insert into request values (
+            insert into customer values (
                     NULL,
-                    \'1\',
-                    \''.$request->sales_name.'\',
-                    \''.$request->sales_type.'\',
-                    \''.$request->campaign_name.'\',
-                    \''.$request->facebook.'\',
-                    \''.$request->facebook_type.'\',
-                    \'Waiting\',
-                    \''.$request->create_at.'\',
-                    \'1\',
-                    \'1\',
-                    \'1\'
+                    \''.$request->customer_name.'\',
+                    \''.$request->customer_surname.'\',
+                    \''.$request->customer_nickname.'\',
+                    \''.$request->customer_telephone.'\',
+                    \''.$request->customer_email.'\',
+                    \''.$request->company_name.'\',
+                    \''.$request->company_type.'\',
+                    \''.$request->company_product.'\',
+                    \''.$request->company_telephone.'\',
+                    \''.$request->company_email.'\'
             )'
         );
         
