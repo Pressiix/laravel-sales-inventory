@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Sale Inventory - Pending List')
+@section('title', 'Sale Inventory - Pending Lists')
 <style>
     input{
         width:300px;
