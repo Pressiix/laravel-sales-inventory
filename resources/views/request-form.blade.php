@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Sale Inventory - Request Form')
 <style>
     input[type=text], select{
         width : 380px;
