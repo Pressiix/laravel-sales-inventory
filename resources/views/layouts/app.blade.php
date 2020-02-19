@@ -18,12 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?v=0.10" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img style="display: block; margin: 0 auto;width:200px; height:40px;" src="image/bkp-logo.png">
                 </a>
@@ -75,11 +75,8 @@
                             </li>
 
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                <button class="btn btn-primary " onclick="window.location.href = '{{ url('/logout') }}';">Logout</button>
+                                <!--<a class="nav-link" href="{{ url('/logout') }}"> logout </a>-->
                             </li>
 
                             
@@ -88,10 +85,29 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <br/>
+        <div class="container-fluid">
+        <div class="row justify-content-center">
+        <div class="row col-md-12">
+        <?php if(!empty($user)){ ?>
+            <div class="card col-md-3">
+                <div class="card-body">
+                    <img src="image/avatar.png" alt="Avatar" style="display:block;margin: 0 auto;width:150px;height:150px;border-radius: 50%;">
+                    
+                    <div class="text-center">
+                        <h4><b>{{ $user->name }}</b></h4>
+                    </div>
+                    <hr>
+                    <a href="/profile">MY ACCOUNT</a><br/>
+                    <a href="/pending-list">INBOX</a><br/>
+                    <a href="#">MY ACTIVITIES</a>
+                </div>
+            </div><div class="col-md-1-custom"></div>
+        <?php } ?>
+        
             @yield('content')
-        </main>
+        </div>
+    </div>
     </div>
 </body>
 </html>

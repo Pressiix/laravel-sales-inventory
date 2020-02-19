@@ -15,7 +15,7 @@
 
     b{
         font-weight: 900;
-        width: 170px;
+        width: 175px;
         display: inline-block;
     }
 
@@ -25,9 +25,8 @@
 </style>
 <script>window.history.pushState('request-save', 'Title', '/request-form');</script>
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="row col-md-12">
+
+    
         
             <div class="card col-md-12">
 
@@ -83,14 +82,18 @@
                                 {{ Form::radio('facebook_type', 'Facebook Boost Post', (!empty($facebook_type) && $facebook_type === 'Facebook Boost Post' ? true : false)) }} Facebook Boost Post<br/><br/>
                             </div>
                         </div>
-                        
-                        <b style="font-size:20px;">Ad 1 Description : </b><br/><br/>
-                        <b style="width:40px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                        <b style="width:65px;">Position :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                        <b style="width:60px;">Section :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
-                        <b style="width:60px;">Period: </b>from {{ Form::text('period_from', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }} to {{ Form::text('period_to', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }}<br/><br/>
-                        <b>URL link banner:&nbsp </b>{{ Form::text('banner_url', 'https://banner.com') }} <br/><br/>
-                        <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a><br/><br/>
+                        <div class="card col-md-12">
+                            <div class="card-body">
+                                <b style="font-size:20px;">Ad 1 Description : </b><br/><br/>
+                                <b style="width:40px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                <b style="width:65px;">Position :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                <b style="width:60px;">Section :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
+                                <b style="width:60px;">Period: </b>from {{ Form::text('period_from', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }} to {{ Form::text('period_to', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }}<br/><br/>
+                                <b>URL link banner:&nbsp </b>{{ Form::text('banner_url', 'https://banner.com') }} <br/><br/>
+                                <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
+                            </div>
+                        </div>
+                        <br/><br/>
 
                         <!--<b style="font-size:20px;">Ad 2 Description : </b><br/><br/>
                         <b style="width:40px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
@@ -113,5 +116,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

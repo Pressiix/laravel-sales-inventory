@@ -166,8 +166,8 @@ class AppController extends Controller
 
     public function booking(User $user)
     {
-        $user = Auth::user();
-        return view('booking', compact('user'));
+        //$user = Auth::user();
+        return view('booking'/*, compact('user')*/);
     }
 
     
