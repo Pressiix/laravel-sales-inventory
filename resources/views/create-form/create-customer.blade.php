@@ -2,7 +2,7 @@
 @section('title', 'Sale Inventory - Create Customer')
 <style>
     input[type=text], select{
-        width : 380px;
+        width : 340px;
     }
 
     input[class=wide-custom]{
@@ -42,7 +42,7 @@
             <div class="card-body">
                 <h3>CREATE NEW CUSTOMER</h3>
                 <div class="col-sm-12">
-                {!! Form::open(['action' => ['AppController@storeCustomer', 'method' => 'POST']])!!}
+                {!! Form::open(['action' => ['CustomerController@storeCustomer', 'method' => 'POST']])!!}
                         <br/>
                         <b>Company name :&nbsp</b> {{ Form::text('company_name', (!empty($company_name) ? $company_name : '')) }} <br/><br/>
                         <b>Company type :&nbsp</b> {{ Form::radio('company_type', 'Direct') }} Direct &nbsp{{ Form::radio('company_type', 'Agency') }} Agency<br/><br/>

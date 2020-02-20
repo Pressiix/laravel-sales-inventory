@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-md-2"><b>Website :&nbsp</b></div> 
                             <div class="col-md-9" style="left:16px;">
-                                www.abc-company.co.th<br/><br/>
+                                {{$website}}<br/><br/>
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             </div>
                         </div>
 
-                        <b>Advertiser name :&nbsp</b> xxxxxx xxxxxxx 
+                        <b>Advertiser name :&nbsp</b> {{ $advertiser_name }} 
                         <br/><br/>
 
                         <div class="row">
@@ -82,13 +82,18 @@
                         <b>Detail : </b>xxxxxxxxxxx<br/><br/>
                         <b>File : </b>xxxxxxxxxxx<br/><br/>
                         
-                        <div class="text-center">
-                            {!! Form::hidden('sales_name', $sales_name  ) !!}
-                            {!! Form::hidden('sales_type', $sales_type  ) !!}
-                            {!! Form::hidden('campaign_name', $campaign_name  ) !!}
+                        <div class="text-center" id="hidden-form">
+                            {!! Form::hidden('sales_name', $sales_name) !!}
+                            {!! Form::hidden('sales_type', $sales_type) !!}
+                            {!! Form::hidden('customer_id', $customer_id) !!}
+                            {!! Form::hidden('customer_name', $customer_name) !!}
+                            {!! Form::hidden('campaign_name', $campaign_name) !!}
+                            {!! Form::hidden('advertiser_id', $advertiser_id) !!}
+                            {!! Form::hidden('advertiser_name', $advertiser_name) !!}
+                            {!! Form::hidden('website', $website) !!}
                             {!! Form::hidden('facebook', $facebook) !!}
                             {!! Form::hidden('facebook_type', $facebook_type  ) !!}
-                            {!! Form::hidden('create_at', $create_at  ) !!}
+                            {!! Form::hidden('create_at', $create_at) !!}
                             {!! Form::hidden('campaign_budget', $campaign_budget  ) !!}
                             {!! Form::submit('Edit', array('name'=>'action', 'class'=>'btn btn-warning form-control' )) !!}
                             {!! Form::submit('Confirm', array('name'=>'action','class'=>'btn btn-primary form-control')) !!}

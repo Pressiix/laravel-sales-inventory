@@ -15,6 +15,11 @@ use App\User;
 
 class AppController extends Controller
 {
+    public function test()
+    {
+        $customer = json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True);
+        echo "<pre/>";print_r($customer );
+    }
     /**
      * Display a listing of the users
      *
@@ -24,7 +29,14 @@ class AppController extends Controller
     {
         if(isset($request)){
             $user = compact(Auth::user());
-            return view('request-form',['sales_name' => auth()->user()->name]);
+            $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
+            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
+        
+            return view('request-form',[
+                'sales_name' => auth()->user()->name,
+                'customer' => $customer,
+                'advertiser' => $advertiser
+                ]);
         }
         else{
             if($sales_name)
@@ -46,11 +58,15 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-        return view('request-review',[
+         return view('request-review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,
+            'customer_id' => $request->customer_id,
             'customer_name' => $request->customer_name,
+            'advertiser_id' => $request->advertiser_id,
+            'advertiser_name' => $request->advertiser_name,
             'campaign_name' => $request->campaign_name,
+            'website' => $request->website,
             'facebook' => $request->facebook,
             'facebook_type' => $request->facebook_type,
             'create_at' => $request->create_at,
@@ -62,16 +78,24 @@ class AppController extends Controller
     {
         if($request->input('action') === 'Edit')
         {
-            
+            $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
+            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
+
             return view('request-form', [
                 'sales_name' => $request->sales_name,
                 'sales_type' => $request->sales_type,
+                'customer_id' => $request->customer_id,
                 'customer_name' => $request->customer_name,
                 'campaign_name' => $request->campaign_name,
+                'advertiser_id' => $request->advertiser_id,
+                'advertiser_name' => $request->advertiser_name,
+                'website' => $request->website,
                 'facebook' => $request->facebook,
                 'facebook_type' => $request->facebook_type,
                 'create_at' => $request->create_at,
-                'campaign_budget' => $request->campaign_budget
+                'campaign_budget' => $request->campaign_budget,
+                'customer' => $customer,
+                'advertiser' => $advertiser
             ]);
         }
         else
@@ -89,8 +113,8 @@ class AppController extends Controller
                         \''.$request->create_at.'\',
                         \''.$request->campaign_budget.'\',
                         \'1\',
-                        \'1\',
-                        \'1\'
+                        \''.$request->customer_id.'\',
+                        \''.$request->advertiser_id.'\'
                 )'
             );
 
@@ -133,42 +157,12 @@ class AppController extends Controller
         else{
             return view('request.activity-list');
         }
-        
-        
     }
-
-    public function createCustomer()
-    {
-        return view('create-customer');
-    }
-
-    public function storeCustomer(Request $request)
-    {
-         DB::connection('mysql')->insert('
-            insert into customer values (
-                    NULL,
-                    \''.$request->customer_name.'\',
-                    \''.$request->customer_surname.'\',
-                    \''.$request->customer_nickname.'\',
-                    \''.$request->customer_telephone.'\',
-                    \''.$request->customer_email.'\',
-                    \''.$request->company_name.'\',
-                    \''.$request->company_type.'\',
-                    \''.$request->company_product.'\',
-                    \''.$request->company_telephone.'\',
-                    \''.$request->company_email.'\'
-            )'
-        );
-        
-        return Redirect::to('create-customer');
-    }
-
 
     public function booking(User $user)
     {
         //$user = Auth::user();
         return view('booking'/*, compact('user')*/);
     }
-
     
 }
