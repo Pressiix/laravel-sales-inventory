@@ -69,6 +69,9 @@ class AppController extends Controller
             'website' => $request->website,
             'facebook' => $request->facebook,
             'facebook_type' => $request->facebook_type,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'banner_url' => $request->banner_url,
             'create_at' => $request->create_at,
             'campaign_budget' => $request->campaign_budget
         ]);
@@ -145,7 +148,12 @@ class AppController extends Controller
 
     public function showMyActivities(Request $request)
     {
-        if($request->from && $request->to)
+        $someModel = DB::connection('mysql')->select('select * from request'); // static method
+        $user = Auth::user();
+        return view('my-activity',[
+            'someModel' => json_decode(json_encode($someModel), True)
+        ],compact('user'));
+        /*if($request->from && $request->to)
         {
             $date_from = DateTime::createFromFormat('Y-m-d', $request->from)->format('j F Y');
             $date_to = DateTime::createFromFormat('Y-m-d', $request->to)->format('j F Y');
@@ -156,7 +164,7 @@ class AppController extends Controller
         }
         else{
             return view('request.activity-list');
-        }
+        }*/
     }
 
     public function booking(User $user)

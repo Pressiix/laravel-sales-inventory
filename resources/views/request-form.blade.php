@@ -73,7 +73,7 @@
                 
                 {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form'])!!}
                         <br/>
-                        <b>Sales name :&nbsp</b> {{ Form::text('sales_name', $sales_name, ['required']) }} <br/><br/>
+                        <b>Sales name :&nbsp</b> {{ $sales_name }} {{ Form::hidden('sales_name', $sales_name) }} <br/><br/>
                         <b>Sales Type :&nbsp</b> {{ Form::radio('sales_type', 'Direct', (!empty($sales_type) && $sales_type === 'Direct' ? true : false), ['required']) }} Direct &nbsp{{ Form::radio('sales_type', 'Agency', (!empty($sales_type) && $sales_type === 'Agency' ? true : false)) }} Agency<br/><br/>
                         <b>Customer name :&nbsp</b> {{ Form::select('customer_id', $customer, null, array('id' => 'customer_id')) }} 
                         &nbsp<a href="create-customer" target="_blank"><u><b>or create new customer</b></u></a><br/><br/>
@@ -82,7 +82,7 @@
                         &nbsp<a href="create-advertiser" target="_blank"><u><b>or create new advertiser</b></u></a><br/><br/><br/><br/>
                          
                         <div class="row">
-                            <div class="col-md-2">{{ Form::checkbox('website_checkbox', 'true') }}<b>Website :&nbsp</b></div> 
+                            <div class="col-md-2"><b>Website :&nbsp</b></div> 
                             <div class="col-md-9" style="left:16px;">
                                 {{ Form::radio('website', 'Bangkok Post',(!empty($website) && $website === 'Bangkok Post' ? true : false), ['required']) }} Bangkok Post &nbsp
                                 {{ Form::radio('website', 'Post Today',(!empty($website) && $website === 'Post Today' ? true : false), ['required']) }} Post Today
@@ -104,7 +104,7 @@
                                 {{ Form::radio('type1', 'PR', ['required']) }} PR &nbsp <br/><br/>
                             </div>
                         </div>
-
+                        <br/>
                         <div class="row">
                             <div class="col-md-2"><b>Facebook :&nbsp</b></div> 
                             <div class="col-md-9" style="left:16px;">

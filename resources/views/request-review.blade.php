@@ -2,7 +2,8 @@
 @section('title', 'Sale Inventory - Request Preview')
 <style>
     input[type=text], select{
-        width : 380px;
+        width : 150px;
+        text-align: center; 
     }
 
     input[class=wide-custom]{
@@ -69,15 +70,20 @@
 
                         <div class="card col-md-12">
                             <div class="card-body">
-                        <b style="font-size:20px;">Ad 1 Description : </b><br/><br/>
-                        <b style="width:40px;">Size :&nbsp</b>300 x 250 &nbsp
-                        <b style="width:65px;">Position :&nbsp</b>xxxxx &nbsp
-                        <b style="width:60px;">Section :&nbsp</b>xxxxx </b><br/><br/>
-                        <b style="width:60px;">Period: </b>from {{ Form::text('period_from', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }} to {{ Form::text('period_to', 'xx/xx/xxxx xx:xx:xx', array('class' => 'wide-custom')) }}<br/><br/>
-                        <b>URL link banner:&nbsp </b>https://banner.com<br/><br/>
-                        <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>
-                        </div></div>
-                       <br/><br/>
+                                <b style="font-size:20px;">Ad 1 Description : </b><br/><br/>
+                                <b style="width:40px;">Size :&nbsp</b>300 x 250 &nbsp
+                                <b style="width:65px;">Position :&nbsp</b>xxxxx &nbsp
+                                <b style="width:60px;">Section :&nbsp</b>xxxxx </b><br/><br/>
+                                <b style="width:60px;">Period: </b>from <input type="text" value="<?= $date_from ?>" disabled>  to <input type="text" value="<?= $date_to ?>" disabled><br/><br/>
+                                <b>URL link banner:&nbsp </b>{{ $banner_url}}<br/><br/>
+                                <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>
+                            </div>
+                            {!! Form::hidden('date_from', $date_from) !!}
+                            {!! Form::hidden('date_to', $date_to) !!}
+                            {!! Form::hidden('banner_url', $banner_url) !!}
+                        </div>
+
+                        <br/><br/>
                         <b>Campaign budget (THB): </b>{{ $campaign_budget }}<br/><br/>
                         <b>Detail : </b>xxxxxxxxxxx<br/><br/>
                         <b>File : </b>xxxxxxxxxxx<br/><br/>
@@ -95,8 +101,15 @@
                             {!! Form::hidden('facebook_type', $facebook_type  ) !!}
                             {!! Form::hidden('create_at', $create_at) !!}
                             {!! Form::hidden('campaign_budget', $campaign_budget  ) !!}
-                            {!! Form::submit('Edit', array('name'=>'action', 'class'=>'btn btn-warning form-control' )) !!}
-                            {!! Form::submit('Confirm', array('name'=>'action','class'=>'btn btn-primary form-control')) !!}
+                            <br/>
+                            <div class="form-group row" >
+                                <div class="col-md-6" >
+                                    {!! Form::submit('Edit', array('name'=>'action', 'class'=>'btn btn-warning form-control' )) !!}
+                                </div>
+                                <div class="col-md-6" >   
+                                    {!! Form::submit('Submit', array('name'=>'action','class'=>'btn btn-primary form-control')) !!}
+                                </div>
+                            </div>
                         </div>
                     {!! Form::close() !!}
                     

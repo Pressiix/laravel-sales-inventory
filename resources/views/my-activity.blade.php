@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Sale Inventory - Pending Lists')
+@section('title', 'Sale Inventory - My Activities')
 <style>
     input{
         width:300px;
@@ -14,6 +14,9 @@
     thead{
         background-color:#00BAA5
     }
+    input[class=wide-custom]{
+        width : 100px;
+    }
 </style>
 
 @section('content')
@@ -22,7 +25,14 @@
             <div class="card col-md-8">
 
                 <div class="card-body">
-                <h3>INBOX - PENDING LISTS</h3><br/>
+                    <div class="row">
+                        <div class="col-md-6"><h3>MY ACTIVITIES</h3></div>
+                        <div class="col-md-6"><b>Period</b> 
+                            from {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!}
+                            to {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!}
+                        </div>
+                    </div>
+                <br/>
                 
                         <table class="table table-hover">
                             <thead>

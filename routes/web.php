@@ -28,7 +28,7 @@ Route::get('request-form', ['as' => 'request-form', 'uses' => 'AppController@req
 Route::post('request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
 Route::get('pending-list', ['as' => 'request-show', 'uses' => 'AppController@showPendingList']);
 Route::post('request-review', ['as' => 'request-review', 'uses' => 'AppController@review']);
-Route::get('my-activities', 'AppController@showMyActivities');
+Route::get('my-activity', 'AppController@showMyActivities');
 Route::get('booking-inventory',  ['as' => 'booking-inventory', 'uses' => 'AppController@booking']);
 
 Route::get('create-customer', ['as' => 'create-customer', 'uses' => 'CustomerController@createCustomer']);
