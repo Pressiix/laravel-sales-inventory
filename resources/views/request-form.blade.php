@@ -68,7 +68,7 @@
             <div class="card col-md-12">
 
             <div class="card-body">
-            <h3>REQUEST FORM</h3>
+            <h1>REQUEST FORMS</h1>
                 <div class="col-sm-12">
                 
                 {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form'])!!}

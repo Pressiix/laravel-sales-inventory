@@ -20,19 +20,21 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/test',  'AppController@test');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/test',  'AppController@test');
+    
+    Route::get('profile',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+    Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
+    Route::get('request-form', ['as' => 'request-form', 'uses' => 'AppController@request']);
+    Route::post('request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
+    Route::get('pending-list', ['as' => 'request-show', 'uses' => 'AppController@showPendingList']);
+    Route::post('request-review', ['as' => 'request-review', 'uses' => 'AppController@review']);
+    Route::get('my-activity', 'AppController@showMyActivities');
+    Route::get('booking-inventory',  ['as' => 'booking-inventory', 'uses' => 'AppController@booking']);
 
-Route::get('profile',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
-Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
-Route::get('request-form', ['as' => 'request-form', 'uses' => 'AppController@request']);
-Route::post('request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
-Route::get('pending-list', ['as' => 'request-show', 'uses' => 'AppController@showPendingList']);
-Route::post('request-review', ['as' => 'request-review', 'uses' => 'AppController@review']);
-Route::get('my-activity', 'AppController@showMyActivities');
-Route::get('booking-inventory',  ['as' => 'booking-inventory', 'uses' => 'AppController@booking']);
+    Route::get('create-customer', ['as' => 'create-customer', 'uses' => 'CustomerController@createCustomer']);
+    Route::post('save-customer', ['as' => 'save-customer', 'uses' => 'CustomerController@storeCustomer']);
 
-Route::get('create-customer', ['as' => 'create-customer', 'uses' => 'CustomerController@createCustomer']);
-Route::post('save-customer', ['as' => 'save-customer', 'uses' => 'CustomerController@storeCustomer']);
-
-Route::get('create-advertiser', ['as' => 'create-advertiser', 'uses' => 'AdvertiserController@createAdvertiser']);
-Route::post('save-advertiser', ['as' => 'save-advertiser', 'uses' => 'AdvertiserController@storeAdvertiser']);
+    Route::get('create-advertiser', ['as' => 'create-advertiser', 'uses' => 'AdvertiserController@createAdvertiser']);
+    Route::post('save-advertiser', ['as' => 'save-advertiser', 'uses' => 'AdvertiserController@storeAdvertiser']);
+});

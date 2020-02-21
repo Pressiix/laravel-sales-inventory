@@ -33,7 +33,7 @@
             <div class="card col-md-12">
 
             <div class="card-body">
-            <h3>Request Preview</h3>
+            <h1>Request Preview</h1>
                 <div class="col-sm-12">
                 
                 {!! Form::open(['action' => ['AppController@storeRequest', 'method' => 'POST']])!!}

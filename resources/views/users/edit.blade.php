@@ -2,7 +2,7 @@
 @section('title', 'Sale Inventory - My Profile')
 <style>
     input{
-        width:300px;
+        width:50%;
     }
     label{
         width:100px;
@@ -12,10 +12,10 @@
 
 @section('content')
 
-            <div class="card col-md-8">
+            <div class="card col-md-9">
 
                 <div class="card-body">
-                <h3>My Account</h3><br/>
+                <h1>My Account</h1><br/>
                 
                 {!! Form::open(['action' => ['UserController@update', 'method' => 'POST']])!!}
                     <div class="form-group">
@@ -36,7 +36,7 @@
                         <input type="text" name="telephone" value="{{ $user->telephone }}" />
                     </div>
                     
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn btn-lg btn-primary" type="submit">Submit</button>
                 {!! Form::close() !!}
                 
                 </div>

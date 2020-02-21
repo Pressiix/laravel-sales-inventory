@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Sale Inventory - My Activities')
 <style>
-    input{
-        width:300px;
-    }
+    
     label{
         width:100px;
     }
@@ -15,25 +13,27 @@
         background-color:#00BAA5
     }
     input[class=wide-custom]{
-        width : 100px;
+        width : 30%;
     }
 </style>
 
 @section('content')
    
             
-            <div class="card col-md-8">
+            <div class="card col-md-9">
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6"><h3>MY ACTIVITIES</h3></div>
-                        <div class="col-md-6"><b>Period</b> 
+                        <div class="col-md-5"><h1>MY ACTIVITIES</h1></div>
+                        <div class="col-md-7"><b>Period</b> 
                             from {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!}
+                            <i class="fa fa-calendar"></i>
                             to {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!}
+                            <i class="fa fa-calendar"></i>
                         </div>
                     </div>
                 <br/>
-                
+                <div style="overflow-x:auto;">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -66,6 +66,7 @@
                             <?php } ?>
                             </tbody>
                         </table>
+                        </div>
                 </div>
             </div>
         </div>

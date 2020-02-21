@@ -18,14 +18,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}?v=0.10" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img style="display: block; margin: 0 auto;width:200px; height:40px;" src="image/bkp-logo.png">
+                    <img style="display: block; margin: 0 auto;width:200px; height:40px;" src="/image/bkp-logo.png">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -86,13 +88,13 @@
             </div>
         </nav>
         <br/>
-        <div class="container-fluid">
+        <div class="container">
         <div class="row justify-content-center">
         <div class="row col-md-12">
         <?php if(!empty($user)){ ?>
-            <div class="card col-md-3">
+            <div class="card col-md-2">
                 <div class="card-body">
-                    <img src="image/avatar.png" alt="Avatar" style="display:block;margin: 0 auto;width:150px;height:150px;border-radius: 50%;">
+                    <img src="image/avatar.png" alt="Avatar" style="display:block;margin: 0 auto;width:100px;height:100px;border-radius: 50%;">
                     
                     <div class="text-center">
                         <h4><b>{{ $user->name }}</b></h4>
@@ -102,7 +104,8 @@
                     <a href="pending-list">INBOX</a><br/>
                     <a href="my-activity">MY ACTIVITIES</a>
                 </div>
-            </div><div class="col-md-1-custom"></div>
+            </div>
+            <div style="padding-left: 40px;"></div>
         <?php } ?>
         
             @yield('content')

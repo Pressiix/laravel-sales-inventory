@@ -19,11 +19,11 @@
 @section('content')
    
             
-            <div class="card col-md-8">
+            <div class="card col-md-9">
 
                 <div class="card-body">
-                <h3>INBOX - PENDING LISTS</h3><br/>
-                
+                <h1>INBOX - PENDING LISTS</h1><br/>
+                <div style="overflow-x:auto;">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -56,6 +56,7 @@
                             <?php } ?>
                             </tbody>
                         </table>
+                        </div>
                 </div>
             </div>
         </div>

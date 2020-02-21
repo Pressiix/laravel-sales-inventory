@@ -5,7 +5,7 @@
         width:20px;
     }
     input[type="text"]{
-        width:85%;
+        width:65%;
     }
     input[type="submit"]{
         width:200px;
@@ -18,7 +18,7 @@
     }
     b.field_label{
         font-weight: 900;
-        width: 135px;
+        width: 180px;
         display: inline-block;
     }
     .center {
@@ -33,7 +33,7 @@
 
             <div class="card col-md-12">
                 <div class="card-body">
-                    <h3>BOOKING INVENTORY</h3><br/>
+                    <h1>BOOKING INVENTORY</h1><br/>
                     {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form'])!!}
                         <br/>
                         
@@ -52,7 +52,7 @@
                                     <b>Total Inventory left: <a style="color:blue;">100,000</a> impression</b>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="https://google.co.th" target="_blank" class="btn btn-primary btn-sm" style="width:180px;">click to view dashboard</a>
+                                    <a href="https://google.co.th" target="_blank" class="btn btn-primary btn-lg" style="width:180px;">click to view dashboard</a>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                         <b class="field_label">Upload file :&nbsp</b> <input type="file" name="file" required>
                         <br/><br/><br/>
                         <div class="text-center">
-                            {!! Form::submit('Confirm', array( 'class'=>'btn btn-primary' )) !!}
+                            {!! Form::submit('Confirm', array( 'class'=>'btn btn-lg btn-primary' )) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
