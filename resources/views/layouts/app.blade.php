@@ -41,6 +41,11 @@
         .navbar-light .navbar-nav .show>.nav-link {
             color: #295FCA;
         }
+
+        a.active{
+            color: #295FCA;
+            font-weight:bold;
+        }
     </style>
 </head>
 <body style="background-color:#F5F5F6">
@@ -121,9 +126,9 @@
                         <h4><b>{{ $user->name }}</b></h4>
                     </div>
                     <hr>
-                    <a href="profile">MY ACCOUNT</a><br/>
-                    <a href="pending-list">INBOX</a><br/>
-                    <a href="my-activity">MY ACTIVITIES</a>
+                    <a class="{{ Request::is('profile') ? 'active' : '' }}" href="profile">MY ACCOUNT</a><br/>
+                    <a class="{{ Request::is('pending-list') ? 'active' : '' }}" href="pending-list">INBOX</a><br/>
+                    <a class="{{ Request::is('my-activity') ? 'active' : '' }}" href="my-activity">MY ACTIVITIES</a>
                 </div>
             </div>
             <div style="padding-left: 40px;"></div>
