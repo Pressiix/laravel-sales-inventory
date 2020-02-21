@@ -40,7 +40,7 @@
             <div class="card col-md-12">
 
             <div class="card-body">
-                <h3>CREATE NEW ADVERTISER</h3>
+                <h1>CREATE NEW ADVERTISER</h1>
                 <div class="col-sm-12">
                 {!! Form::open(['action' => ['AdvertiserController@storeAdvertiser', 'method' => 'POST']])!!}
                         <br/>
@@ -49,7 +49,7 @@
                         <b>Email :&nbsp</b> {{ Form::text('customer_email', (!empty($customer_email) ? $customer_email : '')) }} <br/><br/>
                         
                         <div class="text-center">
-                            {!! Form::submit('Confirm', array( 'class'=>'btn btn-primary form-control' )) !!}
+                            {!! Form::submit('Confirm', array( 'class'=>'btn btn-primary btn-lg' )) !!}
                         </div>
                         
                 {!! Form::close() !!}

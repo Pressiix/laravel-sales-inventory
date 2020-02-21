@@ -26,7 +26,14 @@
     hr.ruler{
         border-top: 3px solid grey;
     }
+    #ad-card{
+        border-color: #00BAA5;
+    }
+    div.card-header{
+        background-color:#E8F9F7;
+    }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     window.history.pushState('request-save', 'Title', '/request-form');
 
@@ -63,6 +70,27 @@
         //append to form element that you want .
         document.getElementById("form").appendChild(input);
     };
+
+    
+    function addAds(){
+            console.log('aaa');
+            var count = 1;
+            var cardHeader = '<div class="card-header"><b style="font-size:20px;">Ad '+count+' Description :</b></div>';
+            var size_form = '<b style="width:60px;">Size :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
+            var position_form = '<b style="width:75px;">Position :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
+            var section_form = '<b style="width:70px;">Section :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select> </b><br/><br/>';
+            var date_from_form = '<b style="width:60px;">Period: </b>from <input required="required" name="date_from" type="date" class="wide-custom"> to <input required="required" name="date_to" type="date" class="wide-custom"><br/><br/>';
+            var date_to_form = '<b>URL link banner:&nbsp </b><input required="required" name="banner_url" type="text" value="https://banner.com"> <br/><br/>';
+            var booking_link = '<b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>';
+            var cardBody = '<div class="card-body">'+size_form+position_form+section_form+date_from_form+date_to_form+booking_link+'</div>';
+                            
+                            
+            var div = $('<br/><div class="card" id="ad-card">'+cardHeader+cardBody+'</div>');
+            //div.html('<');
+            div.appendTo('#ad-description');
+            count = count + 1;
+        };
+    
 </script>
 @section('content')
             <div class="card col-md-12">
@@ -124,22 +152,22 @@
                         <br/>
 
                         <!-- AD DESCRIPTION -->
-                        <div class="ad-description">
-                            <div class="card">
+                        <section class="ad-description" id="ad-description">
+                            <div class="card" id="ad-card">
                                 <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
                                 <div class="card-body">
-                                    <b style="width:40px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                                    <b style="width:65px;">Position :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                                    <b style="width:60px;">Section :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
+                                    <b style="width:60px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                    <b style="width:75px;">Position :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                    <b style="width:70px;">Section :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
                                     <b style="width:60px;">Period: </b>from {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!} to {!! Form::date('date_to', null, ['class'=>'wide-custom','required'=>'required']) !!}<br/><br/>
                                     <b>URL link banner:&nbsp </b>{{ Form::text('banner_url', 'https://banner.com', ['required']) }} <br/><br/>
                                     <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
                         <br/><br/>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">+ ADD MORE AD</button><br/><br/>
+                        <button type="button" id="addAd" class="btn btn-primary btn-lg btn-block" OnClick="addAds()">+ ADD MORE AD</button><br/><br/>
                         <b>Campaign budget (THB): </b><input name="campaign_budget" type="number" min="1" step="any" value="<?= (!empty($campaign_budget)? $campaign_budget : '') ?>" required /><br/><br/>
                         <hr class="ruler"/>
                         <div class="text-center">
