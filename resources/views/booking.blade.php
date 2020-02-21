@@ -14,7 +14,7 @@
         width:100px;
     }
     input.draft{
-        width:75%;
+        width:65%;
     }
     b.field_label{
         font-weight: 900;
@@ -48,10 +48,10 @@
                         <div class="card" style="height:80px;background-color:#E9EFFB;">
                         <br/>
                             <div class="card-body center col-md-12 row" style="padding : 2px 5px 5px 2px;" >
-                                <div class="col-md-9">
-                                    <b>Total Inventory left: <a style="color:blue;">100,000</a> impression</b>
+                                <div class="col-md-9" style="padding-top: 10px;">
+                                    <b style="padding-left: 50px;">Total Inventory left: <a style="color:blue;">100,000</a> impression</b>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" style="padding-top: 5px;">
                                     <a href="https://google.co.th" target="_blank" class="btn btn-primary btn-lg" style="width:180px;">click to view dashboard</a>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <br/>
-                        <b class="field_label">Impression needed :&nbsp</b> {{ Form::text('impression_need', '', array('class' => 'draft')) }} <button class="btn btn-outline-primary">Save as draft</button>
+                        <b class="field_label">Impression needed :&nbsp</b> {{ Form::text('impression_need', '', array('class' => 'draft')) }} <button class="btn btn-lg btn-outline-primary">Save as draft</button>
                         <br/><br/>
                         <b class="field_label">Detail :&nbsp</b> {{ Form::text('detail', '') }}
                         <br/><br/>

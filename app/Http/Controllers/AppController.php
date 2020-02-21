@@ -32,7 +32,7 @@ class AppController extends Controller
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
         
-            return view('request-form',[
+            return view('request.form',[
                 'sales_name' => auth()->user()->name,
                 'customer' => $customer,
                 'advertiser' => $advertiser
@@ -41,7 +41,7 @@ class AppController extends Controller
         else{
             if($sales_name)
             {
-                return view('request-form', [
+                return view('request.form', [
                     'sales_name' => $sales_name,
                     'sales_type' => $sales_type,
                     'customer_name' => $customer_name,
@@ -58,7 +58,7 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-         return view('request-review',[
+         return view('request.review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,
             'customer_id' => $request->customer_id,
@@ -84,7 +84,7 @@ class AppController extends Controller
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
 
-            return view('request-form', [
+            return view('request.form', [
                 'sales_name' => $request->sales_name,
                 'sales_type' => $request->sales_type,
                 'customer_id' => $request->customer_id,
@@ -171,6 +171,24 @@ class AppController extends Controller
     {
         //$user = Auth::user();
         return view('booking'/*, compact('user')*/);
+    }
+
+    public function showRevenue(User $user)
+    {
+        //$user = Auth::user();
+        return view('revenue'/*, compact('user')*/);
+    }
+
+    public function showCampaignReport(User $user)
+    {
+        //$user = Auth::user();
+        return view('campaign-report'/*, compact('user')*/);
+    }
+
+    public function showAdNetwork(User $user)
+    {
+        //$user = Auth::user();
+        return view('ad-network'/*, compact('user')*/);
     }
     
 }

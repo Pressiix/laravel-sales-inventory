@@ -20,9 +20,30 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #FFFFFF;
+            color: grey;
+            text-align: center;
+        }
+
+        li.nav-item{
+            font-weight:bold;
+        }
+
+        .navbar-light .navbar-nav .active>.nav-link, 
+        .navbar-light .navbar-nav .nav-link.active, 
+        .navbar-light .navbar-nav .nav-link.show, 
+        .navbar-light .navbar-nav .show>.nav-link {
+            color: #295FCA;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:#F5F5F6">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -52,32 +73,32 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
+                            <li class="nav-item {{ Request::is('profile') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('users.edit') }}">Profile</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="request-form">Request Form</a>
+                            <li class="nav-item {{ Request::is('request-form') ? 'active' : '' }}">
+                                <a class="nav-link" href="/request-form">Request Form</a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('booking-inventory') ? 'active' : '' }}">
+                                <a class="nav-link" href="/booking-inventory">Booking Inventory</a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('revenue/1') ? 'active' : '' }}">
+                                <a class="nav-link" href="/revenue/1">Revenue</a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('campaign-report') ? 'active' : '' }}">
+                                <a class="nav-link" href="/campaign-report">Campaign Report</a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('ad-network') ? 'active' : '' }}">
+                                <a class="nav-link" href="/ad-network">Ad Network</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="booking-inventory">Booking Inventory</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Revenue</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Campaign Report</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Ad Network</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <button class="btn btn-primary " onclick="window.location.href = '{{ url('/logout') }}';">Logout</button>
+                                <button class="btn btn-primary btn-lg" onclick="window.location.href = '{{ url('/logout') }}';">Logout</button>
                                 <!--<a class="nav-link" href="{{ url('/logout') }}"> logout </a>-->
                             </li>
 
@@ -111,6 +132,10 @@
             @yield('content')
         </div>
     </div>
+    </div>
+    <div style="padding-top: 100px;padding-bottom: 20px;"></div>
+    <div class="footer" style="padding-top: 20px;padding-bottom: 15px;">
+        <p>Copyright &copy; 2020 Bangkok Post Public Company Limited - All rights reserved.</p>
     </div>
 </body>
 </html>

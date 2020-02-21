@@ -37,4 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('create-advertiser', ['as' => 'create-advertiser', 'uses' => 'AdvertiserController@createAdvertiser']);
     Route::post('save-advertiser', ['as' => 'save-advertiser', 'uses' => 'AdvertiserController@storeAdvertiser']);
+
+    Route::get('revenue/{id}', ['as' => 'revenue', 'uses' => 'AppController@showRevenue']);
+    Route::get('campaign-report', ['as' => 'campaign-report', 'uses' => 'AppController@showCampaignReport']);
+    Route::get('ad-network', ['as' => 'ad-network', 'uses' => 'AppController@showAdNetwork']);
 });
