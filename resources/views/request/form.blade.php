@@ -36,7 +36,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     window.history.pushState('request-save', 'Title', '/request-form');
-
+    var count = 2;
     function createHiddenField(){
         customerField();
         advertiserField();
@@ -74,7 +74,7 @@
     
     function addAds(){
             console.log('aaa');
-            var count = 1;
+            
             var cardHeader = '<div class="card-header"><b style="font-size:20px;">Ad '+count+' Description :</b></div>';
             var size_form = '<b style="width:60px;">Size :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
             var position_form = '<b style="width:75px;">Position :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
@@ -121,15 +121,15 @@
                         <div class="row">
                             <div class="col-md-2"><b>Type :</b></div> 
                             <div class="col-md-9" style="left:16px;">
-                                {{ Form::radio('type1', 'Banner', ['required']) }} Banner &nbsp
-                                {{ Form::radio('type1', 'Nytive Ad', ['required']) }} Nytive Ad &nbsp
-                                {{ Form::radio('type1', 'Premium Advertorial', ['required']) }} Premium Advertorial<br/><br/>
-                                {{ Form::radio('type1', 'Advertorial', ['required']) }} Advertorial &nbsp
-                                {{ Form::radio('type1', 'Property Listing', ['required']) }} Property Listing &nbsp
-                                {{ Form::radio('type1', 'Special event', ['required']) }} Special event <br/><br/>
-                                {{ Form::radio('type1', 'Sponsor Link', ['required']) }} Sponsor Link &nbsp
-                                {{ Form::radio('type1', 'Jobs', ['required']) }} Jobs &nbsp 
-                                {{ Form::radio('type1', 'PR', ['required']) }} PR &nbsp <br/><br/>
+                                {{ Form::radio('type1[1]', 'Banner',(!empty($type1[1]) && $type1[1] === 'Bangkok Post' ? true : false)) }} Banner &nbsp
+                                {{ Form::radio('type1[2]', 'Nytive Ad',(!empty($type1[2]) && $type1[2] === 'Bangkok Post' ? true : false)) }} Nytive Ad &nbsp
+                                {{ Form::radio('type1[3]', 'Premium Advertorial',(!empty($type1[3]) && $type1[3] === 'Bangkok Post' ? true : false)) }} Premium Advertorial<br/><br/>
+                                {{ Form::radio('type1[4]', 'Advertorial',(!empty($type1[4]) && $type1[4] === 'Bangkok Post' ? true : false)) }} Advertorial &nbsp
+                                {{ Form::radio('type1[5]', 'Property Listing',(!empty($type1[5]) && $type1[5] === 'Bangkok Post' ? true : false)) }} Property Listing &nbsp
+                                {{ Form::radio('type1[6]', 'Special event',(!empty($type1[6]) && $type1[6] === 'Bangkok Post' ? true : false)) }} Special event <br/><br/>
+                                {{ Form::radio('type1[7]', 'Sponsor Link',(!empty($type1[7]) && $type1[7] === 'Bangkok Post' ? true : false)) }} Sponsor Link &nbsp
+                                {{ Form::radio('type1[8]', 'Jobs',(!empty($type1[8]) && $type1[8] === 'Bangkok Post' ? true : false)) }} Jobs &nbsp 
+                                {{ Form::radio('type1[9]', 'PR',(!empty($type1[9]) && $type1[9] === 'Bangkok Post' ? true : false)) }} PR &nbsp <br/><br/>
                             </div>
                         </div>
                         <br/>

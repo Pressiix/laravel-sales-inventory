@@ -180,7 +180,7 @@
                                 {{ method_field('POST') }}
                                 <input type='file' name="image" id="imgInp" />
                                 <br/><br/>
-                                <button class="btn btn-lg btn-success" type="submit">Submit</button>  
+                                <button class="btn btn-lg btn-success" type="submit">Upload</button>  
                             </form>
 
                             </div>

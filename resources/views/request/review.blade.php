@@ -16,12 +16,18 @@
 
     b{
         font-weight: 900;
-        width: 170px;
+        width: 185px;
         display: inline-block;
     }
 
     input[type=submit]{
         width : 100px;
+    }
+    #ad-card{
+        border-color: #00BAA5;
+    }
+    div.card-header{
+        background-color:#E8F9F7;
     }
 </style>
 
@@ -68,12 +74,12 @@
                             </div>
                         </div>
 
-                        <div class="card col-md-12">
+                        <div class="card " id="ad-card">
+                            <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
                             <div class="card-body">
-                                <b style="font-size:20px;">Ad 1 Description : </b><br/><br/>
-                                <b style="width:40px;">Size :&nbsp</b>300 x 250 &nbsp
-                                <b style="width:65px;">Position :&nbsp</b>xxxxx &nbsp
-                                <b style="width:60px;">Section :&nbsp</b>xxxxx </b><br/><br/>
+                                <b style="width:60px;">Size :&nbsp</b>300 x 250 &nbsp
+                                <b style="width:75px;">Position :&nbsp</b>xxxxx &nbsp
+                                <b style="width:70px;">Section :&nbsp</b>xxxxx </b><br/><br/>
                                 <b style="width:60px;">Period: </b>from <input type="text" value="<?= $date_from ?>" disabled>  to <input type="text" value="<?= $date_to ?>" disabled><br/><br/>
                                 <b>URL link banner:&nbsp </b>{{ $banner_url}}<br/><br/>
                                 <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>

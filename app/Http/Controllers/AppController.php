@@ -58,7 +58,8 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-         return view('request.review',[
+        echo "<pre/>"; print_r($request->type1);
+         /*return view('request.review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,
             'customer_id' => $request->customer_id,
@@ -74,7 +75,7 @@ class AppController extends Controller
             'banner_url' => $request->banner_url,
             'create_at' => $request->create_at,
             'campaign_budget' => $request->campaign_budget
-        ]);
+        ]);*/
     }
 
     public function storeRequest(Request $request)
