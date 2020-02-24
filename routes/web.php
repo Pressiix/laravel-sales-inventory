@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('profile',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
     Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
+    
     Route::get('request-form', ['as' => 'request-form', 'uses' => 'AppController@request']);
     Route::post('request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
     Route::get('pending-list', ['as' => 'request-show', 'uses' => 'AppController@showPendingList']);
@@ -41,4 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('revenue/{id}', ['as' => 'revenue', 'uses' => 'AppController@showRevenue']);
     Route::get('campaign-report', ['as' => 'campaign-report', 'uses' => 'AppController@showCampaignReport']);
     Route::get('ad-network', ['as' => 'ad-network', 'uses' => 'AppController@showAdNetwork']);
+
+    Route::post('/upload-image', 'UserController@uploadProfileImage');
+    Route::post('/save-booking','AppController@storeBooking');
 });

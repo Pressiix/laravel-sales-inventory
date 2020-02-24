@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -11,6 +12,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+    
     public function edit(User $user)
     {   
         $user = Auth::user();
@@ -18,35 +20,42 @@ class UserController extends Controller
     }
     public function update(Request $request)
     { 
-        echo '<pre/>';print_r($request->username);
-        /*if(Auth::user()->email == request('email')) {
+        $user = Auth::user();
+        //echo '<pre/>';print_r($user );
         
-        $this->validate(request(), [
-                'username' => 'required',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:6|confirmed'
-            ]);
-            $user->username = request('username');
-            $user->email = request('email');
-            $user->password = bcrypt(request('password'));
-            $user->save();
-            return back();
-            
-        }
-        else{
-            
-        $this->validate(request(), [
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'email' => 'email|required|unique:users,email,',
-                'password' => 'required|min:6|confirmed'
-            ]);
-            $user->name = request('name');
-            $user->email = request('email');
-            $user->password = bcrypt(request('password'));
-            $user->save();
-            return back();  
-            
-        }*/
+        DB::table('users')->where('id', Auth::user()->id)->update([
+                        'email' => $request->email,
+                        'telephone' => $request->telephone
+                    ]);
+        return redirect('/profile');      
     }
+
+    public function uploadProfileImage(Request $request)
+    {
+        $user = Auth::user();
+        if(Auth::user()->profile_picture)
+        {
+            if(\File::exists(public_path(Auth::user()->profile_picture))){
+                \File::delete(public_path(Auth::user()->profile_picture));
+            }
+        }
+        
+        //Save upload image to 'avatar' folder which in 'storage/app/public' folder
+        if($request->file('image'))
+        {
+            $path = $request->file('image')->store('avatar','public');
+            //print_r($request->file('image')->hashName());
+            DB::table('users')
+                    ->where('id', Auth::user()->id)
+                    ->update(['profile_picture' => '/storage/avatar/'.$request->file('image')->hashName()]);
+        }
+        
+        return redirect('/profile');
+    }
+
 }
+
+
+
+
+

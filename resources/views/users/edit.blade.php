@@ -9,7 +9,6 @@
         font-weight: bold;
     }
 </style>
-
 @section('content')
 
             <div class="card col-md-9">
@@ -20,11 +19,11 @@
                 {!! Form::open(['action' => ['UserController@update', 'method' => 'POST']])!!}
                     <div class="form-group">
                         <label>User name:</label>
-                        <input type="text" name="name"  value="{{ $user->username }}" />
+                        <input type="text" name="name"  value="{{ $user->username }}" disabled />
                     </div>
                     <div class="form-group">
                         <label>Password:</label>
-                        <input type="password" name="password"  value="123456789" />
+                        <input type="password" name="password"  value="{{ $user->password }}" disabled />
                     </div>
                     <div class="form-group">
                         <label>E-mail:</label>

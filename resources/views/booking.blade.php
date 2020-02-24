@@ -34,7 +34,7 @@
             <div class="card col-md-12">
                 <div class="card-body">
                     <h1>BOOKING INVENTORY</h1><br/>
-                    {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form'])!!}
+                    {!! Form::open(['action' => ['AppController@storeBooking', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
                         <br/>
                         
                         <div class="row">
@@ -79,7 +79,10 @@
                         <br/><br/>
                         <b class="field_label">Detail :&nbsp</b> {{ Form::text('detail', '') }}
                         <br/><br/>
-                        <b class="field_label">Upload file :&nbsp</b> <input type="file" name="file" required>
+                        <b class="field_label">Upload file :&nbsp</b> 
+                        {{ csrf_field() }}
+                        {{ method_field('POST') }}
+                        <input type="file" name="file" required>
                         <br/><br/><br/>
                         <div class="text-center">
                             {!! Form::submit('Confirm', array( 'class'=>'btn btn-lg btn-primary' )) !!}

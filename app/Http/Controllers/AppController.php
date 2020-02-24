@@ -190,5 +190,14 @@ class AppController extends Controller
         //$user = Auth::user();
         return view('ad-network'/*, compact('user')*/);
     }
+
+    
+
+    public function storeBooking(Request $request)
+    {
+        //Save upload image to 'avatar' folder which in 'storage/app/public' folder
+        $path = $request->file('file')->store('files','public');
+        return view('booking');
+    }
     
 }

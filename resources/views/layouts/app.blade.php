@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -21,6 +21,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <style>
+        
+        span {
+            left:0;
+            text-align:center;
+            width:100%;
+            background:rgba(255,255,255,0.5);
+            bottom:0;
+            padding:20px 0;
+        }
         .footer {
             position: fixed;
             left: 0;
@@ -35,6 +44,7 @@
             font-weight:bold;
         }
 
+
         .navbar-light .navbar-nav .active>.nav-link, 
         .navbar-light .navbar-nav .nav-link.active, 
         .navbar-light .navbar-nav .nav-link.show, 
@@ -47,8 +57,31 @@
             font-weight:bold;
         }
     </style>
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        /** Preview image before upload */
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+            }
+
+            $("#imgInp").change(function() {
+                readURL(this);
+            });
+            /******************************************* */
+
+    });
+    </script>
 </head>
 <body style="background-color:#F5F5F6">
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -120,7 +153,44 @@
         <?php if(!empty($user)){ ?>
             <div class="card col-md-2">
                 <div class="card-body">
-                    <img src="image/avatar.png" alt="Avatar" style="display:block;margin: 0 auto;width:100px;height:100px;border-radius: 50%;">
+                    <!--<img src="image/avatar.png" alt="Avatar" style="display:block;margin: 0 auto;width:100px;height:100px;border-radius: 50%;">-->
+                    <div class="img-thumbnail img-circle">
+                        <div style="position: relative; padding: 0; cursor: pointer;display:block;margin: 0 auto;" type="file">
+                        <img src="{{ url('/').$user->profile_picture }}" class="rounded-circle" width="120px" height="120px"> 
+                            <a style="{{ Request::is('profile') ? '' : 'display:none;' }}" data-target="#myModal" data-toggle="modal"><span style="position: absolute; color: #000; "><i class="fa fa-camera"></i></span></a>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><b>Upload your profile picture</b></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body text-center">
+                            
+                            <form action="{{ url('/upload-image') }}" method="POST" enctype="multipart/form-data" runat="server">
+                                <img id="blah" src="{{ url('/').$user->profile_picture }}" alt="your image" width="140px" height="140px"/>
+                                <br/><br/>
+                                {{ csrf_field() }}
+                                {{ method_field('POST') }}
+                                <input type='file' name="image" id="imgInp" />
+                                <br/><br/>
+                                <button class="btn btn-lg btn-success" type="submit">Submit</button>  
+                            </form>
+
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
                     
                     <div class="text-center">
                         <h4><b>{{ $user->name }}</b></h4>
