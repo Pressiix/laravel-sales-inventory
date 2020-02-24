@@ -58,7 +58,7 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-        echo "<pre/>"; print_r($request->type1);
+        echo "<pre/>"; print_r($request->size);
          /*return view('request.review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,

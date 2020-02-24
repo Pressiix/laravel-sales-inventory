@@ -76,11 +76,11 @@
             console.log('aaa');
             
             var cardHeader = '<div class="card-header"><b style="font-size:20px;">Ad '+count+' Description :</b></div>';
-            var size_form = '<b style="width:60px;">Size :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
-            var position_form = '<b style="width:75px;">Position :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
-            var section_form = '<b style="width:70px;">Section :&nbsp</b><select name="advertiser_name" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select> </b><br/><br/>';
-            var date_form = '<b style="width:60px;">Period: </b>from <input required="required" name="date_from" type="date" class="wide-custom"><i class="fa fa-calendar"></i> to <input required="required" name="date_to" type="date" class="wide-custom"><i class="fa fa-calendar"></i><br/><br/>';
-            var banner_url = '<b>URL link banner:&nbsp </b><input required="required" name="banner_url" type="text" value=""> <br/><br/>';
+            var size_form = '<b style="width:60px;">Size :&nbsp</b><select name="size['+count+']" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
+            var position_form = '<b style="width:75px;">Position :&nbsp</b><select name="position['+count+']" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
+            var section_form = '<b style="width:70px;">Section :&nbsp</b><select name="section['+count+']" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select> </b><br/><br/>';
+            var date_form = '<b style="width:60px;">Period: </b>from <input required="required" name="date_from['+count+']" type="date" class="wide-custom"><i class="fa fa-calendar"></i> to <input required="required" name="date_to['+count+']" type="date" class="wide-custom"><i class="fa fa-calendar"></i><br/><br/>';
+            var banner_url = '<b>URL link banner:&nbsp </b><input required="required" name="banner_url['+count+']" type="text" value=""> <br/><br/>';
             var booking_link = '<b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>';
             var cardBody = '<div class="card-body">'+size_form+position_form+section_form+date_form+banner_url+booking_link+'</div>';
                             
@@ -156,11 +156,11 @@
                             <div class="card" id="ad-card">
                                 <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
                                 <div class="card-body">
-                                    <b style="width:60px;">Size :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                                    <b style="width:75px;">Position :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
-                                    <b style="width:70px;">Section :&nbsp</b>{{ Form::select('advertiser_name', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
-                                    <b style="width:60px;">Period: </b>from {!! Form::date('date_from', null, ['class'=>'wide-custom','required'=>'required']) !!}<i class="fa fa-calendar"></i> to {!! Form::date('date_to', null, ['class'=>'wide-custom','required'=>'required']) !!}<i class="fa fa-calendar"></i><br/><br/>
-                                    <b>URL link banner:&nbsp </b>{{ Form::text('banner_url', '', ['required']) }} <br/><br/>
+                                    <b style="width:60px;">Size :&nbsp</b>{{ Form::select('size[1]', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                    <b style="width:75px;">Position :&nbsp</b>{{ Form::select('position[1]', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }}
+                                    <b style="width:70px;">Section :&nbsp</b>{{ Form::select('section[1]', array('L' => 'Large', 'S' => 'Small'), null, ['class' => 'wide-custom']) }} </b><br/><br/>
+                                    <b style="width:60px;">Period: </b>from {!! Form::date('date_from[1]', null, ['class'=>'wide-custom','required'=>'required']) !!}<i class="fa fa-calendar"></i> to {!! Form::date('date_to[1]', null, ['class'=>'wide-custom','required'=>'required']) !!}<i class="fa fa-calendar"></i><br/><br/>
+                                    <b>URL link banner:&nbsp </b>{{ Form::text('banner_url[1]', '', ['required']) }} <br/><br/>
                                     <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
                                 </div>
                             </div>
