@@ -73,21 +73,32 @@
                                 xxxxx<br/><br/>
                             </div>
                         </div>
-
+                        <?php 
+                            $count_desc = count($size);
+                            
+                            for($i=0;$i<$count_desc;$i++){ 
+                        ?>
                         <div class="card " id="ad-card">
-                            <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
+                            <div class="card-header"><b style="font-size:20px;">Ad {{$i+1}} Description : </b></div>
                             <div class="card-body">
-                                <b style="width:60px;">Size :&nbsp</b>300 x 250 &nbsp
-                                <b style="width:75px;">Position :&nbsp</b>xxxxx &nbsp
-                                <b style="width:70px;">Section :&nbsp</b>xxxxx </b><br/><br/>
-                                <b style="width:60px;">Period: </b>from <input type="text" value="<?= $date_from ?>" disabled>  to <input type="text" value="<?= $date_to ?>" disabled><br/><br/>
-                                <b>URL link banner:&nbsp </b>{{ $banner_url}}<br/><br/>
+                                <b style="width:60px;">Size :&nbsp</b>{{ $size[$i] }} &nbsp
+                                <b style="width:75px;">Position :&nbsp</b>{{ $position[$i] }} &nbsp
+                                <b style="width:70px;">Section :&nbsp</b>{{ $section[$i] }} </b><br/><br/>
+                                <b style="width:60px;">Period: </b>from <input type="text" value="<?= $date_from[$i] ?>" disabled>  to <input type="text" value="<?= $date_to[$i] ?>" disabled><br/><br/>
+                                <b>URL link banner:&nbsp </b>{{ $banner_url[$i]}}<br/><br/>
                                 <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>
                             </div>
-                            {!! Form::hidden('date_from', $date_from) !!}
-                            {!! Form::hidden('date_to', $date_to) !!}
-                            {!! Form::hidden('banner_url', $banner_url) !!}
+                            {!! Form::hidden('size[$i]', $size[$i]) !!}
+                            {!! Form::hidden('position[$i]', $position[$i]) !!}
+                            {!! Form::hidden('section[$i]', $section[$i]) !!}
+                            {!! Form::hidden('date_from[$i]', $date_from[$i]) !!}
+                            {!! Form::hidden('date_to[$i]', $date_to[$i]) !!}
+                            {!! Form::hidden('banner_url[$i]', $banner_url[$i]) !!}
                         </div>
+                        <br/>
+                        <?php 
+                                }
+                         ?> 
 
                         <br/><br/>
                         <b>Campaign budget (THB): </b>{{ $campaign_budget }}<br/><br/>

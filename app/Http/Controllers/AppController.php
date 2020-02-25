@@ -58,8 +58,17 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-        echo "<pre/>"; print_r($request->size);
-         /*return view('request.review',[
+       /* $size = $request->size;
+        $position = $request->position;
+        $section = $request->section;
+        $date_from = $request->date_from;
+        $date_to = $request->date_to;
+        echo "Size<pre/>"; print_r($size);echo "<pre/>";
+        echo "Position<pre/>"; print_r($position);echo "<pre/>";
+        echo "Section<pre/>"; print_r($section);echo "<pre/>";
+        echo "Date From<pre/>"; print_r($date_from);echo "<pre/>";
+        echo "Date To<pre/>"; print_r($date_to);echo "<pre/>";*/
+         return view('request.review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,
             'customer_id' => $request->customer_id,
@@ -70,12 +79,15 @@ class AppController extends Controller
             'website' => $request->website,
             'facebook' => $request->facebook,
             'facebook_type' => $request->facebook_type,
+            'size' => $request->size,
+            'position' => $request->position,
+            'section' => $request->section,
             'date_from' => $request->date_from,
             'date_to' => $request->date_to,
             'banner_url' => $request->banner_url,
             'create_at' => $request->create_at,
             'campaign_budget' => $request->campaign_budget
-        ]);*/
+        ]);
     }
 
     public function storeRequest(Request $request)
