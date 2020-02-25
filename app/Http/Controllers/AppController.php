@@ -77,6 +77,7 @@ class AppController extends Controller
             'advertiser_name' => $request->advertiser_name,
             'campaign_name' => $request->campaign_name,
             'website' => $request->website,
+            'type1' => $request->type1,
             'facebook' => $request->facebook,
             'facebook_type' => $request->facebook_type,
             'size' => $request->size,
@@ -94,6 +95,7 @@ class AppController extends Controller
     {
         if($request->input('action') === 'Edit')
         {
+            //echo "<pre/>";print_r($request->size);
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
 
@@ -106,12 +108,19 @@ class AppController extends Controller
                 'advertiser_id' => $request->advertiser_id,
                 'advertiser_name' => $request->advertiser_name,
                 'website' => $request->website,
+                'type1' => $request->type1,
                 'facebook' => $request->facebook,
                 'facebook_type' => $request->facebook_type,
                 'create_at' => $request->create_at,
                 'campaign_budget' => $request->campaign_budget,
                 'customer' => $customer,
-                'advertiser' => $advertiser
+                'advertiser' => $advertiser,
+                'size' => $request->size,
+                'position' => $request->position,
+                'section' => $request->section,
+                'date_from' => $request->date_from,
+                'date_to' => $request->date_to,
+                'banner_url' => $request->banner_url,
             ]);
         }
         else

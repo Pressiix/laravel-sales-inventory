@@ -73,6 +73,15 @@
                                 xxxxx<br/><br/>
                             </div>
                         </div>
+                            {{ Form::hidden('type1[0]', (!empty($type1[0])&&$type1[0] == 'Banner' ? 'Banner' : '' )) }}
+                            {{ Form::hidden('type1[1]', (!empty($type1[1])&&$type1[1] == 'Nytive Ad' ? 'Nytive Ad' : '' )) }}
+                            {{ Form::hidden('type1[2]', (!empty($type1[2])&&$type1[2] == 'Premium Advertorial' ? 'Premium Advertorial' : '' )) }}
+                            {{ Form::hidden('type1[3]', (!empty($type1[3])&&$type1[3] == 'Advertorial' ? 'Advertorial' : '' )) }}
+                            {{ Form::hidden('type1[4]', (!empty($type1[4])&&$type1[4] == 'Property Listing' ? 'Property Listing' : '' )) }} 
+                            {{ Form::hidden('type1[5]', (!empty($type1[5])&&$type1[5] == 'Special event' ? 'Special event' : '' )) }}
+                            {{ Form::hidden('type1[6]', (!empty($type1[6])&&$type1[6] == 'Sponsor Link' ? 'Sponsor Link' : '' )) }}
+                            {{ Form::hidden('type1[7]', (!empty($type1[7])&&$type1[7] == 'Jobs' ? 'Jobs' : '' )) }}
+                            {{ Form::hidden('type1[8]', (!empty($type1[8])&&$type1[8] == 'PR' ? 'PR' : '' )) }}
                         <?php 
                             $count_desc = count($size);
                             
@@ -88,12 +97,12 @@
                                 <b>URL link banner:&nbsp </b>{{ $banner_url[$i]}}<br/><br/>
                                 <b>Impression:&nbsp </b> xxxxxxxx<br/><br/>
                             </div>
-                            {!! Form::hidden('size[$i]', $size[$i]) !!}
-                            {!! Form::hidden('position[$i]', $position[$i]) !!}
-                            {!! Form::hidden('section[$i]', $section[$i]) !!}
-                            {!! Form::hidden('date_from[$i]', $date_from[$i]) !!}
-                            {!! Form::hidden('date_to[$i]', $date_to[$i]) !!}
-                            {!! Form::hidden('banner_url[$i]', $banner_url[$i]) !!}
+                            {!! Form::hidden('size['.$i.']', $size[$i]) !!}
+                            {!! Form::hidden('position['.$i.']', $position[$i]) !!}
+                            {!! Form::hidden('section['.$i.']', $section[$i]) !!}
+                            {!! Form::hidden('date_from['.$i.']', $date_from[$i]) !!}
+                            {!! Form::hidden('date_to['.$i.']', $date_to[$i]) !!}
+                            {!! Form::hidden('banner_url['.$i.']', $banner_url[$i]) !!}
                         </div>
                         <br/>
                         <?php 

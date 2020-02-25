@@ -36,7 +36,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     window.history.pushState('request-save', 'Title', '/request-form');
-    var count = 1;
+    //var count = 1;
     function createHiddenField(){
         customerField();
         advertiserField();
@@ -73,7 +73,7 @@
 
     
     function addAds(){
-            console.log('aaa');
+            var count = $("div[id*='ad-card']").length;
             
             var cardHeader = '<div class="card-header"><b style="font-size:20px;">Ad '+(count+1)+' Description :</b></div>';
             var size_form = '<b style="width:60px;">Size :&nbsp</b><select name="size['+count+']" class="wide-custom"><option value="L">Large</option><option value="S">Small</option></select>';
@@ -103,10 +103,10 @@
                         <br/>
                         <b>Sales name :&nbsp</b> {{ $sales_name }} {{ Form::hidden('sales_name', $sales_name) }} <br/><br/>
                         <b>Sales Type :&nbsp</b> {{ Form::radio('sales_type', 'Direct', (!empty($sales_type) && $sales_type === 'Direct' ? true : false), ['required']) }} Direct &nbsp{{ Form::radio('sales_type', 'Agency', (!empty($sales_type) && $sales_type === 'Agency' ? true : false)) }} Agency<br/><br/>
-                        <b>Customer name :&nbsp</b> {{ Form::select('customer_id', $customer, null, array('id' => 'customer_id')) }} 
+                        <b>Customer name :&nbsp</b> {{ Form::select('customer_id', $customer, (!empty($customer_id) ? $customer_id : null)) }} 
                         &nbsp<a href="create-customer" target="_blank"><u><b>or create new customer</b></u></a><br/><br/>
                         <b>Campaign name :&nbsp</b> {{ Form::text('campaign_name', (!empty($campaign_name) ? $campaign_name : ''), ['required']) }}<br/><br/>
-                        <b>Advertiser name :&nbsp</b> {{ Form::select('advertiser_id', $advertiser, null, array('id' => 'advertiser_id')) }} 
+                        <b>Advertiser name :&nbsp</b> {{ Form::select('advertiser_id', $advertiser, (!empty($advertiser_id) ? $advertiser_id : null)) }} 
                         &nbsp<a href="create-advertiser" target="_blank"><u><b>or create new advertiser</b></u></a><br/><br/><br/><br/>
                          
                         <div class="row">
@@ -153,6 +153,37 @@
 
                         <!-- AD DESCRIPTION -->
                         <section class="ad-description" id="ad-description">
+                            <?php if(!empty($size)){
+                                for($i=0;$i<count($size);$i++){?>
+
+                            <div class="card" id="ad-card">
+                                <div class="card-header"><b style="font-size:20px;">Ad {{$i+1}} Description : </b></div>
+                                <div class="card-body">
+                                    <b style="width:60px;">Size :&nbsp</b>
+                                    <select name="size[<?=$i?>]" class="wide-custom">
+                                        <option value="L" <?= ($size[$i] == 'L' ? 'selected' : '') ?>>Large</option>
+                                        <option value="S" <?= ($size[$i] == 'S' ? 'selected' : '') ?>>Small</option>
+                                    </select>
+                                    <b style="width:75px;">Position :&nbsp</b>
+                                    <select name="position[<?=$i?>]" class="wide-custom">
+                                        <option value="L" <?= ($size[$i] == 'L' ? 'selected' : '') ?>>Large</option>
+                                        <option value="S" <?= ($size[$i] == 'S' ? 'selected' : '') ?>>Small</option>
+                                    </select>
+                                    <b style="width:70px;">Section :&nbsp</b>
+                                    <select name="section[<?=$i?>]" class="wide-custom">
+                                        <option value="L" <?= ($section[$i] == 'L' ? 'selected' : '') ?>>Large</option>
+                                        <option value="S" <?= ($section[$i] == 'S' ? 'selected' : '') ?>>Small</option>
+                                    </select> </b><br/><br/>
+                                    <b style="width:60px;">Period: </b>from {!! Form::date('date_from['.$i.']', $date_from[$i], ['class'=>'wide-custom','required'=>'required']) !!}&nbsp<i class="fa fa-calendar"></i> to {!! Form::date('date_to['.$i.']', $date_to[$i], ['class'=>'wide-custom','required'=>'required']) !!}&nbsp<i class="fa fa-calendar"></i><br/><br/>
+                                    <b>URL link banner:&nbsp </b>{{ Form::text('banner_url['.$i.']', $banner_url[$i], ['required']) }} <br/><br/>
+                                    <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
+                                </div>
+                            </div>
+                            <br/>
+                            <?php   }
+                            }
+                            else
+                            { ?>
                             <div class="card" id="ad-card">
                                 <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
                                 <div class="card-body">
@@ -164,6 +195,7 @@
                                     <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
                                 </div>
                             </div>
+                            <?php } ?>
                         </section>
 
                         <br/><br/>
