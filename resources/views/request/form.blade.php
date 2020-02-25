@@ -153,36 +153,28 @@
 
                         <!-- AD DESCRIPTION -->
                         <section class="ad-description" id="ad-description">
-                            <?php if(!empty($size)){
-                                for($i=0;$i<count($size);$i++){?>
+                            <?php 
+                            if(!empty($size)){  /**If user click edit from preview page */
+                                for($i=0;$i<count($size);$i++){
+                                    echo ($i>0 ? '<br/>' : '');
+                            ?>
 
                             <div class="card" id="ad-card">
                                 <div class="card-header"><b style="font-size:20px;">Ad {{$i+1}} Description : </b></div>
                                 <div class="card-body">
-                                    <b style="width:60px;">Size :&nbsp</b>
-                                    <select name="size[<?=$i?>]" class="wide-custom">
-                                        <option value="L" <?= ($size[$i] == 'L' ? 'selected' : '') ?>>Large</option>
-                                        <option value="S" <?= ($size[$i] == 'S' ? 'selected' : '') ?>>Small</option>
-                                    </select>
-                                    <b style="width:75px;">Position :&nbsp</b>
-                                    <select name="position[<?=$i?>]" class="wide-custom">
-                                        <option value="L" <?= ($size[$i] == 'L' ? 'selected' : '') ?>>Large</option>
-                                        <option value="S" <?= ($size[$i] == 'S' ? 'selected' : '') ?>>Small</option>
-                                    </select>
-                                    <b style="width:70px;">Section :&nbsp</b>
-                                    <select name="section[<?=$i?>]" class="wide-custom">
-                                        <option value="L" <?= ($section[$i] == 'L' ? 'selected' : '') ?>>Large</option>
-                                        <option value="S" <?= ($section[$i] == 'S' ? 'selected' : '') ?>>Small</option>
-                                    </select> </b><br/><br/>
+                                    <b style="width:60px;">Size :&nbsp</b>{{ Form::select('size['.$i.']', array('L' => 'Large', 'S' => 'Small'), (!empty($size[$i]) ? $size[$i] : null), ['class' => 'wide-custom']) }}
+                                    <b style="width:75px;">Position :&nbsp</b>{{ Form::select('position['.$i.']', array('L' => 'Large', 'S' => 'Small'), (!empty($position[$i]) ? $position[$i] : null), ['class' => 'wide-custom']) }}
+                                    <b style="width:70px;">Section :&nbsp</b>{{ Form::select('section['.$i.']', array('L' => 'Large', 'S' => 'Small'), (!empty($section[$i]) ? $section[$i] : null), ['class' => 'wide-custom']) }} </b><br/><br/>
                                     <b style="width:60px;">Period: </b>from {!! Form::date('date_from['.$i.']', $date_from[$i], ['class'=>'wide-custom','required'=>'required']) !!}&nbsp<i class="fa fa-calendar"></i> to {!! Form::date('date_to['.$i.']', $date_to[$i], ['class'=>'wide-custom','required'=>'required']) !!}&nbsp<i class="fa fa-calendar"></i><br/><br/>
                                     <b>URL link banner:&nbsp </b>{{ Form::text('banner_url['.$i.']', $banner_url[$i], ['required']) }} <br/><br/>
                                     <b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>
                                 </div>
                             </div>
-                            <br/>
-                            <?php   }
+                            
+                            <?php   
+                                }
                             }
-                            else
+                            else /**If user click to create new request form */
                             { ?>
                             <div class="card" id="ad-card">
                                 <div class="card-header"><b style="font-size:20px;">Ad 1 Description : </b></div>
