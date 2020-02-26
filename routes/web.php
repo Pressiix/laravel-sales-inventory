@@ -45,4 +45,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/upload-image', 'UserController@uploadProfileImage');
     Route::post('/save-booking','AppController@storeBooking');
+
+    Route::get('/test-mail', 'AppController@sendEmail');
 });

@@ -140,8 +140,8 @@ class AppController extends Controller
                         \'1\',
                         \''.$request->customer_id.'\',
                         \''.$request->advertiser_id.'\'
-                )'
-            );
+                )
+            ');
 
             //Send email to ...
             $this->sendEmail();
@@ -153,9 +153,14 @@ class AppController extends Controller
         
     }
 
-    private function sendEmail()
+    public function sendEmail()
     {
-
+        $details = [
+            'title' => 'Mail from Developer',
+            'body' => 'This is for testing email using smtp'
+        ];
+       
+        \Mail::to('watcharapon.piam2@gmail.com')->send(new \App\Mail\SendMail($details));
     }
 
 
