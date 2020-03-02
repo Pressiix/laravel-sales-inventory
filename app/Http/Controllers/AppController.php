@@ -160,7 +160,7 @@ class AppController extends Controller
             'body' => 'This is for testing email using smtp'
         ];
        
-        \Mail::to('watcharapon.piam2@gmail.com')->send(new \App\Mail\SendMail($details));
+        \Mail::to('watcharapon.piam@gmail.com')->send(new \App\Mail\SendMail($details));
     }
 
 
