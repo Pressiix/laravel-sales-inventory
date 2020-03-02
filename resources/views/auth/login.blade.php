@@ -2,75 +2,72 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <!--<div class="card-header">{{ __('Login') }}</div>-->
-                <br/>
-                <img style="display: block; margin: 0 auto;width:200px; height:40px;" src="image/bkp-logo.png">
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">User name: </label>
-
-                            <div class="col-md-6">
-                            <br/>
-                            <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required  autofocus>
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password: </label>
-
-                            <div class="col-md-6">
-                            <br/>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    &nbsp
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-lg btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-                                <br/>
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <div class="content-login">
+    <div class="center-screen">
+      <div class="logo-center"><h1><img src="assets/images/postgroup-logo_blue.svg" class="img-fluid"></h1></div>
+      <div class="div-form--login">
+        <form class="needs-validation" method="POST" action="{{ route('login') }}" novalidate>
+            @csrf
+          <div class="form-group">
+            <label for="inputUsername">User name:</label>
+            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" required  autofocus>
+            @error('username')
+                <div class="invalid-feedback" role="alert">Please put in a valid User name.</div>
+            @enderror
+            <!--<div class="invalid-feedback">Please put in a valid User name.</div>-->
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password:</label>
+            <input type="password" class="form-control  @error('password') is-invalid @enderror" id="password" name="password" required autocomplete="current-password">
+            @error('password')
+                <div class="invalid-feedback" role="alert">Please put in a valid Password.</div>
+            @enderror
+            <!--<div class="invalid-feedback">Please put in a valid Password.</div>-->
+          </div>
+          <button type="submit" value="send" class="btn btn-submit">{{ __('Login') }}</button>
+        </form>
+        @if (Route::has('password.request'))
+            <div class="box-link--login"><a href="{{ route('password.request') }}" class="link-underline">{{ __('Forgotten your password?') }}</a></div>
+        @endif
+      </div>
     </div>
+  </div>
 </div>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+<script>
+
+
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+// We listen to the resize event
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+
+</script>
 @endsection

@@ -17,8 +17,7 @@ class AppController extends Controller
 {
     public function test()
     {
-        $customer = json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True);
-        echo "<pre/>";print_r($customer );
+        return view('new.profile3');
     }
     /**
      * Display a listing of the users
@@ -32,7 +31,7 @@ class AppController extends Controller
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
         
-            return view('request.form',[
+            return view('new.request_form',[
                 'sales_name' => auth()->user()->name,
                 'customer' => $customer,
                 'advertiser' => $advertiser
@@ -41,7 +40,7 @@ class AppController extends Controller
         else{
             if($sales_name)
             {
-                return view('request.form', [
+                return view('new.request_form', [
                     'sales_name' => $sales_name,
                     'sales_type' => $sales_type,
                     'customer_name' => $customer_name,
@@ -58,6 +57,8 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
+        echo "<pre/>"; print_r($request->bkp_size);
+        echo "<pre/>"; print_r($request->ptd_size);
        /* $size = $request->size;
         $position = $request->position;
         $section = $request->section;
@@ -68,7 +69,7 @@ class AppController extends Controller
         echo "Section<pre/>"; print_r($section);echo "<pre/>";
         echo "Date From<pre/>"; print_r($date_from);echo "<pre/>";
         echo "Date To<pre/>"; print_r($date_to);echo "<pre/>";*/
-         return view('request.review',[
+         /*return view('request.review',[
             'sales_name' => $request->sales_name,
             'sales_type' => $request->sales_type,
             'customer_id' => $request->customer_id,
@@ -88,7 +89,7 @@ class AppController extends Controller
             'banner_url' => $request->banner_url,
             'create_at' => $request->create_at,
             'campaign_budget' => $request->campaign_budget
-        ]);
+        ]);*/
     }
 
     public function storeRequest(Request $request)
@@ -227,4 +228,86 @@ class AppController extends Controller
         return view('booking');
     }
     
+    /*new design*/
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('new.profile',compact('user'));
+    }
+    public function profile2()
+    {
+        $someModel = DB::connection('mysql')->select('select * from request'); // static method
+        $user = Auth::user();
+        return view('new.profile2',[
+            'someModel' => json_decode(json_encode($someModel), True)
+        ],compact('user'));
+
+        /*$user = Auth::user();
+        return view('new.profile2',compact('user'));*/
+    }
+    public function profile3()
+    {
+        $user = Auth::user();
+        return view('new.profile3',compact('user'));
+    }
+    public function ad_network()
+    {
+        return view('new.ad_network');
+    }
+    public function ad_network_bymonth()
+    {
+        return view('new.ad_network_bymonth');
+    }
+    public function ad_network_create()
+    {
+        return view('new.ad_network_create');
+    }
+    public function booking_inventory()
+    {
+        return view('new.booking_inventory');
+    }
+    public function campaign_report()
+    {
+        return view('new.campaign_report');
+    }
+    public function campaign_report_create()
+    {
+        return view('new.campaign_report_create');
+    }
+    public function campaign_report_preview()
+    {
+        return view('new.campaign_report_preview');
+    }
+    public function create_new_customer()
+    {
+        return view('new.create_new_customer');
+    }
+    public function forgot()
+    {
+        return view('new.forgot');
+    }
+    /*public function request_form()
+    {
+        return view('new.request_form');
+    }*/
+    public function request_preview()
+    {
+        return view('new.request_preview');
+    }
+    public function revenue()
+    {
+        return view('new.revenue');
+    }
+    public function success()
+    {
+        return view('new.success');
+    }
+    public function success_ad_network()
+    {
+        return view('new.success_ad_network');
+    }
+    public function success_campaign()
+    {
+        return view('new.success_campaign');
+    }
 }

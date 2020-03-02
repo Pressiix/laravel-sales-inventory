@@ -1,0 +1,42 @@
+@extends('layouts.app')
+
+@section('content')
+      <div class="col-auto div-profile--right bg-fff">
+        <div class="content-profile--right">
+          <h2>Inbox - Pending lists</h2>
+          <div class="table-responsive table-profile">
+            <table class="table table-striped table-borderless">
+              <thead class="thead-green">
+                <tr>
+                  <th scope="col" class="text-center">Row</th>
+                  <th scope="col" class="text-nowrap">Date received</th>
+                  <th scope="col" class="text-nowrap">Requester Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col" class="text-nowrap">Campaign Name</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="text-center">Detail</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php if($someModel){ 
+                $i=1;
+                   foreach($someModel as $item){ ?>
+                <tr>
+                  <th scope="row" class="text-center"><?= $i ?></th>
+                  <td><?=  $item['create_at'] ?></td>
+                  <td><?=  $item['sales_name'] ?></td>
+                  <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
+                  <td><?=  $item['campaign_name'] ?></td>
+                  <td><?= $item['status'] ?></td>
+                  <td class="text-center"><a href="javascript:;" class="btn-click">Click</a></td>
+                </tr>
+                <?php 
+                        $i++;
+                      } ?>
+              <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  @endsection

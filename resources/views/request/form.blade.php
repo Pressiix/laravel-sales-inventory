@@ -33,7 +33,6 @@
         background-color:#E8F9F7;
     }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     window.history.pushState('request-save', 'Title', '/request-form');
     //var count = 1;
@@ -71,6 +70,15 @@
         document.getElementById("form").appendChild(input);
     };
 
+    var i = 0;
+    function duplicate() {
+        var original = document.getElementById('duplicater' + i);
+        var clone = original.cloneNode(true); // "deep" clone
+        clone.id = "duplicater" + ++i; // there can only be one element with an ID
+        clone.onclick = duplicate; // event handlers are not cloned
+        original.parentNode.appendChild(clone);
+    }
+
     
     function addAds(){
             var count = $("div[id*='ad-card']").length;
@@ -84,7 +92,7 @@
             var booking_link = '<b>Impression:&nbsp </b> <a href="/booking-inventory"><u><b>Click for booking inventory</b></u></a>';
             var cardBody = '<div class="card-body">'+size_form+position_form+section_form+date_form+banner_url+booking_link+'</div>';
                             
-                            
+                           
             var div = $('<br/><div class="card" id="ad-card">'+cardHeader+cardBody+'</div>');
             //div.html('<');
             div.appendTo('#ad-description');
