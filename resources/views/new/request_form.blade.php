@@ -1,84 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-.form-input--date{
-  width:20px;
-}
-</style>
-<script type="text/javascript">
-    window.history.pushState('request-save', 'Title', '/request_form');
-    
-    function createHiddenField(){
-        customerField();
-        advertiserField();
-    }
-    function customerField() {
-        var selIndex = document.form.customer_id.selectedIndex;
-		    var selText = document.form.customer_id.options[selIndex].text;
-
-        var input = document.createElement("input");
-
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "customer_name");
-        input.setAttribute("value", selText);
-
-        //append to form element that you want .
-        document.getElementById("form").appendChild(input);
-    };
-
-    function advertiserField() {
-        var selIndex = document.form.advertiser_id.selectedIndex;
-		    var selText = document.form.advertiser_id.options[selIndex].text;
-
-        var input = document.createElement("input");
-
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "advertiser_name");
-        input.setAttribute("value", selText);
-
-        //append to form element that you want .
-        document.getElementById("form").appendChild(input);
-    };
-
-        function addBKPAds(){
-            var count = $("div[id*='bkp-ad-card']").length;
-            
-            var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-
-            var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bkp_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
-            var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bkp_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
-            var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bkp_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
-            var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
-            var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bkp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
-            var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
-            var dropdown = size_form+position_form+section_form;
-            var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bkp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
-                           
-            var div = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
-            $('#bkp-ad-description').append(div);
-        };
-
-        function addPTDAds(){
-            var count = $("div[id*='ptd-ad-card']").length;
-            
-            var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-
-            var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"ptd_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
-            var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"ptd_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
-            var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"ptd_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
-            var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
-            var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"ptd_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
-            var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
-            var dropdown = size_form+position_form+section_form;
-            var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"ptd_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
-                           
-            var div = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
-            $('#ptd-ad-description').append(div);
-        };
-    
-</script>
-
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Form</h2>
@@ -499,6 +421,73 @@
       </div>
 
 <script>
+    //Replace URL after user click to save request form
+    window.history.pushState('request-save', 'Title', '/request_form');
+    
+    //Create input field for post a customer name and advertiser name before user click submit button
+    function createHiddenField(){
+        customerField();
+        advertiserField();
+    }
+    //get customer name from customer dropdown and create a new input field for posting a customer name
+    function customerField() {
+        var selIndex = document.form.customer_id.selectedIndex;
+		    var selText = document.form.customer_id.options[selIndex].text;
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "customer_name");
+        input.setAttribute("value", selText);
+        //append to form element that you want .
+        document.getElementById("form").appendChild(input);
+    };
+    //get advertiser name from advertiser dropdown and create a new input field for posting an advertiser name
+    function advertiserField() {
+        var selIndex = document.form.advertiser_id.selectedIndex;
+		    var selText = document.form.advertiser_id.options[selIndex].text;
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "advertiser_name");
+        input.setAttribute("value", selText);
+        //append to form element that you want .
+        document.getElementById("form").appendChild(input);
+    };
+
+    //insert ad description card when user click add more ad+ button on Bangkok Post tab
+    function addBKPAds(){
+        var count = $("div[id*='bkp-ad-card']").length;
+            
+        var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
+
+        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bkp_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
+        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bkp_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
+        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bkp_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
+        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
+        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bkp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
+        var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
+        var dropdown = size_form+position_form+section_form;
+        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bkp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
+                           
+        var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
+        $('#bkp-ad-description').append(Html);
+    };
+
+    //insert ad description card when user click add more ad+ button on Post Today tab
+    function addPTDAds(){
+        var count = $("div[id*='ptd-ad-card']").length;
+        var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
+        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"ptd_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
+        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"ptd_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
+        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"ptd_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
+        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
+        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"ptd_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
+        var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
+        var dropdown = size_form+position_form+section_form;
+        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"ptd_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
+                           
+        var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
+        $('#ptd-ad-description').append(Html);
+    };
+
     //Date picker option for default ad description card
     $('.datepicker').datepicker({
         autoclose: true,
