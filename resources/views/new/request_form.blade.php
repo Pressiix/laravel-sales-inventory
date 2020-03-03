@@ -229,7 +229,7 @@
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" name="campaign_budget" class="form-control">
                       </div>
                     </div>
                   </div>
