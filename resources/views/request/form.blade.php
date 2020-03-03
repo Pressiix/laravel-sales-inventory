@@ -43,7 +43,7 @@
     function customerField() {
         var selIndex = document.form.customer_id.selectedIndex;
 		var selText = document.form.customer_id.options[selIndex].text;
-		//alert(selText);
+		alert(selText);
 
         var input = document.createElement("input");
 
@@ -58,7 +58,7 @@
     function advertiserField() {
         var selIndex = document.form.advertiser_id.selectedIndex;
 		var selText = document.form.advertiser_id.options[selIndex].text;
-		//alert(selText);
+		alert(selText);
 
         var input = document.createElement("input");
 

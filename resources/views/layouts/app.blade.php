@@ -25,11 +25,11 @@
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="assets/js/scripts.js"></script>
 
-  <?php if(Request::is('profile3')){?>
+
     <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" rel="stylesheet" type="text/css" />
-  <?php }?>
+  
     
 
     <script type="text/javascript">
@@ -76,9 +76,9 @@
                     <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">Profile</a></li>
                     <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}">Request Form</a></li>
                     <li><a href="/booking_inventory" class="{{ Request::is('booking_inventory') ? 'actived' : '' }}">Booking Inventory</a></li>
-                    <li><a href="/revenue/1" class="{{ Request::is('revenue/1') ? 'actived' : '' }}">Revenue</a></li>
-                    <li><a href="/campaign-report" class="{{ Request::is('campaign-report') ? 'actived' : '' }}">Campaign Report</a></li>
-                    <li><a href="/ad-network" class="{{ Request::is('ad-network') ? 'actived' : '' }}">Ad Network</a></li>
+                    <li><a href="/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}">Revenue</a></li>
+                    <li><a href="/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}">Campaign Report</a></li>
+                    <li><a href="/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}">Ad Network</a></li>
                     </ul>
                     <div class="box-logout"><a href="{{ url('/logout') }}">logout</a></div>
                 </div>

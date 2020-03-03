@@ -18,21 +18,22 @@
                 </tr>
               </thead>
               <tbody>
-              <?php if($someModel){ 
-                $i=1;
-                   foreach($someModel as $item){ ?>
-                <tr>
-                  <th scope="row" class="text-center"><?= $i ?></th>
-                  <td><?=  $item['create_at'] ?></td>
-                  <td><?=  $item['sales_name'] ?></td>
-                  <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
-                  <td><?=  $item['campaign_name'] ?></td>
-                  <td><?= $item['status'] ?></td>
-                  <td class="text-center"><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
-                <?php 
-                        $i++;
-                      } ?>
+              <?php if($someModel){ ?>
+                  <?php foreach($someModel as $item){ ?>
+                  <tr>
+                    <td><?= $item['id'] ?></td>
+                    <td><?=  $item['create_at'] ?></td>
+                    <td><?=  $item['sales_name'] ?></td>
+                    <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
+                    <td><?=  $item['campaign_name'] ?></td>
+                    <td><?= $item['status'] ?></td>
+                    <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
+                  </tr>
+              <?php } ?>
+              <?php }else{ ?>
+                  <tr>
+                    <td class="text-center" colspan="7"><b>No Data</b></td>
+                  </tr>
               <?php } ?>
               </tbody>
             </table>

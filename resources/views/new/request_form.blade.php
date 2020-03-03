@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.form-input--date{
+  width:20px;
+}
+</style>
 <script type="text/javascript">
     window.history.pushState('request-save', 'Title', '/request-form');
     
@@ -39,21 +44,20 @@
         function addBKPAds(){
             var count = $("div[id*='bkp-ad-card']").length;
             
-            var cardHeader = '<div class="box-ad--title">Ad '+(count+1)+' Description:</div>';
+            var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
 
-            var size_form = '<div class="col-md-5 mb-3"><label>Size:</label><select name="bkp_size['+count+']" class="custom-select"><option selected value="">Choose Size</option><option value="1">Billboard</option><option value="2">Rectangle</option><option value="3">Double-Rectangle</option><option value="4">Boombox</option><option value="5">Fullwidth</option><option value="6">Leaderboard</option></select><div class="invalid-feedback">Please select a valid state.</div></div>';
-            var position_form = '<div class="col-md-5 mb-3"><label>Position:</label><select name="bkp_position['+count+']" class="custom-select"><option selected value="">Choose Position</option><option value="1">Top</option><option value="2">Middle</option><option value="3">Bottom</option><option value="4">Left</option><option value="5">Right</option></select></div>';
-            var section_form = '<div class="col-md-5 mb-3"><label>Section:</label><select name="bkp_section['+count+']" class="custom-select"><option selected value="">Choose Section</option><option value="1">Homepage</option><option value="2">Business</option><option value="3">Social</option><option value="4">Sport</option><option value="5">Car</option></select></div>';
-            var date_form = '<div class="form-group"><div class="input-daterange datepicker"><div class="input-group-inline"><span>Period:</span></div><div class="input-group-inline"><span>From</span><input type="text" class="form-control form-input--date" name="bkp_date_from['+count+']"><span><img src="assets/images/icon-svg/calendar.svg" width="20"></span></div><div class="input-group-inline"><span>to</span><input type="text" class="form-control form-input--date" name="bkp_date_to['+count+']"><span><img src="assets/images/icon-svg/calendar.svg" width="20"></span></div></div></div>';
-            var banner_url = '<div class="form-group row"><label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label><div class="col-md-11 col-lg-12"><input name="bkp_banner_url['+count+']" type="text" class="form-control"></div></div>';
-            var booking_link = '<div class="row"><div class="col-15 col-form-label label-normal">Impression: &nbsp; <a href="javascript:;" class="btn btn-click2">Click for booking inventory</a></div></div>';
+            var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bkp_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
+            var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bkp_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
+            var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bkp_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
+            var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span><input type=\"text\" id=\"datepicker\" class=\"form-control form-input--date\" name=\"bkp_date_from["+count+"]\"><span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span><input id=\"datepicker\" type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_to["+count+"]\"><span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
+            var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bkp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
+            var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
             var dropdown = size_form+position_form+section_form;
-                            
                            
-            var div = $('<div id="bkp-ad-card" class="box-ad--banner">'+cardHeader+'<div class="box-ad--container"><div class="form-row">'+dropdown+'</div>'+date_form+banner_url+booking_link+'</div></div>');
-            //div.html('<');
-            div.appendTo('#bkp-ad-description');
-            count = count + 1;
+            var div = "<div id=\"bkp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+booking_link+"</div></div>";
+            //var div = '<div id="bkp-ad-card" class="box-ad--banner"><div class="box-ad--title">Ad 1 Description:</div><div class="box-ad--container"><div class="form-row"><div class="col-md-5 mb-3"><label>Size:</label><select name="bkp_size[0]" class="custom-select"><option selected value="">Choose Size</option><option value="1">Billboard</option><option value="2">Rectangle</option><option value="3">Double-Rectangle</option><option value="4">Boombox</option><option value="5">Fullwidth</option><option value="6">Leaderboard</option></select><div class="invalid-feedback">Please select a valid state.</div></div><div class="col-md-5 mb-3"><label>Position:</label><select name="bkp_position[0]" class="custom-select"><option selected value="">Choose Position</option><option value="1">Top</option><option value="2">Middle</option><option value="3">Bottom</option><option value="4">Left</option><option value="5">Right</option></select></div><div class="col-md-5 mb-3"><label>Section:</label><select name="bkp_section[0]" class="custom-select"><option selected value="">Choose Section</option><option value="1">Homepage</option><option value="2">Business</option><option value="3">Social</option><option value="4">Sport</option><option value="5">Car</option></select></div></div><div class="form-group"><div class="input-daterange datepicker"><div class="input-group-inline"><span>Period:</span></div><div class="input-group-inline"><span>From</span><input type="text" class="form-control form-input--date" name="bkp_date_from[0]"><span><img src="assets/images/icon-svg/calendar.svg" width="20"></span></div><div class="input-group-inline"><span>to</span><input type="text" class="form-control form-input--date" name="bkp_date_to[0]"><span><img src="assets/images/icon-svg/calendar.svg" width="20"></span></div></div></div><div class="form-group row"><label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label><div class="col-md-11 col-lg-12"><input name="bkp_banner_url[0]" type="text" class="form-control"></div></div><div class="row"><div class="col-15 col-form-label label-normal">Impression: &nbsp; <a href="javascript:;" class="btn btn-click2">Click for booking inventory</a></div></div></div></div>';
+            $('#bkp-ad-description').append(div);
+            //div.appendTo("div[id*='bkp-ad-description']");
         };
 
         function addPTDAds(){
@@ -71,9 +75,7 @@
                             
                            
             var div = $('<div id="ptd-ad-card" class="box-ad--banner">'+cardHeader+'<div class="box-ad--container"><div class="form-row">'+dropdown+'</div>'+date_form+banner_url+booking_link+'</div></div>');
-            //div.html('<');
             div.appendTo('#ptd-ad-description');
-            count = count + 1;
         };
     
 </script>
@@ -95,11 +97,11 @@
                 <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label pt-0">Sales Type:</label>
                 <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio1" value="Direct" checked>
                     <label class="form-check-label" for="inlineRadio1">Direct</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio2" value="Agency">
                     <label class="form-check-label" for="inlineRadio2">Agency</label>
                   </div>
                 </div>
@@ -107,20 +109,20 @@
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('customer_id', $customer, (!empty($customer_id) ? $customer_id : null), ['class'=>'custom-select']) }}
+                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($customer_id) ? $customer_id : null), ['class'=>'custom-select']) }}
                   <div class="div-form--link"> or <a href="javascript:;">Create new customer</a></div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Campaign name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <input type="text" class="form-control">
+                  <input type="text" name="campaign_name" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('advertiser_id', $advertiser, (!empty($advertiser_id) ? $advertiser_id : null), ['class'=>'custom-select']) }}
+                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($advertiser_id) ? $advertiser_id : null), ['class'=>'custom-select']) }}
                   <div class="div-form--link"> or <a href="javascript:;">Create new advertiser</a></div>
                 </div>
               </div>
@@ -471,18 +473,25 @@
 
             </div>
 
-            <div class="text-center"><button type="submit" value="send" class="btn btn-submit">submit</button></div>
+            <div class="text-center"><button type="submit" onclick="createHiddenField();" value="send" class="btn btn-submit">submit</button></div>
 
             {!! Form::close() !!}
         </div>
       </div>
 
 <script>
-
-
+    //Date picker option for default ad description card
     $('.datepicker').datepicker({
         autoclose: true,
         todayHighlight: true
+    });
+
+    //Date picker option if user create ad description card
+    $("body").on('focus', '.datepicker', function() {
+      $(this).datepicker({
+        autoclose: true,
+        todayHighlight: true
+      });
     });
 
     $('#myTab a#posttoday-tab').on('click', function (e) {
