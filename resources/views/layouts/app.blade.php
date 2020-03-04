@@ -133,7 +133,7 @@
                     </div>-->
                         <div class="profile-avatar">
                         <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
-                            <img src="{{ url('/').$user->profile_picture }}" class="img-fluid">
+                            <img src="<?= $user->profile_picture ?> " class="img-fluid">
                         </div>
                         <!-- modal -->
                         <div class="modal fade" id="myModal" role="dialog">
