@@ -421,6 +421,7 @@
       </div>
 
 <script>
+    var bkp
     //Replace URL after user click to save request form
     window.history.pushState('request-save', 'Title', '/request_form');
     
@@ -467,8 +468,9 @@
         var dropdown = size_form+position_form+section_form;
         var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bkp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
                            
-        var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
+        var Html = "<div id=\"bkp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
         $('#bkp-ad-description').append(Html);
+        count++;
     };
 
     //insert ad description card when user click add more ad+ button on Post Today tab
@@ -486,6 +488,7 @@
                            
         var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
         $('#ptd-ad-description').append(Html);
+        count++;
     };
 
     //Date picker option for default ad description card
