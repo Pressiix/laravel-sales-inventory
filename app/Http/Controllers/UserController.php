@@ -43,8 +43,9 @@ class UserController extends Controller
         //Save upload image to 'avatar' folder which in 'storage/app/public' folder
         if($request->file('image'))
         {
-            $path = $request->file('image')->store('avatar','public');
+            //$path = $request->file('image')->store('avatar','public');
             //print_r($request->file('image')->hashName());
+            \Storage::disk('public')->put('avatar/', $request->file('image'));
             DB::table('users')
                     ->where('id', Auth::user()->id)
                     ->update(['profile_picture' => '/storage/avatar/'.$request->file('image')->hashName()]);
