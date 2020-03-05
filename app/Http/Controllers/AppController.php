@@ -57,39 +57,11 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-        echo "<pre/>"; print_r($request->all());
-        
-       /* $size = $request->size;
-        $position = $request->position;
-        $section = $request->section;
-        $date_from = $request->date_from;
-        $date_to = $request->date_to;
-        echo "Size<pre/>"; print_r($size);echo "<pre/>";
-        echo "Position<pre/>"; print_r($position);echo "<pre/>";
-        echo "Section<pre/>"; print_r($section);echo "<pre/>";
-        echo "Date From<pre/>"; print_r($date_from);echo "<pre/>";
-        echo "Date To<pre/>"; print_r($date_to);echo "<pre/>";*/
-         /*return view('request.review',[
-            'sales_name' => $request->sales_name,
-            'sales_type' => $request->sales_type,
-            'customer_id' => $request->customer_id,
-            'customer_name' => $request->customer_name,
-            'advertiser_id' => $request->advertiser_id,
-            'advertiser_name' => $request->advertiser_name,
-            'campaign_name' => $request->campaign_name,
-            'website' => $request->website,
-            'type1' => $request->type1,
-            'facebook' => $request->facebook,
-            'facebook_type' => $request->facebook_type,
-            'size' => $request->size,
-            'position' => $request->position,
-            'section' => $request->section,
-            'date_from' => $request->date_from,
-            'date_to' => $request->date_to,
-            'banner_url' => $request->banner_url,
-            'create_at' => $request->create_at,
-            'campaign_budget' => $request->campaign_budget
-        ]);*/
+        //echo "<pre/>"; print_r($request->all());
+
+         return view('new.request_preview',[
+             'item' => $request->all()
+         ]);
     }
 
     public function storeRequest(Request $request)

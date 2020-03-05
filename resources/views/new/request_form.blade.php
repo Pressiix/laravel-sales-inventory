@@ -30,20 +30,20 @@
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($customer_id) ? $customer_id : null), ['class'=>'custom-select']) }}
+                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($customer_id) ? $customer_id : null), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="javascript:;">Create new customer</a></div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Campaign name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <input type="text" name="campaign_name" class="form-control">
+                  <input type="text" name="campaign_name" class="form-control" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($advertiser_id) ? $advertiser_id : null), ['class'=>'custom-select']) }}
+                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($advertiser_id) ? $advertiser_id : null), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="javascript:;">Create new advertiser</a></div>
                 </div>
               </div>
@@ -421,21 +421,46 @@
             </div>
 
             <div class="text-center"><button type="submit" onclick="createHiddenField();" value="send" class="btn btn-submit">submit</button></div>
-
             {!! Form::close() !!}
-            <button href="#" onclick="adDescriptionDropdownText();">TTTTTTTT</button>
         </div>
       </div>
 
 <script>
-    var bp
     //Replace URL after user click to save request form
     window.history.pushState('request-save', 'Title', '/request_form');
-    
     //Create input field for post a customer name and advertiser name before user click submit button
     function createHiddenField(){
         customerField();
         advertiserField();
+        countBPTypeCheckField();
+        countPTDTypeCheckField();
+        /*if(!$("input[name*='ptd_web[0]']").checked){
+          //alert('please check website type');
+          event.preventDefault();
+          location.href = "#bp_web1";
+          //$("input[name*='ptd_web[0]']").attr('required', 'required');
+        }
+        else{
+          alert('aaa');
+        }*/
+        checked = $("input[name*='bp_web']:checked").length;
+
+      if(!checked) {
+        
+        event.preventDefault();
+          location.href = "#bangkokpost";
+        alert("You must check at least one checkbox.");
+      }
+    }
+
+    
+
+    function countBPTypeCheckField(){
+      $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
+    }
+
+    function countPTDTypeCheckField(){
+      $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
     }
     //get customer name from customer dropdown and create a new input field for posting a customer name
     function customerField() {
@@ -447,7 +472,7 @@
         input.setAttribute("value", selText);
         //append to form element that you want .
         document.getElementById("form").appendChild(input);
-    };
+    }
     //get advertiser name from advertiser dropdown and create a new input field for posting an advertiser name
     function advertiserField() {
         var selIndex = document.form.advertiser_id.selectedIndex;
@@ -458,7 +483,7 @@
         input.setAttribute("value", selText);
         //append to form element that you want .
         document.getElementById("form").appendChild(input);
-    };
+    }
 
     //insert ad description card when user click add more ad+ button on Bangkok Post tab
     function addBPAds(){
@@ -476,7 +501,7 @@
         var Html = "<div id=\"bp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
         $('#bp-ad-description').append(Html);
         count++;
-    };
+    }
 
     //insert ad description card when user click add more ad+ button on Post Today tab
     function addPTDAds(){
@@ -494,7 +519,7 @@
         var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
         $('#ptd-ad-description').append(Html);
         count++;
-    };
+    }
 
     //Date picker option for default ad description card
     $('.datepicker').datepicker({
