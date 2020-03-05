@@ -70,14 +70,14 @@
                       <div class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_facebook_normal_post" type="checkbox" id="bkp_fb1" value="Normal Post">
-                            <label class="form-check-label" for="bkp_fb1">Normal Post</label>
+                            <input class="form-check-input" name="bp_facebook_normal_post" type="checkbox" id="bp_fb1" value="Normal Post">
+                            <label class="form-check-label" for="bp_fb1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_facebook_boost_post" type="checkbox" id="bkp_fb2" value="Facebook Boost Post">
-                            <label class="form-check-label" for="bkp_fb2">Facebook Boost Post</label>
+                            <input class="form-check-input" name="bp_facebook_boost_post" type="checkbox" id="bp_fb2" value="Facebook Boost Post">
+                            <label class="form-check-label" for="bp_fb2">Facebook Boost Post</label>
                           </div>
                         </div>
                       </div>
@@ -85,56 +85,56 @@
                       <div class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[0]" <?= (!empty($bkp_web[0]) && $bkp_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bkp_web1" value="Banner">
-                            <label class="form-check-label" for="bkp_web">Banner</label>
+                            <input class="form-check-input" name="bp_web[0]" <?= (!empty($bp_web[0]) && $bp_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
+                            <label class="form-check-label" for="bp_web">Banner</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[1]" <?= (!empty($bkp_web[1]) && $bkp_web[1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bkp_web2" value="Nytive Ad">
-                            <label class="form-check-label" for="bkp_web">Nytive Ad</label>
+                            <input class="form-check-input" name="bp_web[1]" <?= (!empty($bp_web[1]) && $bp_web[1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
+                            <label class="form-check-label" for="bp_web">Nytive Ad</label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[2]" <?= (!empty($bkp_web[2]) && $bkp_web[2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bkp_web3" value="Premium Advertorial">
-                            <label class="form-check-label" for="bkp_web">Premium Advertorial</label>
+                            <input class="form-check-input" name="bp_web[2]" <?= (!empty($bp_web[2]) && $bp_web[2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
+                            <label class="form-check-label" for="bp_web">Premium Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[3]" <?= (!empty($bkp_web[3]) && $bkp_web[3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bkp_web4" value="Advertorial">
-                            <label class="form-check-label" for="bkp_web">Advertorial</label>
+                            <input class="form-check-input" name="bp_web[3]" <?= (!empty($bp_web[3]) && $bp_web[3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
+                            <label class="form-check-label" for="bp_web">Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[4]" <?= (!empty($bkp_web[4]) && $bkp_web[4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bkp_web5" value="Property Listing">
-                            <label class="form-check-label" for="bkp_web">Property Listing</label>
+                            <input class="form-check-input" name="bp_web[4]" <?= (!empty($bp_web[4]) && $bp_web[4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
+                            <label class="form-check-label" for="bp_web">Property Listing</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[5]" <?= (!empty($bkp_web[5]) && $bkp_web[5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bkp_web6" value="Special event">
-                            <label class="form-check-label" for="bkp_web">Special event</label>
+                            <input class="form-check-input" name="bp_web[5]" <?= (!empty($bp_web[5]) && $bp_web[5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
+                            <label class="form-check-label" for="bp_web">Special event</label>
                           </div>
                         </div>
                          <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input"  name="bkp_web[6]" <?= (!empty($bkp_web[6]) && $bkp_web[6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bkp_web7" value="Sponsor Link">
-                            <label class="form-check-label" for="bkp_web">Sponsor Link</label>
+                            <input class="form-check-input"  name="bp_web[6]" <?= (!empty($bp_web[6]) && $bp_web[6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
+                            <label class="form-check-label" for="bp_web">Sponsor Link</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[7]" <?= (!empty($bkp_web[7]) && $bkp_web[7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bkp_web8" value="Jobs">
-                            <label class="form-check-label" for="bkp_web">Jobs</label>
+                            <input class="form-check-input" name="bp_web[7]" <?= (!empty($bp_web[7]) && $bp_web[7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
+                            <label class="form-check-label" for="bp_web">Jobs</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bkp_web[8]" <?= (!empty($bkp_web[8]) && $bkp_web[8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bkp_web9" value="PR">
-                            <label class="form-check-label" for="bkp_web">PR</label>
+                            <input class="form-check-input" name="bp_web[8]" <?= (!empty($bp_web[8]) && $bp_web[8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
+                            <label class="form-check-label" for="bp_web">PR</label>
                           </div>
                         </div>
                       </div>
@@ -142,14 +142,14 @@
 
                     <div class="row">
                       <div  class="col-15">
-                        <div id="bkp-ad-description">
-                        <div id="bkp-ad-card" class="box-ad--banner">
+                        <div id="bp-ad-description">
+                        <div id="bp-ad-card" class="box-ad--banner">
                           <div class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
-                                <select name="bkp_size[0]" class="custom-select">
+                                <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Size</option>
                                   <option value="1">Billboard</option>
                                   <option value="2">Rectangle</option>
@@ -161,10 +161,11 @@
                                 <div class="invalid-feedback">
                                   Please select a valid state.
                                 </div>
+                                <input type="hidden" name="bp_size_text[0]" id="bp_size_text0" value="" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                <select name="bkp_position[0]" class="custom-select">
+                                <select name="bp_position_id[0]" class="custom-select" onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Position</option>
                                   <option value="1">Top</option>
                                   <option value="2">Middle</option>
@@ -172,10 +173,11 @@
                                   <option value="4">Left</option>
                                   <option value="5">Right</option>
                                 </select>
+                                <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="bkp_section[0]" class="custom-select">
+                                <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Section</option>
                                   <option value="1">Homepage</option>
                                   <option value="2">Business</option>
@@ -183,6 +185,7 @@
                                   <option value="4">Sport</option>
                                   <option value="5">Car</option>
                                 </select>
+                                <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="" />
                               </div>
                             </div>
                             <div class="form-group">
@@ -190,12 +193,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bkp_date_from[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bkp_date_to[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -203,14 +206,14 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
                               <div class="col-md-11 col-lg-12">
-                                <input name="bkp_banner_url[0]" type="text" class="form-control">
+                                <input name="bp_banner_url[0]" type="text" class="form-control">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload file:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bkp_ad_desc_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
@@ -222,14 +225,14 @@
                           </div>
                         </div>
                         </div>
-                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addBKPAds();" class="btn btn-addmore">+ ADD MORE AD</a></div>
+                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addBPAds();" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <input type="text" name="campaign_budget" class="form-control">
+                        <input type="text" name="bp_campaign_budget" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -324,7 +327,7 @@
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
-                                <select name="ptd_size[0]" class="custom-select">
+                                <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Size</option>
                                   <option value="1">Billboard</option>
                                   <option value="2">Rectangle</option>
@@ -336,10 +339,11 @@
                                 <div class="invalid-feedback">
                                   Please select a valid state.
                                 </div>
+                                <input type="hidden" name="ptd_size_text[0]" id="ptd_size_text0" value="" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                <select name="ptd_position[0]" class="custom-select">
+                                <select name="ptd_position_id[0]" class="custom-select" onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Position</option>
                                   <option value="1">Top</option>
                                   <option value="2">Middle</option>
@@ -347,10 +351,11 @@
                                   <option value="4">Left</option>
                                   <option value="5">Right</option>
                                 </select>
+                                <input type="hidden" name="ptd_position_text[0]" id="ptd_position_text0" value="" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="ptd_section[0]" class="custom-select">
+                                <select name="ptd_section_id[0]" class="custom-select" onchange="document.getElementById('ptd_section_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Section</option>
                                   <option value="1">Homepage</option>
                                   <option value="2">Business</option>
@@ -358,6 +363,7 @@
                                   <option value="4">Sport</option>
                                   <option value="5">Car</option>
                                 </select>
+                                <input type="hidden" name="ptd_section_text[0]" id="ptd_section_text0" value="" />
                               </div>
                             </div>
                             <div class="form-group">
@@ -404,24 +410,25 @@
                     <div class="form-group row">
                       <label class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" name="ptd_campaign_budget" class="form-control">
                       </div>
                     </div>
                   </div>
 
                 </div>
               </div>
-
+            
             </div>
 
             <div class="text-center"><button type="submit" onclick="createHiddenField();" value="send" class="btn btn-submit">submit</button></div>
 
             {!! Form::close() !!}
+            <button href="#" onclick="adDescriptionDropdownText();">TTTTTTTT</button>
         </div>
       </div>
 
 <script>
-    var bkp
+    var bp
     //Replace URL after user click to save request form
     window.history.pushState('request-save', 'Title', '/request_form');
     
@@ -454,22 +461,20 @@
     };
 
     //insert ad description card when user click add more ad+ button on Bangkok Post tab
-    function addBKPAds(){
-        var count = $("div[id*='bkp-ad-card']").length;
-            
+    function addBPAds(){
+        var count = $("div[id*='bp-ad-card']").length;
         var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-
-        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bkp_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
-        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bkp_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
-        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bkp_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
-        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bkp_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
-        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bkp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
+        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bp_size_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_size_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div><input type=\"hidden\" name=\"bp_size_text["+count+"]\" id=\"bp_size_text"+count+"\" value=\"\" /></div>";
+        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bp_position_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_position_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select><input type=\"hidden\" name=\"bp_position_text["+count+"]\" id=\"bp_position_text"+count+"\" value=\"\" /></div>";
+        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bp_section_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_section_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select><input type=\"hidden\" name=\"bp_section_text["+count+"]\" id=\"bp_section_text"+count+"\" value=\"\" /></div>";
+        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bp_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bp_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
+        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
         var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
         var dropdown = size_form+position_form+section_form;
-        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bkp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
+        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
                            
-        var Html = "<div id=\"bkp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
-        $('#bkp-ad-description').append(Html);
+        var Html = "<div id=\"bp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
+        $('#bp-ad-description').append(Html);
         count++;
     };
 
@@ -477,9 +482,9 @@
     function addPTDAds(){
         var count = $("div[id*='ptd-ad-card']").length;
         var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"ptd_size["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div></div>";
-        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"ptd_position["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select></div>";
-        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"ptd_section["+count+"]\" class=\"custom-select\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select></div>";
+        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"ptd_size_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_size_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div><input type=\"hidden\" name=\"ptd_size_text["+count+"]\" id=\"ptd_size_text"+count+"\" value=\"\" /></div>";
+        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"ptd_position_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_position_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select><input type=\"hidden\" name=\"ptd_position_text["+count+"]\" id=\"ptd_position_text"+count+"\" value=\"\" /></div>";
+        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"ptd_section_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_section_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select><input type=\"hidden\" name=\"ptd_section_text["+count+"]\" id=\"ptd_section_text"+count+"\" value=\"\" /></div>";
         var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
         var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"ptd_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
         var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";

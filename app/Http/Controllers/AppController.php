@@ -57,24 +57,7 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-        echo "<b>1.sales_name = </b>"; echo $request->sales_name;
-        echo "<br/><br/><b>2.sales_type </b>= "; echo $request->sales_type;
-        echo "<br/><br/><b>3.customer_id </b>= "; echo $request->customer_id;
-        echo "<br/><br/><b>4.customer_name </b>= "; echo $request->customer_name;
-        echo "<br/><br/><b>5.advertiser_id </b>= "; echo $request->advertiser_id;
-        echo "<br/><br/><b>6.advertiser_name </b>= "; echo $request->advertiser_name;
-        echo "<br/><br/><b>7.campaign_name </b>= "; echo $request->campaign_name;
-        echo "<br/><br/><pre/><b>=====BANGKOK POST===== </b>";
-        echo "<br/><b>bkp_web = </b><pre/>"; print_r($request->bkp_web);
-        echo "<br/><br/><b>bkp_size = </b><pre/>"; print_r($request->bkp_size);
-        echo "<br/><br/><b>bkp_position = </b><pre/>"; print_r($request->bkp_position);
-        echo "<br/><br/><b>bkp_section = </b><pre/>"; print_r($request->bkp_section);
-        echo "<br/><br/><b>bkp_date_from = </b><pre/>"; print_r($request->bkp_date_from); echo "&nbsp<b>bkp_date_to = </b><pre/>"; print_r($request->bkp_date_to);
-        echo "<br/><br/><b>=====POST TODAY===== </b>";
-        echo "<br/><b>ptd_web = </b><pre/>"; print_r($request->ptd_web);
-        echo "<br/><br/><b>ptd_size = </b><pre/>"; print_r($request->ptd_size);
-        echo "<br/><br/><b>ptd_position = </b><pre/>"; print_r($request->ptd_position);
-        echo "<br/><br/><b>ptd_section = </b><pre/>"; print_r($request->ptd_section);
+        echo "<pre/>"; print_r($request->all());
         
        /* $size = $request->size;
         $position = $request->position;
