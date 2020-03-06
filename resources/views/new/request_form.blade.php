@@ -53,16 +53,14 @@
 
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
+                  <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="false">Bangkokpost</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="false">Posttoday</a>
+                  <a class="nav-link" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="true">Posttoday</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
-                  
-                  <input type="hidden" name="web_name" value="" />
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
@@ -82,7 +80,7 @@
                         </div>
                       </div>
                       <div class="bar-title mt-4">Website:</div>
-                      <div class="form-group row">
+                      <div class="form-group row" id="bp-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" name="bp_web[0]" <?= (!empty($bp_web[0]) && $bp_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
@@ -260,7 +258,7 @@
                         </div>
                       </div>
                       <div class="bar-title mt-4">Website:</div>
-                      <div class="form-group row">
+                      <div class="form-group row" id="ptd-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" name="ptd_web[0]" <?= (!empty($ptd_web[0]) && $ptd_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="ptd_web1" value="Banner">
@@ -428,33 +426,42 @@
 <script>
     //Replace URL after user click to save request form
     window.history.pushState('request-save', 'Title', '/request_form');
+    var current_tab = 'bangkokpost';
+    $( "#posttoday-tab" ).click(function() {
+      current_tab = 'posttoday';
+    });
     //Create input field for post a customer name and advertiser name before user click submit button
     function createHiddenField(){
-        customerField();
-        advertiserField();
+        hiddenField();
         countBPTypeCheckField();
         countPTDTypeCheckField();
-        /*if(!$("input[name*='ptd_web[0]']").checked){
-          //alert('please check website type');
-          event.preventDefault();
-          location.href = "#bp_web1";
-          //$("input[name*='ptd_web[0]']").attr('required', 'required');
-        }
-        else{
-          alert('aaa');
-        }*/
-        checked = $("input[name*='bp_web']:checked").length;
-
-      if(!checked) {
-        
-        event.preventDefault();
-          location.href = "#bangkokpost";
-        alert("You must check at least one checkbox.");
-      }
+        validateCheckbox();
     }
 
+    //validate checkbox on bangkokpost and posttoday tab
+    function validateCheckbox()
+    {
+      if((!$("input[name*='bp_web']:checked").length && !$("input[name*='ptd_web']:checked").length) 
+      || (!$("input[name*='bp_facebook_normal_post']:checked").length && !$("input[name*='bp_facebook_boost_post']:checked").length
+      && !$("input[name*='ptd_facebook_normal_post']:checked").length && !$("input[name*='ptd_facebook_boost_post']:checked").length) ) {
+          event.preventDefault();
+          alert(current_tab);
+          if(current_tab == 'posttoday')
+          {
+            $("#posttoday-tab").removeClass('show');
+            $("#posttoday-tab").removeClass('active');
+            $("#bangkokpost-tab").addClass('show');
+            $("#bangkokpost-tab").addClass('active');
+            $("#bangkokpost-tab").css("background-color", "#396EB5");
+            $("#myTab").css("border-bottom", "5px solid #396EB5");
+            location.href = "#posttoday";
+          }
+          else{
+            location.href = "#bangkokpost";
+          }
+        }
+    }
     
-
     function countBPTypeCheckField(){
       $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
     }
@@ -463,26 +470,25 @@
       $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
     }
     //get customer name from customer dropdown and create a new input field for posting a customer name
-    function customerField() {
-        var selIndex = document.form.customer_id.selectedIndex;
-		    var selText = document.form.customer_id.options[selIndex].text;
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "customer_name");
-        input.setAttribute("value", selText);
-        //append to form element that you want .
-        document.getElementById("form").appendChild(input);
-    }
-    //get advertiser name from advertiser dropdown and create a new input field for posting an advertiser name
-    function advertiserField() {
-        var selIndex = document.form.advertiser_id.selectedIndex;
-		    var selText = document.form.advertiser_id.options[selIndex].text;
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "advertiser_name");
-        input.setAttribute("value", selText);
-        //append to form element that you want .
-        document.getElementById("form").appendChild(input);
+    function hiddenField() {
+        for(i=0;i<2;i++)
+        {
+          if(i==0){  //for customer name
+            var selIndex = document.form.customer_id.selectedIndex;
+		        var selText = document.form.customer_id.options[selIndex].text;
+            var input_name = 'customer_name';
+          }else{ //for advertiser name
+            var selIndex = document.form.advertiser_id.selectedIndex;
+		        var selText = document.form.advertiser_id.options[selIndex].text;
+            var input_name = 'advertiser_name';
+          }
+          var input = document.createElement("input");
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", input_name);
+          input.setAttribute("value", selText);
+          //append to form element that you want .
+          document.getElementById("form").appendChild(input);
+        }
     }
 
     //insert ad description card when user click add more ad+ button on Bangkok Post tab
