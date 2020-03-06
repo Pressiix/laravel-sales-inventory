@@ -471,6 +471,7 @@
             $("#bangkokpost-tab").css("background-color", "#F2F2F2");
             $("#posttoday-tab").css("background-color", "#D13E3E");
             $("#myTab").css("border-bottom", "5px solid #D13E3E");
+            current_tab = 'posttoday';
     });
 
     $('#bangkokpost-tab').click(function() {
@@ -481,6 +482,7 @@
             $("#posttoday-tab").css("background-color", "#F2F2F2");
             $("#bangkokpost-tab").css("background-color", "#396EB5");
             $("#myTab").css("border-bottom", "5px solid #396EB5");
+            current_tab = 'bangkokpost';
     });
 
     //validate checkbox on bangkokpost and posttoday tab
