@@ -65,7 +65,7 @@
                   <div class="content-tablist">
                     <div class="form-ad--detail">
                       <div class="bar-title">Facebook:</div>
-                      <div class="form-group row">
+                      <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" name="bp_facebook_normal_post" type="checkbox" id="bp_fb1" value="Normal Post">
@@ -142,7 +142,7 @@
                       <div  class="col-15">
                         <div id="bp-ad-description">
                         <div id="bp-ad-card" class="box-ad--banner">
-                          <div class="box-ad--title">Ad 1 Description:</div>
+                          <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
@@ -217,13 +217,26 @@
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
                             </div>
-                            <div class="row">
-                              <div class="col-15 col-form-label label-normal">Impression: &nbsp; <a href="javascript:;" class="btn btn-click2">Click for booking inventory</a></div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Impression:</label>
+                              <div class="col-sm-10 col-md-8">
+                                <input type="text" name="bp_impression_need[0]" class="form-control">
+                                <div class="text-ps--small">Impression is not enough.</div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Detail:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input type="text" name="bp_ad_detail[0]" class="form-control">
+                              </div>
                             </div>
                           </div>
                         </div>
                         </div>
-                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addBPAds();" class="btn btn-addmore">+ ADD MORE AD</a></div>
+                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
                       </div>
                     </div>
@@ -243,7 +256,7 @@
                   <div class="content-tablist">
                     <div class="form-ad--detail">
                       <div class="bar-title">Facebook:</div>
-                      <div class="form-group row">
+                      <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" name="ptd_facebook_normal_post" type="checkbox" id="ptd_fb1" value="Normal Post">
@@ -320,7 +333,7 @@
                       <div  class="col-15">
                         <div id="ptd-ad-description">
                         <div id="ptd-ad-card" class="box-ad--banner">
-                          <div class="box-ad--title">Ad 1 Description:</div>
+                          <div id="ptd-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
@@ -395,13 +408,26 @@
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
                             </div>
-                            <div class="row">
-                              <div class="col-15 col-form-label label-normal">Impression: &nbsp; <a href="javascript:;" class="btn btn-click2">Click for booking inventory</a></div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Impression:</label>
+                              <div class="col-sm-10 col-md-8">
+                                <input type="text" name="ptd_impression_need[0]" class="form-control">
+                                <div class="text-ps--small">Impression is not enough.</div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Detail:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input type="text" name="ptd_ad_detail[0]" class="form-control">
+                              </div>
                             </div>
                           </div>
                         </div>
                         </div>
-                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addPTDAds();" class="btn btn-addmore">+ ADD MORE AD</a></div>
+                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('ptd');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
                       </div>
                     </div>
@@ -433,10 +459,29 @@
     //Create input field for post a customer name and advertiser name before user click submit button
     function createHiddenField(){
         hiddenField();
-        countBPTypeCheckField();
-        countPTDTypeCheckField();
         validateCheckbox();
     }
+
+    //
+    $('#posttoday-tab').click(function() {
+            $("#posttoday").addClass('show');
+            $("#posttoday").addClass('active');
+            $("#bangkokpost").removeClass('show');
+            $("#bangkokpost").removeClass('active');
+            $("#bangkokpost-tab").css("background-color", "#F2F2F2");
+            $("#posttoday-tab").css("background-color", "#D13E3E");
+            $("#myTab").css("border-bottom", "5px solid #D13E3E");
+    });
+
+    $('#bangkokpost-tab').click(function() {
+            $("#posttoday").removeClass('show');
+            $("#posttoday").removeClass('active');
+            $("#bangkokpost").addClass('show');
+            $("#bangkokpost").addClass('active');
+            $("#posttoday-tab").css("background-color", "#F2F2F2");
+            $("#bangkokpost-tab").css("background-color", "#396EB5");
+            $("#myTab").css("border-bottom", "5px solid #396EB5");
+    });
 
     //validate checkbox on bangkokpost and posttoday tab
     function validateCheckbox()
@@ -448,28 +493,40 @@
           alert(current_tab);
           if(current_tab == 'posttoday')
           {
-            $("#posttoday-tab").removeClass('show');
-            $("#posttoday-tab").removeClass('active');
-            $("#bangkokpost-tab").addClass('show');
-            $("#bangkokpost-tab").addClass('active');
-            $("#bangkokpost-tab").css("background-color", "#396EB5");
-            $("#myTab").css("border-bottom", "5px solid #396EB5");
+            $("#posttoday").addClass('show active');
+            $("#posttoday-tab").addClass('show active');
+            $("#bangkokpost").removeClass('show active');
+            $("#bangkokpost-tab").removeClass('show active');
+
+            $("#posttoday-tab").css("background-color", "#D13E3E");
+            $("#bangkokpost-tab").css("background-color", "#F2F2F2");
+            $("#myTab").css("border-bottom", "5px solid #D13E3E");
+            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
+            $("#bp-tab-border").css("border", "1px solid #D13E3E ");
             location.href = "#posttoday";
           }
-          else{
+          else if(current_tab == 'bangkokpost'){
+            $("#posttoday").removeClass('show active');
+            $("#posttoday-tab").removeClass('show active');
+            $("#bangkokpost").addClass('show active');
+            $("#bangkokpost-tab").addClass('show active');
+
+            $("#bangkokpost-tab").css("background-color", "#396EB5");
+            $("#posttoday-tab").css("background-color", "#F2F2F2");
+            $("#myTab").css("border-bottom", "5px solid #396EB5");
+            $("#bp-tab-border").css("border", "1px solid #D13E3E ");
+            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
             location.href = "#bangkokpost";
+          }
+          else if((!$("input[name*='bp_facebook_normal_post']:checked").length && !$("input[name*='bp_facebook_boost_post']:checked").length
+                && !$("input[name*='ptd_facebook_normal_post']:checked").length && !$("input[name*='ptd_facebook_boost_post']:checked").length)){
+                  $("#ptd-facebook-tab").css("border", "1px solid #D13E3E ");
+                  $("#bp-facebook-tab").css("border", "1px solid #D13E3E ");
           }
         }
     }
     
-    function countBPTypeCheckField(){
-      $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
-    }
-
-    function countPTDTypeCheckField(){
-      $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
-    }
-    //get customer name from customer dropdown and create a new input field for posting a customer name
+    //create a new input field for posting a customer and advertiser name before user clicked a submit button
     function hiddenField() {
         for(i=0;i<2;i++)
         {
@@ -489,42 +546,28 @@
           //append to form element that you want .
           document.getElementById("form").appendChild(input);
         }
+        $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
+        $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
     }
 
-    //insert ad description card when user click add more ad+ button on Bangkok Post tab
-    function addBPAds(){
-        var count = $("div[id*='bp-ad-card']").length;
-        var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"bp_size_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_size_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div><input type=\"hidden\" name=\"bp_size_text["+count+"]\" id=\"bp_size_text"+count+"\" value=\"\" /></div>";
-        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"bp_position_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_position_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select><input type=\"hidden\" name=\"bp_position_text["+count+"]\" id=\"bp_position_text"+count+"\" value=\"\" /></div>";
-        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"bp_section_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('bp_section_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select><input type=\"hidden\" name=\"bp_section_text["+count+"]\" id=\"bp_section_text"+count+"\" value=\"\" /></div>";
-        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bp_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"bp_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
-        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"bp_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
-        var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
-        var dropdown = size_form+position_form+section_form;
-        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"bp_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
-                           
-        var Html = "<div id=\"bp-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
-        $('#bp-ad-description').append(Html);
-        count++;
-    }
-
-    //insert ad description card when user click add more ad+ button on Post Today tab
-    function addPTDAds(){
-        var count = $("div[id*='ptd-ad-card']").length;
-        var cardHeader = "<div class=\"box-ad--title\">Ad "+(count+1)+" Description:</div>";
-        var size_form = "<div class=\"col-md-5 mb-3\"><label>Size:</label><select name=\"ptd_size_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_size_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Size</option><option value=\"1\">Billboard</option><option value=\"2\">Rectangle</option><option value=\"3\">Double-Rectangle</option><option value=\"4\">Boombox</option><option value=\"5\">Fullwidth</option><option value=\"6\">Leaderboard</option></select><div class=\"invalid-feedback\">Please select a valid state.</div><input type=\"hidden\" name=\"ptd_size_text["+count+"]\" id=\"ptd_size_text"+count+"\" value=\"\" /></div>";
-        var position_form = "<div class=\"col-md-5 mb-3\"><label>Position:</label><select name=\"ptd_position_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_position_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Position</option><option value=\"1\">Top</option><option value=\"2\">Middle</option><option value=\"3\">Bottom</option><option value=\"4\">Left</option><option value=\"5\">Right</option></select><input type=\"hidden\" name=\"ptd_position_text["+count+"]\" id=\"ptd_position_text"+count+"\" value=\"\" /></div>";
-        var section_form = "<div class=\"col-md-5 mb-3\"><label>Section:</label><select name=\"ptd_section_id["+count+"]\" class=\"custom-select\" onchange=\"document.getElementById('ptd_section_text"+count+"').value=this.options[this.selectedIndex].text\"><option selected value=\"\">Choose Section</option><option value=\"1\">Homepage</option><option value=\"2\">Business</option><option value=\"3\">Social</option><option value=\"4\">Sport</option><option value=\"5\">Car</option></select><input type=\"hidden\" name=\"ptd_section_text["+count+"]\" id=\"ptd_section_text"+count+"\" value=\"\" /></div>";
-        var date_form = "<div class=\"form-group\"><div class=\"input-daterange datepicker\"><div class=\"input-group-inline\"><span>Period:</span></div><div class=\"input-group-inline\"><span>From</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_from["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div><div class=\"input-group-inline\"><span>to</span>&nbsp<input type=\"text\" class=\"form-control form-input--date\" name=\"ptd_date_to["+count+"]\">&nbsp<span><img src=\"assets/images/icon-svg/calendar.svg\" width=\"20\"></span></div></div></div>";
-        var banner_url = "<div class=\"form-group row\"><label for=\"inputURL\" class=\"col-md-4 col-lg-3 col-form-label label-normal\">URL link banner:</label><div class=\"col-md-11 col-lg-12\"><input name=\"ptd_banner_url["+count+"]\" type=\"text\" class=\"form-control\"></div></div>";
-        var booking_link = "<div class=\"row\"><div class=\"col-15 col-form-label label-normal\">Impression: &nbsp; <a href=\"javascript:;\" class=\"btn btn-click2\">Click for booking inventory</a></div></div>";
-        var dropdown = size_form+position_form+section_form;
-        var upload = "<div class=\"form-group row\"><label class=\"col-md-4 col-lg-3 col-form-label label-normal\">Upload file:</label><div class=\"col-md-11 col-lg-12\"><div class=\"custom-file\"><input type=\"file\" name=\"ptd_ad_desc_file["+count+"]\" class=\"custom-file-input\" id=\"customFile\"><label class=\"custom-file-label\" for=\"customFile\">Choose file</label></div><div class=\"text-ps--small\">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div></div></div>";
-                           
-        var Html = "<div id=\"ptd-ad-card\" class=\"box-ad--banner\">"+cardHeader+"<div class=\"box-ad--container\"><div class=\"form-row\">"+dropdown+"</div>"+date_form+banner_url+upload+booking_link+"</div></div>";
-        $('#ptd-ad-description').append(Html);
-        count++;
+    //generate a new ad description box when user click Add more ad button
+    function addAds(web_name){
+        var count = $("div[id*='"+web_name+"-ad-card']").length;
+        var Html= $("div[id*='"+web_name+"-ad-card']").eq(0).clone();
+            Html.find('input').each(function() {  //Replace input name
+                this.name= this.name.replace('[0]', '['+count+']');
+            });
+            Html.find('select').each(function() {   //Replace dropdown name
+                this.name= this.name.replace('[0]', '['+count+']');
+                var id = this.name.split('_id['+count+']')[0]; //set hidden input id for posting dropdown text
+                this.setAttribute('onchange', 'document.getElementById(\"'+id+'_text['+count+']\").value=this.options[this.selectedIndex].text');
+            });
+            Html.find("div[id*='"+web_name+"-ad-title']").each(function() { //Replace box title
+                this.textContent = this.textContent.replace('Ad 1 Description:','Ad '+(count+1)+' Description:');
+            });
+            //var newOnChange = '';
+            $('#'+web_name+'-ad-description').append(Html);
+            count++;
     }
 
     //Date picker option for default ad description card
