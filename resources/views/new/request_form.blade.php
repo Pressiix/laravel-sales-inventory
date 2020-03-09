@@ -531,35 +531,171 @@
                     +"<option value='Male2'>Male 2</option>";
                 $("select[name*='bp_section_id']").html(options);
             }
-            /*else if(value=="2")
-            else if(value=="3")
-            else if(value=="4")
-            else if(value=="5")
-            else if(value=="6")
-            else if(value=="7")
-            else if(value=="8")
-            else if(value=="9")
-            else if(value=="10")
-            else if(value=="11")
-            else if(value=="12")
-            else if(value=="13")
-            else if(value=="14")
-            else if(value=="15")
-            else if(value=="16")
-            else if(value=="17")
-            else if(value=="18")
-            else if(value=="19")
-            else if(value=="20")
-            else if(value=="21")
-            else if(value=="22")
-            else if(value=="23")
-            else if(value=="24")
-            else if(value=="25")*/
+            else if(value=="2"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="3"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="4"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="5"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="6"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="7"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="8"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="9"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="10"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="11"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="12"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="13"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="14"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="15"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="16"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="17"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="18"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="19"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="20"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="21"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="22"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="23"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="24"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="25"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="26"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="27"){
+                options="<option>Choose Section</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
+            else if(value=="28"){
+                options="<option>Choose Section</option>";
+                $("select[name*='bp_section_id']").html(options);
+            }
             else{
-                options='<option>Choose...</option>'
+                options='<option>Choose Section</option>'
                       +'<option value="female1">Female 1</option>'
                     +'<option value="female2">Female 2</option>';
-                $("#name").html(options);
+                $("select[name*='bp_section_id']").html(options);
             }
         });
     });
