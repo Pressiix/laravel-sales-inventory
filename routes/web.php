@@ -57,5 +57,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/success_campaign', 'AppController@success_campaign');
 
     Route::get('/test-mail', 'AppController@sendEmail');
-   
+    Route::get('/test', 'AppController@test');
 });

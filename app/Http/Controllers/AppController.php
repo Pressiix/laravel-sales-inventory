@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RequestForm;
 use Encore\Admin\Actions\Interactor\Form;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Http\Requests\SaleFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -12,12 +12,16 @@ use DateTime;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+//use \Httpful\Request;
 
 class AppController extends Controller
 {
     public function test()
     {
-        return view('new.profile3');
+        
+        $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+        $data = json_decode($datos, true);
+       echo "<pre/>"; print_r($data);
     }
     /**
      * Display a listing of the users
