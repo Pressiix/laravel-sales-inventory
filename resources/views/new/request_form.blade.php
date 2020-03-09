@@ -164,12 +164,35 @@
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 <select name="bp_position_id[0]" class="custom-select" onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text">
-                                  <option selected value="">Choose Position</option>
-                                  <option value="1">Top</option>
-                                  <option value="2">Middle</option>
-                                  <option value="3">Bottom</option>
-                                  <option value="4">Left</option>
-                                  <option value="5">Right</option>
+                                  <option selected>Choose Position</option>
+                                  <option value="1">Home</option>
+                                  <option value="2">Business -Section</option>
+                                  <option value="3">Business -Article</option>
+                                  <option value="4">Thailand-Section</option>
+                                  <option value="5">Thailand-Article</option>
+                                  <option value="6">World-Section</option>
+                                  <option value="7">World -Article</option>
+                                  <option value="8">Life-Section</option>
+                                  <option value="9">Life -Article</option>
+                                  <option value="10">Opinion-Section</option>
+                                  <option value="11">Opinion -Article</option>
+                                  <option value="12">Auto -Section</option>
+                                  <option value="13">Auto -Article</option>
+                                  <option value="14">Learning -Section</option>
+                                  <option value="15">Learning -Article</option>
+                                  <option value="16">Video -Section</option>
+                                  <option value="17">Video -Article</option>
+                                  <option value="18">Sport -Section</option>
+                                  <option value="19">Sport -Article</option>
+                                  <option value="20">Travel -Section</option>
+                                  <option value="21">Travel -Article</option>
+                                  <option value="22">Tech -Section</option>
+                                  <option value="23">Tech -Article</option>
+                                  <option value="24">Property -Section</option>
+                                  <option value="25">Property -Article</option>
+                                  <option value="26">Photo -Section</option>
+                                  <option value="27">Photo -Article</option>
+                                  <option value="28">Jobs</option>
                                 </select>
                                 <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="" />
                               </div>
@@ -177,11 +200,6 @@
                                 <label>Section:</label>
                                 <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Section</option>
-                                  <option value="1">Homepage</option>
-                                  <option value="2">Business</option>
-                                  <option value="3">Social</option>
-                                  <option value="4">Sport</option>
-                                  <option value="5">Car</option>
                                 </select>
                                 <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="" />
                               </div>
@@ -506,30 +524,43 @@
         $("select[name*='bp_position_id']").on('change',function(){
             var value=$(this).val();
             alert(value);
-            /*if(value=="1")
+            if(value=="1")
             {
-                options="<option>Select Your Name</option>"
+                options="<option>Choose Section</option>"
                       +"<option value='Male1'>Male 1</option>"
                     +"<option value='Male2'>Male 2</option>";
-                $("#name").html(options);
+                $("select[name*='bp_section_id']").html(options);
             }
-            else if(value=="2")
-            {
-                options='<option>Select Your Name</option>'
-                      +'<option value="female1">Female 1</option>'
-                    +'<option value="female2">Female 2</option>';
-                $("#name").html(options);
-            }
-            else if(value=="2")
-            {
-                options='<option>Select Your Name</option>'
-                      +'<option value="female1">Female 1</option>'
-                    +'<option value="female2">Female 2</option>';
-                $("#name").html(options);
-            }
+            /*else if(value=="2")
+            else if(value=="3")
+            else if(value=="4")
+            else if(value=="5")
+            else if(value=="6")
+            else if(value=="7")
+            else if(value=="8")
+            else if(value=="9")
+            else if(value=="10")
+            else if(value=="11")
+            else if(value=="12")
+            else if(value=="13")
+            else if(value=="14")
+            else if(value=="15")
+            else if(value=="16")
+            else if(value=="17")
+            else if(value=="18")
+            else if(value=="19")
+            else if(value=="20")
+            else if(value=="21")
+            else if(value=="22")
+            else if(value=="23")
+            else if(value=="24")
+            else if(value=="25")*/
             else{
-                $("#name").find('option').remove()
-            }*/
+                options='<option>Choose...</option>'
+                      +'<option value="female1">Female 1</option>'
+                    +'<option value="female2">Female 2</option>';
+                $("#name").html(options);
+            }
         });
     });
 
