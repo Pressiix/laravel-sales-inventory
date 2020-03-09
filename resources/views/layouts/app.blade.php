@@ -96,74 +96,40 @@
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">
-                        <!--<div class="img-thumbnail img-circle">
-                        <div style="position: relative; padding: 0; cursor: pointer;display:block;margin: 0 auto;" type="file">
-                        <img src="{{ url('/').$user->profile_picture }}" class="rounded-circle" width="120px" height="120px"> 
-                            <a style="{{ Request::is('profile') ? '' : 'display:none;' }}" data-target="#myModal" data-toggle="modal"><span style="position: absolute; color: #000; "><i class="fa fa-camera"></i></span></a>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
                         
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title"><b>Upload your profile picture</b></h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body text-center">
-                            
-                            <form action="{{ url('/upload-image') }}" method="POST" enctype="multipart/form-data" runat="server">
-                                <img id="blah" src="{{ url('/').$user->profile_picture }}" alt="your image" width="140px" height="140px"/>
-                                <br/><br/>
-                                {{ csrf_field() }}
-                                {{ method_field('POST') }}
-                                <input type='file' name="image" id="imgInp" />
-                                <br/><br/>
-                                <button class="btn btn-lg btn-success" type="submit">Upload</button>  
-                            </form>
-
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                        
-                        </div>
-                    </div>-->
                         <div class="profile-avatar">
-                        <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
-                            <img src="<?= $user->profile_picture ?> " class="img-fluid">
-                        </div>
-                        <!-- modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                        
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title"><b>Upload your profile picture</b></h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
+                                <img src="<?= $user->profile_picture ?> " class="img-fluid">
                             </div>
-                            <div class="modal-body text-center">
+                            <!-- modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
                             
-                            <form action="{{ url('/upload-image') }}" method="POST" enctype="multipart/form-data" runat="server">
-                                <img id="blah" src="{{ url('/').$user->profile_picture }}" alt="your image" width="140px" height="140px"/>
-                                <br/><br/>
-                                {{ csrf_field() }}
-                                {{ method_field('POST') }}
-                                <input type='file' name="image" id="imgInp" />
-                                <br/><br/>
-                                <button class="btn btn-lg btn-success" type="submit">Upload</button>  
-                            </form>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><b>Upload your profile picture</b></h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                
+                                <form action="{{ url('/upload-image') }}" method="POST" enctype="multipart/form-data" runat="server">
+                                    <img id="blah" src="{{ url('/').$user->profile_picture }}" alt="your image" width="140px" height="140px"/>
+                                    <br/><br/>
+                                    {{ csrf_field() }}
+                                    {{ method_field('POST') }}
+                                    <input type='file' name="image" id="imgInp" />
+                                    <br/><br/>
+                                    <button class="btn btn-lg btn-success" type="submit">Upload</button>  
+                                </form>
 
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            
                             </div>
                         </div>
-                        
-                        </div>
-                    </div>
 
                         <div class="profile-name">{{ $user->name }}</div>
                         </div>

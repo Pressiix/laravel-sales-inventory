@@ -68,13 +68,13 @@
                       <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_facebook_normal_post" type="checkbox" id="bp_fb1" value="Normal Post">
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($bp_facebook) && $bp_facebook === 'Normal Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_facebook_boost_post" type="checkbox" id="bp_fb2" value="Facebook Boost Post">
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($bp_facebook) && $bp_facebook === 'Facebook Boost Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb2">Facebook Boost Post</label>
                           </div>
                         </div>
@@ -147,7 +147,7 @@
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
-                                <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text">
+                                <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
                                   <option selected value="">Choose Size</option>
                                   <option value="1">Billboard</option>
                                   <option value="2">Rectangle</option>
@@ -202,19 +202,42 @@
                               </div>
                             </div>
                             <div class="form-group row">
+                              <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
+                              <div class="col-auto col-sm-11 col-md-11 col-lg-12">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio11" value="Desktop">
+                                  <label class="form-check-label" for="inlineRadio11">Desktop</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio21" value="Mobile">
+                                  <label class="form-check-label" for="inlineRadio21">Mobile</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
                               <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <input name="bp_banner_url[0]" type="text" class="form-control">
                               </div>
                             </div>
                             <div class="form-group row">
-                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload file:</label>
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
                                   <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="bp_quotation[0]" class="custom-file-input" id="customFile">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -259,13 +282,13 @@
                       <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook_normal_post" type="checkbox" id="ptd_fb1" value="Normal Post">
+                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb1" value="Normal Post" <?= (!empty($ptd_facebook) && $ptd_facebook === 'Normal Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook_boost_post" type="checkbox" id="ptd_fb2" value="Facebook Boost Post">
+                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb2" value="Facebook Boost Post" <?= (!empty($ptd_facebook) && $ptd_facebook === 'Facebook Boost Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb2">Facebook Boost Post</label>
                           </div>
                         </div>
@@ -393,19 +416,42 @@
                               </div>
                             </div>
                             <div class="form-group row">
+                              <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
+                              <div class="col-auto col-sm-11 col-md-11 col-lg-12">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="ptd_device[0]" type="radio" name="inlineRadioOptions1" id="inlineRadio11" value="option1">
+                                  <label class="form-check-label" for="inlineRadio11">Desktop</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="ptd_device[0]" type="radio" name="inlineRadioOptions1" id="inlineRadio21" value="option2">
+                                  <label class="form-check-label" for="inlineRadio21">Mobile</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
                               <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <input name="ptd_banner_url[0]" type="text" class="form-control">
                               </div>
                             </div>
                             <div class="form-group row">
-                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload file:</label>
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
                                   <input type="file" name="ptd_ad_desc_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="ptd_quotation[0]" class="custom-file-input" id="customFile">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -452,94 +498,183 @@
 <script>
     //Replace URL after user click to save request form
     window.history.pushState('request-save', 'Title', '/request_form');
-    var current_tab = 'bangkokpost';
-    $( "#posttoday-tab" ).click(function() {
-      current_tab = 'posttoday';
+    var active_tab = 'bangkokpost';
+    var none_active_tab = 'posttoday';
+
+    $(document).ready(function () {
+        var options="";
+        $("select[name*='bp_position_id']").on('change',function(){
+            var value=$(this).val();
+            alert(value);
+            /*if(value=="1")
+            {
+                options="<option>Select Your Name</option>"
+                      +"<option value='Male1'>Male 1</option>"
+                    +"<option value='Male2'>Male 2</option>";
+                $("#name").html(options);
+            }
+            else if(value=="2")
+            {
+                options='<option>Select Your Name</option>'
+                      +'<option value="female1">Female 1</option>'
+                    +'<option value="female2">Female 2</option>';
+                $("#name").html(options);
+            }
+            else if(value=="2")
+            {
+                options='<option>Select Your Name</option>'
+                      +'<option value="female1">Female 1</option>'
+                    +'<option value="female2">Female 2</option>';
+                $("#name").html(options);
+            }
+            else{
+                $("#name").find('option').remove()
+            }*/
+        });
     });
-    //Create input field for post a customer name and advertiser name before user click submit button
-    function createHiddenField(){
-        hiddenField();
-        validateCheckbox();
+
+    function requireFieldOnCard(tab_name,value)
+    {
+      $("select[name*='"+tab_name+"_size_id']").prop('required',true);
+      $("select[name*='"+tab_name+"_position_id']").prop('required',true);
+      $("select[name*='"+tab_name+"_section_id']").prop('required',true);
+      $("input[name*='"+tab_name+"_date_from']").prop('required',true);
+      $("input[name*='"+tab_name+"_date_to']").prop('required',true);
+      $("input[name*='"+tab_name+"_device']").prop('required',true);
+      $("input[name*='"+tab_name+"_banner_url']").prop('required',true);
+      $("input[name*='"+tab_name+"_ad_desc_file']").prop('required',true);
+      $("input[name*='"+tab_name+"_quotation']").prop('required',true);
+      $("input[name*='"+tab_name+"_impression_need']").prop('required',true);
     }
 
-    //
+    //if user checked on bangkok post facebook checkbox
+    $("input[name*='bp_facebook']").click(function(){
+      requireFieldOnCard('bp',($("input[name*='bp_facebook']:checked").length ? 'true' : 'false'));
+    });
+    //if user checked on post today facebook checkbox
+    $("input[name*='ptd_facebook']").click(function(){
+      requireFieldOnCard('ptd',($("input[name*='ptd_facebook']:checked").length ? 'true' : 'false'));
+    });
+
+    //Create input field before user click submit button
+    function createHiddenField(){
+        hiddenField();
+        validateCheckbox(active_tab,none_active_tab);
+    }
+    
     $('#posttoday-tab').click(function() {
-            $("#posttoday").addClass('show');
-            $("#posttoday").addClass('active');
-            $("#bangkokpost").removeClass('show');
-            $("#bangkokpost").removeClass('active');
-            $("#bangkokpost-tab").css("background-color", "#F2F2F2");
-            $("#posttoday-tab").css("background-color", "#D13E3E");
-            $("#myTab").css("border-bottom", "5px solid #D13E3E");
-            current_tab = 'posttoday';
+            active_tab = 'posttoday';
+            none_active_tab = 'bangkokpost';
+            addTabClass(active_tab,none_active_tab);
     });
 
     $('#bangkokpost-tab').click(function() {
-            $("#posttoday").removeClass('show');
-            $("#posttoday").removeClass('active');
-            $("#bangkokpost").addClass('show');
-            $("#bangkokpost").addClass('active');
-            $("#posttoday-tab").css("background-color", "#F2F2F2");
-            $("#bangkokpost-tab").css("background-color", "#396EB5");
-            $("#myTab").css("border-bottom", "5px solid #396EB5");
-            current_tab = 'bangkokpost';
+            active_tab = 'bangkokpost';
+            none_active_tab = 'posttoday';
+            addTabClass(active_tab,none_active_tab);
     });
 
-    //validate checkbox on bangkokpost and posttoday tab
-    function validateCheckbox()
+    function addTabClass(active_tab,none_active_tab)
     {
-      if((!$("input[name*='bp_web']:checked").length && !$("input[name*='ptd_web']:checked").length) 
-      || (!$("input[name*='bp_facebook_normal_post']:checked").length && !$("input[name*='bp_facebook_boost_post']:checked").length
-      && !$("input[name*='ptd_facebook_normal_post']:checked").length && !$("input[name*='ptd_facebook_boost_post']:checked").length) ) {
-          event.preventDefault();
-          alert(current_tab);
-          if(current_tab == 'posttoday')
-          {
-            $("#posttoday").addClass('show active');
-            $("#posttoday-tab").addClass('show active');
-            $("#bangkokpost").removeClass('show active');
-            $("#bangkokpost-tab").removeClass('show active');
+      $("#"+active_tab).addClass('show');
+      $("#"+active_tab).addClass('active');
+      $("#"+none_active_tab+"-tab").css("background-color", "#F2F2F2");
+      $("#"+none_active_tab).removeClass('show');
+      $("#"+none_active_tab).removeClass('active');
+      if(active_tab == 'posttoday'){
+        $("#"+active_tab+"-tab").css("background-color", "#D13E3E");
+        $("#myTab").css("border-bottom", "5px solid #D13E3E");
+      }
+      else{
+        $("#"+active_tab+"-tab").css("background-color", "#396EB5");
+        $("#myTab").css("border-bottom", "5px solid #396EB5");
+      } 
+    }
 
-            $("#posttoday-tab").css("background-color", "#D13E3E");
-            $("#bangkokpost-tab").css("background-color", "#F2F2F2");
-            $("#myTab").css("border-bottom", "5px solid #D13E3E");
-            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
+    //validate checkbox on bangkokpost and posttoday tab
+    function validateCheckbox(active_tab,none_active_tab)
+    {
+      if(!$("input[name*='bp_facebook']:checked").length && !$("input[name*='ptd_facebook']:checked").length){
+            event.preventDefault();
+            $("#bp-facebook-tab").css("border", "1px solid #D13E3E ");
+            $("#ptd-facebook-tab").css("border", "1px solid #D13E3E ");
+            $("#bp-tab-border").css("border", "1px solid #fff ");
+            $("#ptd-tab-border").css("border", "1px solid #fff ");
+      }
+      else if(!$("input[name*='bp_facebook']:checked").length && $("input[name*='bp_web']:checked").length){
+              event.preventDefault();
+              $("#bp-facebook-tab").css("border", "1px solid #D13E3E");
+              $("#bp-tab-border").css("border", "1px solid #fff ");
+              if($("input[name*='ptd_facebook']:checked").length || $("input[name*='ptd_facebook']:checked").length)
+              {
+                $("#ptd-facebook-tab").css("border", "1px solid #fff");
+              }
+              else{
+                $("#ptd-facebook-tab").css("border", "1px solid #D13E3E");
+              }
+              if($("input[name*='ptd_web']:checked").length)
+              {
+                $("#ptd-tab-border").css("border", "1px solid #fff ");
+              }else{
+                $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
+              }
+      }
+      else if(!$("input[name*='ptd_facebook']:checked").length && $("input[name*='ptd_web']:checked").length){
+              event.preventDefault();
+              $("#ptd-facebook-tab").css("border", "1px solid #D13E3E");
+              $("#ptd-tab-border").css("border", "1px solid #fff ");
+              if($("input[name*='bp_facebook']:checked").length)
+              {
+                $("#bp-facebook-tab").css("border", "1px solid #fff");
+              }
+              else{
+                $("#bp-facebook-tab").css("border", "1px solid #D13E3E");
+              }
+              if($("input[name*='bp_web']:checked").length)
+              {
+                $("#bp-tab-border").css("border", "1px solid #fff ");
+              }else{
+                $("#bp-tab-border").css("border", "1px solid #D13E3E ");
+                }
+      }
+      else{
+        if($("input[name*='bp_facebook']:checked").length)
+        {
+          $("#bp-facebook-tab").css("border", "1px solid #fff");
+          $("#bp-tab-border").css("border", "1px solid #fff ");
+          if(!$("input[name*='bp_web']:checked").length){
+            event.preventDefault();
             $("#bp-tab-border").css("border", "1px solid #D13E3E ");
-            location.href = "#posttoday";
-          }
-          else if(current_tab == 'bangkokpost'){
-            $("#posttoday").removeClass('show active');
-            $("#posttoday-tab").removeClass('show active');
-            $("#bangkokpost").addClass('show active');
-            $("#bangkokpost-tab").addClass('show active');
-
-            $("#bangkokpost-tab").css("background-color", "#396EB5");
-            $("#posttoday-tab").css("background-color", "#F2F2F2");
-            $("#myTab").css("border-bottom", "5px solid #396EB5");
-            $("#bp-tab-border").css("border", "1px solid #D13E3E ");
-            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
-            location.href = "#bangkokpost";
-          }
-          else if((!$("input[name*='bp_facebook_normal_post']:checked").length && !$("input[name*='bp_facebook_boost_post']:checked").length
-                && !$("input[name*='ptd_facebook_normal_post']:checked").length && !$("input[name*='ptd_facebook_boost_post']:checked").length)){
-                  $("#ptd-facebook-tab").css("border", "1px solid #D13E3E ");
-                  $("#bp-facebook-tab").css("border", "1px solid #D13E3E ");
           }
         }
+        if($("input[name*='ptd_facebook']:checked").length)
+        {
+          $("#ptd-facebook-tab").css("border", "1px solid #fff");
+          $("#ptd-tab-border").css("border", "1px solid #fff ");
+          if(!$("input[name*='ptd_web']:checked").length){
+            event.preventDefault();
+            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
+          }
+        }
+      }
+      location.href = (active_tab == 'bangkokpost' ? "#bangkokpost" : "#posttoday" );
     }
     
     //create a new input field for posting a customer and advertiser name before user clicked a submit button
     function hiddenField() {
         for(i=0;i<2;i++)
         {
-          if(i==0){  //for customer name
-            var selIndex = document.form.customer_id.selectedIndex;
-		        var selText = document.form.customer_id.options[selIndex].text;
-            var input_name = 'customer_name';
-          }else{ //for advertiser name
-            var selIndex = document.form.advertiser_id.selectedIndex;
-		        var selText = document.form.advertiser_id.options[selIndex].text;
-            var input_name = 'advertiser_name';
+          switch(i){
+            case 0: //for customer name
+                    var selIndex = document.form.customer_id.selectedIndex;
+                    var selText = document.form.customer_id.options[selIndex].text;
+                    var input_name = 'customer_name';
+                    break;
+            case 1:  //for advertiser name
+                    var selIndex = document.form.advertiser_id.selectedIndex;
+                    var selText = document.form.advertiser_id.options[selIndex].text;
+                    var input_name = 'advertiser_name';
+                    break;
           }
           var input = document.createElement("input");
           input.setAttribute("type", "hidden");

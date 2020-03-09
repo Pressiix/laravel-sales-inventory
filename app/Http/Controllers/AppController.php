@@ -29,7 +29,7 @@ class AppController extends Controller
         if(isset($request)){
             $user = compact(Auth::user());
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
-            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
+            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
             
             return view('new.request_form',[
                 'sales_name' => auth()->user()->name,
@@ -70,7 +70,7 @@ class AppController extends Controller
         {
             //echo "<pre/>";print_r($request->size);
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
-            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_name','id');
+            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
 
             return view('request.form', [
                 'sales_name' => $request->sales_name,
@@ -136,36 +136,6 @@ class AppController extends Controller
         \Mail::to('watcharapon.piam@gmail.com')->send(new \App\Mail\SendMail($details));
     }
 
-
-    public function showPendingList()
-    {
-        $someModel = DB::connection('mysql')->select('select * from request'); // static method
-        $user = Auth::user();
-        return view('pending-list',[
-            'someModel' => json_decode(json_encode($someModel), True)
-        ],compact('user'));
-    }
-
-    public function showMyActivities(Request $request)
-    {
-        $someModel = DB::connection('mysql')->select('select * from request'); // static method
-        $user = Auth::user();
-        return view('my-activity',[
-            'someModel' => json_decode(json_encode($someModel), True)
-        ],compact('user'));
-        /*if($request->from && $request->to)
-        {
-            $date_from = DateTime::createFromFormat('Y-m-d', $request->from)->format('j F Y');
-            $date_to = DateTime::createFromFormat('Y-m-d', $request->to)->format('j F Y');
-            $someModel = DB::connection('mysql')->select('select * from request'); // static method
-            return view('request.activity-list',[
-                'someModel' => json_decode(json_encode($someModel), True)
-            ]);
-        }
-        else{
-            return view('request.activity-list');
-        }*/
-    }
 
     public function booking(User $user)
     {
@@ -253,9 +223,10 @@ class AppController extends Controller
     {
         return view('new.campaign_report_preview');
     }
-    public function create_new_customer()
+    
+    public function create_new_advertiser()
     {
-        return view('new.create_new_customer');
+        return view('new.create_new_advertiser');
     }
     public function forgot()
     {
@@ -265,10 +236,7 @@ class AppController extends Controller
     {
         return view('new.request_form');
     }*/
-    public function request_preview()
-    {
-        return view('new.request_preview');
-    }
+    
     public function revenue()
     {
         return view('new.revenue');

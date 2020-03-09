@@ -25,7 +25,7 @@ class CustomerController extends Controller
     
     public function createCustomer()
     {
-        return view('create-form.create-customer');
+        return view('new.create_new_customer');
     }
 
     public function storeCustomer(Request $request)
@@ -33,9 +33,9 @@ class CustomerController extends Controller
          DB::connection('mysql')->insert('
             insert into customer values (
                     NULL,
-                    \''.$request->customer_name.'\',
-                    \''.$request->customer_surname.'\',
-                    \''.$request->customer_name.' '.$request->customer_surname.'\',
+                    \''.$request->customer_firstname.'\',
+                    \''.$request->customer_lastname.'\',
+                    \''.$request->customer_firstname.' '.$request->customer_lastname.'\',
                     \''.$request->customer_nickname.'\',
                     \''.$request->customer_telephone.'\',
                     \''.$request->customer_email.'\',
@@ -44,10 +44,10 @@ class CustomerController extends Controller
                     \''.$request->company_product.'\',
                     \''.$request->company_telephone.'\',
                     \''.$request->company_email.'\'
-            )'
-        );
+            )
+        ');
         
-        return Redirect::to('create-customer');
+        return Redirect::to('create_new_customer');
     }
 
 

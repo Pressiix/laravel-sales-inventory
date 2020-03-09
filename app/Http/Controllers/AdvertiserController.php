@@ -25,19 +25,29 @@ class AdvertiserController extends Controller
     
     public function createAdvertiser()
     {
-        return view('create-form.create-advertiser');
+        return view('new.create_new_advertiser');
     }
 
     public function storeAdvertiser(Request $request)
     {
          DB::connection('mysql')->insert('
             insert into advertiser values (
-                    NULL,
-                    \''.$request->advertiser_name.'\'
+                NULL,
+                \''.$request->advertiser_firstname.'\',
+                \''.$request->advertiser_lastname.'\',
+                \''.$request->advertiser_firstname.' '.$request->advertiser_lastname.'\',
+                \''.$request->advertiser_nickname.'\',
+                \''.$request->advertiser_telephone.'\',
+                \''.$request->advertiser_email.'\',
+                \''.$request->company_name.'\',
+                \''.$request->company_type.'\',
+                \''.$request->company_product.'\',
+                \''.$request->company_telephone.'\',
+                \''.$request->company_email.'\'
             )'
         );
         
-        return Redirect::to('create-advertiser');
+        return Redirect::to('create_new_advertiser');
     }
 
 

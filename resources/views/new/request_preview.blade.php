@@ -122,7 +122,7 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Device:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">Desktop</div>
+                                <div class="form-control-plaintext">{{ (!empty($item['bp_device'][$i]) ? $item['bp_device'][$i] : '') }}</div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -132,21 +132,27 @@
                               </div>
                             </div>
                             <div class="form-group row">
-                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File Upload:</strong></label>
+                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="assets/images/{{ $item['bp_ad_desc_file'][$i] }}" target="_blank">{{ $item['bp_ad_desc_file'][$i] }}</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
+                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
+                              <div class="col-sm-11">
+                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['bp_quotation'][$i] }}</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Impression:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">50,000</div>
+                                <div class="form-control-plaintext">{{ $item['bp_impression_need'][$i] }}</div>
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Detail:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">Lorem Ipsum is simply dummy text</div>
+                                <div class="form-control-plaintext">{{ $item['bp_ad_detail'][$i] }}</div>
                               </div>
                             </div>
                           </div>
@@ -236,7 +242,7 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Device:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">Desktop</div>
+                                <div class="form-control-plaintext">{{ (!empty($item['ptd_device'][$i]) ? $item['ptd_device'][$i] : '') }}</div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -246,21 +252,27 @@
                               </div>
                             </div>
                             <div class="form-group row">
-                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File Upload:</strong></label>
+                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="assets/images/{{ $item['ptd_ad_desc_file'][$i] }}" target="_blank">{{ $item['ptd_ad_desc_file'][$i] }}</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
+                              <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
+                              <div class="col-sm-11">
+                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['ptd_quotation'][$i] }}</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Impression:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">50,000</div>
+                                <div class="form-control-plaintext">{{ $item['ptd_impression_need'][$i] }}</div>
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Detail:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">Lorem Ipsum is simply dummy text</div>
+                                <div class="form-control-plaintext">{{ $item['ptd_ad_detail'][$i] }}</div>
                               </div>
                             </div>
                           </div>
