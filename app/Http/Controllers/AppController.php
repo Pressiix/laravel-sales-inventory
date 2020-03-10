@@ -80,7 +80,8 @@ class AppController extends Controller
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
 
-            return view('request.form', [
+            echo "<pre/>"; print_r($request->all());
+            /*return view('request.form', [
                 'sales_name' => $request->sales_name,
                 'sales_type' => $request->sales_type,
                 'customer_id' => $request->customer_id,
@@ -102,7 +103,7 @@ class AppController extends Controller
                 'date_from' => $request->date_from,
                 'date_to' => $request->date_to,
                 'banner_url' => $request->banner_url,
-            ]);
+            ]);*/
         }
         else
         {

@@ -4,37 +4,44 @@
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Preview</h2>
-          <form>
+          {!! Form::open(['action' => ['AppController@storeRequest', 'method' => 'POST']])!!}
 
             <div class="content-pdb">
               <div class="form-group row">
                 <label for="staticName" class="col-sm-5 col-md-4 col-lg-3 col-form-label">Sales name:</label>
                 <div class="col-sm-10 col-md-11 col-lg-12">
                   <div class="form-control-plaintext">{{ $item['sales_name'] }}</div>
+                  <input type="hidden" name="sales_name" value="{{ $item['sales_name'] }}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputUsername" class="col-sm-5 col-md-4 col-lg-3 col-form-label pt-0">Sales Type:</label>
                 <div class="col-sm-10 col-md-11 col-lg-12">
                   <div class="form-control-plaintext">{{ $item['sales_type'] }}</div>
+                  <input type="hidden" name="sales_type" value="{{ $item['sales_type'] }}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-5 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-10 col-md-11 col-lg-12">
                   <div class="form-control-plaintext">{{ $item['customer_name'] }}</div>
+                  <input type="hidden" name="customer_id" value="{{ $item['customer_id'] }}">
+                  <input type="hidden" name="customer_name" value="{{ $item['customer_name'] }}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-5 col-md-4 col-lg-3 col-form-label">Campaign name:</label>
                 <div class="col-sm-10 col-md-11 col-lg-12">
                   <div class="form-control-plaintext">{{ $item['campaign_name'] }}</div>
+                  <input type="hidden" name="campaign_name" value="{{ $item['campaign_name'] }}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-5 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-10 col-md-11 col-lg-12">
                   <div class="form-control-plaintext">{{ $item['advertiser_name'] }}</div>
+                  <input type="hidden" name="advertiser_id" value="{{ $item['advertiser_id'] }}">
+                  <input type="hidden" name="advertiser_name" value="{{ $item['advertiser_name'] }}">
                 </div>
               </div>
             </div>
@@ -60,7 +67,9 @@
                           <ul class="form-ad--answer">
                             <?php for($i=0;$i<$item['total_bp_web'];$i++){
                               echo (!empty($item['bp_web'][$i]) ? "<li>".$item['bp_web'][$i]."</li>" : '');
-                            } ?>
+                              ?>
+                              <input type="hidden" name="bp_web[<?= $i ?>]" value="<?= (!empty($item['bp_web'][$i]) ? $item['bp_web'][$i] : '') ?>">
+                           <?php } ?>
                           </ul>
                         </div>
                       </div>
@@ -68,7 +77,8 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <li>Facebook Boost Post</li>
+                            <li>{{ (!empty($item['bp_facebook']) ? $item['bp_facebook'] : '') }}</li>
+                            <input name="bp_facebook" type="hidden" value="{{ (!empty($item['bp_facebook']) ? $item['bp_facebook'] : '') }}">
                           </ul>
                         </div>
                       </div>
@@ -86,6 +96,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Size:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['bp_size_text'][$i] }}</div>
+                                    <input type="hidden" name="bp_size_id[<?= $i ?>]" value="{{ $item['bp_size_id'][$i] }}">
+                                    <input type="hidden" name="bp_size_text[<?= $i ?>]" value="{{ $item['bp_size_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -94,6 +106,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['bp_position_text'][$i] }}</div>
+                                    <input type="hidden" name="bp_position_id[<?= $i ?>]" value="{{ $item['bp_position_id'][$i] }}">
+                                    <input type="hidden" name="bp_position_text[<?= $i ?>]" value="{{ $item['bp_position_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -102,6 +116,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['bp_section_text'][$i] }}</div>
+                                    <input type="hidden" name="bp_section_id[<?= $i ?>]" value="{{ $item['bp_section_id'][$i] }}">
+                                    <input type="hidden" name="bp_section_text[<?= $i ?>]" value="{{ $item['bp_section_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -111,11 +127,11 @@
                                 <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_from'][$i] }}" readonly="">
+                                  <input type="text" name="bp_date_from'][<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_from'][$i] }}" readonly="">
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_to'][$i] }}" readonly="">
+                                  <input type="text" name="bp_date_to'][<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_to'][$i] }}" readonly="">
                                 </div>
                               </div>
                             </div>
@@ -123,36 +139,42 @@
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Device:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ (!empty($item['bp_device'][$i]) ? $item['bp_device'][$i] : '') }}</div>
+                                <input type="hidden" name="bp_device[<?= $i ?>]" value="{{ (!empty($item['bp_device'][$i]) ? $item['bp_device'][$i] : '') }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>URL link banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['bp_banner_url'][$i] }}</div>
+                                <input type="hidden" name="bp_banner_url[<?= $i ?>]" value="{{ $item['bp_banner_url'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="assets/images/{{ $item['bp_ad_desc_file'][$i] }}" target="_blank">{{ $item['bp_ad_desc_file'][$i] }}</a></div>
+                                <input type="hidden" name="bp_ad_desc_file[<?= $i ?>]" value="{{ $item['bp_ad_desc_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['bp_quotation'][$i] }}</a></div>
+                                <input type="hidden" name="bp_quotation[<?= $i ?>]" value="{{ $item['bp_quotation'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Impression:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['bp_impression_need'][$i] }}</div>
+                                <input type="hidden" name="bp_impression_need[<?= $i ?>]" value="{{ $item['bp_impression_need'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Detail:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['bp_ad_detail'][$i] }}</div>
+                                <input type="hidden" name="bp_ad_detail[<?= $i ?>]" value="{{ $item['bp_ad_detail'][$i] }}">
                               </div>
                             </div>
                           </div>
@@ -165,6 +187,7 @@
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
                         <div class="form-control-plaintext">{{ number_format($item['bp_campaign_budget']) }}</div>
+                        <input type="hidden" name="bp_campaign_budget" value="{{ $item['bp_campaign_budget'] }}">
                       </div>
                     </div>
                   </div>
@@ -179,8 +202,9 @@
                         <div class="col-15">
                           <ul class="form-ad--answer">
                           <?php for($i=0;$i<$item['total_ptd_web'];$i++){
-                              echo (!empty($item['ptd_web'][$i]) ? "<li>".$item['ptd_web'][$i]."</li>" : '');
-                            } ?>
+                              echo (!empty($item['ptd_web'][$i]) ? "<li>".$item['ptd_web'][$i]."</li>" : ''); ?>
+                              <input type="hidden" name="ptd_web[<?= $i ?>]" value="<?= (!empty($item['ptd_web'][$i]) ? $item['ptd_web'][$i] : '') ?>">
+                            <?php } ?>
                           </ul>
                         </div>
                       </div>
@@ -188,7 +212,8 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <li>Normal Post</li>
+                          <li>{{ (!empty($item['ptd_facebook']) ? $item['ptd_facebook'] : '') }}</li>
+                            <input name="ptd_facebook" type="hidden" value="{{ (!empty($item['ptd_facebook']) ? $item['ptd_facebook'] : '') }}">
                           </ul>
                         </div>
                       </div>
@@ -206,6 +231,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Size:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['ptd_size_text'][$i] }}</div>
+                                    <input name="ptd_size_id[<?= $i ?>]" type="hidden" value="{{ $item['ptd_size_id'][$i] }}">
+                                    <input name="ptd_size_text[<?= $i ?>]" type="hidden" value="{{ $item['ptd_size_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -214,6 +241,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['ptd_position_text'][$i] }}</div>
+                                    <input name="ptd_position_id[<?= $i ?>]" type="hidden" value="{{ $item['ptd_position_id'][$i] }}">
+                                    <input name="ptd_position_text[<?= $i ?>]" type="hidden" value="{{ $item['ptd_position_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -222,6 +251,8 @@
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
                                     <div class="form-control-plaintext">{{ $item['ptd_section_text'][$i] }}</div>
+                                    <input name="ptd_section_id[<?= $i ?>]" type="hidden" value="{{ $item['ptd_section_id'][$i] }}">
+                                    <input name="ptd_section_text[<?= $i ?>]" type="hidden" value="{{ $item['ptd_section_text'][$i] }}">
                                   </div>
                                 </div>
                               </div>
@@ -231,11 +262,11 @@
                                 <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_from'][$i] }}" readonly="">
+                                  <input type="text" name="ptd_date_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_from'][$i] }}" readonly="">
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_to'][$i] }}" readonly="">
+                                  <input type="text" name="ptd_date_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_to'][$i] }}" readonly="">
                                 </div>
                               </div>
                             </div>
@@ -243,36 +274,42 @@
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Device:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ (!empty($item['ptd_device'][$i]) ? $item['ptd_device'][$i] : '') }}</div>
+                                <input type="hidden" name="ptd_device[<?= $i ?>]" value="{{ (!empty($item['ptd_device'][$i]) ? $item['ptd_device'][$i] : '') }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>URL link banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['ptd_banner_url'][$i] }}</div>
+                                <input name="ptd_banner_url[<?= $i ?>]" type="hidden" value="{{ $item['ptd_banner_url'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="assets/images/{{ $item['ptd_ad_desc_file'][$i] }}" target="_blank">{{ $item['ptd_ad_desc_file'][$i] }}</a></div>
+                                <input name="ptd_ad_desc_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_ad_desc_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['ptd_quotation'][$i] }}</a></div>
+                                <input name="ptd_quotation[<?= $i ?>]" type="hidden" value="{{ $item['ptd_quotation'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Impression:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['ptd_impression_need'][$i] }}</div>
+                                <input name="ptd_impression_need[<?= $i ?>]" type="hidden" value="{{ $item['ptd_impression_need'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>Detail:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext">{{ $item['ptd_ad_detail'][$i] }}</div>
+                                <input name="ptd_ad_detail[<?= $i ?>]" type="hidden" value="{{ $item['ptd_ad_detail'][$i] }}">
                               </div>
                             </div>
                           </div>
@@ -285,6 +322,7 @@
                       <label class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
                         <div class="form-control-plaintext">{{ number_format($item['ptd_campaign_budget']) }}</div>
+                        <input name="ptd_campaign_budget" type="hidden" value="{{ $item['ptd_campaign_budget'] }}">
                       </div>
                     </div>
                   </div>
@@ -296,12 +334,12 @@
 
             <div class="btn-2item">
               <div class="row">
-                <div class="col-50 box-l"><button type="submit" value="send" class="btn btn-submit">EDIT</button></div>
-                <div class="col-50 box-r"><button type="submit" value="send" class="btn btn-submit">Approve</button></div>
+                <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               </div>
             </div>
 
-          </form>
+            {!! Form::close() !!}
         </div>
       </div>
 <script>
