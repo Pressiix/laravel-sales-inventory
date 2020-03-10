@@ -141,7 +141,7 @@
                     <div class="row">
                       <div  class="col-15">
                         <div id="bp-ad-description">
-                        <?php foreach($item as $value){ ?>
+                        <!-- PHP LOOP -->
                         <div id="bp-ad-card" class="box-ad--banner">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
@@ -253,7 +253,7 @@
                             </div>
                           </div>
                         </div>
-                        <?php } ?>
+                        <!-- PHP LOOP -->
                         </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
