@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RequestForm;
 use Encore\Admin\Actions\Interactor\Form;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\SaleFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +12,6 @@ use DateTime;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-//use \Httpful\Request;
 
 class AppController extends Controller
 {
@@ -21,7 +20,11 @@ class AppController extends Controller
         
         $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
         $data = json_decode($datos, true);
-       echo "<pre/>"; print_r($data);
+       // echo "<pre/>"; print_r($data["bp_ad_section"]);
+        //print_r($data['bp_ad_section']);
+       return view('test',[
+        'phpArray' => $data
+        ]);
     }
     /**
      * Display a listing of the users
@@ -34,11 +37,13 @@ class AppController extends Controller
             $user = compact(Auth::user());
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-            
+            $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+            $data = json_decode($datos, true);
             return view('new.request_form',[
                 'sales_name' => auth()->user()->name,
                 'customer' => $customer,
-                'advertiser' => $advertiser
+                'advertiser' => $advertiser,
+                'sectionArray' => $data,
                 ]);
         }
         else{
@@ -72,7 +77,6 @@ class AppController extends Controller
     {
         if($request->input('action') === 'Edit')
         {
-            //echo "<pre/>";print_r($request->size);
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
 

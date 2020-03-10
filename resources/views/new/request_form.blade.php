@@ -163,36 +163,12 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                <select name="bp_position_id[0]" class="custom-select" onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text">
+                                
+                                <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option selected>Choose Position</option>
-                                  <option value="1">Home</option>
-                                  <option value="2">Business -Section</option>
-                                  <option value="3">Business -Article</option>
-                                  <option value="4">Thailand-Section</option>
-                                  <option value="5">Thailand-Article</option>
-                                  <option value="6">World-Section</option>
-                                  <option value="7">World -Article</option>
-                                  <option value="8">Life-Section</option>
-                                  <option value="9">Life -Article</option>
-                                  <option value="10">Opinion-Section</option>
-                                  <option value="11">Opinion -Article</option>
-                                  <option value="12">Auto -Section</option>
-                                  <option value="13">Auto -Article</option>
-                                  <option value="14">Learning -Section</option>
-                                  <option value="15">Learning -Article</option>
-                                  <option value="16">Video -Section</option>
-                                  <option value="17">Video -Article</option>
-                                  <option value="18">Sport -Section</option>
-                                  <option value="19">Sport -Article</option>
-                                  <option value="20">Travel -Section</option>
-                                  <option value="21">Travel -Article</option>
-                                  <option value="22">Tech -Section</option>
-                                  <option value="23">Tech -Article</option>
-                                  <option value="24">Property -Section</option>
-                                  <option value="25">Property -Article</option>
-                                  <option value="26">Photo -Section</option>
-                                  <option value="27">Photo -Article</option>
-                                  <option value="28">Jobs</option>
+                                  <?php foreach($sectionArray['bp_ad_section'] as $key => $item){ ?>
+                                    <option value="<?= $key ?>"><?= $item['position'] ?></option>
+                                  <?php } ?>
                                 </select>
                                 <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="" />
                               </div>
@@ -395,13 +371,11 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                <select name="ptd_position_id[0]" class="custom-select" onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text">
+                                <select name="ptd_position_id[0]" class="custom-select" onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option selected value="">Choose Position</option>
-                                  <option value="1">Top</option>
-                                  <option value="2">Middle</option>
-                                  <option value="3">Bottom</option>
-                                  <option value="4">Left</option>
-                                  <option value="5">Right</option>
+                                  <?php foreach($sectionArray['ptd_ad_section'] as $key => $item){ ?>
+                                    <option value="<?= $key ?>"><?= $item['position'] ?></option>
+                                  <?php } ?>
                                 </select>
                                 <input type="hidden" name="ptd_position_text[0]" id="ptd_position_text0" value="" />
                               </div>
@@ -518,187 +492,30 @@
     window.history.pushState('request-save', 'Title', '/request_form');
     var active_tab = 'bangkokpost';
     var none_active_tab = 'posttoday';
+    var options="";
 
-    $(document).ready(function () {
-        var options="";
-        $("select[name*='bp_position_id']").on('change',function(){
-            var value=$(this).val();
-            alert(value);
-            if(value=="1")
-            {
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="2"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="3"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="4"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="5"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="6"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="7"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="8"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="9"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="10"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="11"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="12"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="13"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="14"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="15"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="16"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="17"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="18"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="19"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="20"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="21"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="22"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="23"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="24"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="25"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="26"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="27"){
-                options="<option>Choose Section</option>"
-                      +"<option value='Male1'>Male 1</option>"
-                    +"<option value='Male2'>Male 2</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else if(value=="28"){
-                options="<option>Choose Section</option>";
-                $("select[name*='bp_section_id']").html(options);
-            }
-            else{
-                options='<option>Choose Section</option>'
-                      +'<option value="female1">Female 1</option>'
-                    +'<option value="female2">Female 2</option>';
-                $("select[name*='bp_section_id']").html(options);
-            }
-        });
-    });
+    function changeOptionValue(a){
+      
+      var elementIndex =a.name.substring(
+        a.name.lastIndexOf("[") + 1, 
+        a.name.lastIndexOf("]")
+      );
+      var web_name = a.name.substr(0, a.name.indexOf('_'));
+      //console.log(web_name);
+      var value=$(a).val();
+          var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
+
+          if(Object.keys(jArray[value]).length == 1){
+            options="<option>-</option>";
+          }else{
+            options="<option>Choose Section</option>";
+          }
+          
+          for(j=1;j<Object.keys(jArray[value]).length;j++){
+              options+="<option value='"+j+"'>"+jArray[value][j]+"</option>";
+          }
+          $("select[name*='"+web_name+"_section_id["+elementIndex+"]']").html(options);
+    }
 
     function requireFieldOnCard(tab_name,value)
     {
@@ -861,10 +678,23 @@
             Html.find('input').each(function() {  //Replace input name
                 this.name= this.name.replace('[0]', '['+count+']');
             });
+            Html.find("input[type='hidden']").each(function() {  //Replace input name
+                this.id= this.id.replace('0', count);
+            });
             Html.find('select').each(function() {   //Replace dropdown name
                 this.name= this.name.replace('[0]', '['+count+']');
                 var id = this.name.split('_id['+count+']')[0]; //set hidden input id for posting dropdown text
-                this.setAttribute('onchange', 'document.getElementById(\"'+id+'_text['+count+']\").value=this.options[this.selectedIndex].text');
+                
+                var select_name = this.name.substring(
+                  this.name.lastIndexOf(web_name+"_") + (web_name == 'bp' ? 3 : 4), 
+                  this.name.lastIndexOf("_")
+                );
+                if(select_name == 'position'){
+                  this.setAttribute('onchange', 'document.getElementById(\"'+id+'_text'+count+'\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
+                }
+                else{
+                  this.setAttribute('onchange', 'document.getElementById(\"'+id+'_text'+count+'\").value=this.options[this.selectedIndex].text;');
+                }
             });
             Html.find("div[id*='"+web_name+"-ad-title']").each(function() { //Replace box title
                 this.textContent = this.textContent.replace('Ad 1 Description:','Ad '+(count+1)+' Description:');
