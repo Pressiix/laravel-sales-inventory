@@ -61,15 +61,15 @@ class AppController extends Controller
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
             $data = json_decode($datos, true);
-            //echo "<pre/>"; print_r($request->all());
-            return view('new.request_form', [
+            echo "<pre/>"; print_r($request->all());
+            /*return view('new.request_form', [
                 'action' => 'Edit',
                 'sales_name' =>$request->sales_name,
                 'customer' => $customer,
                 'advertiser' => $advertiser,
                 'item' => $request->all(),
                 'sectionArray' => $data,
-            ]);
+            ]);*/
         }
         else
         {

@@ -68,13 +68,13 @@
                       <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($bp_facebook) && $bp_facebook === 'Normal Post' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($bp_facebook) && $bp_facebook === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb2">Facebook Boost Post</label>
                           </div>
                         </div>
@@ -83,55 +83,55 @@
                       <div class="form-group row" id="bp-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[0]" <?= (!empty($bp_web[0]) && $bp_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
+                            <input class="form-check-input" name="bp_web[0]" <?= (!empty($item['bp_web'][0]) && $item['bp_web'][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
                             <label class="form-check-label" for="bp_web">Banner</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[1]" <?= (!empty($bp_web[1]) && $bp_web[1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
+                            <input class="form-check-input" name="bp_web[1]" <?= (!empty($item['bp_web'][1]) && $item['bp_web'][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
                             <label class="form-check-label" for="bp_web">Nytive Ad</label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[2]" <?= (!empty($bp_web[2]) && $bp_web[2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
+                            <input class="form-check-input" name="bp_web[2]" <?= (!empty($item['bp_web'][2]) && $item['bp_web'][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
                             <label class="form-check-label" for="bp_web">Premium Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[3]" <?= (!empty($bp_web[3]) && $bp_web[3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
+                            <input class="form-check-input" name="bp_web[3]" <?= (!empty($item['bp_web'][3]) && $item['bp_web'][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
                             <label class="form-check-label" for="bp_web">Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[4]" <?= (!empty($bp_web[4]) && $bp_web[4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
+                            <input class="form-check-input" name="bp_web[4]" <?= (!empty($item['bp_web'][4]) && $item['bp_web'][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
                             <label class="form-check-label" for="bp_web">Property Listing</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[5]" <?= (!empty($bp_web[5]) && $bp_web[5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
+                            <input class="form-check-input" name="bp_web[5]" <?= (!empty($item['bp_web'][5]) && $item['bp_web'][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
                             <label class="form-check-label" for="bp_web">Special event</label>
                           </div>
                         </div>
                          <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input"  name="bp_web[6]" <?= (!empty($bp_web[6]) && $bp_web[6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
+                            <input class="form-check-input"  name="bp_web[6]" <?= (!empty($item['bp_web'][6]) && $item['bp_web'][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
                             <label class="form-check-label" for="bp_web">Sponsor Link</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[7]" <?= (!empty($bp_web[7]) && $bp_web[7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
+                            <input class="form-check-input" name="bp_web[7]" <?= (!empty($item['bp_web'][7]) && $item['bp_web'][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
                             <label class="form-check-label" for="bp_web">Jobs</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[8]" <?= (!empty($bp_web[8]) && $bp_web[8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
+                            <input class="form-check-input" name="bp_web[8]" <?= (!empty($item['bp_web'][8]) && $item['bp_web'][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
                             <label class="form-check-label" for="bp_web">PR</label>
                           </div>
                         </div>
@@ -141,6 +141,7 @@
                     <div class="row">
                       <div  class="col-15">
                         <div id="bp-ad-description">
+                        <?php foreach($item as $value){ ?>
                         <div id="bp-ad-card" class="box-ad--banner">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
@@ -252,6 +253,7 @@
                             </div>
                           </div>
                         </div>
+                        <?php } ?>
                         </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
