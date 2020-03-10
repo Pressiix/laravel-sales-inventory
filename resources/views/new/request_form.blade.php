@@ -18,11 +18,11 @@
                 <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label pt-0">Sales Type:</label>
                 <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio1" value="Direct" checked>
+                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio1" value="Direct" <?= (!empty($item['sales_type']) && $item['sales_type']=='Direct' || isset($item['sales_type']) ? 'checked' : '' ) ?>>
                     <label class="form-check-label" for="inlineRadio1">Direct</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio2" value="Agency">
+                    <input class="form-check-input" type="radio" name="sales_type" id="inlineRadio2" value="Agency" <?= (!empty($item['sales_type']) && $item['sales_type']=='Agency' ? 'checked' : '' ) ?>>
                     <label class="form-check-label" for="inlineRadio2">Agency</label>
                   </div>
                 </div>
@@ -30,21 +30,21 @@
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($customer_id) ? $customer_id : null), ['class'=>'custom-select','required'=>'required']) }}
-                  <div class="div-form--link"> or <a href="javascript:;">Create new customer</a></div>
+                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($item['customer_id']) ? $item['customer_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
+                  <div class="div-form--link"> or <a href="/create_new_customer" target="_blank">Create new customer</a></div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Campaign name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <input type="text" name="campaign_name" class="form-control" required>
+                  <input type="text" name="campaign_name" value="<?= (!empty($item['campaign_name']) ? $item['campaign_name'] : '') ?>" class="form-control" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($advertiser_id) ? $advertiser_id : null), ['class'=>'custom-select','required'=>'required']) }}
-                  <div class="div-form--link"> or <a href="javascript:;">Create new advertiser</a></div>
+                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($item['advertiser_id']) ? $item['advertiser_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
+                  <div class="div-form--link"> or <a href="/create_new_advertiser" target="_blank">Create new advertiser</a></div>
                 </div>
               </div>
             </div>

@@ -31,43 +31,23 @@ class AppController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function request(Request $request)
+    public function request()
     {
-        if(isset($request)){
-            $user = compact(Auth::user());
-            $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
-            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-            $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
-            $data = json_decode($datos, true);
-            return view('new.request_form',[
-                'sales_name' => auth()->user()->name,
-                'customer' => $customer,
-                'advertiser' => $advertiser,
-                'sectionArray' => $data,
-                ]);
-        }
-        else{
-            if($sales_name)
-            {
-                return view('new.request_form', [
-                    'sales_name' => $sales_name,
-                    'sales_type' => $sales_type,
-                    'customer_name' => $customer_name,
-                    'campaign_name' => $campaign_name,
-                    'facebook' => $facebook,
-                    'facebook_type' => $facebook_type,
-                    'create_at' => $create_at,
-                    'campaign_budget' => $campaign_budget
-                ]);
-            }
-        }
-        
+        $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
+        $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
+        $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+        $data = json_decode($datos, true);
+
+        return view('new.request_form',[
+            'sales_name' => auth()->user()->name,
+            'customer' => $customer,
+            'advertiser' => $advertiser,
+            'sectionArray' => $data,
+        ]);
     }
 
     public function review(Request $request)
     {
-        //echo "<pre/>"; print_r($request->all());
-
          return view('new.request_preview',[
              'item' => $request->all()
          ]);
@@ -79,31 +59,17 @@ class AppController extends Controller
         {
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-
-            echo "<pre/>"; print_r($request->all());
-            /*return view('request.form', [
-                'sales_name' => $request->sales_name,
-                'sales_type' => $request->sales_type,
-                'customer_id' => $request->customer_id,
-                'customer_name' => $request->customer_name,
-                'campaign_name' => $request->campaign_name,
-                'advertiser_id' => $request->advertiser_id,
-                'advertiser_name' => $request->advertiser_name,
-                'website' => $request->website,
-                'type1' => $request->type1,
-                'facebook' => $request->facebook,
-                'facebook_type' => $request->facebook_type,
-                'create_at' => $request->create_at,
-                'campaign_budget' => $request->campaign_budget,
+            $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+            $data = json_decode($datos, true);
+            //echo "<pre/>"; print_r($request->all());
+            return view('new.request_form', [
+                'action' => 'Edit',
+                'sales_name' =>$request->sales_name,
                 'customer' => $customer,
                 'advertiser' => $advertiser,
-                'size' => $request->size,
-                'position' => $request->position,
-                'section' => $request->section,
-                'date_from' => $request->date_from,
-                'date_to' => $request->date_to,
-                'banner_url' => $request->banner_url,
-            ]);*/
+                'item' => $request->all(),
+                'sectionArray' => $data,
+            ]);
         }
         else
         {
