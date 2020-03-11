@@ -127,11 +127,11 @@
                                 <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" name="bp_date_from'][<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_from'][$i] }}" readonly="">
+                                  <input type="text" name="bp_date_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_from'][$i] }}" readonly="">
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" name="bp_date_to'][<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_to'][$i] }}" readonly="">
+                                  <input type="text" name="bp_date_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_to'][$i] }}" readonly="">
                                 </div>
                               </div>
                             </div>

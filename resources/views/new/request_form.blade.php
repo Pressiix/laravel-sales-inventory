@@ -141,7 +141,11 @@
                     <div class="row">
                       <div  class="col-15">
                         <div id="bp-ad-description">
-                        <!-- PHP LOOP -->
+                        <?php  if(!isset($item)){ ?>
+                          <script>
+                            var action = 'New';
+                            console.log(action);
+                          </script>
                         <div id="bp-ad-card" class="box-ad--banner">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
@@ -253,7 +257,134 @@
                             </div>
                           </div>
                         </div>
-                        <!-- PHP LOOP -->
+                        <?php  
+                          }
+                          else{ ?>
+                          <script>
+                            var action = 'Edit';
+                            console.log(action);
+                            
+
+                            var bp_section_id = [<?= count($item['bp_size_id']) ?>];
+                          </script>
+                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
+                        
+                        <div id="bp-ad-card" class="box-ad--banner">
+                          <div id="bp-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
+                          <div class="box-ad--container">
+                            <div class="form-row">
+                              <div class="col-md-5 mb-3">
+                                <label>Size:</label>
+                                <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
+                                  <option value="" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
+                                  <option value="1" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '1' ? 'selected' : '') ?>>Billboard</option>
+                                  <option value="2" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '2' ? 'selected' : '') ?>>Rectangle</option>
+                                  <option value="3" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '3' ? 'selected' : '') ?>>Double-Rectangle</option>
+                                  <option value="4" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '4' ? 'selected' : '') ?>>Boombox</option>
+                                  <option value="5" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '5' ? 'selected' : '') ?>>Fullwidth</option>
+                                  <option value="6" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '6' ? 'selected' : '') ?>>Leaderboard</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please select a valid state.
+                                </div>
+                                <input type="hidden" name="bp_size_text[0]" id="bp_size_text0" value="<?= (!empty($item['bp_size_text'][$i]) ? $item['bp_size_text'][$i] : '') ?>" />
+                              </div>
+                              <div class="col-md-5 mb-3">
+                                <label>Position:</label>
+                                
+                                <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
+                                  <option selected>Choose Position</option>
+                                  <?php foreach($sectionArray['bp_ad_section'] as $key => $value){ ?>
+                                    <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
+                                  <?php } ?>
+                                </select>
+                                <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
+                              </div>
+                              <div class="col-md-5 mb-3">
+                                <label>Section:</label>
+                                <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
+                                  <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
+                                  <option value="33">test</option>
+                                  <script> bp_section_id[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
+                                </select>
+                                <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                               <div class="input-daterange datepicker">
+                                <div class="input-group-inline"><span>Period:</span></div>
+                                <div class="input-group-inline">
+                                  <span>From</span>
+                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]">
+                                  <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                                </div>
+                                <div class="input-group-inline">
+                                  <span>to</span>
+                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]">
+                                  <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
+                              <div class="col-auto col-sm-11 col-md-11 col-lg-12">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio11" value="Desktop">
+                                  <label class="form-check-label" for="inlineRadio11">Desktop</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio21" value="Mobile">
+                                  <label class="form-check-label" for="inlineRadio21">Mobile</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input name="bp_banner_url[0]" type="text" class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="bp_quotation[0]" class="custom-file-input" id="customFile">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Impression:</label>
+                              <div class="col-sm-10 col-md-8">
+                                <input type="text" name="bp_impression_need[0]" class="form-control">
+                                <div class="text-ps--small">Impression is not enough.</div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Detail:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input type="text" name="bp_ad_detail[0]" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <?php }
+                          } 
+                        ?>
                         </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
@@ -496,8 +627,37 @@
     var none_active_tab = 'posttoday';
     var options="";
 
+    if(action=='Edit'){
+        console.log(bp_section_id.length);
+        var elementIndex = 0;
+        var web_name = 'bp';
+        var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
+        var value= '';
+        for(i=0;i<bp_section_id.length;i++)
+        {
+
+          elementIndex =i;
+          console.log('index = '+elementIndex);
+          value=bp_section_id[i];
+          console.log(jArray[value]);
+              /*
+
+              if(Object.keys(jArray[value]).length == 1){
+                options="<option>-</option>";
+              }else{
+                options="<option>Choose Section</option>";
+              }
+              
+              for(j=1;j<Object.keys(jArray[value]).length;j++){
+                  options+="<option value='"+j+"' "+(bp_section_id == j ? selected : '')+">"+jArray[value][j]+"</option>";
+              }
+              $("select[name*='"+web_name+"_section_id["+elementIndex+"]']").html(options);*/
+
+        }
+    }
+
     function changeOptionValue(a){
-      
+     
       var elementIndex =a.name.substring(
         a.name.lastIndexOf("[") + 1, 
         a.name.lastIndexOf("]")
