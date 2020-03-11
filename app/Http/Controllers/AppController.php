@@ -69,7 +69,7 @@ class AppController extends Controller
             }else{
                 echo 'b';
             }*/
-            //echo "<pre/>"; print_r($item);
+            //echo "<pre/>"; print_r($customer);
             return view('new.request_form', [
                 'action' => 'Edit',
                 'sales_name' =>$request->sales_name,

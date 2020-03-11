@@ -30,7 +30,7 @@
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('customer_id', array_merge(['' => 'Choose...'], $customer), (!empty($item['customer_id']) ? $item['customer_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
+                {{ Form::select('customer_id', array_merge(['0' => 'Choose...'], $customer), (!empty($item['customer_id']) ? $item['customer_id'] : NULL), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="/create_new_customer" target="_blank">Create new customer</a></div>
                 </div>
               </div>
@@ -43,7 +43,7 @@
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('advertiser_id', array_merge(['' => 'Choose...'], $advertiser), (!empty($item['advertiser_id']) ? $item['advertiser_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
+                {{ Form::select('advertiser_id', array_merge(['0' => 'Choose...'], $advertiser), (!empty($item['advertiser_id']) ? $item['advertiser_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="/create_new_advertiser" target="_blank">Create new advertiser</a></div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                     <div class="row">
                       <div  class="col-15">
                         <div id="bp-ad-description">
-                        <?php  if(!isset($item)){ ?>
+                        <?php  if(!isset($item['bp_size_id'])){ ?>
                           <script>
                             var action = 'New';
                             console.log(action);
@@ -264,8 +264,8 @@
                             var action = 'Edit';
                             console.log(action);
                             
-
-                            var bp_section_id = [<?= count($item['bp_size_id']) ?>];
+                            var bp_position_count = [<?= count($item['bp_position_id']) ?>];
+                            var bp_section_count = [<?= count($item['bp_size_id']) ?>];
                           </script>
                         <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
                         
@@ -275,7 +275,7 @@
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
-                                <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
+                                <select name="bp_size_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_size_text<?= $i ?>').value=this.options[this.selectedIndex].text" >
                                   <option value="" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
                                   <option value="1" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '1' ? 'selected' : '') ?>>Billboard</option>
                                   <option value="2" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '2' ? 'selected' : '') ?>>Rectangle</option>
@@ -287,27 +287,31 @@
                                 <div class="invalid-feedback">
                                   Please select a valid state.
                                 </div>
-                                <input type="hidden" name="bp_size_text[0]" id="bp_size_text0" value="<?= (!empty($item['bp_size_text'][$i]) ? $item['bp_size_text'][$i] : '') ?>" />
+                                <input type="hidden" name="bp_size_text[<?= $i ?>]" id="bp_size_text<?= $i ?>" value="<?= (!empty($item['bp_size_text'][$i]) ? $item['bp_size_text'][$i] : '') ?>" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 
-                                <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
+                                <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option selected>Choose Position</option>
                                   <?php foreach($sectionArray['bp_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
+                                  <script> 
+                                    bp_position_id[<?= $i ?>] = '<?= (!empty($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') ?>';
+
+                                    </script>
                                 </select>
-                                <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
+                                <input type="hidden" name="bp_position_text[<?= $i ?>]" id="bp_position_text<?= $i ?>" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
+                                <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
                                   <option value="33">test</option>
                                   <script> bp_section_id[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
                                 </select>
-                                <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
+                                <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
                             </div>
                             <div class="form-group">
@@ -315,12 +319,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_from[<?= $i ?>]" value="<?= (!empty($item['bp_date_from'][$i]) ? $item['bp_date_from'][$i] : '' ) ?>">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_to[<?= $i ?>]" value="<?= (!empty($item['bp_date_to'][$i]) ? $item['bp_date_to'][$i] : '' ) ?>">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -329,11 +333,11 @@
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio11" value="Desktop">
+                                  <input class="form-check-input" name="bp_device[<?= $i ?>]" type="radio" id="inlineRadio11" value="Desktop" <?= (!empty($item['bp_device'][$i]) && $item['bp_device'][$i] === 'Desktop' ? 'checked' : '') ?> >
                                   <label class="form-check-label" for="inlineRadio11">Desktop</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="bp_device[0]" type="radio" id="inlineRadio21" value="Mobile">
+                                  <input class="form-check-input" name="bp_device[<?= $i ?>]" type="radio" id="inlineRadio21" value="Mobile" <?= (!empty($item['bp_device'][$i]) && $item['bp_device'][$i] === 'Mobile' ? 'checked' : '') ?> >
                                   <label class="form-check-label" for="inlineRadio21">Mobile</label>
                                 </div>
                               </div>
@@ -341,14 +345,14 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
                               <div class="col-md-11 col-lg-12">
-                                <input name="bp_banner_url[0]" type="text" class="form-control">
+                                <input name="bp_banner_url[<?= $i ?>]" type="text" class="form-control" value="<?= (!empty($item['bp_banner_url'][$i]) ? $item['bp_banner_url'][$i] : '' ) ?>">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_ad_desc_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_ad_desc_file'][$i]) ? $item['bp_ad_desc_file'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
@@ -358,7 +362,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_quotation[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation'][$i]) ? $item['bp_quotation'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -367,7 +371,7 @@
                             <div class="form-group row">
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Impression:</label>
                               <div class="col-sm-10 col-md-8">
-                                <input type="text" name="bp_impression_need[0]" class="form-control">
+                                <input type="text" name="bp_impression_need[<?= $i ?>]" class="form-control" value="<?= (!empty($item['bp_impression_need'][$i]) ? $item['bp_impression_need'][$i] : '' ) ?>">
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
@@ -377,7 +381,7 @@
                             <div class="form-group row">
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Detail:</label>
                               <div class="col-md-11 col-lg-12">
-                                <input type="text" name="bp_ad_detail[0]" class="form-control">
+                                <input type="text" name="bp_ad_detail[<?= $i ?>]" class="form-control" value="<?= (!empty($item['bp_ad_detail'][$i]) ? $item['bp_ad_detail'][$i] : '' ) ?>">
                               </div>
                             </div>
                           </div>
@@ -401,7 +405,7 @@
                 </div>
 
                 <!-- POST TODAY TAB -->
-                <div class="tab-pane fade" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
+                <div class="tab-pane fade show active" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
@@ -409,13 +413,13 @@
                       <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb1" value="Normal Post" <?= (!empty($ptd_facebook) && $ptd_facebook === 'Normal Post' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb1" value="Normal Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb2" value="Facebook Boost Post" <?= (!empty($ptd_facebook) && $ptd_facebook === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb2" value="Facebook Boost Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb2">Facebook Boost Post</label>
                           </div>
                         </div>
@@ -424,71 +428,76 @@
                       <div class="form-group row" id="ptd-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[0]" <?= (!empty($ptd_web[0]) && $ptd_web[0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="ptd_web1" value="Banner">
+                            <input class="form-check-input" name="ptd_web[0]" <?= (!empty($item['ptd_web'][0]) && $item['ptd_web'][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="ptd_web1" value="Banner">
                             <label class="form-check-label" for="ptd_web">Banner</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[1]" <?= (!empty($ptd_web[1]) && $ptd_web[1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="ptd_web2" value="Nytive Ad">
-                            <label class="form-check-label" for="ptd_web2">Nytive Ad</label>
+                            <input class="form-check-input" name="ptd_web[1]" <?= (!empty($item['ptd_web'][1]) && $item['ptd_web'][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="ptd_web2" value="Nytive Ad">
+                            <label class="form-check-label" for="ptd_web">Nytive Ad</label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[2]" <?= (!empty($ptd_web[2]) && $ptd_web[2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web3" value="Premium Advertorial">
-                            <label class="form-check-label" for="ptd_web3">Premium Advertorial</label>
+                            <input class="form-check-input" name="ptd_web[2]" <?= (!empty($item['ptd_web'][2]) && $item['ptd_web'][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web3" value="Premium Advertorial">
+                            <label class="form-check-label" for="ptd_web">Premium Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[3]" <?= (!empty($ptd_web[3]) && $ptd_web[3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web4" value="Advertorial">
-                            <label class="form-check-label" for="ptd_web4">Advertorial</label>
+                            <input class="form-check-input" name="ptd_web[3]" <?= (!empty($item['ptd_web'][3]) && $item['ptd_web'][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web4" value="Advertorial">
+                            <label class="form-check-label" for="ptd_web">Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[4]" <?= (!empty($ptd_web[4]) && $ptd_web[4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="ptd_web5" value="Property Listing">
-                            <label class="form-check-label" for="ptd_web5">Property Listing</label>
+                            <input class="form-check-input" name="ptd_web[4]" <?= (!empty($item['ptd_web'][4]) && $item['ptd_web'][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="ptd_web5" value="Property Listing">
+                            <label class="form-check-label" for="ptd_web">Property Listing</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[5]" <?= (!empty($ptd_web[5]) && $ptd_web[5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="ptd_web6" value="Special event">
-                            <label class="form-check-label" for="ptd_web6">Special event</label>
+                            <input class="form-check-input" name="ptd_web[5]" <?= (!empty($item['ptd_web'][5]) && $item['ptd_web'][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="ptd_web6" value="Special event">
+                            <label class="form-check-label" for="ptd_web">Special event</label>
                           </div>
                         </div>
                          <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[6]" <?= (!empty($ptd_web[6]) && $ptd_web[6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="ptd_web7" value="Sponsor Link">
-                            <label class="form-check-label" for="ptd_web7">Sponsor Link</label>
+                            <input class="form-check-input"  name="ptd_web[6]" <?= (!empty($item['ptd_web'][6]) && $item['ptd_web'][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="ptd_web7" value="Sponsor Link">
+                            <label class="form-check-label" for="ptd_web">Sponsor Link</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[7]" <?= (!empty($ptd_web[7]) && $ptd_web[7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="ptd_web8" value="Jobs">
-                            <label class="form-check-label" for="ptd_web8">Jobs</label>
+                            <input class="form-check-input" name="ptd_web[7]" <?= (!empty($item['ptd_web'][7]) && $item['ptd_web'][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="ptd_web8" value="Jobs">
+                            <label class="form-check-label" for="ptd_web">Jobs</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[8]" <?= (!empty($ptd_web[8]) && $ptd_web[8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="ptd_web9" value="PR">
-                            <label class="form-check-label" for="ptd_web9">PR</label>
+                            <input class="form-check-input" name="ptd_web[8]" <?= (!empty($item['ptd_web'][8]) && $item['ptd_web'][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="ptd_web9" value="PR">
+                            <label class="form-check-label" for="ptd_web">PR</label>
                           </div>
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div  class="col-15">
                         <div id="ptd-ad-description">
+                        <?php  if(!isset($item['ptd_size_id'])){ ?>
+                          <script>
+                            var action = 'New';
+                            console.log(action);
+                          </script>
                         <div id="ptd-ad-card" class="box-ad--banner">
                           <div id="ptd-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
-                                <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text">
+                                <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text" >
                                   <option selected value="">Choose Size</option>
                                   <option value="1">Billboard</option>
                                   <option value="2">Rectangle</option>
@@ -504,8 +513,9 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                <select name="ptd_position_id[0]" class="custom-select" onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option selected value="">Choose Position</option>
+                                
+                                <select name="ptd_position_id[0]" class="custom-select"  onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
+                                  <option selected>Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $item){ ?>
                                     <option value="<?= $key ?>"><?= $item['position'] ?></option>
                                   <?php } ?>
@@ -516,11 +526,6 @@
                                 <label>Section:</label>
                                 <select name="ptd_section_id[0]" class="custom-select" onchange="document.getElementById('ptd_section_text0').value=this.options[this.selectedIndex].text">
                                   <option selected value="">Choose Section</option>
-                                  <option value="1">Homepage</option>
-                                  <option value="2">Business</option>
-                                  <option value="3">Social</option>
-                                  <option value="4">Sport</option>
-                                  <option value="5">Car</option>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[0]" id="ptd_section_text0" value="" />
                               </div>
@@ -544,11 +549,11 @@
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="ptd_device[0]" type="radio" name="inlineRadioOptions1" id="inlineRadio11" value="option1">
+                                  <input class="form-check-input" name="ptd_device[0]" type="radio" id="inlineRadio11" value="Desktop">
                                   <label class="form-check-label" for="inlineRadio11">Desktop</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" name="ptd_device[0]" type="radio" name="inlineRadioOptions1" id="inlineRadio21" value="option2">
+                                  <input class="form-check-input" name="ptd_device[0]" type="radio" id="inlineRadio21" value="Mobile">
                                   <label class="form-check-label" for="inlineRadio21">Mobile</label>
                                 </div>
                               </div>
@@ -597,13 +602,145 @@
                             </div>
                           </div>
                         </div>
+                        <?php  
+                          }
+                          else{ ?>
+                          <script>
+                            var action = 'Edit';
+                            console.log(action);
+                            
+                            var ptd_position_count = [<?= count($item['ptd_position_id']) ?>];
+                            var ptd_section_count = [<?= count($item['ptd_size_id']) ?>];
+                          </script>
+                        <?php for($i=0;$i<count($item['ptd_size_id']);$i++){ ?>
+                        
+                        <div id="ptd-ad-card" class="box-ad--banner">
+                          <div id="ptd-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
+                          <div class="box-ad--container">
+                            <div class="form-row">
+                              <div class="col-md-5 mb-3">
+                                <label>Size:</label>
+                                <select name="ptd_size_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_size_text<?= $i ?>').value=this.options[this.selectedIndex].text" >
+                                  <option value="" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
+                                  <option value="1" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '1' ? 'selected' : '') ?>>Billboard</option>
+                                  <option value="2" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '2' ? 'selected' : '') ?>>Rectangle</option>
+                                  <option value="3" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '3' ? 'selected' : '') ?>>Double-Rectangle</option>
+                                  <option value="4" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '4' ? 'selected' : '') ?>>Boombox</option>
+                                  <option value="5" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '5' ? 'selected' : '') ?>>Fullwidth</option>
+                                  <option value="6" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '6' ? 'selected' : '') ?>>Leaderboard</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please select a valid state.
+                                </div>
+                                <input type="hidden" name="ptd_size_text[<?= $i ?>]" id="ptd_size_text<?= $i ?>" value="<?= (!empty($item['ptd_size_text'][$i]) ? $item['ptd_size_text'][$i] : '') ?>" />
+                              </div>
+                              <div class="col-md-5 mb-3">
+                                <label>Position:</label>
+                                
+                                <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
+                                  <option selected>Choose Position</option>
+                                  <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
+                                    <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
+                                  <?php } ?>
+                                  <script> 
+                                    ptd_position_id[<?= $i ?>] = '<?= (!empty($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') ?>';
+
+                                    </script>
+                                </select>
+                                <input type="hidden" name="ptd_position_text[<?= $i ?>]" id="ptd_position_text<?= $i ?>" value="<?= (!empty($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') ?>" />
+                              </div>
+                              <div class="col-md-5 mb-3">
+                                <label>Section:</label>
+                                <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
+                                  <option value="" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
+                                  <option value="33">test</option>
+                                  <script> ptd_section_id[<?= $i ?>] = '<?= $item['ptd_section_id'][$i] ?>';</script>
+                                </select>
+                                <input type="hidden" name="ptd_section_text[<?= $i ?>]" id="ptd_section_text<?= $i ?>" value="<?= (!empty($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') ?>" />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                               <div class="input-daterange datepicker">
+                                <div class="input-group-inline"><span>Period:</span></div>
+                                <div class="input-group-inline">
+                                  <span>From</span>
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[<?= $i ?>]" value="<?= (!empty($item['ptd_date_from'][$i]) ? $item['ptd_date_from'][$i] : '' ) ?>">
+                                  <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                                </div>
+                                <div class="input-group-inline">
+                                  <span>to</span>
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[<?= $i ?>]" value="<?= (!empty($item['ptd_date_to'][$i]) ? $item['ptd_date_to'][$i] : '' ) ?>">
+                                  <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
+                              <div class="col-auto col-sm-11 col-md-11 col-lg-12">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="ptd_device[<?= $i ?>]" type="radio" id="inlineRadio11" value="Desktop" <?= (!empty($item['ptd_device'][$i]) && $item['ptd_device'][$i] === 'Desktop' ? 'checked' : '') ?> >
+                                  <label class="form-check-label" for="inlineRadio11">Desktop</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" name="ptd_device[<?= $i ?>]" type="radio" id="inlineRadio21" value="Mobile" <?= (!empty($item['ptd_device'][$i]) && $item['ptd_device'][$i] === 'Mobile' ? 'checked' : '') ?> >
+                                  <label class="form-check-label" for="inlineRadio21">Mobile</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="inputURL" class="col-md-4 col-lg-3 col-form-label label-normal">URL link banner:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input name="ptd_banner_url[<?= $i ?>]" type="text" class="form-control" value="<?= (!empty($item['ptd_banner_url'][$i]) ? $item['ptd_banner_url'][$i] : '' ) ?>">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="ptd_ad_desc_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_ad_desc_file'][$i]) ? $item['ptd_ad_desc_file'][$i] : '' ) ?>">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <div class="custom-file">
+                                  <input type="file" name="ptd_quotation[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation'][$i]) ? $item['ptd_quotation'][$i] : '' ) ?>">
+                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Impression:</label>
+                              <div class="col-sm-10 col-md-8">
+                                <input type="text" name="ptd_impression_need[<?= $i ?>]" class="form-control" value="<?= (!empty($item['ptd_impression_need'][$i]) ? $item['ptd_impression_need'][$i] : '' ) ?>">
+                                <div class="text-ps--small">Impression is not enough.</div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-4 col-lg-3 col-form-label label-normal">Detail:</label>
+                              <div class="col-md-11 col-lg-12">
+                                <input type="text" name="ptd_ad_detail[<?= $i ?>]" class="form-control" value="<?= (!empty($item['ptd_ad_detail'][$i]) ? $item['ptd_ad_detail'][$i] : '' ) ?>">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <?php }
+                          } 
+                        ?>
                         </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('ptd');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-5 col-form-label">Campaign budget (THB):</label>
+                      <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
                         <input type="text" name="ptd_campaign_budget" class="form-control">
                       </div>
@@ -628,30 +765,35 @@
     var options="";
 
     if(action=='Edit'){
-        console.log(bp_section_id.length);
+        
         var elementIndex = 0;
         var web_name = 'bp';
         var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
-        var value= '';
-        for(i=0;i<bp_section_id.length;i++)
+        
+        
+        for(i=0;i<bp_position_count.length;i++)
         {
-
+          options = "";
           elementIndex =i;
-          console.log('index = '+elementIndex);
-          value=bp_section_id[i];
-          console.log(jArray[value]);
-              /*
-
-              if(Object.keys(jArray[value]).length == 1){
+          position_value=bp_position_count[i];
+          section_value=bp_section_count[i];
+          /*console.log('array '+i+' length : '+Object.keys(jArray[position_value]).length);
+          console.log('position '+i+' = '+position_value);
+          console.log('section '+i+' = '+section_value);
+          console.log('array value = '+jArray[position_value][section_value]);*/
+              if(Object.keys(jArray[position_value]).length == 1){
                 options="<option>-</option>";
               }else{
                 options="<option>Choose Section</option>";
               }
               
-              for(j=1;j<Object.keys(jArray[value]).length;j++){
-                  options+="<option value='"+j+"' "+(bp_section_id == j ? selected : '')+">"+jArray[value][j]+"</option>";
+              for(j=1;j<Object.keys(jArray[position_value]).length;j++){
+                //console.log('jArray['+position_value+']['+j+'] = '+jArray[position_value][j]);
+                  options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
               }
-              $("select[name*='"+web_name+"_section_id["+elementIndex+"]']").html(options);*/
+              /*console.log('option = '+options);
+              console.log('element index = '+elementIndex);*/
+              $("select[name*='"+web_name+"_section_id["+elementIndex+"]']").html(options);
 
         }
     }
