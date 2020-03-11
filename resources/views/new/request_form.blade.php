@@ -143,8 +143,8 @@
                         <div id="bp-ad-description">
                         <?php  if(!isset($item['bp_size_id'])){ ?>
                           <script>
-                            var action = 'New';
-                            console.log(action);
+                            var bp_action = 'New';
+                            console.log(bp_action);
                           </script>
                         <div id="bp-ad-card" class="box-ad--banner">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
@@ -261,8 +261,8 @@
                           }
                           else{ ?>
                           <script>
-                            var action = 'Edit';
-                            console.log(action);
+                            var bp_action = 'Edit';
+                            console.log(bp_action);
                             
                             var bp_position_count = [<?= count($item['bp_position_id']) ?>];
                             var bp_section_count = [<?= count($item['bp_size_id']) ?>];
@@ -298,9 +298,8 @@
                                     <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
                                   <script> 
-                                    bp_position_id[<?= $i ?>] = '<?= (!empty($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') ?>';
-
-                                    </script>
+                                    bp_position_count[<?= $i ?>] = '<?= (!empty($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') ?>';
+                                  </script>
                                 </select>
                                 <input type="hidden" name="bp_position_text[<?= $i ?>]" id="bp_position_text<?= $i ?>" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
                               </div>
@@ -309,7 +308,7 @@
                                 <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
                                   <option value="33">test</option>
-                                  <script> bp_section_id[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
+                                  <script> bp_section_count[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -405,7 +404,7 @@
                 </div>
 
                 <!-- POST TODAY TAB -->
-                <div class="tab-pane fade show active" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
+                <div class="tab-pane fade" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
@@ -488,8 +487,8 @@
                         <div id="ptd-ad-description">
                         <?php  if(!isset($item['ptd_size_id'])){ ?>
                           <script>
-                            var action = 'New';
-                            console.log(action);
+                            var ptd_action = 'New';
+                            console.log(ptd_action);
                           </script>
                         <div id="ptd-ad-card" class="box-ad--banner">
                           <div id="ptd-ad-title" class="box-ad--title">Ad 1 Description:</div>
@@ -606,8 +605,8 @@
                           }
                           else{ ?>
                           <script>
-                            var action = 'Edit';
-                            console.log(action);
+                            var ptd_action = 'Edit';
+                            console.log(ptd_action);
                             
                             var ptd_position_count = [<?= count($item['ptd_position_id']) ?>];
                             var ptd_section_count = [<?= count($item['ptd_size_id']) ?>];
@@ -643,7 +642,7 @@
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
                                   <script> 
-                                    ptd_position_id[<?= $i ?>] = '<?= (!empty($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') ?>';
+                                    ptd_position_count[<?= $i ?>] = '<?= (!empty($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') ?>';
 
                                     </script>
                                 </select>
@@ -654,7 +653,7 @@
                                 <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
                                   <option value="33">test</option>
-                                  <script> ptd_section_id[<?= $i ?>] = '<?= $item['ptd_section_id'][$i] ?>';</script>
+                                  <script> ptd_section_count[<?= $i ?>] = '<?= $item['ptd_section_id'][$i] ?>';</script>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[<?= $i ?>]" id="ptd_section_text<?= $i ?>" value="<?= (!empty($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') ?>" />
                               </div>
@@ -764,23 +763,16 @@
     var none_active_tab = 'posttoday';
     var options="";
 
-    if(action=='Edit'){
+    if(bp_action=='Edit'){
         
-        var elementIndex = 0;
         var web_name = 'bp';
         var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
-        
         
         for(i=0;i<bp_position_count.length;i++)
         {
           options = "";
-          elementIndex =i;
           position_value=bp_position_count[i];
           section_value=bp_section_count[i];
-          /*console.log('array '+i+' length : '+Object.keys(jArray[position_value]).length);
-          console.log('position '+i+' = '+position_value);
-          console.log('section '+i+' = '+section_value);
-          console.log('array value = '+jArray[position_value][section_value]);*/
               if(Object.keys(jArray[position_value]).length == 1){
                 options="<option>-</option>";
               }else{
@@ -788,13 +780,32 @@
               }
               
               for(j=1;j<Object.keys(jArray[position_value]).length;j++){
-                //console.log('jArray['+position_value+']['+j+'] = '+jArray[position_value][j]);
+                  options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
+              }console.log(i);
+              $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
+        }
+    }
+
+    if(ptd_action=='Edit'){
+        
+        var web_name = 'ptd';
+        var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
+        
+        for(i=0;i<ptd_position_count.length;i++)
+        {
+          options = "";
+          position_value=ptd_position_count[i];
+          section_value=ptd_section_count[i];
+              if(Object.keys(jArray[position_value]).length == 1){
+                options="<option>-</option>";
+              }else{
+                options="<option>Choose Section</option>";
+              }
+              
+              for(j=1;j<Object.keys(jArray[position_value]).length;j++){
                   options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
               }
-              /*console.log('option = '+options);
-              console.log('element index = '+elementIndex);*/
-              $("select[name*='"+web_name+"_section_id["+elementIndex+"]']").html(options);
-
+              $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
         }
     }
 
