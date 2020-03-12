@@ -35,7 +35,7 @@ class AppController extends Controller
     {
         $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
         $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-        $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+        $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
         $data = json_decode($datos, true);
 
         return view('new.request_form',[
@@ -60,7 +60,7 @@ class AppController extends Controller
         {
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-            $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
+            $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
             //echo "<pre/>"; print_r($request->all());
             $item = $request->all();
