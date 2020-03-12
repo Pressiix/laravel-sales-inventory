@@ -47,7 +47,7 @@ class AdvertiserController extends Controller
             )'
         );
         
-        return Redirect::to('create_new_advertiser');
+        return Redirect::to('create_new_advertiser')->with('success','Advertiser created successfully!');
     }
 
 

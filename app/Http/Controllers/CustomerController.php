@@ -47,7 +47,7 @@ class CustomerController extends Controller
             )
         ');
         
-        return Redirect::to('create_new_customer');
+        return Redirect::to('create_new_customer')->with('success','Customer created successfully!');
     }
 
 

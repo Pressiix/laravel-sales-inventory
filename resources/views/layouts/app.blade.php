@@ -85,11 +85,13 @@
                 </div>
             </div>
         </header>
-        <div class="content-pd"></div>
 
+        <div class="content-pd"></div>
         <div class="contentStatic-pageBody">
         <section class="contentStatic-pageContent">
             <div class="container">
+                <!-- Flash Message -->
+                @include('flash-message')
             <div class="row container--inventory">
             <!-- left sidebar -->
             <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/')){ ?>
@@ -99,7 +101,7 @@
                         
                         <div class="profile-avatar">
                             <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
-                                <img src="<?= $user->profile_picture ?> " class="img-fluid">
+                                <img src="<?= url('/').$user->profile_picture ?> " class="img-fluid">
                             </div>
                             <!-- modal -->
                             <div class="modal fade" id="myModal" role="dialog">
@@ -144,6 +146,7 @@
                 </div>
             <?php } ?> 
             @endguest
+            
             <!-- content -->
             @yield('content')
             

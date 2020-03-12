@@ -17,14 +17,8 @@ class AppController extends Controller
 {
     public function test()
     {
-        
-        $datos = file_get_contents(storage_path().'\jsondata\request-form.json');
-        $data = json_decode($datos, true);
-       // echo "<pre/>"; print_r($data["bp_ad_section"]);
-        //print_r($data['bp_ad_section']);
-       return view('test',[
-        'phpArray' => $data
-        ]);
+       
+        return view('test')->with('success','Item created successfully!');
     }
     /**
      * Display a listing of the users
@@ -102,7 +96,7 @@ class AppController extends Controller
             //Send email to ...
             $this->sendEmail();
             
-            return Redirect::to('request-form');
+            return Redirect::to('request-form')->with('success','Request form created successfully!');
         }
          
 
