@@ -13,6 +13,7 @@
   <![endif]-->
 	
 <title>Bangkok Post</title>
+<link rel="shortcut icon" href="images/bkp-title-logo.png" />
 	
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 
