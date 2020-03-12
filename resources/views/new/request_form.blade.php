@@ -155,7 +155,7 @@
                                 <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
                                       <option value="">Choose Size</option>
                                   <optgroup label="Rectangle Desktop & Mobile">
-                                      <option value="1">300x250aa</option>
+                                      <option value="1">300x250</option>
                                   </optgroup>
                                   <optgroup label="Double Rectangle Desktop">
                                     <option value="2">300x600</option>
