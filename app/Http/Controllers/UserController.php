@@ -37,8 +37,8 @@ class UserController extends Controller
         //Delete old profile picture in storage
         if(Auth::user()->profile_picture)
         {
-            if(\File::exists(url('/').Auth::user()->profile_picture)){
-                \File::delete(url('/').Auth::user()->profile_picture);
+            if(\File::exists(public_path().Auth::user()->profile_picture)){
+                \File::delete(public_path().Auth::user()->profile_picture);
             }
         }
         

@@ -17,8 +17,13 @@ class AppController extends Controller
 {
     public function test()
     {
-       
-        
+        echo public_path().Auth::user()->profile_picture;/*
+        if(\File::exists(public_path().Auth::user()->profile_picture)){
+            echo 'aaa';
+        }
+        else{
+            echo 'bbb';
+        }*/
     }
     /**
      * Display a listing of the users
