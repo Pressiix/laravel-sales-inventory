@@ -18,7 +18,7 @@ class AppController extends Controller
     public function test()
     {
        
-        return view('test')->with('success','Item created successfully!');
+        
     }
     /**
      * Display a listing of the users
