@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,21 +10,29 @@
 |
 */
 
-/*Route::get('/', function () {
+/*
+|--------------------------------------------------------------------------
+| Not used
+|--------------------------------------------------------------------------
+|
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 Auth::routes();
-/*Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');*/
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+/--------------------------------------------------------------------------
+*/
+
+//Enable or Disable Register Feature
+Auth::routes([
+    'register' => false
+]);
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/forgot', 'AppController@forgot');
 
-//Route for admin
-/*Route::group(['prefix' => 'isDev'], function(){
-    
-});*/
 
 Route::group(['middleware' => ['auth']], function () {
     //default
@@ -33,11 +40,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
+
     //Dev
     Route::group(['middleware' => ['isDev']], function(){
         /*Route::get('/create-user', 'role\RoleController@createUser');
         Route::get('/import', 'role\RoleController@import');*/
     });
+
     //General
     Route::group(['middleware' => ['isGeneral']], function(){
         Route::get('/profile2', 'AppController@profile2');
