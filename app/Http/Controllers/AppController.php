@@ -17,13 +17,8 @@ class AppController extends Controller
 {
     public function test()
     {
-        echo public_path().Auth::user()->profile_picture;/*
-        if(\File::exists(public_path().Auth::user()->profile_picture)){
-            echo 'aaa';
-        }
-        else{
-            echo 'bbb';
-        }*/
+        echo storage_path('app');
+        echo "<br/>".app('url')->to('/storage');
     }
     /**
      * Display a listing of the users

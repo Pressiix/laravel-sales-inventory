@@ -67,7 +67,7 @@ return [
         'storage' => [
             'driver' => 'local',
             'root' => storage_path('app'),
-            'url' => app('url')->to('/storage'),
+            'url' => env('APP_URL').'/storage',
         ],
 
     ],
