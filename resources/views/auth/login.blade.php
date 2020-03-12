@@ -9,7 +9,7 @@
         <form class="needs-validation" method="POST" action="{{ route('login') }}" novalidate>
             @csrf
           <div class="form-group">
-            <label for="inputUsername">User name test1:</label>
+            <label for="inputUsername">User name:</label>
             <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" required  autofocus>
             @error('username')
                 <div class="invalid-feedback" role="alert">Please put in a valid User name.</div>
