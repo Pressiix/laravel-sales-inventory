@@ -1,33 +1,27 @@
--- phpMyAdmin SQL Dump
--- version 4.9.2
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 12, 2020 at 07:43 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.13
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: us-cdbr-iron-east-04.cleardb.net    Database: heroku_e88cba2d8c70adc
+-- ------------------------------------------------------
+-- Server version	5.5.56-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `sales_inventory`
---
-
--- --------------------------------------------------------
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `ad`
 --
 
+DROP TABLE IF EXISTS `ad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL,
   `size` varchar(45) DEFAULT NULL,
@@ -36,15 +30,28 @@ CREATE TABLE `ad` (
   `period_from` varchar(45) DEFAULT NULL,
   `period_to` varchar(45) DEFAULT NULL,
   `banner_url` varchar(255) DEFAULT NULL,
-  `request_id` int(255) NOT NULL
+  `request_id` int(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ad_request1_idx` (`request_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `ad`
+--
+
+LOCK TABLES `ad` WRITE;
+/*!40000 ALTER TABLE `ad` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ad` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `advertiser`
 --
 
+DROP TABLE IF EXISTS `advertiser`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `advertiser` (
   `id` int(11) NOT NULL,
   `advertiser_firstname` varchar(50) NOT NULL,
@@ -57,70 +64,80 @@ CREATE TABLE `advertiser` (
   `company_type` varchar(60) NOT NULL,
   `company_product` varchar(255) NOT NULL,
   `company_telephone` varchar(50) NOT NULL,
-  `company_email` varchar(70) NOT NULL
+  `company_email` varchar(70) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `advertiser`
 --
 
-INSERT INTO `advertiser` (`id`, `advertiser_firstname`, `advertiser_lastname`, `advertiser_fullname`, `advertiser_nickname`, `advertiser_telephone`, `advertiser_email`, `company_name`, `company_type`, `company_product`, `company_telephone`, `company_email`) VALUES
-(1, 'test1', 'test1', 'test1 test1', 'press', '02-56258566', 'fsgdf@hgt.co.th', 'def co, ltd.', 'Agency', 'product 1', '2425957-7', 'isufisu@gdijfogi.com');
-
--- --------------------------------------------------------
+LOCK TABLES `advertiser` WRITE;
+/*!40000 ALTER TABLE `advertiser` DISABLE KEYS */;
+INSERT INTO `advertiser` VALUES (1,'test1','test1','test1 test1','press','02-56258566','fsgdf@hgt.co.th','def co, ltd.','Agency','product 1','2425957-7','isufisu@gdijfogi.com');
+/*!40000 ALTER TABLE `advertiser` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `booking`
 --
 
+DROP TABLE IF EXISTS `booking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `impression_need` varchar(45) DEFAULT NULL,
   `ad_type` varchar(45) DEFAULT NULL,
   `device` varchar(45) DEFAULT NULL,
   `detail` varchar(1000) DEFAULT NULL,
-  `file_path` varchar(300) DEFAULT NULL
+  `file_path` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `booking`
+--
+
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `booking_has_website`
 --
 
+DROP TABLE IF EXISTS `booking_has_website`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking_has_website` (
   `booking_id` int(11) NOT NULL,
-  `website_id` int(11) NOT NULL
+  `website_id` int(11) NOT NULL,
+  PRIMARY KEY (`booking_id`,`website_id`),
+  KEY `fk_booking_has_website_website1_idx` (`website_id`),
+  KEY `fk_booking_has_website_booking1_idx` (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company`
---
-
-CREATE TABLE `company` (
-  `id` int(11) NOT NULL,
-  `company_name` varchar(255) NOT NULL,
-  `company_type` varchar(255) NOT NULL,
-  `company_product` varchar(255) NOT NULL,
-  `company_telephone` varchar(255) NOT NULL,
-  `company_email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `company`
+-- Dumping data for table `booking_has_website`
 --
 
-INSERT INTO `company` (`id`, `company_name`, `company_type`, `company_product`, `company_telephone`, `company_email`) VALUES
-(1, 'company 1', 'aaa', 'aaaaaaaa', 'aaaaa', 'aaaa');
-
--- --------------------------------------------------------
+LOCK TABLES `booking_has_website` WRITE;
+/*!40000 ALTER TABLE `booking_has_website` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_has_website` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `customer`
 --
 
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
   `id` int(11) NOT NULL,
   `customer_firstname` varchar(50) NOT NULL,
@@ -133,72 +150,104 @@ CREATE TABLE `customer` (
   `company_type` varchar(60) NOT NULL,
   `company_product` varchar(255) NOT NULL,
   `company_telephone` varchar(50) NOT NULL,
-  `company_email` varchar(70) NOT NULL
+  `company_email` varchar(70) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `customer_firstname`, `customer_lastname`, `customer_fullname`, `customer_nickname`, `customer_telephone`, `customer_email`, `company_name`, `company_type`, `company_product`, `company_telephone`, `company_email`) VALUES
-(1, 'test2', 'test2', 'test2 test2', 'press', '089-149576651', 'dkfgbkb@dlfkg.com', 'abc co, ltd.', 'Agency', 'product 2', '2425957-7', 'isufisu@gdijfogi.com'),
-(2, 'test3', 'test3', 'test3 test3', 'press', '089-149576651', 'dkfgbkb@dlfkg.com', 'abc co, ltd.', 'Agency', 'product 1', '2425957-7', 'isufisu@gdijfogi.com'),
-(3, 'Customer', 'Customer2', 'Customer Customer2', 'arar', '089-149576651', 'dkfgbkb@dlfkg.com', 'abc co, ltd.', 'Agency', 'product 2', '2425957-7', 'isufisu@gdijfogi.com');
-
--- --------------------------------------------------------
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'test2','test2','test2 test2','press','089-149576651','dkfgbkb@dlfkg.com','abc co, ltd.','Agency','product 2','2425957-7','isufisu@gdijfogi.com');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `failed_jobs`
 --
 
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `migrations`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_000000_create_users_table', 1),
-(14, '2014_10_12_100000_create_password_resets_table', 1),
-(15, '2019_08_19_000000_create_failed_jobs_table', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (2,'2014_10_12_000000_create_users_table',1),(12,'2014_10_12_100000_create_password_resets_table',1),(22,'2019_08_19_000000_create_failed_jobs_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `request`
 --
 
+DROP TABLE IF EXISTS `request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `request` (
   `id` int(255) NOT NULL,
   `request_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -210,267 +259,85 @@ CREATE TABLE `request` (
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `create_at` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `campaign_budget` int(11) NOT NULL,
-  `request_type_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `advertiser_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `request_has_website`
---
-
-CREATE TABLE `request_has_website` (
-  `request_id` int(255) NOT NULL,
-  `website_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `request_type`
+-- Dumping data for table `request`
 --
 
-CREATE TABLE `request_type` (
-  `id` int(11) NOT NULL,
-  `type_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `request_type`
---
-
-INSERT INTO `request_type` (`id`, `type_name`) VALUES
-(1, 'aaa'),
-(2, 'bbb');
-
--- --------------------------------------------------------
+LOCK TABLES `request` WRITE;
+/*!40000 ALTER TABLE `request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `is_admin` tinyint(1) DEFAULT NULL,
+  `role` tinyint(1) DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telephone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `profile_picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci PACK_KEYS=1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `email_verified_at`, `is_admin`, `password`, `telephone`, `profile_picture`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Watcharaphon Piamphuetna', 'watcharaphonp@bangkokpost.co.th', 'dev', NULL, NULL, '$2y$10$7t6LvZk9lVUcya8izNAUHu4CenHBEWJJZNAbsApB8emSjCIoYQ7.a', '082-1979416', '/storage/avatar/r0hoMPw3f56MU7Mz9gOPCN8jE1B0N9fmQwl11pAc.jpeg', NULL, '2020-02-24 00:15:21', '2020-02-24 00:15:21');
-
--- --------------------------------------------------------
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Watcharaphon','Piamphuetna','watcharapon.piam@gmail.com','dev',NULL,1,'$2y$10$xGjqqJWEJhTsu6Xt0qxMmuXXiQKUYqWK0m76iQthjON5xEFAjZ0pe',NULL,NULL,NULL,'2020-03-12 19:48:17','2020-03-12 19:48:17','ACTIVE'),(2,'test','test','test@bangkokpost.co.th','test',NULL,0,'$2y$10$9vg6jv1Pqk67EqjWrYfy6.ncHy85zjGWGe4SJpYYbdfrKWKqP4aTy',NULL,NULL,NULL,'2020-03-12 19:49:07','2020-03-12 19:49:07','ACTIVE');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `website`
 --
 
+DROP TABLE IF EXISTS `website`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `website` (
   `id` int(11) NOT NULL,
   `website_name` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `website`
 --
 
---
--- Indexes for table `ad`
---
-ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_ad_request1_idx` (`request_id`);
+LOCK TABLES `website` WRITE;
+/*!40000 ALTER TABLE `website` DISABLE KEYS */;
+/*!40000 ALTER TABLE `website` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for table `advertiser`
---
-ALTER TABLE `advertiser`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `booking`
---
-ALTER TABLE `booking`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `booking_has_website`
---
-ALTER TABLE `booking_has_website`
-  ADD PRIMARY KEY (`booking_id`,`website_id`),
-  ADD KEY `fk_booking_has_website_website1_idx` (`website_id`),
-  ADD KEY `fk_booking_has_website_booking1_idx` (`booking_id`);
-
---
--- Indexes for table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `request`
---
-ALTER TABLE `request`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_request_request_type1_idx` (`request_type_id`),
-  ADD KEY `fk_request_customer1_idx` (`customer_id`),
-  ADD KEY `fk_request_advertiser1_idx` (`advertiser_id`);
-
---
--- Indexes for table `request_has_website`
---
-ALTER TABLE `request_has_website`
-  ADD PRIMARY KEY (`request_id`,`website_id`),
-  ADD KEY `fk_request_has_website_website1_idx` (`website_id`),
-  ADD KEY `fk_request_has_website_request1_idx` (`request_id`);
-
---
--- Indexes for table `request_type`
---
-ALTER TABLE `request_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `website`
---
-ALTER TABLE `website`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `ad`
---
-ALTER TABLE `ad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `advertiser`
---
-ALTER TABLE `advertiser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `company`
---
-ALTER TABLE `company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `request`
---
-ALTER TABLE `request`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `request_type`
---
-ALTER TABLE `request_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `ad`
---
-ALTER TABLE `ad`
-  ADD CONSTRAINT `fk_ad_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `booking_has_website`
---
-ALTER TABLE `booking_has_website`
-  ADD CONSTRAINT `fk_booking_has_website_booking1` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_booking_has_website_website1` FOREIGN KEY (`website_id`) REFERENCES `website` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `request`
---
-ALTER TABLE `request`
-  ADD CONSTRAINT `fk_request_advertiser1` FOREIGN KEY (`advertiser_id`) REFERENCES `advertiser` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_request_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_request_request_type1` FOREIGN KEY (`request_type_id`) REFERENCES `request_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `request_has_website`
---
-ALTER TABLE `request_has_website`
-  ADD CONSTRAINT `fk_request_has_website_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_request_has_website_website1` FOREIGN KEY (`website_id`) REFERENCES `website` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-03-13  2:59:56
