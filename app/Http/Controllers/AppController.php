@@ -17,7 +17,7 @@ class AppController extends Controller
 {
     public function test()
     {
-        echo storage_path('app');
+        echo env('APP_URL').'/storage';
         echo "<br/>".app('url')->to('/storage');
     }
     /**
