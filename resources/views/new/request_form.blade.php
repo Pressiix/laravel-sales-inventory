@@ -153,13 +153,34 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
-                                  <option selected value="">Choose Size</option>
-                                  <option value="1">Billboard</option>
-                                  <option value="2">Rectangle</option>
-                                  <option value="3">Double-Rectangle</option>
-                                  <option value="4">Boombox</option>
-                                  <option value="5">Fullwidth</option>
-                                  <option value="6">Leaderboard</option>
+                                      <option value="">Choose Size</option>
+                                  <optgroup label="Rectangle Desktop & Mobile">
+                                      <option value="1">300x250</option>
+                                  </optgroup>
+                                  <optgroup label="Double Rectangle Desktop">
+                                    <option value="2">300x600</option>
+                                    <option value="3">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="Leaderboard Desktop">
+                                    <option value="4">Volvo</option>
+                                    <option value="5">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="Leaderboard Mobile">
+                                    <option value="6">Volvo</option>
+                                    <option value="7">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="•	Coverpage Desktop">
+                                    <option value="8">Volvo</option>
+                                    <option value="9">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="•	Coverpage Mobile">
+                                    <option value="10">Volvo</option>
+                                    <option value="11">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="InRead">
+                                    <option value="12">Volvo</option>
+                                    <option value="13">Saab</option>
+                                  </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.
@@ -170,7 +191,7 @@
                                 <label>Position:</label>
                                 
                                 <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option selected>Choose Position</option>
+                                  <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['bp_ad_section'] as $key => $item){ ?>
                                     <option value="<?= $key ?>"><?= $item['position'] ?></option>
                                   <?php } ?>
@@ -180,7 +201,7 @@
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
                                 <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
-                                  <option selected value="">Choose Section</option>
+                                  <option value="">Choose Section</option>
                                 </select>
                                 <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="" />
                               </div>
@@ -190,12 +211,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -293,7 +314,7 @@
                                 <label>Position:</label>
                                 
                                 <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option selected>Choose Position</option>
+                                  <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['bp_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
@@ -307,8 +328,7 @@
                                 <label>Section:</label>
                                 <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
-                                  <option value="33">test</option>
-                                  <script> bp_section_count[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
+                                <script> bp_section_count[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -318,12 +338,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_from[<?= $i ?>]" value="<?= (!empty($item['bp_date_from'][$i]) ? $item['bp_date_from'][$i] : '' ) ?>">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_from[<?= $i ?>]" value="<?= (!empty($item['bp_date_from'][$i]) ? $item['bp_date_from'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_to[<?= $i ?>]" value="<?= (!empty($item['bp_date_to'][$i]) ? $item['bp_date_to'][$i] : '' ) ?>">
+                                  <input type="text" class="form-control form-input--date" name="bp_date_to[<?= $i ?>]" value="<?= (!empty($item['bp_date_to'][$i]) ? $item['bp_date_to'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -497,7 +517,7 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text" >
-                                  <option selected value="">Choose Size</option>
+                                  <option value="">Choose Size</option>
                                   <option value="1">Billboard</option>
                                   <option value="2">Rectangle</option>
                                   <option value="3">Double-Rectangle</option>
@@ -514,7 +534,7 @@
                                 <label>Position:</label>
                                 
                                 <select name="ptd_position_id[0]" class="custom-select"  onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option selected>Choose Position</option>
+                                  <option   value="">Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $item){ ?>
                                     <option value="<?= $key ?>"><?= $item['position'] ?></option>
                                   <?php } ?>
@@ -524,7 +544,7 @@
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
                                 <select name="ptd_section_id[0]" class="custom-select" onchange="document.getElementById('ptd_section_text0').value=this.options[this.selectedIndex].text">
-                                  <option selected value="">Choose Section</option>
+                                  <option value="">Choose Section</option>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[0]" id="ptd_section_text0" value="" />
                               </div>
@@ -534,12 +554,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[0]">
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[0]">
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -637,7 +657,7 @@
                                 <label>Position:</label>
                                 
                                 <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option selected>Choose Position</option>
+                                  <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
@@ -652,7 +672,6 @@
                                 <label>Section:</label>
                                 <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
-                                  <option value="33">test</option>
                                   <script> ptd_section_count[<?= $i ?>] = '<?= $item['ptd_section_id'][$i] ?>';</script>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[<?= $i ?>]" id="ptd_section_text<?= $i ?>" value="<?= (!empty($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') ?>" />
@@ -663,12 +682,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[<?= $i ?>]" value="<?= (!empty($item['ptd_date_from'][$i]) ? $item['ptd_date_from'][$i] : '' ) ?>">
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[<?= $i ?>]" value="<?= (!empty($item['ptd_date_from'][$i]) ? $item['ptd_date_from'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[<?= $i ?>]" value="<?= (!empty($item['ptd_date_to'][$i]) ? $item['ptd_date_to'][$i] : '' ) ?>">
+                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[<?= $i ?>]" value="<?= (!empty($item['ptd_date_to'][$i]) ? $item['ptd_date_to'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -774,9 +793,9 @@
           position_value=bp_position_count[i];
           section_value=bp_section_count[i];
               if(Object.keys(jArray[position_value]).length == 1){
-                options="<option>-</option>";
+                options="<option value='1'>-</option>";
               }else{
-                options="<option>Choose Section</option>";
+                options="<option value=''>Choose Section</option>";
               }
               
               for(j=1;j<Object.keys(jArray[position_value]).length;j++){
@@ -797,9 +816,9 @@
           position_value=ptd_position_count[i];
           section_value=ptd_section_count[i];
               if(Object.keys(jArray[position_value]).length == 1){
-                options="<option>-</option>";
+                options="<option value='1'>-</option>";
               }else{
-                options="<option>Choose Section</option>";
+                options="<option value=''>Choose Section</option>";
               }
               
               for(j=1;j<Object.keys(jArray[position_value]).length;j++){
@@ -821,9 +840,9 @@
           var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
 
           if(Object.keys(jArray[value]).length == 1){
-            options="<option>-</option>";
+            options="<option value='1'>-</option>";
           }else{
-            options="<option>Choose Section</option>";
+            options="<option value=''>Choose Section</option>";
           }
           
           for(j=1;j<Object.keys(jArray[value]).length;j++){
