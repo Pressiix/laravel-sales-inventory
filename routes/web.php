@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Enable or Disable Register Feature
 Auth::routes([
-    'register' => false
+    'register' => true
 ]);
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
