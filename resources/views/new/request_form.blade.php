@@ -159,9 +159,9 @@
                                   </optgroup>
                                   <optgroup label="Double Rectangle Desktop">
                                     <option value="2">300x600</option>
-                                    <option value="3">Saab</option>
                                   </optgroup>
                                   <optgroup label="Leaderboard Desktop">
+                                    <option value="3">Saab</option>
                                     <option value="4">Volvo</option>
                                     <option value="5">Saab</option>
                                   </optgroup>
