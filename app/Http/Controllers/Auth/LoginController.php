@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 
+use Redirect;
   
 
 class LoginController extends Controller
@@ -24,7 +25,7 @@ class LoginController extends Controller
 
     
 
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/';
 
     /**
 
@@ -80,7 +81,7 @@ class LoginController extends Controller
 
         {
 
-            return redirect()->route('home');
+            return Redirect::to($this->redirectTo());
 
         }else{
 
@@ -89,9 +90,32 @@ class LoginController extends Controller
                 ->with('error','Email-Address And Password Are Wrong.');
 
         }
+    }
 
-          
-
+    /** Set home routing after user has login */
+    protected function redirectTo()
+    {
+        if(auth()->user()->isDev() ) {
+            return '/home';
+        } 
+        else if(auth()->user()->isAdOp() ) {
+            return '/profile';
+        }
+        else if(auth()->user()->isManagement() ) {
+            return '/profile';
+        }
+        else if(auth()->user()->isMarketing() ) {
+            return '/profile';
+        }
+        else if(auth()->user()->isSaleManagement() ) {
+            return '/profile';
+        }
+        else if(auth()->user()->isSale() ) {
+            return '/profile';
+        }
+        else {
+            return '/profile';
+        }
     }
 
 }

@@ -13,7 +13,7 @@
   <![endif]-->
 	
 <title>Bangkok Post</title>
-<link rel="shortcut icon" href="images/bkp-title-logo.png" />
+<link rel="shortcut icon" href="image/bkp-title-logo.png" />
 	
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 
@@ -95,7 +95,7 @@
                 @include('flash-message')
             <div class="row container--inventory">
             <!-- left sidebar -->
-            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/')){ ?>
+            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/') || Request::is('home')){ ?>
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">

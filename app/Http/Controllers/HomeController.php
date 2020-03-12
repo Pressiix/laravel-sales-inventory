@@ -24,8 +24,14 @@ class HomeController extends Controller
      */
     public function index(User $user)
     {
-        $user = Auth::user();
-        return view('home', compact('user'));
+        //Set home page by user role
+        if(auth()->user()->isDev()) {
+            $user = Auth::user();
+            return view('backend.home', compact('user'));
+        } else {
+            $user = Auth::user();
+            return view('new.profile', compact('user'));
+        }
     }
 
     public function welcome(User $user)

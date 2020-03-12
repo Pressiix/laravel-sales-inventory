@@ -5,18 +5,18 @@
           <div class="content-profile--right profile--form">
             <h2>My Account</h2>
             <div>
-              <form>
+            {!! Form::open(['action' => ['UserController@update', 'method' => 'POST']])!!}
                 <div class="form-group row">
                   <label for="inputUsername" class="col-sm-4 col-form-label">User name:</label>
                   <div class="col-sm-11">
-                    <input type="text" class="form-control" id="inputUsername" value="Username01" disabled>
+                    <input type="text" class="form-control" id="inputUsername" value="{{ $user->username }}" disabled>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
                   <div class="col-sm-11">
                     <div class="btn-change" id="btn-change">Change</div>
-                    <input type="password" class="form-control" id="inputPassword" value="Inventory123456" disabled>
+                    <input type="password" class="form-control" name="password" id="inputPassword" value="12345678910" disabled>
                   </div>
                 </div>
                 <div class="change-password" id="change-password" style="display: none;">
@@ -46,17 +46,17 @@
                 <div class="form-group row">
                   <label for="inputEmail" class="col-sm-4 col-form-label">E-mail:</label>
                   <div class="col-sm-11">
-                    <input type="email" class="form-control" id="inputEmail" value="inventory@bangkokpost.co.th">
+                    <input type="email" name="email" class="form-control" id="inputEmail" value="inventory@bangkokpost.co.th">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputMobile" class="col-sm-4 col-form-label">Mobile No:</label>
                   <div class="col-sm-11">
-                    <input type="text" class="form-control" id="inputMobile" value="095-555-5555">
+                    <input type="text" name="telephone" class="form-control" id="inputMobile" value="095-555-5555">
                   </div>
                 </div>
                 <div class="text-center"><button type="submit" value="send" class="btn btn-submit">submit</button></div>
-              </form>
+                {!! Form::close() !!}
             </div>
           </div>
         </div>
