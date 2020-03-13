@@ -134,7 +134,7 @@
                             </div>
                         </div>
 
-                        <div class="profile-name">{{ $user->name }}</div>
+                        <div class="profile-name">{{ $user->firstname.' '.$user->lastname }}</div>
                         </div>
                         <div class="nav-profile">
                         <ul>

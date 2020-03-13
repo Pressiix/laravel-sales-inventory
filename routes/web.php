@@ -26,12 +26,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 
 //Enable or Disable Register Feature
-Auth::routes([
+/*Auth::routes([
     'register' => true
-]);
+]);*/
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/forgot', 'AppController@forgot');
+
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
+    Route::post('/users/update','UserController@update');
 
     //Dev
     Route::group(['middleware' => ['isDev']], function(){
@@ -55,7 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profile3', 'AppController@profile3');
         Route::post('/upload-image', 'UserController@uploadProfileImage');
         Route::post('/save-booking','AppController@storeBooking');
-        Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
+        //Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
         
         Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);

@@ -20,14 +20,14 @@ class UserController extends Controller
     }
     public function update(Request $request)
     { 
-        $user = Auth::user();
-        //echo '<pre/>';print_r($user );
+        //$user = Auth::user();
+        echo '<pre/>';print_r($request->all() );
         
-        DB::table('users')->where('id', Auth::user()->id)->update([
+        /*DB::table('users')->where('id', Auth::user()->id)->update([
                         'email' => $request->email,
                         'telephone' => $request->telephone
                     ]);
-        return redirect('/profile');      
+        return redirect('/profile'); */     
     }
 
     public function uploadProfileImage(Request $request)
