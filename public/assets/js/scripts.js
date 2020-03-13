@@ -22,5 +22,15 @@ $(document).ready(function(){
     $("#change-password").show();
   });
 
+  $('#btn-addnew').click(function() {
+    $("#addnews-advertiser").show();
+  });
+
 
 });
+
+
+
+
+
+
