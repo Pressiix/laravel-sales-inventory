@@ -46,15 +46,27 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 
     //Dev
-    Route::group(['middleware' => ['isDev']], function(){
+    //Route::group(['middleware' => ['isDev']], function(){
         /*Route::get('/create-user', 'role\RoleController@createUser');
         Route::get('/import', 'role\RoleController@import');*/
-        Route::get('/test-mail', 'role\DevController@sendEmail');
-        Route::get('/test', 'role\DevController@test');
+        //Route::get('/test-mail', 'role\DevController@sendEmail');
+        //Route::get('/test', 'role\DevController@test');
+    //});
+
+    Route::group(['middleware' => ['isDev','isGeneral']], function () {
+        Route::group(['middleware' => ['isDev']], function(){
+            /*Route::get('/create-user', 'role\RoleController@createUser');
+            Route::get('/import', 'role\RoleController@import');*/
+            Route::get('/test-mail', 'role\DevController@sendEmail');
+            Route::get('/test', 'role\DevController@test');
+        });
+        Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
+        Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
+        Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
     });
 
     //General
-    Route::group(['middleware' => ['isGeneral']], function(){
+    //Route::group(['middleware' => ['isGeneral']], function(){
         Route::get('/profile2', 'AppController@profile2');
         Route::get('/profile3', 'AppController@profile3');
         
@@ -83,5 +95,5 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/success', 'AppController@success');
         Route::get('/success_ad_network', 'AppController@success_ad_network');
         Route::get('/success_campaign', 'AppController@success_campaign');
-    });
+    //});
 });
