@@ -26,9 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 
 //Enable or Disable Register Feature
-/*Auth::routes([
+Auth::routes([
     'register' => true
-]);*/
+]);
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/forgot', 'AppController@forgot');
@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
+    //Route::post('/profile/ajax', 'AppController@profileAjax');
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 

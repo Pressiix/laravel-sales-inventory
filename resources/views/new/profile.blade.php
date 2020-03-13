@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.see-this {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    font-size: 12px;
+    padding: 4px 5px;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+</style>
         <div class="col-auto div-profile--right bg-fff">
           <div class="content-profile--right profile--form">
             <h2>My Account</h2>
@@ -25,20 +37,23 @@
                       <div class="form-group row">
                         <label for="changePassword1" class="col-sm-5 col-form-label col-form-label-sm">Old Password:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="old-password" class="form-control form-control-sm" id="old-password">
+                          <div class="see-this" onclick="showPassword('old-password');"><i id="old-password-show" class="fas fa-eye-slash"></i></div>
+                          <input autocomplete="off" type="password" name="old-password" class="form-control form-control-sm" id="old-password">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="changePassword2" class="col-sm-5 col-form-label col-form-label-sm">New Password:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="new-password" class="form-control form-control-sm" id="new-password">
+                          <div class="see-this" onclick="showPassword('new-password');"><i id="new-password-show" class="fas fa-eye-slash"></i></div>
+                          <input autocomplete="off" type="password" name="new-password" class="form-control form-control-sm" id="new-password">
                         </div>
                         <div id="divCheckPasswordMatch"></div>
                       </div>
                       <div class="form-group row">
                         <label for="changePassword3" class="col-sm-5 col-form-label col-form-label-sm">Confirm Password:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="confirm-password" class="form-control form-control-sm" id="confirm-password">
+                          <div class="see-this" onclick="showPassword('confirm-password');"><i id="confirm-password-show" class="fas fa-eye-slash"></i></div>
+                          <input autocomplete="off" type="password" name="confirm-password" class="form-control form-control-sm" id="confirm-password">
                         </div>
                         <div id="divCheckPasswordMatch2"></div>
                       </div>
@@ -57,14 +72,13 @@
                     <input type="text" name="telephone" class="form-control" id="inputMobile" value="{{ $user->telephone }}">
                   </div>
                 </div>
-                <div class="text-center"><button type="submit" value="send" class="btn btn-submit" onclick="checkPassword();">submit</button></div>
+                <div class="text-center"><button id="submit" type="submit" value="send" class="btn btn-submit">submit</button></div>
                 {!! Form::close() !!}
             </div>
           </div>
         </div>
 <script>
-  var old_password = '<?= $user->password ?>';
-
+var array = '<?= $user ?>';
   $(document).ready(function () {
     $("#confirm-password").keyup(function (){
       var password = $("#new-password").val();
@@ -73,13 +87,25 @@
       if (password != confirmPassword){
           $("#divCheckPasswordMatch").html("<p style='font-size:12px;color:red;'>Passwords do not match!</p>");
           $("#divCheckPasswordMatch2").html("<p style='font-size:12px;color:red;'>Passwords do not match!</p>");
-        }
+          $("#submit").attr("disabled",true);
+      }
       else{
           $("#divCheckPasswordMatch").html("<p style='font-size:12px;color:green;'>Passwords match!</p>");
           $("#divCheckPasswordMatch2").html("<p style='font-size:12px;color:green;'>Passwords match!</p>");
+          $("#submit").attr("disabled",false);
         }
     });
   });
-      
+  
+  function showPassword(id) {
+    var x = document.getElementById(id);
+    if (x.type === "password") {
+      x.type = "text";
+      $('#'+id+'-show').removeClass("fa-eye-slash").addClass("fa-eye");
+    } else {
+      x.type = "password";
+      $('#'+id+'-show').removeClass("fa-eye").addClass("fa-eye-slash");
+    }
+  } 
 </script>
 @endsection

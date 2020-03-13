@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -20,14 +21,20 @@ class UserController extends Controller
     }
     public function update(Request $request)
     { 
-        //$user = Auth::user();
-        echo '<pre/>';print_r($request->all() );
-        
-        /*DB::table('users')->where('id', Auth::user()->id)->update([
-                        'email' => $request->email,
-                        'telephone' => $request->telephone
-                    ]);
-        return redirect('/profile'); */     
+        //echo Hash::make('2578678686');
+        if(Hash::check($request['old-password'], auth()->user()->password))
+        {
+            DB::table('users')->where('id', Auth::user()->id)->update([
+                'password' => Hash::make($request['new-password']),
+                'email' => $request->email,
+                'telephone' => $request->telephone
+            ]);
+            return \Redirect::to('/profile')->with('success','Update!!');
+        }
+        else
+        {
+            return \Redirect::to('/profile')->with('error','Cannot Update!!');
+        } 
     }
 
     public function uploadProfileImage(Request $request)
@@ -60,9 +67,8 @@ class UserController extends Controller
                 return redirect('/profile')->with('error','Upload unsuccessfully!, Please upload .jpg or png file');
             }
         }
-        
-        
     }
+
 
 }
 

@@ -15,7 +15,10 @@ use App\User;
 
 class AppController extends Controller
 {
-    
+    public function test()
+    {
+        echo 'aaa';
+    }
     /**
      * Display a listing of the users
      *
@@ -147,6 +150,7 @@ class AppController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        //echo "<pre/>"; print_r(compact('user'));
         return view('new.profile',compact('user'));
     }
     public function profile2()
