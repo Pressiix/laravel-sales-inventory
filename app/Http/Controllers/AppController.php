@@ -15,11 +15,7 @@ use App\User;
 
 class AppController extends Controller
 {
-    public function test()
-    {
-        echo env('APP_URL').'/storage';
-        echo "<br/>".app('url')->to('/storage');
-    }
+    
     /**
      * Display a listing of the users
      *

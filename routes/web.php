@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['isDev']], function(){
         /*Route::get('/create-user', 'role\RoleController@createUser');
         Route::get('/import', 'role\RoleController@import');*/
+        Route::get('/test-mail', 'role\DevController@sendEmail');
+        Route::get('/test', 'role\DevController@test');
     });
 
     //General
@@ -77,8 +79,5 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/success', 'AppController@success');
         Route::get('/success_ad_network', 'AppController@success_ad_network');
         Route::get('/success_campaign', 'AppController@success_campaign');
-
-        Route::get('/test-mail', 'AppController@sendEmail');
-        Route::get('/test', 'AppController@test');
     });
 });

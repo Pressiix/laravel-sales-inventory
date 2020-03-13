@@ -15,21 +15,21 @@
 <title>Bangkok Post</title>
 <link rel="shortcut icon" href="image/bkp-title-logo.png" />
 	
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="<?= url('/') ?>/assets/js/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <link href="assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
-  <link href="assets/css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?= url('/') ?>/assets/bootstrap/css/bootstrap.css">
+  <script src="<?= url('/') ?>/assets/bootstrap/js/bootstrap.min.js"></script>
+  <link href="<?= url('/') ?>/assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
+  <link href="<?= url('/') ?>/assets/css/animate.min.css" rel="stylesheet">
   
-  <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="assets/js/scripts.js"></script>
+  <link href="<?= url('/') ?>/assets/css/custom.css" rel="stylesheet" type="text/css">
+  <link href="<?= url('/') ?>/assets/css/style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="<?= url('/') ?>/assets/js/scripts.js"></script>
 
 
-    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" rel="stylesheet" type="text/css" />
+    <script src="<?= url('/') ?>/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <link href="<?= url('/') ?>/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= url('/') ?>/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" rel="stylesheet" type="text/css" />
   
     
 
