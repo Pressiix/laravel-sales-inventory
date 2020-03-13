@@ -48,13 +48,13 @@
                 <div class="form-group row">
                   <label for="inputEmail" class="col-sm-4 col-form-label">E-mail:</label>
                   <div class="col-sm-11">
-                    <input type="email" name="email" class="form-control" id="inputEmail" value="inventory@bangkokpost.co.th">
+                    <input type="email" name="email" class="form-control" id="inputEmail" value="{{ $user->email }}">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="inputMobile" class="col-sm-4 col-form-label">Mobile No:</label>
                   <div class="col-sm-11">
-                    <input type="text" name="telephone" class="form-control" id="inputMobile" value="095-555-5555">
+                    <input type="text" name="telephone" class="form-control" id="inputMobile" value="{{ $user->telephone }}">
                   </div>
                 </div>
                 <div class="text-center"><button type="submit" value="send" class="btn btn-submit" onclick="checkPassword();">submit</button></div>

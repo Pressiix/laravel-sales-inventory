@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
     Route::post('/users/update','UserController@update');
+    Route::post('/upload-image', 'UserController@uploadProfileImage');
 
     //Dev
     Route::group(['middleware' => ['isDev']], function(){
@@ -55,7 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['isGeneral']], function(){
         Route::get('/profile2', 'AppController@profile2');
         Route::get('/profile3', 'AppController@profile3');
-        Route::post('/upload-image', 'UserController@uploadProfileImage');
+        
         Route::post('/save-booking','AppController@storeBooking');
         //Route::post('users/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
         
