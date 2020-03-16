@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -24,14 +26,9 @@ class HomeController extends Controller
      */
     public function index(User $user)
     {
-        //Set home page by user role
-        if(auth()->user()->isDev()) {
-            $user = Auth::user();
-            return view('backend.home', compact('user'));
-        } else {
-            $user = Auth::user();
-            return view('new.profile', compact('user'));
-        }
+        Permission::create(['name'=>'create request']);
+        $user = Auth::user();
+        return view('new.profile', compact('user'));
     }
 
     public function welcome(User $user)
