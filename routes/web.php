@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 
     Route::get('/test-mail', 'role\DevController@sendEmail');
-    Route::get('/test', 'role\DevController@test');
+    Route::get('/role-init', 'DevController@createRoleAndPermission');
 
     
         Route::get('/profile2', 'AppController@profile2');
