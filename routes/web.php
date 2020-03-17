@@ -46,11 +46,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 
-    Route::group(['middleware' => ['permission:manage user']], function () {
+    //Route::group(['middleware' => ['permission:manage user']], function () {
         Route::get('/backend/test-mail', 'DevController@sendEmail');
         Route::get('/backend/role-init', 'DevController@createRoleAndPermission');
-        Route::post('/backend/role-assign', 'DevController@assignRoleToUser');
-        
+        //Route::post('/backend/role-assign', 'DevController@assignRoleToUser');
+        Route::get('/backend/role-assign', 'DevController@assignRoleToUser');
         Route::get('/backend/roles-display', 'DevController@showAllRole');
         Route::get('/backend/permissions-display', 'DevController@showAllPermission');
 
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route::get('/backend/role-remove/{id}/{role}', 'DevController@removeRoleFromUser');
         Route::get('/backend/role-display/{id}', 'DevController@showRole');
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
-    });
+    //});
     
         Route::get('/profile2', 'AppController@profile2');
         Route::get('/profile3', 'AppController@profile3');
