@@ -133,13 +133,13 @@ class DevController extends Controller
         }
         
         $this->findUserById($request->user_id)->assignRole($request->role_name);
-        return $this->showAllUser();
+        return redirect('backend/users-display');
      }
 
      public function removeRoleFromUser(Request $request, $id, $role)
      {
          $this->findUserById($id)->removeRole($role);
-         return $this->showAllUser();
+         return redirect('backend/users-display');
      }
 
      private function findUserById($id)
@@ -152,7 +152,7 @@ class DevController extends Controller
         $users = $this->findUserById($id);
         $users->delete();
 
-        return $this->showAllUser();
+        return redirect('backend/users-display');
      }
 
     
