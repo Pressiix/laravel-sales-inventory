@@ -23,7 +23,7 @@
                   <td><?= $item['username'] ?></td>
                   <td><?= (!empty($item['role']) ? $item['role'][0] : '') ?></td>
                   <td><a href="#" data-target="#myModal" data-toggle="modal" class="btn btn-success" onclick="createHiddenField('<?= $item['id'] ?>','<?= (!empty($item['role']) ? $item['role'][0] : '')  ?>');">Role</a></td>
-                  <td><a href="/backend/users-destroy/<?= $item['id'] ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="/backend/users-destroy/<?= $item['id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a></td>
                 </tr>
               <?php } ?>
               </tbody>
