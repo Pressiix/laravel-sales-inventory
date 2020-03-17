@@ -98,7 +98,7 @@
                 @include('flash-message')
             <div class="row container--inventory">
             <!-- left sidebar -->
-            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/')){ ?>
+            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/')|| Request::is('home')){ ?>
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">
