@@ -147,7 +147,7 @@ class DevController extends Controller
         return User::where('id','=',$id)->get()[0];
      }
 
-     public function destroy($id)
+     public function destroyUserById($id)
      {
         $users = Auth::user($id);
         $users->delete();

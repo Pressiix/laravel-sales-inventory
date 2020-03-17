@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/backend/users-display','DevController@showAllUser');
         Route::post('/backend/users-find','DevController@findUser');
-        Route::get('/backend/users-destroy/{id}','DevController@findUser');
+        Route::get('/backend/users-destroy/{id}','DevController@destroyUserById');
         //Route::get('/backend/role-remove/{id}/{role}', 'DevController@removeRoleFromUser');
         Route::get('/backend/role-display/{id}', 'DevController@showRole');
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
