@@ -147,5 +147,13 @@ class DevController extends Controller
         return User::where('id','=',$id)->get()[0];
      }
 
+     public function destroy($id)
+     {
+        $users = Auth::user($id);
+        $users->delete();
+
+        return $this->showAllUser();
+     }
+
     
 }
