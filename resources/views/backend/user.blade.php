@@ -53,9 +53,17 @@
                                       <input type="hidden" id="old_role" name="old_role">
                                     </div>
                                   </div>
-                                  <input type="submit" class="btn btn-success" value="save">
+                                  <input type="submit" id="submit_button" class="btn btn-success" value="save">
                                   {!! Form::close() !!}
                                 </div>
+
+                                <div class="form-group" id="process" style="display:none;padding-left:5px;padding-right:5px;">
+                                  <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="">
+                                    </div>
+                                  </div>
+                                </div>
+
                             </div>
 
                         </div>
@@ -68,5 +76,48 @@
               document.getElementById("user_id").setAttribute("value", id);
               document.getElementById("old_role").setAttribute("value", role);
           }
+
+          $(document).ready(function(){
+            $('#form').on('submit', function(event){
+              event.preventDefault();
+              $.ajax({
+              url:"/backend/role-assign",
+              method:"POST",
+              data:$(this).serialize(),
+              beforeSend:function()
+              {
+                $('#submit_button').attr('disabled', 'disabled');
+                $('#process').css('display', 'block');
+              },
+              success:function(data)
+              {
+                var percentage = 0;
+
+                var timer = setInterval(function(){
+                  percentage = percentage + 20;
+                  progress_bar_process(percentage, timer);
+                }, 1000);
+                location.reload();
+              }
+              })
+            });
+
+              function progress_bar_process(percentage, timer)
+              {
+                $('.progress-bar').css('width', percentage + '%');
+                if(percentage > 100)
+                {
+                  clearInterval(timer);
+                  $('#form')[0].reset();
+                  $('#process').css('display', 'none');
+                  $('.progress-bar').css('width', '0%');
+                  $('#submit_button').attr('disabled', false);
+                  $('#success_message').html("<div class='alert alert-success'>Data Saved</div>");
+                  setTimeout(function(){
+                    $('#success_message').html('');
+                  }, 5000);
+                }
+              }
+          });
         </script>
 @endsection

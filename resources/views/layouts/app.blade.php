@@ -74,6 +74,9 @@
                 </div>
                 <div class="nav-inventory">
                     <ul>
+                    <?php if(Auth::user()->hasRole('dev')){ ?>
+                        <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
+                    <?php } ?>
                     <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">Profile</a></li>
                     <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}">Request Form</a></li>
                     <li><a href="/booking_inventory" class="{{ Request::is('booking_inventory') ? 'actived' : '' }}">Booking Inventory</a></li>

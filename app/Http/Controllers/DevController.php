@@ -92,13 +92,16 @@ class DevController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         //create role
-        Role::create(['name'=>'dev']);
-        Role::create(['name'=>'general']);
-        Role::create(['name'=>'marketing']);
-        Role::create(['name'=>'ad-operation']);
-        Role::create(['name'=>'sale']);
-        Role::create(['name'=>'sale-management']);
-        Role::create(['name'=>'management']);
+        $role = [
+            'dev',
+            'general',
+            'marketing',
+            'ad-operation',
+            'sale',
+            'sale-management',
+            'management'
+            ];
+        Role::create(['name'=>$role]);
 
         //create permission
         Permission::create(['name'=>'create request']);
