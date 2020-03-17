@@ -97,7 +97,6 @@
                   percentage = percentage + 20;
                   progress_bar_process(percentage, timer);
                 }, 1000);
-                location.reload();
               }
               })
             });
@@ -112,7 +111,7 @@
                   $('#process').css('display', 'none');
                   $('.progress-bar').css('width', '0%');
                   $('#submit_button').attr('disabled', false);
-                  $('#success_message').html("<div class='alert alert-success'>Data Saved</div>");
+                  location.reload();
                   setTimeout(function(){
                     $('#success_message').html('');
                   }, 5000);
