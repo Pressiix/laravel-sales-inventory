@@ -95,27 +95,7 @@ class LoginController extends Controller
     /** Set home routing after user has login */
     protected function redirectTo()
     {
-        if(auth()->user()->isDev() ) {
             return '/home';
-        } 
-        else if(auth()->user()->isAdOp() ) {
-            return '/profile';
-        }
-        else if(auth()->user()->isManagement() ) {
-            return '/profile';
-        }
-        else if(auth()->user()->isMarketing() ) {
-            return '/profile';
-        }
-        else if(auth()->user()->isSaleManagement() ) {
-            return '/profile';
-        }
-        else if(auth()->user()->isSale() ) {
-            return '/profile';
-        }
-        else {
-            return '/profile';
-        }
     }
 
 }

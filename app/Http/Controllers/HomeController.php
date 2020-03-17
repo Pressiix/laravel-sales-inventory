@@ -26,9 +26,6 @@ class HomeController extends Controller
      */
     public function index(User $user)
     {
-        $role = Role::findById(2);
-        $permission = Permission::create(['name' => 'edit request']);
-        $role->givePermissionTo($permission);
         $user = Auth::user();
         return view('new.profile', compact('user'));
     }

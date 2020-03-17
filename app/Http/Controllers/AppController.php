@@ -26,80 +26,93 @@ class AppController extends Controller
      */
     public function request()
     {
-        $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
-        $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
-        $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
-        $data = json_decode($datos, true);
-
-        return view('new.request_form',[
-            'sales_name' => auth()->user()->name,
-            'customer' => $customer,
-            'advertiser' => $advertiser,
-            'sectionArray' => $data,
-        ]);
-    }
-
-    public function review(Request $request)
-    {
-        //echo "<pre/>"; print_r($request->all());
-         return view('new.request_preview',[
-             'item' => $request->all()
-         ]);
-    }
-
-    public function storeRequest(Request $request)
-    {
-        if($request->input('action') === 'Edit')
-        {
+        if(auth()->user()->hasRole(['sale','sale-management'])){
             $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
-            //echo "<pre/>"; print_r($request->all());
-            $item = $request->all();
-            /*if(isset($item)){
-                echo 'a';
-            }else{
-                echo 'b';
-            }*/
-            //echo "<pre/>"; print_r($customer);
-            return view('new.request_form', [
-                'action' => 'Edit',
-                'sales_name' =>$request->sales_name,
+    
+            return view('new.request_form',[
+                'sales_name' => auth()->user()->name,
                 'customer' => $customer,
                 'advertiser' => $advertiser,
-                'item' => $item,
-                'sectionArray' => $data
+                'sectionArray' => $data,
             ]);
         }
-        else
-        {
-            DB::connection('mysql')->insert('
-                insert into request values (
-                        NULL,
-                        \'1\',
-                        \''.$request->sales_name.'\',
-                        \''.$request->sales_type.'\',
-                        \''.$request->campaign_name.'\',
-                        \''.$request->facebook.'\',
-                        \''.$request->facebook_type.'\',
-                        \'Waiting\',
-                        \''.$request->create_at.'\',
-                        \''.$request->campaign_budget.'\',
-                        \'1\',
-                        \''.$request->customer_id.'\',
-                        \''.$request->advertiser_id.'\'
-                )
-            ');
-
-            //Send email to ...
-            $this->sendEmail();
-            
-            return Redirect::to('request-form')->with('success','Request form created successfully!');
+        else{
+            return abort('403');
         }
-         
-
         
+    }
+
+    public function review(Request $request)
+    {
+        if(auth()->user()->hasRole(['sale','sale-management'])){
+         return view('new.request_preview',[
+             'item' => $request->all()
+         ]);
+        }
+        else{
+            return abort('403');
+        }
+    }
+
+    public function storeRequest(Request $request)
+    {
+        if(auth()->user()->hasRole(['sale','sale-management']))
+        {
+            if($request->input('action') === 'Edit')
+            {
+                $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
+                $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
+                $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
+                $data = json_decode($datos, true);
+                $item = $request->all();
+
+                return view('new.request_form', [
+                    'action' => 'Edit',
+                    'sales_name' =>$request->sales_name,
+                    'customer' => $customer,
+                    'advertiser' => $advertiser,
+                    'item' => $item,
+                    'sectionArray' => $data
+                ]);
+            }
+
+            if($request->input('action') === 'Save')
+            {
+                //Save new request and email to sale management for approve...
+                DB::connection('mysql')->insert('
+                    insert into request values (
+                            NULL,
+                            \'1\',
+                            \''.$request->sales_name.'\',
+                            \''.$request->sales_type.'\',
+                            \''.$request->campaign_name.'\',
+                            \''.$request->facebook.'\',
+                            \''.$request->facebook_type.'\',
+                            \'Waiting\',
+                            \''.$request->create_at.'\',
+                            \''.$request->campaign_budget.'\',
+                            \'1\',
+                            \''.$request->customer_id.'\',
+                            \''.$request->advertiser_id.'\'
+                    )
+                ');
+
+                //Send email to ...
+                $this->sendEmail();
+                
+                return Redirect::to('request-form')->with('success','Request form created successfully!');
+            }
+            else if($request->input('action') === 'Approve')
+            {
+                //Update request status = Approve
+            }
+        }
+        else{
+            return abort('403');
+        }
     }
 
     public function sendEmail()

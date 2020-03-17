@@ -70,7 +70,7 @@
             <div class="header-panel">
                 <div class="container">
                 <div class="postgroup-logo">
-                    <h1><a href="/"><img src="assets/images/postgroup-logo_blue.svg" class="img-fluid" alt=""></a></h1>
+                    <h1><a href="/"><img src="<?= url('/') ?>/assets/images/postgroup-logo_blue.svg" class="img-fluid" alt=""></a></h1>
                 </div>
                 <div class="nav-inventory">
                     <ul>
@@ -95,7 +95,7 @@
                 @include('flash-message')
             <div class="row container--inventory">
             <!-- left sidebar -->
-            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/') || Request::is('home')){ ?>
+            <?php if(Request::is('profile') || Request::is('profile2') || Request::is('profile3') || Request::is('/')){ ?>
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">
@@ -145,7 +145,26 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?> 
+            <?php } 
+            else{
+                 if(Auth::user()->hasRole('dev')){ ?>
+                <div class="col-auto div-profile--left bg-fff">
+                    <div class="content-profile--left">
+                        <div class="pofile-info">
+                            <div class="profile-name">Menu</div>
+                        </div>
+                        <div class="nav-profile">
+                        <ul>
+                            <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">User</a></li>
+                            <li><a href="/backend/roles-display" class="{{ Request::is('backend/roles-display') ? 'actived' : '' }}">Role</a></li>
+                            <li><a href="/backend/permissions-display" class="{{ Request::is('backend/permissions-display') ? 'actived' : '' }}">Permission</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+                }
+             ?>
             @endguest
             
             <!-- content -->

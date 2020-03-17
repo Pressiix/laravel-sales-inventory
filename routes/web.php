@@ -46,19 +46,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 
-    Route::get('/test-mail', 'role\DevController@sendEmail');
-    Route::get('/role-init', 'DevController@createRoleAndPermission');
+    Route::group(['middleware' => ['permission:manage user']], function () {
+        Route::get('/backend/test-mail', 'DevController@sendEmail');
+        Route::get('/backend/role-init', 'DevController@createRoleAndPermission');
+        Route::post('/backend/role-assign', 'DevController@assignRoleToUser');
+        
+        Route::get('/backend/roles-display', 'DevController@showAllRole');
+        Route::get('/backend/permissions-display', 'DevController@showAllPermission');
 
+        Route::get('/backend/users-display','DevController@showAllUser');
+        Route::post('/backend/users-find','DevController@findUser');
+
+        //Route::get('/backend/role-remove/{id}/{role}', 'DevController@removeRoleFromUser');
+        Route::get('/backend/role-display/{id}', 'DevController@showRole');
+        //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
+    });
     
         Route::get('/profile2', 'AppController@profile2');
         Route::get('/profile3', 'AppController@profile3');
         
-        //Route::post('/save-booking','AppController@storeBooking');
-        
+       
+    Route::group(['middleware' => ['role:sale|sale-management']], function () { 
         Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
         Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
-
+    });
         //Customer
         Route::get('/create_new_customer', 'CustomerController@createCustomer');
         Route::post('save-customer', ['as' => 'save-customer', 'uses' => 'CustomerController@storeCustomer']);
