@@ -46,9 +46,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
 
+    Route::get('/backend/dev-init', 'DevController@initDev');
     Route::group(['middleware' => ['permission:manage user']], function () {
         Route::get('/backend/test-mail', 'DevController@sendEmail');
         Route::get('/backend/role-init', 'DevController@createRoleAndPermission');
+        
         Route::post('/backend/role-assign', 'DevController@assignRoleToUser');
         
         Route::get('/backend/roles-display', 'DevController@showAllRole');
