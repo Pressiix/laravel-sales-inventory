@@ -126,14 +126,13 @@ class DevController extends Controller
         return $this->findUserById($id)->getAllPermissions();
      }*/
 
-     public function assignRoleToUser()
+     public function assignRoleToUser(Request $request)
      {
-        /*if($request->old_role){
+        if($request->old_role){
             $this->findUserById($request->user_id)->removeRole($request->old_role);
         }
         
-        $this->findUserById($request->user_id)->assignRole($request->role_name);*/
-        $this->findUserById('22')->assignRole('dev');
+        $this->findUserById($request->user_id)->assignRole($request->role_name);
         return $this->showAllUser();
      }
 
