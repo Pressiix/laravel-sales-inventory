@@ -30,7 +30,7 @@
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Customer name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('customer_id', array_merge(['0' => 'Choose...'], $customer), (!empty($item['customer_id']) ? $item['customer_id'] : NULL), ['class'=>'custom-select','required'=>'required']) }}
+                {{ Form::select('customer_id', (['0' => 'Choose...']+ $customer), (!empty($item['customer_id']) ? $item['customer_id'] : NULL), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="/create_new_customer" target="_blank">Create new customer</a></div>
                 </div>
               </div>
@@ -43,7 +43,7 @@
               <div class="form-group row">
                 <label for="advertiserSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser name:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                {{ Form::select('advertiser_id', array_merge(['0' => 'Choose...'], $advertiser), (!empty($item['advertiser_id']) ? $item['advertiser_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
+                {{ Form::select('advertiser_id', (['0' => 'Choose...']+ $advertiser), (!empty($item['advertiser_id']) ? $item['advertiser_id'] : null), ['class'=>'custom-select','required'=>'required']) }}
                   <div class="div-form--link"> or <a href="/create_new_advertiser" target="_blank">Create new advertiser</a></div>
                 </div>
               </div>

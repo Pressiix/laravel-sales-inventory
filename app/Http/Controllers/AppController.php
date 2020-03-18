@@ -12,12 +12,16 @@ use DateTime;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Advertiser;
+use App\Customer;
 
 class AppController extends Controller
 {
     public function test()
     {
-        echo 'aaa';
+        $advertiser = Advertiser::get();
+
+        echo "<pre/>"; print_r($advertiser);
     }
     /**
      * Display a listing of the users
@@ -27,13 +31,14 @@ class AppController extends Controller
     public function request()
     {
         if(auth()->user()->hasRole(['sale','sale-management'])){
-            $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
-            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
+            $customer = array_column(json_decode(json_encode(Customer::all()), True),'customer_fullname','id');
+            $advertiser = array_column(json_decode(json_encode(Advertiser::all()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
     
+            //echo "<pre/>"; print_r(array_merge_recursive(['0' => 'Choose...'], $customer));
             return view('new.request_form',[
-                'sales_name' => auth()->user()->name,
+                'sales_name' => auth()->user()->firstname.' '.auth()->user()->lastname,
                 'customer' => $customer,
                 'advertiser' => $advertiser,
                 'sectionArray' => $data,
@@ -79,10 +84,10 @@ class AppController extends Controller
                 ]);
             }
 
-            if($request->input('action') === 'Save')
+            if($request->input('action') === 'Approve')
             {
                 //Save new request and email to sale management for approve...
-                DB::connection('mysql')->insert('
+                /*DB::connection('mysql')->insert('
                     insert into request values (
                             NULL,
                             \'1\',
@@ -98,12 +103,13 @@ class AppController extends Controller
                             \''.$request->customer_id.'\',
                             \''.$request->advertiser_id.'\'
                     )
-                ');
+                ');*/
+                echo "<pre/>"; print_r($request->all()); echo "<pre/>";
 
                 //Send email to ...
-                $this->sendEmail();
+                //$this->sendEmail();
                 
-                return Redirect::to('request-form')->with('success','Request form created successfully!');
+                //return Redirect::to('request-form')->with('success','Request form created successfully!');
             }
             else if($request->input('action') === 'Approve')
             {

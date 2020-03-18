@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="col-auto div-profile--right bg-fff">
-          <div class="container content-profile--right" style="padding-left:40px;padding-right:40px;">
+          <div class="container content-profile--right" style="padding-left:40px;padding-right:30px;">
           <div class="row"><h2>User Data</h2></div>
-            <table id="myTable" class="table table-bordered table-hover" style="width:100%">
+            <table id="myTable" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -131,9 +131,16 @@
             */
             $('#myTable').DataTable();
 
-            $("div[class='row']").css("width","100%");
-            $("input[type='search']").css("width","100%");
-            $("div[class*='col-sm-12']").css("width","100%").removeClass("col-sm-12");
+            $("div[class*='col-md-6']").each(function(index) {
+              //console.log(index);
+              if(index==1){
+                $(this).css("left","14%");
+              }
+                
+            });
+            
+            
+            $("div[class*='col-sm-12']").css("left","5%");
             /*
             ***************************************************************
             */
