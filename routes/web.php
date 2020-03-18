@@ -45,12 +45,12 @@ Route::group(['middleware' => ['auth']], function () {
     //Route::post('/profile/ajax', 'AppController@profileAjax');
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
+    
+    //BACKEND INSTALL => CREATE DEV / CREATE USER ROLES AND PERMISSIONS
+    //Route::get('/backend/install', 'DevController@createRoleAndPermission');
 
-    Route::get('/backend/dev-init', 'DevController@initDev');
     Route::group(['middleware' => ['permission:manage user']], function () {
-        Route::get('/backend/test-mail', 'DevController@sendEmail');
-        Route::get('/backend/role-init', 'DevController@createRoleAndPermission');
-        
+        //Route::get('/backend/test-mail', 'DevController@sendEmail');
         Route::post('/backend/role-assign', 'DevController@assignRoleToUser');
         
         Route::get('/backend/roles-display', 'DevController@showAllRole');

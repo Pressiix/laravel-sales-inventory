@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 
 class DevController extends Controller
 {
@@ -42,7 +43,6 @@ class DevController extends Controller
             
         }
         
-       // echo "<pre/>"; print_r($items);
         return view('backend.user',[
             'items' => $items,
             'user' => $user,
@@ -51,6 +51,7 @@ class DevController extends Controller
         ]);
      }
 
+     //Show role lists on table
      public function showAllRole()
      {
         $user = Auth::user();
@@ -63,6 +64,7 @@ class DevController extends Controller
         ]);
      }
 
+     //Show permission lists on table
      public function showAllPermission()
      {
         $user = Auth::user();
@@ -75,10 +77,40 @@ class DevController extends Controller
         ]);
      }
 
-    /**
-     * Show the application dashboard.
+     /*
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * if system doesn't have a dev,It will created a dev
+     * 
+     * assign a dev role to user if user has username = dev
+     * 
+     **/
+     public function genDev()
+     {
+         $dev_user = User::where('username', 'like', 'dev%')->first();
+         $role = Role::where('name', 'like', 'dev%')->first();
+         
+         if($dev_user)
+         {
+            return $dev_user->assignRole($role->name);
+         }
+         else  //if you not have dev in database, system will create dev
+         {
+            User::create([
+                'username' => 'dev',
+                'firstname' => 'Watcharaphon',
+                'lastname' => 'Piamphuetna',
+                'email' => 'watcharapon.piam2@gmail.com',
+                'password' => Hash::make('bkpdev'),
+                'status' => 'ACTIVE'
+            ]);
+
+            return User::where('username', 'like', 'dev%')->first()->assignRole($role->name);
+         }
+     }
+
+    /**
+     * Generate or Regenerate all necessary backend data
+     *
      */
     public function createRoleAndPermission()
     {
@@ -110,7 +142,10 @@ class DevController extends Controller
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
-     }
+     
+        $this->genDev();
+        return redirect('backend/users-display');
+    }
 
      public function showRole(Request $request, $id)
      {

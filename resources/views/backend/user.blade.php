@@ -4,7 +4,7 @@
 <div class="col-auto div-profile--right bg-fff">
           <div class="container content-profile--right" style="padding-left:40px;padding-right:40px;">
           <div class="row"><h2>User Data</h2></div>
-            <table class="table table-bordered table-hover">
+            <table id="myTable" class="table table-bordered table-hover" style="width:100%">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -78,6 +78,10 @@
           }
 
           $(document).ready(function(){
+            /*
+            * PREGRESS BAR
+            ***************************************************************
+            */
             $('#form').on('submit', function(event){
               event.preventDefault();
               $.ajax({
@@ -117,6 +121,22 @@
                   }, 5000);
                 }
               }
+            /*
+            ***************************************************************
+            */
+
+            /*
+            * DataTable
+            **************************************************************
+            */
+            $('#myTable').DataTable();
+
+            $("div[class='row']").css("width","100%");
+            $("input[type='search']").css("width","100%");
+            $("div[class*='col-sm-12']").css("width","100%").removeClass("col-sm-12");
+            /*
+            ***************************************************************
+            */
           });
         </script>
 @endsection
