@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="col-auto div-profile--right bg-fff">
-          <div class="container content-profile--right" style="padding-left:40px;padding-right:30px;">
+          <div class="container content-profile--right" style="padding-left:40px;padding-right:20px;">
           <div class="row"><h2>User Data</h2></div>
-            <table id="myTable" class="table table-bordered table-hover table-responsive">
+            <table id="myTable" class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th>ID</th>

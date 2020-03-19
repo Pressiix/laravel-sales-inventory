@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
+
 
 class User extends Authenticatable
 {
@@ -37,5 +39,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function findUserById($id)
+    {
+        return self::where('id',$id)->first();
+    }
+
+    public static function getUserRoleById($id)
+    {
+        $role = self::where('id',$id)->first()->getRoleNames();
+        return (count($role) !== 0 ? $role[0] : '');
+    }
 
 }

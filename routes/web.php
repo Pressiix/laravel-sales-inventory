@@ -40,14 +40,14 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'AppController@test');
+    Route::get('/test',  'DevController@test');
     Route::get('/profile', 'AppController@profile');
     //Route::post('/profile/ajax', 'AppController@profileAjax');
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
     
     //BACKEND INSTALL => CREATE DEV / CREATE USER ROLES AND PERMISSIONS
-    //Route::get('/backend/install', 'DevController@createRoleAndPermission');
+    Route::get('/backend/install', 'DevController@createRoleAndPermission');
 
     Route::group(['middleware' => ['permission:manage user']], function () {
         //Route::get('/backend/test-mail', 'DevController@sendEmail');
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/backend/users-display','DevController@showAllUser');
         Route::post('/backend/users-find','DevController@findUser');
-        Route::get('/backend/users-destroy/{id}','DevController@destroyUserById');
+        Route::get('/backend/users-destroy/{id}','UserController@destroyUserById');
         //Route::get('/backend/role-remove/{id}/{role}', 'DevController@removeRoleFromUser');
         Route::get('/backend/role-display/{id}', 'DevController@showRole');
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profile3', 'AppController@profile3');
         
        
-    Route::group(['middleware' => ['role:sale|sale-management']], function () { 
+    Route::group(['middleware' => ['can:create request|edit request']], function () { 
         Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
         Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);

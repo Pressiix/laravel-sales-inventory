@@ -36,6 +36,14 @@ class UserController extends Controller
             return \Redirect::to('/profile')->with('error','Cannot Update!!');
         } 
     }
+    
+     public function destroyUserById($id)
+     {
+        $users = User::where('id','=',$id)->first();
+        $users->delete();
+
+        return redirect('backend/users-display');
+     }
 
     public function uploadProfileImage(Request $request)
     {

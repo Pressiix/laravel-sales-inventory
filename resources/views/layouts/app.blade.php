@@ -12,8 +12,8 @@
     <script src="assets/js/html5.js"></script>
   <![endif]-->
 	
-<title>Bangkok Post</title>
-<link rel="shortcut icon" href="image/bkp-title-logo.png" />
+<title>Bangkok Post - Inventory</title>
+<link rel="shortcut icon" href="<?= url('/') ?>/image/bkp-title-logo.png" />
 	
   <script type="text/javascript" src="<?= url('/') ?>/assets/js/jquery.min.js"></script>
 

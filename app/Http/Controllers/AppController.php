@@ -7,6 +7,8 @@ use Encore\Admin\Actions\Interactor\Form;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaleFormRequest;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use Redirect;
@@ -19,9 +21,7 @@ class AppController extends Controller
 {
     public function test()
     {
-        $advertiser = Advertiser::get();
-
-        echo "<pre/>"; print_r($advertiser);
+        echo "<pre/>"; print_r( User::where('id','22')->first()->getRoleNames()[0] );
     }
     /**
      * Display a listing of the users

@@ -21,9 +21,9 @@ class DevController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function test()
     {
-        //
+        return User::findUserById('162')->getPermissionsViaRoles();
     }
 
     /** 
@@ -38,9 +38,8 @@ class DevController extends Controller
         foreach($items as $key => $value)
         {
             //add role column to array
-            $role_name= (!empty($this->findUserById($value['id'])->getRoleNames()[0]) ? $this->findUserById($value['id'])->getRoleNames()[0] : '');
-            $items[$key]['role'][0] = ($role_name !== '' ? $role_name: '');
-            
+            $role_name= User::getUserRoleById($value['id']);
+            $items[$key]['role'][0] = (!empty($role_name) ? $role_name : '');
         }
         
         return view('backend.user',[
@@ -138,8 +137,12 @@ class DevController extends Controller
         
         //assign permission to role
         Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'manage user')->first());
+        Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
+
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
+
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
      
@@ -149,47 +152,47 @@ class DevController extends Controller
 
      public function showRole(Request $request, $id)
      {
-        return $this->findUserById($id)->getRoleNames();
+        return User::getUserRoleById($id);
      }
 
      /*public function showPermission(Request $request, $id)
      {
         return $this->findUserById($id)->getAllPermissions();
      }*/
-     public function initDev()
-     {
-        $this->findUserById('22')->assignRole('dev');
-        return redirect('backend/users-display');
-     }
 
      public function assignRoleToUser(Request $request)
      {
+        $user =User::findUserById($request->user_id);
         if($request->old_role){
-            $this->findUserById($request->user_id)->removeRole($request->old_role);
+            $user->removeRole($request->old_role);
         }
         
-        $this->findUserById($request->user_id)->assignRole($request->role_name);
+        $user->assignRole($request->role_name);
+
+        $permission_array = json_decode($user->getPermissionsViaRoles(),true);
+        if(count($permission_array) !== 0)
+        {
+            foreach($permission_array as $permission)
+            {
+                $user->givePermissionTo($permission['name']);
+            }
+        }
+        
         return redirect('backend/users-display');
      }
 
      public function removeRoleFromUser(Request $request, $id, $role)
      {
-         $this->findUserById($id)->removeRole($role);
-         return redirect('backend/users-display');
-     }
-
-     private function findUserById($id)
-     {
-        return User::where('id','=',$id)->get()[0];
-     }
-
-     public function destroyUserById($id)
-     {
-        $users = $this->findUserById($id);
-        $users->delete();
-
+        User::findUserById($id)->removeRole($role);
         return redirect('backend/users-display');
      }
+
+     public function findUserById($id)
+     {
+        return User::where('id','=',$id)->first();
+     }
+
+     
 
     
 }
