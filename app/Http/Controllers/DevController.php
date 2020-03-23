@@ -23,7 +23,7 @@ class DevController extends Controller
 
     public function test()
     {
-        return User::findUserById('162')->getPermissionsViaRoles();
+        return User::findUserById('22')->getPermissionsViaRoles();
     }
 
     /** 

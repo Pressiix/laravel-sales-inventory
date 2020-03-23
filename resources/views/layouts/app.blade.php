@@ -110,7 +110,7 @@
                         
                         <div class="profile-avatar">
                             <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
-                                <img src="<?= url('/').$user->profile_picture ?> " class="img-fluid">
+                                <img src="<?= ($user->profile_picture ? url('/').$user->profile_picture : "assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
                             </div>
                             <!-- modal -->
                             <div class="modal fade" id="myModal" role="dialog">
@@ -155,7 +155,7 @@
                 </div>
             <?php } 
             else{
-                 if(Auth::user()->hasRole('dev')){ ?>
+                 if(Auth::user()->hasRole('dev') && strpos(Request::url(),"backend")){ ?>
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">

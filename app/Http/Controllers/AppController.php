@@ -30,7 +30,7 @@ class AppController extends Controller
      */
     public function request()
     {
-        if(auth()->user()->hasRole(['sale','sale-management'])){
+        //if(auth()->user()->hasRole(['dev','sale','sale-management'])){
             $customer = array_column(json_decode(json_encode(Customer::all()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(Advertiser::all()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
@@ -43,29 +43,22 @@ class AppController extends Controller
                 'advertiser' => $advertiser,
                 'sectionArray' => $data,
             ]);
-        }
+        /*}
         else{
             return abort('403');
-        }
+        }*/
         
     }
 
     public function review(Request $request)
     {
-        if(auth()->user()->hasRole(['sale','sale-management'])){
          return view('new.request_preview',[
              'item' => $request->all()
          ]);
-        }
-        else{
-            return abort('403');
-        }
     }
 
     public function storeRequest(Request $request)
     {
-        if(auth()->user()->hasRole(['sale','sale-management']))
-        {
             if($request->input('action') === 'Edit')
             {
                 $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
@@ -115,10 +108,6 @@ class AppController extends Controller
             {
                 //Update request status = Approve
             }
-        }
-        else{
-            return abort('403');
-        }
     }
 
     public function sendEmail()

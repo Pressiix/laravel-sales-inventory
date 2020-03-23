@@ -22,6 +22,7 @@
                     <input type="text" class="form-control form-input--date" name="end">
                     <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                   </div>
+                  <a href="javascript:;" class="btn btn-click2">Apply</a>
                 </div>
               </div>
             </div>

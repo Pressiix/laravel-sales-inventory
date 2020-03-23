@@ -13,9 +13,9 @@
 
               <div class="content-box--select">
                 <div class="form-group row">
-                  <div class="col-50">
-                    <select class="custom-select s-ad">
-                      <option selected>Select Month</option>
+                  <div class="col-6">
+                    <select class="custom-select s-ad" style="display: none !important;">
+                      <option selected="">Month</option>
                       <option value="1">January</option>
                       <option value="2">February</option>
                       <option value="3">March</option>
@@ -30,14 +30,15 @@
                       <option value="12">December</option>
                     </select>
                   </div>
-                  <div class="col-50">
-                    <select class="custom-select s-ad">
-                      <option selected>Select Year</option>
+                  <div class="col-5">
+                    <select class="custom-select s-ad" style="display: none !important;">
+                      <option selected="">Year</option>
                       <option value="1">2020</option>
                       <option value="2">2019</option>
                       <option value="3">2018</option>
                     </select>
                   </div>
+                  <div class="col-4"><a href="javascript:;" class="btn btn-click2">Apply</a></div>
                 </div>
               </div>
 
@@ -651,6 +652,8 @@
 
                   </div>
 
+                  <div class="box-border--center"><button type="submit" value="send" class="btn btn-submit">download</button></div>
+
                 </div>
                 <div class="tab-pane fade" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
                   
@@ -1253,11 +1256,12 @@
 
                   </div>
 
+                  <div class="box-border--center"><button type="submit" value="send" class="btn btn-submit">download</button></div>
+
                 </div>
               </div>
 
             </div>
-
 
           </form>
         </div>

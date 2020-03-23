@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profile3', 'AppController@profile3');
         
        
-    Route::group(['middleware' => ['can:create request|edit request']], function () { 
+    Route::group(['middleware' => ['can:create request','can:edit request']], function () { 
         Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
         Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);

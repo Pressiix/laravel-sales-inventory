@@ -3,16 +3,23 @@
 @section('content')
       <div class="col-auto div-profile--right bg-fff">
         <div class="content-profile--right">
-          <div class="box-title">
+        <div class="box-title">
             <h2>My Activities</h2>
             <div class="profile-period">
-              <div class="profile-period--right">
-                <div class="input-group input-daterange" id="datepicker">
-                  <div class="input-group-addon">Period: From</div>
-                  <input type="text" class="form-control form-input--date" name="start">
-                  <div class="input-group-addon"><img src="assets/images/icon-svg/calendar.svg" width="20"> to</div>
-                  <input type="text" class="form-control form-input--date" name="end">
-                  <div class="input-group-addon"><img src="assets/images/icon-svg/calendar.svg" width="20"></div>
+              <div class="form-group">
+                 <div class="input-daterange datepicker" id="datepicker">
+                  <div class="input-group-inline"><span><strong>Period:</strong></span></div>
+                  <div class="input-group-inline">
+                    <span>From</span>
+                    <input type="text" class="form-control form-input--date" name="start">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                  </div>
+                  <div class="input-group-inline">
+                    <span>to</span>
+                    <input type="text" class="form-control form-input--date" name="end">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                  </div>
+                  <a href="javascript:;" class="btn btn-click2">Apply</a>
                 </div>
               </div>
             </div>

@@ -247,7 +247,7 @@
                                   <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
                             </div>
                             <div class="form-group row">
