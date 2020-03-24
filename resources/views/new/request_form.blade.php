@@ -1015,6 +1015,9 @@
             Html.find("input[type='hidden']").each(function() {  //Replace input name
                 this.id= this.id.replace('0', count);
             });
+            Html.find("input[type='file']").each(function() {  //Replace input name
+                this.value= '';
+            });
             Html.find('select').each(function() {   //Replace dropdown name
                 this.name= this.name.replace('[0]', '['+count+']');
                 var id = this.name.split('_id['+count+']')[0]; //set hidden input id for posting dropdown text
