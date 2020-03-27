@@ -1015,7 +1015,10 @@
             Html.find("input[type='hidden']").each(function() {  //Replace input name
                 this.id= this.id.replace('0', count);
             });
-            Html.find("input[type='file']").each(function() {  //Replace input name
+            Html.find("input[type='file']").each(function() {  //Replace input value
+                this.value= '';
+            });
+            Html.find("input[type='text']").each(function() {  //Replace input value
                 this.value= '';
             });
             Html.find('select').each(function() {   //Replace dropdown name

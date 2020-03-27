@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'DevController@test');
+    Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
     //Route::post('/profile/ajax', 'AppController@profileAjax');
     Route::post('/users/update','UserController@update');

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RequestForm;
 use Encore\Admin\Actions\Interactor\Form;
 use Illuminate\Http\Request;
-use App\Http\Requests\SaleFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -16,12 +14,15 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Advertiser;
 use App\Customer;
+use App\RequestForm;
+use App\AdDescription;
+use URL;
 
 class AppController extends Controller
 {
     public function test()
     {
-        echo "<pre/>"; print_r( User::where('id','22')->first()->getRoleNames()[0] );
+        
     }
     /**
      * Display a listing of the users
@@ -52,9 +53,23 @@ class AppController extends Controller
 
     public function review(Request $request)
     {
-         return view('new.request_preview',[
-             'item' => $request->all()
-         ]);
+        if(strpos(URL::previous(),'request_form'))
+        {
+            
+            //echo "<pre/>"; print_r($request->all());
+            return view('new.request_preview',[
+                'item' => $request->all(),
+                'referer' => 'request_form'//$referer
+            ]);
+        }
+        else{
+            //$referer = "pending_list";
+        }
+        /*return view('new.request_preview',[
+            'item' => $request->all(),
+            'referer' => $referer
+        ]);*/
+         
     }
 
     public function storeRequest(Request $request)
@@ -77,32 +92,59 @@ class AppController extends Controller
                 ]);
             }
 
-            if($request->input('action') === 'Approve')
+            else if($request->input('action') === 'Submit')
             {
-                //Save new request and email to sale management for approve...
-                /*DB::connection('mysql')->insert('
-                    insert into request values (
-                            NULL,
-                            \'1\',
-                            \''.$request->sales_name.'\',
-                            \''.$request->sales_type.'\',
-                            \''.$request->campaign_name.'\',
-                            \''.$request->facebook.'\',
-                            \''.$request->facebook_type.'\',
-                            \'Waiting\',
-                            \''.$request->create_at.'\',
-                            \''.$request->campaign_budget.'\',
-                            \'1\',
-                            \''.$request->customer_id.'\',
-                            \''.$request->advertiser_id.'\'
-                    )
-                ');*/
-                echo "<pre/>"; print_r($request->all()); echo "<pre/>";
+                //Save new request and ad description
+                    $request_form = RequestForm::create([
+                        'request_id' => '1',
+                        'sales_name'=>$request->sales_name,
+                        'sales_type'=>$request->sales_type,
+                        'campaign_name'=>$request->campaign_name,
+                        'status'=>'Waiting',
+                        'create_at'=>date("Y-m-d h:i:s"),
+                        'create_by'=>$request->sales_name,
+                        'update_by'=>NULL,
+                        'update_at'=>NULL,
+                        'advertiser_id'=>$request->advertiser_id,
+                        'customer_id'=>$request->customer_id
+                    ]);
+                    $request_form->relateAd()->create([
+                        'bp_facebook' => $request->bp_facebook,
+                        'bp_web' => json_encode((object) $request->bp_web),
+                        'bp_size'=> json_encode((object) $request->bp_size_text),
+                        'bp_position'=> json_encode((object) $request->bp_position_text),
+                        'bp_section'=> json_encode((object) $request->bp_section_text),
+                        'bp_period_from'=> json_encode((object) $request->bp_date_from),
+                        'bp_period_to'=>json_encode((object) $request->bp_date_to),
+                        'bp_device'=> json_encode((object) $request->bp_device),
+                        'bp_url'=> json_encode((object) $request->bp_banner_url),
+                        'bp_banner_file'=> json_encode((object) $request->bp_ad_desc_file),
+                        'bp_quotation_file'=> json_encode((object) $request->bp_quotation),
+                        'bp_impression'=> json_encode((object) $request->bp_impression_need),
+                        'bp_detail'=> json_encode((object) $request->bp_ad_detail),
+                        'bp_campaign_budget'=>$request->bp_campaign_budget,
+                        'ptd_facebook' => $request->ptd_facebook,
+                        'ptd_web' => json_encode((object) $request->ptd_web),
+                        'ptd_size'=> json_encode((object) $request->ptd_size_text),
+                        'ptd_position'=> json_encode((object) $request->ptd_position_text),
+                        'ptd_section'=> json_encode((object) $request->ptd_section_text),
+                        'ptd_period_from'=> json_encode((object) $request->ptd_date_from),
+                        'ptd_period_to'=> json_encode((object) $request->ptd_date_to),
+                        'ptd_device'=> json_encode((object) $request->ptd_device),
+                        'ptd_url'=> json_encode((object) $request->ptd_banner_url),
+                        'ptd_banner_file'=> json_encode((object) $request->ptd_ad_desc_file),
+                        'ptd_quotation_file'=> json_encode((object) $request->ptd_quotation),
+                        'ptd_impression'=> json_encode((object) $request->ptd_impression_need),
+                        'ptd_detail'=> json_encode((object) $request->ptd_ad_detail),
+                        'ptd_campaign_budget'=>$request->ptd_campaign_budget,
+                    ]);
+                //echo json_encode((object) $request->bp_web);
+                //echo "<pre/>"; print_r($request->bp_web); echo "<pre/>";
 
                 //Send email to ...
                 //$this->sendEmail();
                 
-                //return Redirect::to('request-form')->with('success','Request form created successfully!');
+                return Redirect::to('request_form')->with('success','Request form created successfully!');
             }
             else if($request->input('action') === 'Approve')
             {

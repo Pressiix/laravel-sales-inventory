@@ -332,13 +332,21 @@
 
             </div>
 
+            <?php if($referer === "request_form"){ ?>
             <div class="btn-2item">
+              <div class="row">
+                <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
+              </div>
+            </div>
+            <?php }else{ ?>
+              <div class="btn-2item">
               <div class="row">
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
                 <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               </div>
             </div>
-
+              <?php } ?>
             {!! Form::close() !!}
         </div>
       </div>
