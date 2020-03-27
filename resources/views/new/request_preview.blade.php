@@ -65,11 +65,12 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <?php for($i=0;$i<$item['total_bp_web'];$i++){
+                            <?php for($i=0;$i<=$item['total_bp_web'];$i++){
                               echo (!empty($item['bp_web'][$i]) ? "<li>".$item['bp_web'][$i]."</li>" : '');
-                              ?>
+                              if(!empty($item['bp_web'][$i])){
+                            ?>
                               <input type="hidden" name="bp_web[<?= $i ?>]" value="<?= (!empty($item['bp_web'][$i]) ? $item['bp_web'][$i] : '') ?>">
-                           <?php } ?>
+                           <?php } } ?>
                           </ul>
                         </div>
                       </div>
@@ -127,11 +128,11 @@
                                 <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" name="bp_date_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_from'][$i] }}" readonly="">
+                                  <input type="text" name="bp_period_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_period_from'][$i] }}" readonly="">
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" name="bp_date_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_date_to'][$i] }}" readonly="">
+                                  <input type="text" name="bp_period_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['bp_period_to'][$i] }}" readonly="">
                                 </div>
                               </div>
                             </div>
@@ -152,15 +153,15 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['bp_ad_desc_file'][$i] }}" target="_blank">{{ $item['bp_ad_desc_file'][$i] }}</a></div>
-                                <input type="hidden" name="bp_ad_desc_file[<?= $i ?>]" value="{{ $item['bp_ad_desc_file'][$i] }}">
+                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['bp_banner_file'][$i] }}" target="_blank">{{ $item['bp_banner_file'][$i] }}</a></div>
+                                <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['bp_quotation'][$i] }}</a></div>
-                                <input type="hidden" name="bp_quotation[<?= $i ?>]" value="{{ $item['bp_quotation'][$i] }}">
+                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['bp_quotation_file'][$i] }}</a></div>
+                                <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
@@ -201,10 +202,12 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                          <?php for($i=0;$i<$item['total_ptd_web'];$i++){
-                              echo (!empty($item['ptd_web'][$i]) ? "<li>".$item['ptd_web'][$i]."</li>" : ''); ?>
+                          <?php for($i=0;$i<=$item['total_ptd_web'];$i++){
+                              echo (!empty($item['ptd_web'][$i]) ? "<li>".$item['ptd_web'][$i]."</li>" : ''); 
+                              if(!empty($item['ptd_web'][$i])){
+                          ?>
                               <input type="hidden" name="ptd_web[<?= $i ?>]" value="<?= (!empty($item['ptd_web'][$i]) ? $item['ptd_web'][$i] : '') ?>">
-                            <?php } ?>
+                          <?php }} ?>
                           </ul>
                         </div>
                       </div>
@@ -262,11 +265,11 @@
                                 <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" name="ptd_date_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_from'][$i] }}" readonly="">
+                                  <input type="text" name="ptd_period_from[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_period_from'][$i] }}" readonly="">
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" name="ptd_date_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_date_to'][$i] }}" readonly="">
+                                  <input type="text" name="ptd_period_to[<?= $i ?>]" class="form-input--date form-control-plaintext" value="{{ $item['ptd_period_to'][$i] }}" readonly="">
                                 </div>
                               </div>
                             </div>
@@ -287,15 +290,15 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['ptd_ad_desc_file'][$i] }}" target="_blank">{{ $item['ptd_ad_desc_file'][$i] }}</a></div>
-                                <input name="ptd_ad_desc_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_ad_desc_file'][$i] }}">
+                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['ptd_banner_file'][$i] }}" target="_blank">{{ $item['ptd_banner_file'][$i] }}</a></div>
+                                <input name="ptd_banner_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_banner_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['ptd_quotation'][$i] }}</a></div>
-                                <input name="ptd_quotation[<?= $i ?>]" type="hidden" value="{{ $item['ptd_quotation'][$i] }}">
+                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['ptd_quotation_file'][$i] }}</a></div>
+                                <input name="ptd_quotation_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_quotation_file'][$i] }}">
                               </div>
                             </div>
                             <div class="form-group row">

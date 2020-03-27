@@ -211,12 +211,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_from[0]" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="bp_period_from[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_to[0]" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="bp_period_to[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -244,7 +244,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_ad_desc_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_banner_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -254,7 +254,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_quotation_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -338,12 +338,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_from[<?= $i ?>]" value="<?= (!empty($item['bp_date_from'][$i]) ? $item['bp_date_from'][$i] : '' ) ?>" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="bp_period_from[<?= $i ?>]" value="<?= (!empty($item['bp_period_from'][$i]) ? $item['bp_period_from'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="bp_date_to[<?= $i ?>]" value="<?= (!empty($item['bp_date_to'][$i]) ? $item['bp_date_to'][$i] : '' ) ?>" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="bp_period_to[<?= $i ?>]" value="<?= (!empty($item['bp_period_to'][$i]) ? $item['bp_period_to'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -371,7 +371,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_ad_desc_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_ad_desc_file'][$i]) ? $item['bp_ad_desc_file'][$i] : '' ) ?>">
+                                  <input type="file" name="bp_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
@@ -381,7 +381,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation'][$i]) ? $item['bp_quotation'][$i] : '' ) ?>">
+                                  <input type="file" name="bp_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -554,12 +554,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[0]" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="ptd_period_from[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[0]" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="ptd_period_to[0]" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -587,7 +587,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_ad_desc_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
@@ -597,7 +597,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="ptd_quotation_file[0]" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -682,12 +682,12 @@
                                 <div class="input-group-inline"><span>Period:</span></div>
                                 <div class="input-group-inline">
                                   <span>From</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_from[<?= $i ?>]" value="<?= (!empty($item['ptd_date_from'][$i]) ? $item['ptd_date_from'][$i] : '' ) ?>" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="ptd_period_from[<?= $i ?>]" value="<?= (!empty($item['ptd_period_from'][$i]) ? $item['ptd_period_from'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                                 <div class="input-group-inline">
                                   <span>to</span>
-                                  <input type="text" class="form-control form-input--date" name="ptd_date_to[<?= $i ?>]" value="<?= (!empty($item['ptd_date_to'][$i]) ? $item['ptd_date_to'][$i] : '' ) ?>" autocomplete="off">
+                                  <input type="text" class="form-control form-input--date" name="ptd_period_to[<?= $i ?>]" value="<?= (!empty($item['ptd_period_to'][$i]) ? $item['ptd_period_to'][$i] : '' ) ?>" autocomplete="off">
                                   <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                                 </div>
                               </div>
@@ -715,7 +715,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_ad_desc_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_ad_desc_file'][$i]) ? $item['ptd_ad_desc_file'][$i] : '' ) ?>">
+                                  <input type="file" name="ptd_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
@@ -725,7 +725,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation'][$i]) ? $item['ptd_quotation'][$i] : '' ) ?>">
+                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>">
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>

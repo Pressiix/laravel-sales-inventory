@@ -31,23 +31,18 @@ class AppController extends Controller
      */
     public function request()
     {
-        //if(auth()->user()->hasRole(['dev','sale','sale-management'])){
+        
             $customer = array_column(json_decode(json_encode(Customer::all()), True),'customer_fullname','id');
             $advertiser = array_column(json_decode(json_encode(Advertiser::all()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
     
-            //echo "<pre/>"; print_r(array_merge_recursive(['0' => 'Choose...'], $customer));
             return view('new.request_form',[
                 'sales_name' => auth()->user()->firstname.' '.auth()->user()->lastname,
                 'customer' => $customer,
                 'advertiser' => $advertiser,
                 'sectionArray' => $data,
             ]);
-        /*}
-        else{
-            return abort('403');
-        }*/
         
     }
 
@@ -55,21 +50,35 @@ class AppController extends Controller
     {
         if(strpos(URL::previous(),'request_form'))
         {
+            $item = $request->all();
+            $referer = 'request_form';
+            //echo "<pre/>"; print_r($item);
             
-            //echo "<pre/>"; print_r($request->all());
-            return view('new.request_preview',[
-                'item' => $request->all(),
-                'referer' => 'request_form'//$referer
-            ]);
         }
-        else{
-            //$referer = "pending_list";
-        }
-        /*return view('new.request_preview',[
+
+        return view('new.request_preview',[
             'item' => $request->all(),
             'referer' => $referer
-        ]);*/
+        ]);
          
+    }
+
+    public function review2($id)
+    {
+        $request_form = RequestForm::find($id)->getOriginal();
+        $ad_desc = array_slice(AdDescription::where('request_id',$id)->first()->getOriginal(), 1, -1);
+        $request_form['customer_name'] = Customer::where('id',$request_form['customer_id'])->first()->getOriginal()['customer_fullname'];
+        $request_form['advertiser_name'] = Advertiser::where('id',$request_form['advertiser_id'])->first()->getOriginal()['advertiser_fullname'];
+        $request_form['total_bp_web'] = 9;
+        $request_form['total_ptd_web'] = 9;
+        foreach($ad_desc as $key=>$value)
+        {
+            $new_ad_desc[$key] = (is_array(json_decode($value,true)) ? json_decode($value,true) : ($value == '' ? '' : $value));
+        }
+
+        $item = array_merge($request_form,$new_ad_desc);
+        echo "<pre/>"; print_r($item);
+        
     }
 
     public function storeRequest(Request $request)
@@ -96,15 +105,14 @@ class AppController extends Controller
             {
                 //Save new request and ad description
                     $request_form = RequestForm::create([
-                        'request_id' => '1',
                         'sales_name'=>$request->sales_name,
                         'sales_type'=>$request->sales_type,
                         'campaign_name'=>$request->campaign_name,
                         'status'=>'Waiting',
-                        'create_at'=>date("Y-m-d h:i:s"),
+                        'create_at'=>date("Y-m-d H:i:s"),
                         'create_by'=>$request->sales_name,
-                        'update_by'=>NULL,
-                        'update_at'=>NULL,
+                        'update_by'=>$request->sales_name,
+                        'update_at'=>date("Y-m-d H:i:s"),
                         'advertiser_id'=>$request->advertiser_id,
                         'customer_id'=>$request->customer_id
                     ]);
@@ -114,12 +122,12 @@ class AppController extends Controller
                         'bp_size'=> json_encode((object) $request->bp_size_text),
                         'bp_position'=> json_encode((object) $request->bp_position_text),
                         'bp_section'=> json_encode((object) $request->bp_section_text),
-                        'bp_period_from'=> json_encode((object) $request->bp_date_from),
-                        'bp_period_to'=>json_encode((object) $request->bp_date_to),
+                        'bp_period_from'=> json_encode((object) $request->bp_period_from),
+                        'bp_period_to'=>json_encode((object) $request->bp_period_to),
                         'bp_device'=> json_encode((object) $request->bp_device),
                         'bp_url'=> json_encode((object) $request->bp_banner_url),
-                        'bp_banner_file'=> json_encode((object) $request->bp_ad_desc_file),
-                        'bp_quotation_file'=> json_encode((object) $request->bp_quotation),
+                        'bp_banner_file'=> json_encode((object) $request->bp_banner_file),
+                        'bp_quotation_file'=> json_encode((object) $request->bp_quotation_file),
                         'bp_impression'=> json_encode((object) $request->bp_impression_need),
                         'bp_detail'=> json_encode((object) $request->bp_ad_detail),
                         'bp_campaign_budget'=>$request->bp_campaign_budget,
@@ -128,18 +136,18 @@ class AppController extends Controller
                         'ptd_size'=> json_encode((object) $request->ptd_size_text),
                         'ptd_position'=> json_encode((object) $request->ptd_position_text),
                         'ptd_section'=> json_encode((object) $request->ptd_section_text),
-                        'ptd_period_from'=> json_encode((object) $request->ptd_date_from),
-                        'ptd_period_to'=> json_encode((object) $request->ptd_date_to),
+                        'ptd_period_from'=> json_encode((object) $request->ptd_period_from),
+                        'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
                         'ptd_device'=> json_encode((object) $request->ptd_device),
                         'ptd_url'=> json_encode((object) $request->ptd_banner_url),
-                        'ptd_banner_file'=> json_encode((object) $request->ptd_ad_desc_file),
-                        'ptd_quotation_file'=> json_encode((object) $request->ptd_quotation),
+                        'ptd_banner_file'=> json_encode((object) $request->ptd_banner_file),
+                        'ptd_quotation_file'=> json_encode((object) $request->ptd_quotation_file),
                         'ptd_impression'=> json_encode((object) $request->ptd_impression_need),
                         'ptd_detail'=> json_encode((object) $request->ptd_ad_detail),
                         'ptd_campaign_budget'=>$request->ptd_campaign_budget,
                     ]);
                 //echo json_encode((object) $request->bp_web);
-                //echo "<pre/>"; print_r($request->bp_web); echo "<pre/>";
+                //echo "<pre/>"; print_r($request->all()); echo "<pre/>";
 
                 //Send email to ...
                 //$this->sendEmail();
@@ -207,6 +215,7 @@ class AppController extends Controller
     {
         $someModel = DB::connection('mysql')->select('select * from request'); // static method
         $user = Auth::user();
+        //print_r(json_decode(json_encode($someModel), True));
         return view('new.profile2',[
             'someModel' => json_decode(json_encode($someModel), True)
         ],compact('user'));

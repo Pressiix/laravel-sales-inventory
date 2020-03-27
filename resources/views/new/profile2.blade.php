@@ -27,7 +27,7 @@
                     <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
                     <td><?=  $item['campaign_name'] ?></td>
                     <td><?= $item['status'] ?></td>
-                    <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
+                    <td class="text-center"><a href="/request_preview2/<?= $item['id'] ?>" class="btn btn-click">Click</a></td>
                   </tr>
               <?php } ?>
               <?php }else{ ?>

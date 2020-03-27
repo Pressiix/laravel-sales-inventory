@@ -29,4 +29,5 @@ class RequestForm extends Model
     {
         return $this->hasOne('App\AdDescription','request_id');
     }
+
 }

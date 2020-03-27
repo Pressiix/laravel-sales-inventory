@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
         Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
+
+        Route::get('/request_preview2/{id}','AppController@review2');
     });
         //Customer
         Route::get('/create_new_customer', 'CustomerController@createCustomer');
