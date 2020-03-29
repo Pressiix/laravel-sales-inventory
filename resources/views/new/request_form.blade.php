@@ -284,9 +284,8 @@
                           <script>
                             var bp_action = 'Edit';
                             console.log(bp_action);
-                            
-                            var bp_position_count = [<?= count($item['bp_position_id']) ?>];
-                            var bp_section_count = [<?= count($item['bp_size_id']) ?>];
+                            var bp_position_count = [<?= count($item['bp_position_id'])  ?>];
+                            var bp_section_count = [<?= count($item['bp_section_id']) ?>];
                           </script>
                         <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
                         
@@ -318,9 +317,6 @@
                                   <?php foreach($sectionArray['bp_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
-                                  <script> 
-                                    bp_position_count[<?= $i ?>] = '<?= (!empty($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') ?>';
-                                  </script>
                                 </select>
                                 <input type="hidden" name="bp_position_text[<?= $i ?>]" id="bp_position_text<?= $i ?>" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
                               </div>
@@ -328,7 +324,7 @@
                                 <label>Section:</label>
                                 <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
-                                <script> bp_section_count[<?= $i ?>] = '<?= $item['bp_section_id'][$i] ?>';</script>
+                                
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -416,7 +412,7 @@
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <input type="text" name="bp_campaign_budget" class="form-control">
+                        <input type="text" name="bp_campaign_budget" class="form-control" value="<?= (!empty($item['bp_campaign_budget']) ? $item['bp_campaign_budget'] : '' ) ?>">
                       </div>
                     </div>
                   </div>
@@ -629,7 +625,7 @@
                             console.log(ptd_action);
                             
                             var ptd_position_count = [<?= count($item['ptd_position_id']) ?>];
-                            var ptd_section_count = [<?= count($item['ptd_size_id']) ?>];
+                            var ptd_section_count = [<?= count($item['ptd_section_id']) ?>];
                           </script>
                         <?php for($i=0;$i<count($item['ptd_size_id']);$i++){ ?>
                         
@@ -661,10 +657,6 @@
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
-                                  <script> 
-                                    ptd_position_count[<?= $i ?>] = '<?= (!empty($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') ?>';
-
-                                    </script>
                                 </select>
                                 <input type="hidden" name="ptd_position_text[<?= $i ?>]" id="ptd_position_text<?= $i ?>" value="<?= (!empty($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') ?>" />
                               </div>
@@ -672,7 +664,6 @@
                                 <label>Section:</label>
                                 <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                   <option value="" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
-                                  <script> ptd_section_count[<?= $i ?>] = '<?= $item['ptd_section_id'][$i] ?>';</script>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[<?= $i ?>]" id="ptd_section_text<?= $i ?>" value="<?= (!empty($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') ?>" />
                               </div>
@@ -760,7 +751,7 @@
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <input type="text" name="ptd_campaign_budget" class="form-control">
+                        <input type="text" name="ptd_campaign_budget" class="form-control" value="<?= (!empty($item['ptd_campaign_budget']) ? $item['ptd_campaign_budget'] : '' ) ?>">
                       </div>
                     </div>
                   </div>
@@ -800,7 +791,7 @@
               
               for(j=1;j<Object.keys(jArray[position_value]).length;j++){
                   options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
-              }console.log(i);
+              }//console.log(i);
               $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
         }
     }
@@ -1050,11 +1041,10 @@
         todayHighlight: true
     });
 
-    //Date picker option if user create ad description card
-    $("body").on('focus', '.datepicker', function() {
+    $("body").on('focus','.datepicker',function(){
       $(this).datepicker({
-        autoclose: true,
-        todayHighlight: true
+          autoclose: true,
+          todayHighlight: true
       });
     });
 

@@ -73,11 +73,27 @@ class AppController extends Controller
         $request_form['total_ptd_web'] = 9;
         foreach($ad_desc as $key=>$value)
         {
-            $new_ad_desc[$key] = (is_array(json_decode($value,true)) ? json_decode($value,true) : ($value == '' ? '' : $value));
+            $i=0;
+            $key_check = (strpos($key,'_size') ? true : (strpos($key,'_position') ? true : (strpos($key,'_section') ? true : false ) ) );
+            if($key_check){
+                foreach(json_decode($value,true) as $key2=>$value2)
+                {
+                    $new_ad_desc[$key.'_id'][$i] = $key2;
+                    $new_ad_desc[$key.'_text'][$i] = $value2;
+                    $i++;
+                }
+            }
+            else{
+                $new_ad_desc[$key] = (is_array(json_decode($value,true)) ? json_decode($value,true) : ($value == '' ? '' : $value));
+            }
         }
 
         $item = array_merge($request_form,$new_ad_desc);
-        echo "<pre/>"; print_r($item);
+        //echo "<pre/>"; print_r($item);
+        return view('new.request_preview',[
+            'item' => $item,
+            'referer' => 'profile2'
+        ]);
         
     }
 
@@ -85,6 +101,7 @@ class AppController extends Controller
     {
             if($request->input('action') === 'Edit')
             {
+               // echo "<pre/>"; print_r($request->all());
                 $customer = array_column(json_decode(json_encode(DB::connection('mysql')->table('customer')->get()), True),'customer_fullname','id');
                 $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
                 $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
@@ -119,31 +136,31 @@ class AppController extends Controller
                     $request_form->relateAd()->create([
                         'bp_facebook' => $request->bp_facebook,
                         'bp_web' => json_encode((object) $request->bp_web),
-                        'bp_size'=> json_encode((object) $request->bp_size_text),
-                        'bp_position'=> json_encode((object) $request->bp_position_text),
-                        'bp_section'=> json_encode((object) $request->bp_section_text),
+                        'bp_size'=> json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )),
+                        'bp_position'=> json_encode((object) array_combine( $request->bp_position_id , $request->bp_position_text )),
+                        'bp_section'=> json_encode((object) array_combine( $request->bp_section_id , $request->bp_section_text )),
                         'bp_period_from'=> json_encode((object) $request->bp_period_from),
                         'bp_period_to'=>json_encode((object) $request->bp_period_to),
                         'bp_device'=> json_encode((object) $request->bp_device),
-                        'bp_url'=> json_encode((object) $request->bp_banner_url),
+                        'bp_banner_url'=> json_encode((object) $request->bp_banner_url),
                         'bp_banner_file'=> json_encode((object) $request->bp_banner_file),
                         'bp_quotation_file'=> json_encode((object) $request->bp_quotation_file),
-                        'bp_impression'=> json_encode((object) $request->bp_impression_need),
-                        'bp_detail'=> json_encode((object) $request->bp_ad_detail),
+                        'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
+                        'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
                         'bp_campaign_budget'=>$request->bp_campaign_budget,
                         'ptd_facebook' => $request->ptd_facebook,
                         'ptd_web' => json_encode((object) $request->ptd_web),
-                        'ptd_size'=> json_encode((object) $request->ptd_size_text),
-                        'ptd_position'=> json_encode((object) $request->ptd_position_text),
-                        'ptd_section'=> json_encode((object) $request->ptd_section_text),
+                        'ptd_size'=> json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )),
+                        'ptd_position'=> json_encode((object) array_combine( $request->ptd_position_id , $request->ptd_position_text )),
+                        'ptd_section'=> json_encode((object) array_combine( $request->ptd_section_id , $request->ptd_section_text )),
                         'ptd_period_from'=> json_encode((object) $request->ptd_period_from),
                         'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
                         'ptd_device'=> json_encode((object) $request->ptd_device),
-                        'ptd_url'=> json_encode((object) $request->ptd_banner_url),
+                        'ptd_banner_url'=> json_encode((object) $request->ptd_banner_url),
                         'ptd_banner_file'=> json_encode((object) $request->ptd_banner_file),
                         'ptd_quotation_file'=> json_encode((object) $request->ptd_quotation_file),
-                        'ptd_impression'=> json_encode((object) $request->ptd_impression_need),
-                        'ptd_detail'=> json_encode((object) $request->ptd_ad_detail),
+                        'ptd_impression_need'=> json_encode((object) $request->ptd_impression_need),
+                        'ptd_ad_detail'=> json_encode((object) $request->ptd_ad_detail),
                         'ptd_campaign_budget'=>$request->ptd_campaign_budget,
                     ]);
                 //echo json_encode((object) $request->bp_web);

@@ -146,7 +146,7 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>URL link banner:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext">{{ $item['bp_banner_url'][$i] }}</div>
+                                <div class="form-control-plaintext">{{ (!empty($item['bp_banner_url'][$i]) ? $item['bp_banner_url'][$i] : '') }}</div>
                                 <input type="hidden" name="bp_banner_url[<?= $i ?>]" value="{{ $item['bp_banner_url'][$i] }}">
                               </div>
                             </div>
@@ -187,7 +187,7 @@
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <div class="form-control-plaintext">{{ number_format($item['bp_campaign_budget']) }}</div>
+                        <div class="form-control-plaintext">{{ number_format((float) $item['bp_campaign_budget']) }}</div>
                         <input type="hidden" name="bp_campaign_budget" value="{{ $item['bp_campaign_budget'] }}">
                       </div>
                     </div>
@@ -324,7 +324,7 @@
                     <div class="form-group row">
                       <label class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
-                        <div class="form-control-plaintext">{{ number_format($item['ptd_campaign_budget']) }}</div>
+                        <div class="form-control-plaintext">{{ number_format((float) $item['ptd_campaign_budget']) }}</div>
                         <input name="ptd_campaign_budget" type="hidden" value="{{ $item['ptd_campaign_budget'] }}">
                       </div>
                     </div>
