@@ -23,9 +23,7 @@ class AppController extends Controller
 {
     public function test()
     {
-        //echo storage_path();
-        //echo public_path().'/storage/avatar/g4upClXU0zFNvIfwRgaa84PkqD3G3JvZjNdyfMzL.jpeg';
-        \File::delete(public_path().'/storage/avatar/6KfQphj3gK6B4yLZkABToIUk9m7EyZLbYakmZxGa.jpeg');
+        echo url()->previous();
         
     }
     /**
@@ -55,15 +53,16 @@ class AppController extends Controller
         {
             $userRole = 'sale-management';
         }
-        else{
+        else if(auth()->user()->hasRole('sale')){
             $userRole = 'sale';
+        }
+        else if(auth()->user()->hasRole('dev')){
+            $userRole = 'dev';
         }
         //$item = $request->all();
         //echo "<pre/>"; print_r($request->file('bp_banner_file')[$i]);
 
         /********************************** */
-        //DELETE UNUSAGE FILES BEFORE UPLOAD NEW FILES
-        //\File::delete('public/files/'$rofile_picture);
         $i=0;
         $bp_banner_file=[];
         $bp_quotation_file=[];
@@ -79,7 +78,7 @@ class AppController extends Controller
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                                 $i++;
                         }
-                        echo 'A';
+                        //echo 'A';
                     }else{
                         foreach($request->old_bp_banner_file as $banner){
                             if(isset($request->bp_banner_file[$i])){
@@ -95,7 +94,7 @@ class AppController extends Controller
                             }
                             $i++;
                         }
-                        echo 'B';
+                        //echo 'B';
                     }
                     $i=0;
                 }else{      
@@ -103,7 +102,7 @@ class AppController extends Controller
                         $bp_banner_file[$i] = $banner;
                         $i++;
                     }$i=0;
-                    echo 'C';
+                    //echo 'C';
                 }
         }
         else{  //NEW REQUEST FORM
@@ -113,9 +112,8 @@ class AppController extends Controller
                     $bp_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
-                //$bp_banner_file = json_encode((object) $bp_banner_file);
                 $i=0;
-                echo 'D';
+                //echo 'D';
             }
         }
 
@@ -129,7 +127,7 @@ class AppController extends Controller
                                 $bp_quotation_file[$i] = $request->file('bp_quotation_file')[$i]->hashName();
                                 $i++;
                         }
-                        echo 'A';
+                        //echo 'A';
                     }else{
                         foreach($request->old_bp_quotation_file as $quotation){
                             if(isset($request->bp_quotation_file[$i])){
@@ -145,7 +143,7 @@ class AppController extends Controller
                             }
                             $i++;
                         }
-                        echo 'B';
+                        //echo 'B';
                     }
                     $i=0;
                 }else{      
@@ -153,7 +151,7 @@ class AppController extends Controller
                         $bp_quotation_file[$i] = $quotation;
                         $i++;
                     }$i=0;
-                    echo 'C';
+                    //echo 'C';
                 }
         }
         else{  //NEW REQUEST FORM
@@ -163,9 +161,8 @@ class AppController extends Controller
                     $bp_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
-                //$bp_quotation_file = json_encode((object) $bp_quotation_file);
                 $i=0;
-                echo 'D';
+                //echo 'D';
             }
         }
 
@@ -179,7 +176,7 @@ class AppController extends Controller
                                 $ptd_banner_file[$i] = $request->file('ptd_banner_file')[$i]->hashName();
                                 $i++;
                         }
-                        echo 'A';
+                        //echo 'A';
                     }else{
                         foreach($request->old_ptd_banner_file as $banner){
                             if(isset($request->ptd_banner_file[$i])){
@@ -195,7 +192,7 @@ class AppController extends Controller
                             }
                             $i++;
                         }
-                        echo 'B';
+                        //echo 'B';
                     }
                     $i=0;
                 }else{      
@@ -203,7 +200,7 @@ class AppController extends Controller
                         $ptd_banner_file[$i] = $banner;
                         $i++;
                     }$i=0;
-                    echo 'C';
+                    //echo 'C';
                 }
         }
         else{  //NEW REQUEST FORM
@@ -213,9 +210,8 @@ class AppController extends Controller
                     $ptd_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
-                //$ptd_banner_file = json_encode((object) $ptd_banner_file);
                 $i=0;
-                echo 'D';
+                //echo 'D';
             }
         }
 
@@ -229,7 +225,7 @@ class AppController extends Controller
                                 $ptd_quotation_file[$i] = $request->file('ptd_quotation_file')[$i]->hashName();
                                 $i++;
                         }
-                        echo 'A';
+                        //echo 'A';
                     }else{
                         foreach($request->old_ptd_quotation_file as $quotation){
                             if(isset($request->ptd_quotation_file[$i])){
@@ -245,7 +241,7 @@ class AppController extends Controller
                             }
                             $i++;
                         }
-                        echo 'B';
+                        //echo 'B';
                     }
                     $i=0;
                 }else{      
@@ -253,7 +249,7 @@ class AppController extends Controller
                         $ptd_quotation_file[$i] = $quotation;
                         $i++;
                     }$i=0;
-                    echo 'C';
+                    //echo 'C';
                 }
         }
         else{  //NEW REQUEST FORM
@@ -263,9 +259,8 @@ class AppController extends Controller
                     $ptd_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
-                //$ptd_quotation_file = json_encode((object) $ptd_quotation_file);
                 $i=0;
-                echo 'D';
+                //echo 'D';
             }
         }
 
@@ -288,7 +283,7 @@ class AppController extends Controller
                     'sales_name'=>$request->sales_name,
                     'sales_type'=>$request->sales_type,
                     'campaign_name'=>$request->campaign_name,
-                    //'status'=> (auth()->user()->hasRole('sale-management') ?'Approve':'Waiting'),
+                    'status'=> 'Draft',
                     'update_by'=>auth()->user()->firstname.' '.auth()->user()->lastname,
                     'update_at'=>date("Y-m-d H:i:s"),
                     'advertiser_id'=>$request->advertiser_id,
@@ -306,8 +301,8 @@ class AppController extends Controller
                     'bp_period_to'=>json_encode((object) $request->bp_period_to),
                     'bp_device'=> json_encode((object) $request->bp_device),
                     'bp_banner_url'=> json_encode((object) $request->bp_banner_url),
-                    'bp_banner_file'=> (isset($bp_banner_file)? $bp_banner_file : ''),
-                    'bp_quotation_file'=> (isset($bp_quotation_file)? $bp_quotation_file : ''),
+                    'bp_banner_file'=> json_encode((isset($bp_banner_file) && is_array($bp_banner_file) && !empty($bp_banner_file) ? (object) $bp_banner_file : (object) array(NULL))),
+                    'bp_quotation_file'=> json_encode((isset($bp_quotation_file) && is_array($bp_quotation_file) && !empty($bp_quotation_file) ? (object) $bp_quotation_file : (object) array(NULL))),
                     'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
                     'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
                     'bp_campaign_budget'=>$request->bp_campaign_budget,
@@ -320,8 +315,8 @@ class AppController extends Controller
                     'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
                     'ptd_device'=> json_encode((object) $request->ptd_device),
                     'ptd_banner_url'=> json_encode((object) $request->ptd_banner_url),
-                    'ptd_banner_file'=> (isset($ptd_banner_file)? $ptd_banner_file : ''),
-                    'ptd_quotation_file'=> (isset($ptd_quotation_file)? $ptd_quotation_file : ''),
+                    'ptd_banner_file'=> json_encode((isset($ptd_banner_file) && is_array($ptd_banner_file) && !empty($ptd_banner_file) ? (object) $ptd_banner_file : (object) array(NULL))),
+                    'ptd_quotation_file'=> json_encode((isset($ptd_quotation_file) && is_array($ptd_quotation_file) && !empty($ptd_quotation_file) ? (object) $ptd_quotation_file : (object) array(NULL))),
                     'ptd_impression_need'=> json_encode((object) $request->ptd_impression_need),
                     'ptd_ad_detail'=> json_encode((object) $request->ptd_ad_detail),
                     'ptd_campaign_budget'=>$request->ptd_campaign_budget,
@@ -330,7 +325,7 @@ class AppController extends Controller
         else
         {
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
-        
+
         //Save new request and ad description
             $request_form = RequestForm::create([
                 'request_id'=>$request_id,
@@ -354,8 +349,8 @@ class AppController extends Controller
                 'bp_period_to'=>json_encode((object) $request->bp_period_to),
                 'bp_device'=> json_encode((object) $request->bp_device),
                 'bp_banner_url'=> json_encode((object) $request->bp_banner_url),
-                'bp_banner_file'=> (isset($bp_banner_file)? $bp_banner_file : ''),
-                'bp_quotation_file'=> (isset($bp_quotation_file)? $bp_quotation_file : ''),
+                'bp_banner_file'=> json_encode((isset($bp_banner_file) && is_array($bp_banner_file) && !empty($bp_banner_file) ? (object) $bp_banner_file : (object) array(NULL))),
+                'bp_quotation_file'=> json_encode((isset($bp_quotation_file) && is_array($bp_quotation_file) && !empty($bp_quotation_file) ? (object) $bp_quotation_file : (object) array(NULL))),
                 'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
                 'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
                 'bp_campaign_budget'=>$request->bp_campaign_budget,
@@ -368,17 +363,17 @@ class AppController extends Controller
                 'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
                 'ptd_device'=> json_encode((object) $request->ptd_device),
                 'ptd_banner_url'=> json_encode((object) $request->ptd_banner_url),
-                'ptd_banner_file'=> (isset($ptd_banner_file)? $ptd_banner_file : ''),
-                'ptd_quotation_file'=> (isset($ptd_quotation_file)? $ptd_quotation_file : ''),
+                'ptd_banner_file'=> json_encode((isset($ptd_banner_file) && is_array($ptd_banner_file) && !empty($ptd_banner_file) ? (object) $ptd_banner_file : (object) array(NULL))),
+                'ptd_quotation_file'=> json_encode((isset($ptd_quotation_file) && is_array($ptd_quotation_file) && !empty($ptd_quotation_file) ? (object) $ptd_quotation_file : (object) array(NULL))),
                 'ptd_impression_need'=> json_encode((object) $request->ptd_impression_need),
                 'ptd_ad_detail'=> json_encode((object) $request->ptd_ad_detail),
                 'ptd_campaign_budget'=>$request->ptd_campaign_budget,
             ]);
         }
         /********************************** */
-        //echo ($request_id ? $request_id : '');
         return view('new.request_preview',[
             'request_id'=>$request_id,
+            'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
         ]);
@@ -423,11 +418,11 @@ class AppController extends Controller
         }
 
         $item = array_merge($request_form,$new_ad_desc);
-        //echo "<pre/>"; print_r($item);
-        return view('new.request_preview',[
+        echo "<pre/>"; print_r($item);
+        /*return view('new.request_preview',[
             'item' => $item,
             'userRole' => $userRole
-        ]);
+        ]);*/
         
     }
 
@@ -456,6 +451,7 @@ class AppController extends Controller
             else if($request->input('action') === 'Submit')
             {
                 //DELETE BEFORE SAVE
+                AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
                 RequestForm::where('request_id', $request->request_id)->delete();
                 
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
@@ -465,7 +461,7 @@ class AppController extends Controller
                         'sales_name'=>$request->sales_name,
                         'sales_type'=>$request->sales_type,
                         'campaign_name'=>$request->campaign_name,
-                        'status'=> (auth()->user()->hasRole('sale-management') ?'Approve':'Waiting'),
+                        'status'=> 'Waiting',
                         'create_at'=>date("Y-m-d H:i:s"),
                         'update_by'=>$request->sales_name,
                         'update_at'=>date("Y-m-d H:i:s"),
@@ -614,15 +610,24 @@ class AppController extends Controller
     }
     public function profile2()
     {
-        $someModel = DB::connection('mysql')->select('select * from request'); // static method
         $user = Auth::user();
-        //print_r(json_decode(json_encode($someModel), True));
+        //Show all row
+        $someModel = DB::connection('mysql')->select('select * from request'); // static method
+        $someModel =json_decode(json_encode($someModel), True);
+        $i=0;
+        foreach($someModel as $item)
+        {
+            //Show only row that has status not equal draft (Wiating or Approve)
+            if($item['status'] !== 'Draft'){
+                $a[$i] = $item;
+                $i++;
+            }
+        }
+        $someModel = $a;
+        //echo "<pre/>"; print_r(json_decode(json_encode($someModel), True));
         return view('new.profile2',[
             'someModel' => json_decode(json_encode($someModel), True)
         ],compact('user'));
-
-        /*$user = Auth::user();
-        return view('new.profile2',compact('user'));*/
     }
     public function profile3()
     {

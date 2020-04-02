@@ -311,7 +311,7 @@
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
                                 <div class="form-control-plaintext"><a href="{{ (isset($item['ptd_banner_file'][$i]) ? 'assets/images/'.$item['ptd_banner_file'][$i] : '') }}" target="_blank">{{ (isset($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '') }}</a></div>
-                                <input name="ptd_banner_file[<?= $i ?>]" type="hidden" value="(isset($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '')">
+                                <input name="ptd_banner_file[<?= $i ?>]" type="hidden" value="<?= (isset($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '') ?>">
                               </div>
                             </div>
                             <div class="form-group row">
@@ -366,7 +366,14 @@
             <?php } ?>
 
 
-            <?php if($userRole === "sale-management"){ ?>
+            <?php if($userRole === "sale-management" && strpos($previous_url,'profile2')){ ?>
+            <div class="btn-2item">
+              <div class="row">
+                <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
+              </div>
+            </div>
+            <?php } else if($userRole === "sale" && (strpos($previous_url,'profile2') || strpos($previous_url,'profile3')) ){ ?>
             <div class="btn-2item">
               <div class="row">
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
