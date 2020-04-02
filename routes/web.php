@@ -68,13 +68,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profile3', 'AppController@profile3');
         
        
-    Route::group(['middleware' => ['can:create request','can:edit request']], function () { 
-        Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
+    Route::group(['middleware' => ['permission:create request|edit request']], function () {
+        Route::group(['middleware' => ['role:sale|dev']], function () {
+            Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
+        });
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
         Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
-
+       
         Route::get('/request_preview2/{id}','AppController@review2');
     });
+       
         //Customer
         Route::get('/create_new_customer', 'CustomerController@createCustomer');
         Route::post('save-customer', ['as' => 'save-customer', 'uses' => 'CustomerController@storeCustomer']);

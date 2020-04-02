@@ -4,8 +4,25 @@
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Form</h2>
-          {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form'])!!}
-
+          {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
+          <?php if(isset($item['id'])){ ?>
+              <input type="hidden" name='id' value="<?= $item['id'] ?>">
+            <?php } 
+            if(isset($item['ad_desc_id'])){ ?>
+              <input type="hidden" name='ad_desc_id' value="<?= $item['ad_desc_id'] ?>">
+            <?php }  
+            if(isset($item['request_id'])){ ?>
+              <input type="hidden" name='request_id' value="<?= $item['request_id'] ?>">
+            <?php }?>
+            <?php if(isset($item->old_bp_banner_file)){ ?>
+                <input type="hidden" name="old_bp_banner_file" value="<?= $item->old_bp_banner_file ?>">
+            <?php }if(isset($item->old_bp_quotation_file)){ ?>  
+                <input type="hidden" name="old_bp_quotation_file" value="<?= $item->old_bp_quotation_file ?>">
+            <?php  } if(isset($item->old_ptd_banner_file)){ ?>   
+                <input type="hidden" name="old_ptd_banner_file" value="<?= $item->old_ptd_banner_file ?>">
+            <?php  } if(isset($item->old_ptd_quotation_file)){ ?>  
+                <input type="hidden" name="old_ptd_quotation_file" value="<?= $item->old_ptd_quotation_file ?>">
+            <?php  } ?>
             <div class="content-pdb">
               <div class="form-group row">
                 <label for="staticName"  class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label">Sales name:</label>
@@ -189,7 +206,6 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                
                                 <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['bp_ad_section'] as $key => $item){ ?>
@@ -244,7 +260,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_banner_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_banner_file[0]" class="custom-file-input" id="customFile" multiple />
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -254,7 +270,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="bp_quotation_file[]" class="custom-file-input" id="customFile"multiple />
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -287,10 +303,10 @@
                             var bp_position_count = [<?= count($item['bp_position_id'])  ?>];
                             var bp_section_count = [<?= count($item['bp_section_id']) ?>];
                           </script>
-                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
+                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ $num = $i+1;?>
                         
                         <div id="bp-ad-card" class="box-ad--banner">
-                          <div id="bp-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
+                          <div id="bp-ad-title" class="box-ad--title">Ad <?= $num ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
@@ -323,8 +339,14 @@
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
                                 <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
-                                  <option value="" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
-                                
+                                <option value="">Choose Section</option>
+                                <?php 
+                                  $position_key = $item['bp_position_id'][$i];
+                                  foreach($sectionArray['bp_ad_section'][$position_key] as $key => $value){ 
+                                    if($key !== 'position'){
+                                ?>
+                                  <option value="<?= $key ?>" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
+                                <?php }} ?>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -368,7 +390,8 @@
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
                                   <input type="file" name="bp_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : '' ) ?>">
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <?php if(!empty($item['bp_banner_file'][$i])){ ?><input type="hidden" name="old_bp_banner_file[<?= $i ?>]" value="<?= $item['bp_banner_file'][$i] ?>" ><?php } ?>
+                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
@@ -377,8 +400,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : '' ) ?>">
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="bp_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : '' ) ?>" alt=""/>
+                                  <?php if(!empty($item['bp_quotation_file'][$i])){ ?><input type="hidden" name="old_bp_quotation_file[<?= $i ?>]" value="<?= $item['bp_quotation_file'][$i] ?>" ><?php } ?>
+                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -772,8 +796,8 @@
     var active_tab = 'bangkokpost';
     var none_active_tab = 'posttoday';
     var options="";
-
-    if(bp_action=='Edit'){
+    $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
+    /*if(bp_action=='Edit'){
         
         var web_name = 'bp';
         var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
@@ -794,9 +818,9 @@
               }//console.log(i);
               $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
         }
-    }
+    }*/
 
-    if(ptd_action=='Edit'){
+    /*if(ptd_action=='Edit'){
         
         var web_name = 'ptd';
         var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
@@ -817,7 +841,7 @@
               }
               $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
         }
-    }
+    }*/
 
     function changeOptionValue(a){
      
@@ -1010,6 +1034,18 @@
                 this.value= '';
             });
             Html.find("input[type='text']").each(function() {  //Replace input value
+                this.value= '';
+            });
+            Html.find("input[name*='old_bp_banner_file']").each(function() {  //Replace input value
+                this.value= '';
+            });
+            Html.find("input[name*='old_bp_quotation_file']").each(function() {  //Replace input value
+                this.value= '';
+            });
+            Html.find("input[name*='old_ptd_banner_file']").each(function() {  //Replace input value
+                this.value= '';
+            });
+            Html.find("input[name*='old_ptd_quotation_file']").each(function() {  //Replace input value
                 this.value= '';
             });
             Html.find('select').each(function() {   //Replace dropdown name

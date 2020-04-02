@@ -153,15 +153,35 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['bp_banner_file'][$i] }}" target="_blank">{{ $item['bp_banner_file'][$i] }}</a></div>
-                                <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i] }}">
+                                <?php if(isset($item['bp_banner_file'][$i])){ 
+                                  if(is_array($item['bp_banner_file'][$i])){
+                                ?>
+                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_banner_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_banner_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i]->hashName() }}">
+                                <?php } 
+                                  else{?>
+                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_banner_file'][$i] }}" target="_blank">{{ $item['bp_banner_file'][$i] }}</a></div>
+                                    <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i] }}">
+                                  <?php } ?>
+                                  <input type="hidden" name="old_bp_banner_file" value="<?= $item['bp_banner_file'][$i] ?>">
+                                <?php } ?>
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['bp_quotation_file'][$i] }}</a></div>
-                                <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i] }}">
+                              <?php if(isset($item['bp_quotation_file'])){ 
+                                  if(is_array($item['bp_quotation_file'][$i])){
+                                ?>
+                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_quotation_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_quotation_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i]->hashName() }}">
+                                <?php } 
+                                  else{?>
+                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_quotation_file'][$i] }}" target="_blank">{{ $item['bp_quotation_file'][$i] }}</a></div>
+                                    <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i] }}">
+                                  <?php } ?>
+                                  <input type="hidden" name="old_bp_quotation_file" value="<?= $item['bp_quotation_file'][$i] ?>">
+                                <?php } ?>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -290,15 +310,15 @@
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File banner:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="assets/images/{{ $item['ptd_banner_file'][$i] }}" target="_blank">{{ $item['ptd_banner_file'][$i] }}</a></div>
-                                <input name="ptd_banner_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_banner_file'][$i] }}">
+                                <div class="form-control-plaintext"><a href="{{ (isset($item['ptd_banner_file'][$i]) ? 'assets/images/'.$item['ptd_banner_file'][$i] : '') }}" target="_blank">{{ (isset($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '') }}</a></div>
+                                <input name="ptd_banner_file[<?= $i ?>]" type="hidden" value="(isset($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '')">
                               </div>
                             </div>
                             <div class="form-group row">
                               <label for="inputURL" class="col-sm-4 col-form-label label-normal"><strong>File quotation:</strong></label>
                               <div class="col-sm-11">
-                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ $item['ptd_quotation_file'][$i] }}</a></div>
-                                <input name="ptd_quotation_file[<?= $i ?>]" type="hidden" value="{{ $item['ptd_quotation_file'][$i] }}">
+                                <div class="form-control-plaintext"><a href="quotation.pdf" target="_blank">{{ (isset($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '') }}</a></div>
+                                <input name="ptd_quotation_file[<?= $i ?>]" type="hidden" value="<?= (isset($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '') ?>">
                               </div>
                             </div>
                             <div class="form-group row">
@@ -335,18 +355,29 @@
 
             </div>
 
-            <?php if($referer === "request_form"){ ?>
+            <?php if(isset($item['id'])){ ?>
+              <input type="hidden" name='id' value="<?= $item['id'] ?>">
+            <?php } 
+             if(isset($item['ad_desc_id'])){ ?>
+              <input type="hidden" name='ad_desc_id' value="<?= $item['ad_desc_id'] ?>">
+            <?php } 
+            if(isset($request_id)){ ?>
+              <input type="hidden" name='request_id' value="<?= $request_id ?>">
+            <?php } ?>
+
+
+            <?php if($userRole === "sale-management"){ ?>
             <div class="btn-2item">
               <div class="row">
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
-                <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               </div>
             </div>
             <?php }else{ ?>
               <div class="btn-2item">
               <div class="row">
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
-                <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
               </div>
             </div>
               <?php } ?>

@@ -23,7 +23,7 @@ class DevController extends Controller
 
     public function test()
     {
-        return User::findUserById('22')->getPermissionsViaRoles();
+        return User::findUserById('202')->getPermissionsViaRoles()[0]['name'];
     }
 
     /** 
@@ -143,7 +143,7 @@ class DevController extends Controller
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
 
-        Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        //Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
      
         $this->genDev();
@@ -178,7 +178,7 @@ class DevController extends Controller
             }
         }
         
-        return redirect('backend/users-display');
+        //return redirect('backend/users-display');
      }
 
      public function removeRoleFromUser(Request $request, $id, $role)
