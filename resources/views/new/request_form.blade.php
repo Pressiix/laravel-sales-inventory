@@ -12,7 +12,9 @@
               <input type="hidden" name='ad_desc_id' value="<?= $item['ad_desc_id'] ?>">
             <?php }  
             if(isset($item['request_id'])){ ?>
-              <input type="hidden" name='request_id' value="<?= $item['request_id'] ?>">
+              <input type="text" name='request_id' value="<?= $item['request_id'] ?>">
+            <?php }if(isset($item['status'])){ ?>
+              <input type="text" name='status' value="<?= $item['status'] ?>">
             <?php }?>
             <?php if(isset($item->old_bp_banner_file)){ ?>
                 <input type="hidden" name="old_bp_banner_file" value="<?= $item->old_bp_banner_file ?>">
@@ -303,10 +305,10 @@
                             var bp_position_count = [<?= count($item['bp_position_id'])  ?>];
                             var bp_section_count = [<?= count($item['bp_section_id']) ?>];
                           </script>
-                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ $num = $i+1;?>
+                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
                         
                         <div id="bp-ad-card" class="box-ad--banner">
-                          <div id="bp-ad-title" class="box-ad--title">Ad <?= $num ?> Description:</div>
+                          <div id="bp-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
@@ -341,12 +343,13 @@
                                 <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                 <option value="">Choose Section</option>
                                 <?php 
+                                  if(!empty($item['bp_section_id'][$i])){
                                   $position_key = $item['bp_position_id'][$i];
                                   foreach($sectionArray['bp_ad_section'][$position_key] as $key => $value){ 
                                     if($key !== 'position'){
                                 ?>
                                   <option value="<?= $key ?>" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
-                                <?php }} ?>
+                                <?php }}} ?>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -537,13 +540,34 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text" >
-                                  <option value="">Choose Size</option>
-                                  <option value="1">Billboard</option>
-                                  <option value="2">Rectangle</option>
-                                  <option value="3">Double-Rectangle</option>
-                                  <option value="4">Boombox</option>
-                                  <option value="5">Fullwidth</option>
-                                  <option value="6">Leaderboard</option>
+                                      <option value="">Choose Size</option>
+                                  <optgroup label="Rectangle Desktop & Mobile">
+                                      <option value="1">300x250</option>
+                                  </optgroup>
+                                  <optgroup label="Double Rectangle Desktop">
+                                    <option value="2">300x600</option>
+                                  </optgroup>
+                                  <optgroup label="Leaderboard Desktop">
+                                    <option value="3">Saab</option>
+                                    <option value="4">Volvo</option>
+                                    <option value="5">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="Leaderboard Mobile">
+                                    <option value="6">Volvo</option>
+                                    <option value="7">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="•	Coverpage Desktop">
+                                    <option value="8">Volvo</option>
+                                    <option value="9">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="•	Coverpage Mobile">
+                                    <option value="10">Volvo</option>
+                                    <option value="11">Saab</option>
+                                  </optgroup>
+                                  <optgroup label="InRead">
+                                    <option value="12">Volvo</option>
+                                    <option value="13">Saab</option>
+                                  </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.
@@ -552,9 +576,8 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
-                                
                                 <select name="ptd_position_id[0]" class="custom-select"  onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option   value="">Choose Position</option>
+                                  <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $item){ ?>
                                     <option value="<?= $key ?>"><?= $item['position'] ?></option>
                                   <?php } ?>
@@ -607,17 +630,17 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile" multiple />
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
+                                <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
                             </div>
                             <div class="form-group row">
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation_file[0]" class="custom-file-input" id="customFile">
+                                  <input type="file" name="ptd_quotation_file[]" class="custom-file-input" id="customFile"multiple />
                                   <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
@@ -653,7 +676,7 @@
                           </script>
                         <?php for($i=0;$i<count($item['ptd_size_id']);$i++){ ?>
                         
-                        <div id="ptd-ad-card" class="box-ad--banner">
+                          <div id="ptd-ad-card" class="box-ad--banner">
                           <div id="ptd-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
@@ -687,7 +710,15 @@
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
                                 <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
-                                  <option value="" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == '' ? 'selected' : '') ?> >Choose Section</option>
+                                <option value="">Choose Section</option>
+                                <?php 
+                                if(!empty($item['ptd_section_id'][$i])){
+                                  $position_key = $item['ptd_position_id'][$i];
+                                  foreach($sectionArray['ptd_ad_section'][$position_key] as $key => $value){ 
+                                    if($key !== 'position'){
+                                ?>
+                                  <option value="<?= $key ?>" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
+                                <?php }}} ?>
                                 </select>
                                 <input type="hidden" name="ptd_section_text[<?= $i ?>]" id="ptd_section_text<?= $i ?>" value="<?= (!empty($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') ?>" />
                               </div>
@@ -731,7 +762,8 @@
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
                                   <input type="file" name="ptd_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '' ) ?>">
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <?php if(!empty($item['ptd_banner_file'][$i])){ ?><input type="hidden" name="old_ptd_banner_file[<?= $i ?>]" value="<?= $item['ptd_banner_file'][$i] ?>" ><?php } ?>
+                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
@@ -740,8 +772,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>">
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>" alt=""/>
+                                  <?php if(!empty($item['ptd_quotation_file'][$i])){ ?><input type="hidden" name="old_ptd_quotation_file[<?= $i ?>]" value="<?= $item['ptd_quotation_file'][$i] ?>" ><?php } ?>
+                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -764,7 +797,7 @@
                             </div>
                           </div>
                         </div>
-                        <?php }
+                        <?php } 
                           } 
                         ?>
                         </div>
