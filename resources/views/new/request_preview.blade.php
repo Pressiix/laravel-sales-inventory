@@ -6,10 +6,10 @@
           <h2>Request Preview</h2>
           {!! Form::open(['action' => ['AppController@storeRequest', 'method' => 'POST']])!!}
             <?php if(isset($item['request_id'])){ ?>
-              <input type="text" name='request_id' value="<?= $item['request_id'] ?>" readonly="">
+              <input type="hidden" name='request_id' value="<?= $item['request_id'] ?>" readonly="">
             <?php }?>
             <?php if(isset($item['status'])){ ?>
-              <input type="text" name='status' value="<?= $item['status'] ?>" readonly="">
+              <input type="hidden" name='status' value="<?= $item['status'] ?>" readonly="">
             <?php }?>
             <div class="content-pdb">
               <div class="form-group row">
@@ -398,21 +398,22 @@
               <div class="btn-2item">
               <div class="row">
               
-              <?php if((isset($item['status']) && $item['status'] !== 'Approve') || (!isset($item['status']) && strpos(url()->current(),'request_preview'))){ ?>
+              <?php if((isset($item['status']) && $item['status'] !== 'Approve' &&strpos(url()->current(),'profile3')) || (!isset($item['status']) && strpos(url()->current(),'request_preview'))){ ?>
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
-             <?php } ?>
-              
-              <?php if(strpos(url()->current(),'request_preview2')){ 
+             <?php } 
+               if(strpos(url()->current(),'request_preview2')){ 
                       if(($userRole === "sale-management" || $userRole === "dev") && (isset($item['status']) && $item['status'] !== 'Approve')){ ?>
                           <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               <?php } 
               }else{ 
-                if(isset($item['status']) && $item['status'] !== 'Approve'){ 
+                if(isset($item['status']) && $item['status'] !== 'Approve' || (!isset($item['status']) && strpos(url()->previous(),'request_form'))){ 
                   if($userRole === "sale" || $userRole === "dev"){ ?>
                   <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
                 <?php } else if($userRole === "sale-management"){ ?>
                   <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
-                <?php } } } ?>  
+                <?php } 
+                }
+              } ?>  
               
               </div>
             </div>

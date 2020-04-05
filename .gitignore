@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage
+/frontend-source
 #/vendor
 .env
 .env.backup

@@ -8,18 +8,20 @@
             <div class="profile-period">
               <div class="form-group">
                  <div class="input-daterange datepicker" id="datepicker">
+                 {{ Form::open(['route' => '/profile3', 'method' => 'GET'])}}
                   <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                   <div class="input-group-inline">
                     <span>From</span>
-                    <input type="text" class="form-control form-input--date" name="start">
+                    <input type="text" class="form-control form-input--date" name="start" autocomplete="off">
                     <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                   </div>
                   <div class="input-group-inline">
                     <span>to</span>
-                    <input type="text" class="form-control form-input--date" name="end">
+                    <input type="text" class="form-control form-input--date" name="end" autocomplete="off">
                     <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                   </div>
-                  <a href="javascript:;" class="btn btn-click2">Apply</a>
+                  <button type="submit" class="btn btn-click2">Apply</button>
+                  {{ Form::close() }}
                 </div>
               </div>
             </div>
@@ -39,54 +41,18 @@
                 </tr>
               </thead>
               <tbody>
-                <!--<tr>
-                  <th scope="row" class="text-center">1</th>
-                  <td>28/2/2020 </td>
-                  <td>Otto</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td>Approved</td>
-                  <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-center">2</th>
-                  <td>28/2/2020 </td>
-                  <td>Thornton</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td>Approved</td>
-                  <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-center">3</th>
-                  <td>28/2/2020 </td>
-                  <td>the Bird</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td>Approved</td>
-                  <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-center">4</th>
-                  <td>28/2/2020 </td>
-                  <td>the Fish</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td>Approved</td>
-                  <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
-                </tr>-->
-                <?php if($someModel){ ?>
+                <?php if($someModel){ $i=1; ?>
                   <?php foreach($someModel as $item){ ?>
                   <tr>
-                    <td><?= $item['id'] ?></td>
+                    <td><?= $i/*$item['id']*/ ?></td>
                     <td><?=  $item['create_at'] ?></td>
                     <td><?=  $item['sales_name'] ?></td>
                     <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
                     <td><?=  $item['campaign_name'] ?></td>
                     <td><?= $item['status'] ?></td>
-                    <td class="text-center"><a href="javascript:;" class="btn btn-click">Click</a></td>
+                    <td class="text-center"><a href="/request_preview2/<?= $item['id'] ?>" class="btn btn-click">Click</a></td>
                   </tr>
-              <?php } ?>
+              <?php $i++; } ?>
               <?php }else{ ?>
                   <tr>
                     <td class="text-center" colspan="7"><b>No Data</b></td>
@@ -104,5 +70,7 @@
               autoclose: true,
               todayHighlight: true
           });
+
+          //$("input[type='submit']").value() = "";
       </script>
 @endsection

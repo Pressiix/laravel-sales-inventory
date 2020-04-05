@@ -12,9 +12,9 @@
               <input type="hidden" name='ad_desc_id' value="<?= $item['ad_desc_id'] ?>">
             <?php }  
             if(isset($item['request_id'])){ ?>
-              <input type="text" name='request_id' value="<?= $item['request_id'] ?>">
+              <input type="hidden" name='request_id' value="<?= $item['request_id'] ?>">
             <?php }if(isset($item['status'])){ ?>
-              <input type="text" name='status' value="<?= $item['status'] ?>">
+              <input type="hidden" name='status' value="<?= $item['status'] ?>">
             <?php }?>
             <?php if(isset($item->old_bp_banner_file)){ ?>
                 <input type="hidden" name="old_bp_banner_file" value="<?= $item->old_bp_banner_file ?>">
@@ -173,33 +173,35 @@
                                 <label>Size:</label>
                                 <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
                                       <option value="">Choose Size</option>
-                                  <optgroup label="Rectangle Desktop & Mobile">
-                                      <option value="1">300x250</option>
-                                  </optgroup>
-                                  <optgroup label="Double Rectangle Desktop">
-                                    <option value="2">300x600</option>
-                                  </optgroup>
-                                  <optgroup label="Leaderboard Desktop">
-                                    <option value="3">Saab</option>
-                                    <option value="4">Volvo</option>
-                                    <option value="5">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="Leaderboard Mobile">
-                                    <option value="6">Volvo</option>
-                                    <option value="7">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="•	Coverpage Desktop">
-                                    <option value="8">Volvo</option>
-                                    <option value="9">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="•	Coverpage Mobile">
-                                    <option value="10">Volvo</option>
-                                    <option value="11">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="InRead">
-                                    <option value="12">Volvo</option>
-                                    <option value="13">Saab</option>
-                                  </optgroup>
+                                      <optgroup label="Rectangle Desktop & Mobile">
+                                          <option value="1">300x250</option>
+                                      </optgroup>
+                                      <optgroup label="Double Rectangle Desktop">
+                                        <option value="2">300x600</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Desktop">
+                                        <option value="3">728x90</option>
+                                        <option value="4">970x90</option>
+                                        <option value="5">970x250</option>
+                                        <option value="6">1200x90</option>
+                                        <option value="7">1200x250</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Mobile">
+                                        <option value="8">320x100</option>
+                                        <option value="9">320x50</option>
+                                        <option value="10">300x100</option>
+                                        <option value="11">300x50</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Desktop">
+                                        <option value="12">800x500</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Mobile">
+                                        <option value="13">300x250</option>
+                                      </optgroup>
+                                      <optgroup label="InRead">
+                                        <option value="14">300x250</option>
+                                        <option value="15">640x360</option>
+                                      </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.
@@ -314,13 +316,36 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="bp_size_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_size_text<?= $i ?>').value=this.options[this.selectedIndex].text" >
-                                  <option value="" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
-                                  <option value="1" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '1' ? 'selected' : '') ?>>Billboard</option>
-                                  <option value="2" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '2' ? 'selected' : '') ?>>Rectangle</option>
-                                  <option value="3" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '3' ? 'selected' : '') ?>>Double-Rectangle</option>
-                                  <option value="4" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '4' ? 'selected' : '') ?>>Boombox</option>
-                                  <option value="5" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '5' ? 'selected' : '') ?>>Fullwidth</option>
-                                  <option value="6" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '6' ? 'selected' : '') ?>>Leaderboard</option>
+                                      <option value="" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
+                                      <optgroup label="Rectangle Desktop & Mobile">
+                                          <option value="1" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '1' ? 'selected' : '') ?>>300x250</option>
+                                      </optgroup>
+                                      <optgroup label="Double Rectangle Desktop">
+                                        <option value="2" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '2' ? 'selected' : '') ?>>300x600</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Desktop">
+                                        <option value="3" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '3' ? 'selected' : '') ?>>728x90</option>
+                                        <option value="4" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '4' ? 'selected' : '') ?>>970x90</option>
+                                        <option value="5" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '5' ? 'selected' : '') ?>>970x250</option>
+                                        <option value="6" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '6' ? 'selected' : '') ?>>1200x90</option>
+                                        <option value="7" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '7' ? 'selected' : '') ?>>1200x250</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Mobile">
+                                        <option value="8" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '8' ? 'selected' : '') ?>>320x100</option>
+                                        <option value="9" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '9' ? 'selected' : '') ?>>320x50</option>
+                                        <option value="10" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '10' ? 'selected' : '') ?>>300x100</option>
+                                        <option value="11" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '11' ? 'selected' : '') ?>>300x50</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Desktop">
+                                        <option value="12" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '12' ? 'selected' : '') ?>>800x500</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Mobile">
+                                        <option value="13" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '13' ? 'selected' : '') ?>>300x250</option>
+                                      </optgroup>
+                                      <optgroup label="InRead">
+                                        <option value="14" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '14' ? 'selected' : '') ?>>300x250</option>
+                                        <option value="15" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '15' ? 'selected' : '') ?>>640x360</option>
+                                      </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.
@@ -540,34 +565,36 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text" >
-                                      <option value="">Choose Size</option>
-                                  <optgroup label="Rectangle Desktop & Mobile">
-                                      <option value="1">300x250</option>
-                                  </optgroup>
-                                  <optgroup label="Double Rectangle Desktop">
-                                    <option value="2">300x600</option>
-                                  </optgroup>
-                                  <optgroup label="Leaderboard Desktop">
-                                    <option value="3">Saab</option>
-                                    <option value="4">Volvo</option>
-                                    <option value="5">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="Leaderboard Mobile">
-                                    <option value="6">Volvo</option>
-                                    <option value="7">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="•	Coverpage Desktop">
-                                    <option value="8">Volvo</option>
-                                    <option value="9">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="•	Coverpage Mobile">
-                                    <option value="10">Volvo</option>
-                                    <option value="11">Saab</option>
-                                  </optgroup>
-                                  <optgroup label="InRead">
-                                    <option value="12">Volvo</option>
-                                    <option value="13">Saab</option>
-                                  </optgroup>
+                                <option value="">Choose Size</option>
+                                      <optgroup label="Rectangle Desktop & Mobile">
+                                          <option value="1">300x250</option>
+                                      </optgroup>
+                                      <optgroup label="Double Rectangle Desktop">
+                                        <option value="2">300x600</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Desktop">
+                                        <option value="3">728x90</option>
+                                        <option value="4">970x90</option>
+                                        <option value="5">970x250</option>
+                                        <option value="6">1200x90</option>
+                                        <option value="7">1200x250</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Mobile">
+                                        <option value="8">320x100</option>
+                                        <option value="9">320x50</option>
+                                        <option value="10">300x100</option>
+                                        <option value="11">300x50</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Desktop">
+                                        <option value="12">800x500</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Mobile">
+                                        <option value="13">300x250</option>
+                                      </optgroup>
+                                      <optgroup label="InRead">
+                                        <option value="14">300x250</option>
+                                        <option value="15">640x360</option>
+                                      </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.
@@ -683,13 +710,36 @@
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="ptd_size_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_size_text<?= $i ?>').value=this.options[this.selectedIndex].text" >
-                                  <option value="" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
-                                  <option value="1" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '1' ? 'selected' : '') ?>>Billboard</option>
-                                  <option value="2" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '2' ? 'selected' : '') ?>>Rectangle</option>
-                                  <option value="3" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '3' ? 'selected' : '') ?>>Double-Rectangle</option>
-                                  <option value="4" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '4' ? 'selected' : '') ?>>Boombox</option>
-                                  <option value="5" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '5' ? 'selected' : '') ?>>Fullwidth</option>
-                                  <option value="6" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '6' ? 'selected' : '') ?>>Leaderboard</option>
+                                      <option value="" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
+                                      <optgroup label="Rectangle Desktop & Mobile">
+                                          <option value="1" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '1' ? 'selected' : '') ?>>300x250</option>
+                                      </optgroup>
+                                      <optgroup label="Double Rectangle Desktop">
+                                        <option value="2" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '2' ? 'selected' : '') ?>>300x600</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Desktop">
+                                        <option value="3" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '3' ? 'selected' : '') ?>>728x90</option>
+                                        <option value="4" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '4' ? 'selected' : '') ?>>970x90</option>
+                                        <option value="5" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '5' ? 'selected' : '') ?>>970x250</option>
+                                        <option value="6" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '6' ? 'selected' : '') ?>>1200x90</option>
+                                        <option value="7" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '7' ? 'selected' : '') ?>>1200x250</option>
+                                      </optgroup>
+                                      <optgroup label="Leaderboard Mobile">
+                                        <option value="8" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '8' ? 'selected' : '') ?>>320x100</option>
+                                        <option value="9" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '9' ? 'selected' : '') ?>>320x50</option>
+                                        <option value="10" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '10' ? 'selected' : '') ?>>300x100</option>
+                                        <option value="11" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '11' ? 'selected' : '') ?>>300x50</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Desktop">
+                                        <option value="12" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '12' ? 'selected' : '') ?>>800x500</option>
+                                      </optgroup>
+                                      <optgroup label="Coverpage Mobile">
+                                        <option value="13" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '13' ? 'selected' : '') ?>>300x250</option>
+                                      </optgroup>
+                                      <optgroup label="InRead">
+                                        <option value="14" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '14' ? 'selected' : '') ?>>300x250</option>
+                                        <option value="15" <?= (!empty($item['ptd_size_id'][$i]) && $item['ptd_size_id'][$i] == '15' ? 'selected' : '') ?>>640x360</option>
+                                      </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
                                   Please select a valid state.

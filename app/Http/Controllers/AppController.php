@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use DatePeriod;
+use DateInterval;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -23,7 +25,7 @@ class AppController extends Controller
 {
     public function test()
     {
-        echo url()->previous();
+        echo date_format(date_create('2020-04-04 15:0:00'),"Y-m-d");
         
     }
     /**
@@ -417,7 +419,7 @@ class AppController extends Controller
                 //echo "<pre/>"; print_r($request->all()); echo "<pre/>";
 
                 //Send email to ...
-                //$this->sendEmail();
+                $this->sendEmail();
                 
                 return Redirect::to('request_form')->with('success','Request form created successfully!');
             }
@@ -476,7 +478,7 @@ class AppController extends Controller
     public function sendEmail()
     {
         $details = [
-            'title' => 'Mail from Developer',
+            'title' => 'Notification!, Request form has been created',
             'body' => 'This is for testing email using smtp'
         ];
        
@@ -521,39 +523,82 @@ class AppController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        //echo "<pre/>"; print_r(compact('user'));
         return view('new.profile',compact('user'));
     }
     public function profile2()
     {
         $user = Auth::user();
-        //Show all row
+        //Get all row
         $someModel = DB::connection('mysql')->select('select * from request'); // static method
         $someModel =json_decode(json_encode($someModel), True);
-        $i=0;
-        $a = [];
-        foreach($someModel as $item)
-        {
-            //Show only row that has status not equal draft (Wiating or Approve)
-            if($item['status'] !== 'Draft'){
-                $a[$i] = $item;
-                $i++;
-            }
-        }
-        $someModel = $a;
-        //echo "<pre/>"; print_r(json_decode(json_encode($someModel), True));
+        //Sorting result array by date time
+        $someModel = collect($someModel)->sortByDesc('create_at')->all();
         return view('new.profile2',[
-            'someModel' => json_decode(json_encode($someModel), True)
+            'someModel' => $someModel
         ],compact('user'));
     }
-    public function profile3()
+
+    public function profile3(Request $request)
     {
-        $someModel = DB::connection('mysql')->select('select * from request'); // static method
-        $user = Auth::user();
-        return view('new.profile3',[
-            'someModel' => json_decode(json_encode($someModel), True)
-        ],compact('user'));
+            $someModel = DB::connection('mysql')->select('select * from request'); // static method
+            $someModel =json_decode(json_encode($someModel), True);
+            $user = Auth::user();
+            $sales_name = auth()->user()->firstname.' '.auth()->user()->lastname; 
+            //If user search data by date range
+            if(isset($request->start) && isset($request->end))
+            {
+                $item=[];
+                $start = date_format(date_create($request->start),"Y-m-d");
+                $end = date_format(date_create($request->end),"Y-m-d");
+                $format = 'Y-m-d';
+                $interval = new DateInterval('P1D');
+                $realEnd = new DateTime($end);
+                $realEnd->add($interval);
+                $date_period = new DatePeriod(new DateTime($start), $interval, $realEnd);
+                       
+
+                foreach($date_period as $date)
+                { 
+                    $month[] = date("m",strtotime($date->format($format)));
+                    $day[] = date("d",strtotime($date->format($format)));
+                }
+                $month = array_unique($month);
+                $day = array_unique($day);
+
+                foreach($someModel as $value)
+                {
+                    $create_at = date_format(date_create($value['create_at']),$format);
+                    if($value['sales_name'] == $sales_name && in_array(date("m",strtotime($create_at)),$month) && in_array(date("d",strtotime($create_at)),$day) )
+                    {
+                        foreach($date_period as $date) { 
+                            if($create_at == $date->format($format) )
+                            {
+                                $item[] =$value;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach($someModel as $value)
+                {
+                    if($value['sales_name'] == $sales_name)
+                    {
+                        $item[] = $value;
+                    }
+                }
+            }
+            if(!empty($item))
+            {
+                $item = collect($item)->sortByDesc('create_at')->all();
+            }
+
+            return view('new.profile3',[
+                'someModel' => $item
+            ],compact('user'));
     }
+
     public function ad_network()
     {
         return view('new.ad_network');
@@ -587,14 +632,6 @@ class AppController extends Controller
     {
         return view('new.create_new_advertiser');
     }
-    public function forgot()
-    {
-        return view('new.forgot');
-    }
-    /*public function request_form()
-    {
-        return view('new.request_form');
-    }*/
     
     public function revenue()
     {

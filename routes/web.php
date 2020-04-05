@@ -42,7 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/test',  'AppController@test');
     Route::get('/profile', 'AppController@profile');
-    //Route::post('/profile/ajax', 'AppController@profileAjax');
+    Route::get('/profile2', 'AppController@profile2');
+    Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
     Route::post('/users/update','UserController@update');
     Route::post('/upload-image', 'UserController@uploadProfileImage');
     
@@ -59,14 +60,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/backend/users-display','DevController@showAllUser');
         Route::post('/backend/users-find','DevController@findUser');
         Route::get('/backend/users-destroy/{id}','UserController@destroyUserById');
-        //Route::get('/backend/role-remove/{id}/{role}', 'DevController@removeRoleFromUser');
         Route::get('/backend/role-display/{id}', 'DevController@showRole');
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
     });
-    
-        Route::get('/profile2', 'AppController@profile2');
-        Route::get('/profile3', 'AppController@profile3');
-        
        
     Route::group(['middleware' => ['permission:create request|edit request']], function () {
         Route::group(['middleware' => ['role:sale|dev']], function () {
