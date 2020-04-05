@@ -161,12 +161,12 @@
                                 <?php if(isset($item['bp_banner_file'][$i])){ 
                                   if(is_array($item['bp_banner_file'][$i])){
                                 ?>
-                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_banner_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_banner_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['bp_banner_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_banner_file'][$i]->getClientOriginalName() }}</a></div>
                                   <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i]->hashName() }}">
                                   <input type="hidden" name="old_bp_banner_file" value="<?= $item['bp_banner_file'][$i]->hashName() ?>">
                                 <?php } 
                                   else{?>
-                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_banner_file'][$i] }}" target="_blank">{{ $item['bp_banner_file'][$i] }}</a></div>
+                                    <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['bp_banner_file'][$i] }}" target="_blank">{{ $item['bp_banner_file'][$i] }}</a></div>
                                     <input type="hidden" name="bp_banner_file[<?= $i ?>]" value="{{ $item['bp_banner_file'][$i] }}">
                                     <input type="hidden" name="old_bp_banner_file" value="<?= $item['bp_banner_file'][$i] ?>">
                                   <?php } ?>
@@ -179,12 +179,12 @@
                               <?php if(isset($item['bp_quotation_file'][$i])){ 
                                   if(is_array($item['bp_quotation_file'][$i])){
                                 ?>
-                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_quotation_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_quotation_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['bp_quotation_file'][$i]->hashName() }}" target="_blank">{{ $item['bp_quotation_file'][$i]->getClientOriginalName() }}</a></div>
                                   <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i]->hashName() }}">
                                   <input type="hidden" name="old_bp_quotation_file" value="<?= $item['bp_quotation_file'][$i]->hashName() ?>">
                                 <?php } 
                                   else{?>
-                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['bp_quotation_file'][$i] }}" target="_blank">{{ $item['bp_quotation_file'][$i] }}</a></div>
+                                    <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['bp_quotation_file'][$i] }}" target="_blank">{{ $item['bp_quotation_file'][$i] }}</a></div>
                                     <input type="hidden" name="bp_quotation_file[<?= $i ?>]" value="{{ $item['bp_quotation_file'][$i] }}">
                                     <input type="hidden" name="old_bp_quotation_file" value="<?= $item['bp_quotation_file'][$i] ?>">
                                   <?php } ?>
@@ -320,12 +320,12 @@
                                 <?php if(isset($item['ptd_banner_file'][$i])){ 
                                   if(is_array($item['ptd_banner_file'][$i])){
                                 ?>
-                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['ptd_banner_file'][$i]->hashName() }}" target="_blank">{{ $item['ptd_banner_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['ptd_banner_file'][$i]->hashName() }}" target="_blank">{{ $item['ptd_banner_file'][$i]->getClientOriginalName() }}</a></div>
                                   <input type="hidden" name="ptd_banner_file[<?= $i ?>]" value="{{ $item['ptd_banner_file'][$i]->hashName() }}">
                                   <input type="hidden" name="old_ptd_banner_file" value="<?= $item['ptd_banner_file'][$i]->hashName() ?>">
                                 <?php } 
                                   else{?>
-                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['ptd_banner_file'][$i] }}" target="_blank">{{ $item['ptd_banner_file'][$i] }}</a></div>
+                                    <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['ptd_banner_file'][$i] }}" target="_blank">{{ $item['ptd_banner_file'][$i] }}</a></div>
                                     <input type="hidden" name="ptd_banner_file[<?= $i ?>]" value="{{ $item['ptd_banner_file'][$i] }}">
                                     <input type="hidden" name="old_ptd_banner_file" value="<?= $item['ptd_banner_file'][$i] ?>">
                                   <?php } ?>
@@ -338,12 +338,12 @@
                               <?php if(isset($item['ptd_quotation_file'][$i])){ 
                                   if(is_array($item['ptd_quotation_file'][$i])){
                                 ?>
-                                  <div class="form-control-plaintext"><a href="storage/files/{{ $item['ptd_quotation_file'][$i]->hashName() }}" target="_blank">{{ $item['ptd_quotation_file'][$i]->getClientOriginalName() }}</a></div>
+                                  <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['ptd_quotation_file'][$i]->hashName() }}" target="_blank">{{ $item['ptd_quotation_file'][$i]->getClientOriginalName() }}</a></div>
                                   <input type="hidden" name="ptd_quotation_file[<?= $i ?>]" value="{{ $item['ptd_quotation_file'][$i]->hashName() }}">
                                   <input type="hidden" name="old_ptd_quotation_file" value="<?= $item['ptd_quotation_file'][$i]->hashName() ?>">
                                 <?php } 
                                   else{?>
-                                    <div class="form-control-plaintext"><a href="storage/files/{{ $item['ptd_quotation_file'][$i] }}" target="_blank">{{ $item['ptd_quotation_file'][$i] }}</a></div>
+                                    <div class="form-control-plaintext"><a href="<?= url('/') ?>/storage/files/{{ $item['ptd_quotation_file'][$i] }}" target="_blank">{{ $item['ptd_quotation_file'][$i] }}</a></div>
                                     <input type="hidden" name="ptd_quotation_file[<?= $i ?>]" value="{{ $item['ptd_quotation_file'][$i] }}">
                                     <input type="hidden" name="old_ptd_quotation_file" value="<?= $item['ptd_quotation_file'][$i] ?>">
                                   <?php } ?>
