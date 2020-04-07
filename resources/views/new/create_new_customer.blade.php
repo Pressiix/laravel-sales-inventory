@@ -54,7 +54,7 @@
                   <input type="text" name="customer_firstname" class="form-control" placeholder="First name" required>
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" name="customer_lastname" class="form-control" placeholder="Surname">
+                  <input type="text" name="customer_lastname" class="form-control" placeholder="Surname" required>
                 </div>
               </div>
               <div class="form-group row">

@@ -403,6 +403,7 @@
              <?php } 
                if(strpos(url()->current(),'request_preview2')){ 
                       if(($userRole === "sale-management" || $userRole === "dev") && (isset($item['status']) && $item['status'] !== 'Approve')){ ?>
+                          <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
                           <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               <?php } 
               }else{ 

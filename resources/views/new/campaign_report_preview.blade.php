@@ -1,99 +1,40 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-	
-  <!-- HTML5 Shim for IE -->
-  <!--[if IE]>
-    <script src="assets/js/html5.js"></script>
-  <![endif]-->
-	
-<title>Bangkok Post</title>
-	
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <link href="assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
-  <link href="assets/css/animate.min.css" rel="stylesheet">
-
-  <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-  <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-  <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" rel="stylesheet" type="text/css" />
-
-  <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="assets/js/scripts.js"></script>
-	
-</head>
-
-<body>
-<div class="contentStatic-pageBody">
-
-<header>
-  <div id="ham-menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <div class="header-panel">
-    <div class="container">
-      <div class="postgroup-logo">
-        <h1><a href="javascript:;"><img src="assets/images/postgroup-logo_blue.svg" class="img-fluid" alt=""></a></h1>
-      </div>
-      <div class="nav-inventory">
-        <ul>
-          <li><a href="javascript:;">Profile</a></li>
-          <li><a href="javascript:;">Request Form</a></li>
-          <li><a href="javascript:;">Booking Inventory</a></li>
-          <li><a href="javascript:;">Revenue</a></li>
-          <li><a href="javascript:;" class="actived">Campaign Report</a></li>
-          <li><a href="javascript:;">Ad Network</a></li>
-        </ul>
-        <div class="box-logout"><a href="javascript:;">logout</a></div>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- nav -->
-<div class="content-pd"></div>
-
-
-<section class="contentStatic-pageContent">
-  <div class="container">
-    <div class="row container--inventory">
+@section('content')
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Create Campaign Report</h2>
-          <form>
-
+          {!! Form::open(['action' => ['CampaignController@store_campaign', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
+            <input type="hidden" name="report_type_id" value="<?= (isset($item['report_type_id']) ? $item['report_type_id'] : '') ?>">
+            <input type="hidden" name="report_type_text" value="<?= (isset($item['report_type_text']) ? $item['report_type_text'] : '') ?>">
             <div class="content-pdb">
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext">Adver BP Homepage Highlight</div>
+                  <div class="form-control-plaintext"><?= (isset($item['advertiser_name']) ? $item['advertiser_name'] : '') ?></div>
+                  <input type="hidden" name="advertiser_id" value="<?= (isset($item['advertiser_id']) ? $item['advertiser_id'] : '') ?>">
+                  <input type="hidden" name="advertiser_name" value="<?= (isset($item['advertiser_name']) ? $item['advertiser_name'] : '') ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Campaign:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext">AP BP Adver 11-28 Nov 19 HP HL</div>
+                  <div class="form-control-plaintext"><?= (isset($item['campaign_name']) ? $item['campaign_name'] : '') ?></div>
+                  <input type="hidden" name="campaign_name" value="<?= (isset($item['campaign_name']) ? $item['campaign_name'] : '') ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Start Date:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext">11-11-2019</div>
+                  <div class="form-control-plaintext"><?= (isset($item['start']) ? $item['start'] : '') ?></div>
+                  <input type="hidden" name="start" value="<?= (isset($item['start']) ? $item['start'] : '') ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">End Date:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext">18-11-2019</div>
+                  <div class="form-control-plaintext"><?= (isset($item['end']) ? $item['end'] : '') ?></div>
+                  <input type="hidden" name="end" value="<?= (isset($item['end']) ? $item['end'] : '') ?>">
                 </div>
               </div>
 
@@ -113,55 +54,15 @@
                 </tr>
               </thead>
               <tbody>
+              <?php for($i=0;$i<count($item['name']);$i++){ ?>
                 <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
+                  <th scope="row" class="text-nowrap"><?= $item['campaign_name'] ?><input type="hidden" name="name[<?= $i ?>]" value="<?= (isset($item['name'][$i]) ? $item['name'][$i] : '') ?>"></th>
+                  <td><?= $item['date'][$i] ?><input type="hidden" name="date[<?= $i ?>]" value="<?= (isset($item['date'][$i]) ? $item['date'][$i] : '') ?>"></td>
+                  <td><?= $item['ad_server_impression'][$i] ?><input type="hidden" name="ad_server_impression[<?= $i ?>]" value="<?= (isset($item['ad_server_impression'][$i]) ? $item['ad_server_impression'][$i] : '') ?>"></td>
+                  <td><?= $item['ad_server_click'][$i] ?><input type="hidden" name="ad_server_click[<?= $i ?>]" value="<?= (isset($item['ad_server_click'][$i]) ? $item['ad_server_click'][$i] : '') ?>"></td>
+                  <td><?= $item['ad_server_ctr'][$i] ?>%<input type="hidden" name="ad_server_ctr[<?= $i ?>]" value="<?= (isset($item['ad_server_ctr'][$i]) ? $item['ad_server_ctr'][$i] : '') ?>"></td>
                 </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-nowrap">AP BP Adver 11-18 Nov 19 HP HL</th>
-                  <td>1/11/2019</td>
-                  <td>1245</td>
-                  <td>75</td>
-                  <td>0.08%</td>
-                </tr>
+              <?php } ?>
               </tbody>
             </table>
           </div>
@@ -170,34 +71,21 @@
 
             <div class="btn-2item">
               <div class="row">
-                <div class="col-50 box-l"><button type="submit" value="send" class="btn btn-submit">EDIT</button></div>
-                <div class="col-50 box-r"><button type="submit" value="send" class="btn btn-submit">Confirm</button></div>
+                <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
+                <div class="col-50 box-r"><input type="submit" name="action" value="Confirm" class="btn btn-submit"></div>
               </div>
             </div>
 
 
-          </form>
+            {!! Form::close() !!}
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<footer>
-  <div class="footer-panel">Copyright &copy; 2020 Bangkok Post Public Company Limited - All rights reserved.</div>
-</footer>
-
-</div>
-
+    
 <script>
-
-
     $('.datepicker').datepicker({
         autoclose: true,
         todayHighlight: true
     });
 
 </script>
-</body>
-</html>
+@endsection

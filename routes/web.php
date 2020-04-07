@@ -80,17 +80,20 @@ Route::group(['middleware' => ['auth']], function () {
         //Advertiser
         Route::get('/create_new_advertiser', 'AdvertiserController@createAdvertiser');
         Route::post('save-advertiser', ['as' => 'save-advertiser', 'uses' => 'AdvertiserController@storeAdvertiser']);
+        //CAMPAIGN REPORT
+        Route::get('/campaign_report', 'CampaignController@campaign_report');
+        Route::get('/campaign_report_create', 'CampaignController@campaign_report_create');
+        Route::post('/campaign_report_preview', 'CampaignController@campaign_report_preview');
+        Route::post('/store_campaign', 'CampaignController@store_campaign');
 
         Route::get('/ad_network', 'AppController@ad_network');
         Route::get('/ad_network_bymonth', 'AppController@ad_network_bymonth');
         Route::get('/ad_network_create', 'AppController@ad_network_create');
         Route::get('/booking_inventory', 'AppController@booking_inventory');
-        Route::get('/campaign_report', 'AppController@campaign_report');
-        Route::get('/campaign_report_create', 'AppController@campaign_report_create');
-        Route::get('/campaign_report_preview', 'AppController@campaign_report_preview');
+        
         Route::get('/revenue', 'AppController@revenue');
         Route::get('/success', 'AppController@success');
         Route::get('/success_ad_network', 'AppController@success_ad_network');
-        Route::get('/success_campaign', 'AppController@success_campaign');
+        
    
 });

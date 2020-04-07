@@ -51,10 +51,10 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Full name:</label>
                 <div class="col-sm-6 mb-sm-0 mb-3">
-                  <input type="text" name="advertiser_firstname" class="form-control" placeholder="First name">
+                  <input type="text" name="advertiser_firstname" class="form-control" placeholder="First name" required>
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" name="advertiser_lastname" class="form-control" placeholder="Surname">
+                  <input type="text" name="advertiser_lastname" class="form-control" placeholder="Surname" required>
                 </div>
               </div>
               <div class="form-group row">

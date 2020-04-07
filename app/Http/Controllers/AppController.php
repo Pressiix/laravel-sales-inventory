@@ -61,11 +61,11 @@ class AppController extends Controller
         else if(auth()->user()->hasRole('dev')){
             $userRole = 'dev';
         }
-        //$item = $request->all();
-        //echo "<pre/>"; print_r($request->file('bp_banner_file')[$i]);
+        $item = $request->all();
+        echo "<pre/>"; print_r($request->all());
 
         /********************************** */
-        $i=0;
+        /*$i=0;
         $bp_banner_file=[];
         $bp_quotation_file=[];
         $ptd_banner_file=[];
@@ -282,13 +282,13 @@ class AppController extends Controller
         {
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
-        /********************************** */
+        
         return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
-        ]);
+        ]);*/
         
     }
 
@@ -540,6 +540,7 @@ class AppController extends Controller
 
     public function profile3(Request $request)
     {
+            $item=[];
             $someModel = DB::connection('mysql')->select('select * from request'); // static method
             $someModel =json_decode(json_encode($someModel), True);
             $user = Auth::user();
@@ -547,7 +548,6 @@ class AppController extends Controller
             //If user search data by date range
             if(isset($request->start) && isset($request->end))
             {
-                $item=[];
                 $start = date_format(date_create($request->start),"Y-m-d");
                 $end = date_format(date_create($request->end),"Y-m-d");
                 $format = 'Y-m-d';
@@ -615,23 +615,6 @@ class AppController extends Controller
     {
         return view('new.booking_inventory');
     }
-    public function campaign_report()
-    {
-        return view('new.campaign_report');
-    }
-    public function campaign_report_create()
-    {
-        return view('new.campaign_report_create');
-    }
-    public function campaign_report_preview()
-    {
-        return view('new.campaign_report_preview');
-    }
-    
-    public function create_new_advertiser()
-    {
-        return view('new.create_new_advertiser');
-    }
     
     public function revenue()
     {
@@ -645,8 +628,5 @@ class AppController extends Controller
     {
         return view('new.success_ad_network');
     }
-    public function success_campaign()
-    {
-        return view('new.success_campaign');
-    }
+    
 }
