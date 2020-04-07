@@ -523,6 +523,7 @@ class AppController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        //echo "<pre/>"; print_r($user); echo "<pre/>";
         return view('new.profile',compact('user'));
     }
     public function profile2()

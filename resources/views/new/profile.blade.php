@@ -28,7 +28,7 @@
                   <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
                   <div class="col-sm-11">
                     <div class="btn-change" id="btn-change">Change</div>
-                    <input type="password" class="form-control" id="inputPassword" value="12345678910" disabled>
+                    <input type="password" class="form-control" id="inputPassword" value="123456789" disabled>
                   </div>
                 </div>
                 <div class="change-password" id="change-password" style="display: none;">

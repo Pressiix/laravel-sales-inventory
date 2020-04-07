@@ -21,8 +21,15 @@ class UserController extends Controller
     }
     public function update(Request $request)
     { 
-        //echo Hash::make('2578678686');
-        if(Hash::check($request['old-password'], auth()->user()->password))
+        if(empty($request['new-password']) && empty($request['old-password']))
+        {
+            DB::table('users')->where('id', Auth::user()->id)->update([
+                'email' => $request->email,
+                'telephone' => $request->telephone
+            ]);
+            return \Redirect::to('/profile')->with('success','Update!!');
+        }
+        if(!empty($request['new-password']) && !empty($request['old-password']) && (Hash::check($request['old-password'], auth()->user()->password)) )
         {
             DB::table('users')->where('id', Auth::user()->id)->update([
                 'password' => Hash::make($request['new-password']),
