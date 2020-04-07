@@ -48,7 +48,7 @@
                   <td>Otto</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
                 <tr>
@@ -57,7 +57,7 @@
                   <td>Thornton</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
                 <tr>
@@ -66,7 +66,7 @@
                   <td>the Bird</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
                 <tr>
@@ -75,7 +75,7 @@
                   <td>the Fish</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
                 <tr>
@@ -84,7 +84,7 @@
                   <td>the Fish</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@
                   <td>the Fish</td>
                   <td>Inventory</td>
                   <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="javascript:;" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
                   <td><a href="javascript:;" class="btn-click">Click</a></td>
                 </tr>
               </tbody>

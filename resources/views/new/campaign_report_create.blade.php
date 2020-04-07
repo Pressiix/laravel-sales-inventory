@@ -5,18 +5,20 @@
         <div class="content-inventory">
           <h2>Create Campaign Report</h2>
           {!! Form::open(['action' => ['CampaignController@campaign_report_preview', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
-
+          <?php if(isset($item['id'])){ ?>
+              <input type="hidden" name='id' value="<?= $item['id'] ?>">
+            <?php } ?>
             <div class="content-pdb">
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Report Type:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <select class="custom-select" name="report_type_id" onchange="document.getElementById('report_type_text').value=this.options[this.selectedIndex].text">
+                  <select class="custom-select" name="report_type_id" onchange="document.getElementById('report_type_name').value=this.options[this.selectedIndex].text">
                     <option <?= (!isset($item['report_type_id']) ? 'selected' : '') ?> >Choose...</option>
                     <option <?= (isset($item['report_type_id']) && $item['report_type_id']=='1' ? 'selected' : '') ?> value="1">One</option>
                     <option <?= (isset($item['report_type_id']) && $item['report_type_id']=='2' ? 'selected' : '') ?> value="2">Two</option>
                     <option <?= (isset($item['report_type_id']) && $item['report_type_id']=='3' ? 'selected' : '') ?> value="3">Three</option>
                   </select>
-                  <input type="hidden" name="report_type_text" id="report_type_text" value="<?= (isset($item['report_type_text']) ? $item['report_type_text'] : '') ?>" />
+                  <input type="hidden" name="report_type_name" id="report_type_name" value="<?= (isset($item['report_type_name']) ? $item['report_type_name'] : '') ?>" />
                 </div>
               </div>
               <div class="form-group row">
@@ -67,14 +69,14 @@
                 <div class="col-15 box--campaign">
 
                   <div id="campaign-item">
-                  <?php if(!isset($item['name'])){ ?>
+                  <?php if(!isset($item['item_name'])){ ?>
                   <div class="box-ad--banner" id="item-card">
                     <div class="box-ad--title" id="item-title">Line item 1:</div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="name[]" class="form-control">
+                          <input type="text" name="item_name[]" class="form-control">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -105,14 +107,14 @@
                   </div>
                   <?php } 
                   else{ 
-                    for($i=0;$i<count($item['name']);$i++){ ?>
+                    for($i=0;$i<count($item['item_name']);$i++){ ?>
                       <div class="box-ad--banner" id="item-card">
                     <div class="box-ad--title" id="item-title">Line item <?= $i+1 ?>:</div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="name[<?= $i ?>]" class="form-control" value="<?= $item['name'][$i] ?>">
+                          <input type="text" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -169,6 +171,9 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
     function addItems(){
         var count = $("div[id*='item-card']").length;
         var Html= $("div[id*='item-card']").eq(0).clone();
+            Html.find('input').each(function() {  //Replace input name
+                this.name= this.name.replace('[0]', '['+count+']');
+            });
             Html.find("input[type='hidden']").each(function() {  //Replace input name
                 this.id= this.id.replace('0', count);
             });

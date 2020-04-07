@@ -5,8 +5,11 @@
         <div class="content-inventory">
           <h2>Create Campaign Report</h2>
           {!! Form::open(['action' => ['CampaignController@store_campaign', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
+            <?php if(isset($item['id'])){ ?>
+              <input type="hidden" name='id' value="<?= $item['id'] ?>" readonly="">
+            <?php }?>
             <input type="hidden" name="report_type_id" value="<?= (isset($item['report_type_id']) ? $item['report_type_id'] : '') ?>">
-            <input type="hidden" name="report_type_text" value="<?= (isset($item['report_type_text']) ? $item['report_type_text'] : '') ?>">
+            <input type="hidden" name="report_type_name" value="<?= (isset($item['report_type_name']) ? $item['report_type_name'] : '') ?>">
             <div class="content-pdb">
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
@@ -54,9 +57,9 @@
                 </tr>
               </thead>
               <tbody>
-              <?php for($i=0;$i<count($item['name']);$i++){ ?>
+              <?php for($i=0;$i<count($item['item_name']);$i++){ ?>
                 <tr>
-                  <th scope="row" class="text-nowrap"><?= $item['campaign_name'] ?><input type="hidden" name="name[<?= $i ?>]" value="<?= (isset($item['name'][$i]) ? $item['name'][$i] : '') ?>"></th>
+                  <th scope="row" class="text-nowrap"><?= $item['campaign_name'] ?><input type="hidden" name="item_name[<?= $i ?>]" value="<?= (isset($item['item_name'][$i]) ? $item['item_name'][$i] : '') ?>"></th>
                   <td><?= $item['date'][$i] ?><input type="hidden" name="date[<?= $i ?>]" value="<?= (isset($item['date'][$i]) ? $item['date'][$i] : '') ?>"></td>
                   <td><?= $item['ad_server_impression'][$i] ?><input type="hidden" name="ad_server_impression[<?= $i ?>]" value="<?= (isset($item['ad_server_impression'][$i]) ? $item['ad_server_impression'][$i] : '') ?>"></td>
                   <td><?= $item['ad_server_click'][$i] ?><input type="hidden" name="ad_server_click[<?= $i ?>]" value="<?= (isset($item['ad_server_click'][$i]) ? $item['ad_server_click'][$i] : '') ?>"></td>

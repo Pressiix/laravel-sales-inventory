@@ -84,7 +84,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/campaign_report', 'CampaignController@campaign_report');
         Route::get('/campaign_report_create', 'CampaignController@campaign_report_create');
         Route::post('/campaign_report_preview', 'CampaignController@campaign_report_preview');
+        Route::get('/campaign_report_preview2/{id}', 'CampaignController@campaign_report_preview2');
         Route::post('/store_campaign', 'CampaignController@store_campaign');
+        Route::get('/campaign_success', 'CampaignController@campaign_success');
 
         Route::get('/ad_network', 'AppController@ad_network');
         Route::get('/ad_network_bymonth', 'AppController@ad_network_bymonth');

@@ -15,9 +15,7 @@ use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Advertiser;
-use App\Customer;
-use App\RequestForm;
-use App\AdDescription;
+use App\Campaign;
 use URL;
 use Input;
 
@@ -46,23 +44,85 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function campaign_report_preview2($id)
+    {
+        //Get all row
+        $campaign = DB::connection('mysql')->select('select * from campaign'); // static method
+        $campaign =json_decode(json_encode($campaign), True);
+        $i=0;
+        $item=[];
+        foreach($campaign as $key=>$value)
+        {
+            if($value['id'] == $id)
+            {
+                foreach($value as $key2=>$value2)
+                {
+                    if(!is_array(json_decode($value[$key2], True)))
+                    {
+                        $item[$key2] = $value[$key2];
+                    }
+                    else if(is_array(json_decode($value[$key2], True)) && count(json_decode($value[$key2], True)) === 1)
+                    {
+                        $item[$key2."_name"] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
+                        $item[$key2."_id"] = key(json_decode($value[$key2], True));
+                    }
+                    else
+                    {
+                        $item[$key2] = json_decode($value[$key2], True);
+                    }
+                }
+                break;
+            }
+        }
+        //echo "<pre/>";print_r($item);
+        return view('new.campaign_report_preview',[
+            'item'=>$item
+        ]);
+    }
+
     public function store_campaign(Request $request)
     {
         if($request->input('action') === 'Edit'){
-            //echo "<pre/>";print_r($request->all());
             return view('new.campaign_report_create',[
                 'item'=>$request->all()
             ]);
         }
         else if($request->input('action') === 'Confirm')
         {
+            $report_type[$request->report_type_id] = $request->report_type_text;
+            $advertiser[$request->advertiser_id] = $request->advertiser_name;
+
+            $item = [
+                'campaign_name'=>$request->campaign_name,
+                'report_type'=>json_encode((object) $report_type),
+                'advertiser'=>json_encode((object) $advertiser),
+                'start'=>date_format(date_create($request->start),"Y-m-d"),
+                'end'=>date_format(date_create($request->end),"Y-m-d"),
+                'item_name'=>json_encode((object) $request->item_name),
+                'date'=>json_encode((object) $request->date),
+                'ad_server_impression'=>json_encode((object) $request->ad_server_impression),
+                'ad_server_click'=>json_encode((object) $request->ad_server_click),
+                'ad_server_ctr'=>json_encode((object) $request->ad_server_ctr),
+                'update_at'=>date("Y-m-d H:i:s")
+            ];
+
+            if(isset($request->id))
+            {
+                $campaign = Campaign::where('id', $request->id)->update($item);
+            }
+            else
+            {
+                $campaign = Campaign::create($item);
+            }
             //Insert campaign
-            $campaign = Campaign::create([
-                ///
-            ]);
             
-            return view('new.success_campaign');
+
+            return Redirect::to('campaign_success');
         }
-        
+    }
+
+    public function campaign_success()
+    {
+        return view('new.success_campaign');
     }
 }

@@ -65,7 +65,7 @@ class AppController extends Controller
         echo "<pre/>"; print_r($request->all());
 
         /********************************** */
-        /*$i=0;
+        $i=0;
         $bp_banner_file=[];
         $bp_quotation_file=[];
         $ptd_banner_file=[];
@@ -288,7 +288,7 @@ class AppController extends Controller
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
-        ]);*/
+        ]);
         
     }
 

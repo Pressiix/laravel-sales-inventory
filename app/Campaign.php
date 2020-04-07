@@ -10,16 +10,17 @@ class Campaign extends Model
     
     protected $fillable = [
         'id',
-        'request_id',
-        'sales_name',
-        'sales_type',
         'campaign_name',
-        'status',
-        'create_at',
-        'update_by',
-        'update_at',
-        'advertiser_id',
-        'customer_id'
+        'report_type',
+        'advertiser',
+        'start',
+        'end',
+        'item_name',
+        'date',
+        'ad_server_impression',
+        'ad_server_click',
+        'ad_server_ctr',
+        'update_at'
     ];
     
     protected $connection = 'mysql';
