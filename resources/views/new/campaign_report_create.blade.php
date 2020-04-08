@@ -26,9 +26,9 @@
                 <div class="col-sm-11 col-md-11 col-lg-12">
                   <select class="custom-select" name="advertiser_id" onchange="document.getElementById('advertiser_name').value=this.options[this.selectedIndex].text">
                     <option <?= (!isset($item['advertiser_id']) ? 'selected' : '') ?> >Choose...</option>
-                    <option <?= (isset($item['advertiser_id']) && $item['advertiser_id']=='1' ? 'selected' : '') ?> value="1">One</option>
-                    <option <?= (isset($item['advertiser_id']) && $item['advertiser_id']=='2' ? 'selected' : '') ?> value="2">Two</option>
-                    <option <?= (isset($item['advertiser_id']) && $item['advertiser_id']=='3' ? 'selected' : '') ?> value="3">Three</option>
+                    <?php foreach($advertiser as $key=>$value){ ?>
+                      <option <?= (isset($item['advertiser_id']) && $item['advertiser_id']==$key ? 'selected' : '') ?> value="<?= $key ?>"><?= $value ?></option>
+                    <?php } ?>
                   </select>
                   <input type="hidden" name="advertiser_name" id="advertiser_name" value="<?= (isset($item['advertiser_name']) ? $item['advertiser_name'] : '') ?>" />
                 </div>

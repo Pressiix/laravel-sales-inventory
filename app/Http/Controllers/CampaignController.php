@@ -18,9 +18,6 @@ use App\Advertiser;
 use App\Campaign;
 use URL;
 use Input;
-use PDF;
-use Barryvdh\Snappy;
-use App;
 
 class CampaignController extends Controller
 {
@@ -61,6 +58,7 @@ class CampaignController extends Controller
                 {
                     $item[$i]['id'] = $value['id'];
                     $item[$i]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
+                    $item[$i]['report_date_time'] =  date_format(date_create($value['update_at']),"Y-m-d H:i:s");
                     $item[$i]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$i]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$i]['campaign_name'] = $value['campaign_name'];
@@ -74,12 +72,13 @@ class CampaignController extends Controller
             {
                     $item[$key]['id'] = $value['id'];
                     $item[$key]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
+                    $item[$key]['report_date_time'] =  date_format(date_create($value['update_at']),"Y-m-d H:i:s");
                     $item[$key]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$key]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$key]['campaign_name'] = $value['campaign_name'];
             }
         }
-        $item = collect($item)->sortByDesc('report_date')->all();
+        $item = collect($item)->sortByDesc('report_date_time')->all();
         //echo "<pre/>";print_r($item);
         return view('new.campaign_report',[
             'item'=>$item
@@ -88,7 +87,11 @@ class CampaignController extends Controller
     
     public function campaign_report_create()
     {
-        return view('new.campaign_report_create');
+        $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
+        //echo "<pre/>";print_r($advertiser);
+        return view('new.campaign_report_create',[
+            'advertiser'=>$advertiser
+        ]);
     }
 
     public function campaign_report_preview(Request $request)
@@ -138,8 +141,10 @@ class CampaignController extends Controller
     public function store_campaign(Request $request)
     {
         if($request->input('action') === 'Edit'){
+            $advertiser = array_column(json_decode(json_encode(DB::connection('mysql')->table('advertiser')->get()), True),'advertiser_fullname','id');
             return view('new.campaign_report_create',[
-                'item'=>$request->all()
+                'item'=>$request->all(),
+                'advertiser'=>$advertiser
             ]);
         }
         else if($request->input('action') === 'Confirm')
@@ -178,7 +183,37 @@ class CampaignController extends Controller
 
     public function campaign_download($id)
     {
-        
+        $campaign = DB::connection('mysql')->select('select * from campaign'); // static method
+        $campaign =json_decode(json_encode($campaign), True);
+        $i=0;
+        $item=[];
+        foreach($campaign as $key=>$value)
+        {
+            if($value['id'] == $id)
+            {
+                foreach($value as $key2=>$value2)
+                {
+                    if(!is_array(json_decode($value[$key2], True)))
+                    {
+                        $item[$key2] = $value[$key2];
+                    }
+                    else if(is_array(json_decode($value[$key2], True)) && count(json_decode($value[$key2], True)) === 1)
+                    {
+                        $item[$key2."_name"] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
+                        $item[$key2."_id"] = key(json_decode($value[$key2], True));
+                    }
+                    else
+                    {
+                        $item[$key2] = json_decode($value[$key2], True);
+                    }
+                }
+                break;
+            }
+        }
+        //echo "<pre/>";print_r(compact('item'));
+        return view('new.campaign_report_pdf',[
+            'item'=>$item
+        ]);
     }
 
     public function campaign_success()
