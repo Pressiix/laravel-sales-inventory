@@ -21,7 +21,7 @@
               <?php if($someModel){ $i=1; ?>
                   <?php foreach($someModel as $item){ ?>
                   <tr>
-                    <td><?= $i=1;/*$item['id'] */?></td>
+                    <td><?= $i/*$item['id'] */?></td>
                     <td><?=  $item['create_at'] ?></td>
                     <td><?=  $item['sales_name'] ?></td>
                     <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
