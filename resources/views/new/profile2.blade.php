@@ -18,10 +18,10 @@
                 </tr>
               </thead>
               <tbody>
-              <?php if($someModel){ ?>
+              <?php if($someModel){ $i=1; ?>
                   <?php foreach($someModel as $item){ ?>
                   <tr>
-                    <td><?= $item['id'] ?></td>
+                    <td><?= $i=1;/*$item['id'] */?></td>
                     <td><?=  $item['create_at'] ?></td>
                     <td><?=  $item['sales_name'] ?></td>
                     <td>Inventory<!--<?=  $item['sales_type'] ?>--></td>
@@ -29,7 +29,7 @@
                     <td style="<?= ($item['status'] == 'Waiting' ? 'color:red;' : 'color:green;') ?>"><b><?= $item['status'] ?></b></td>
                     <td class="text-center"><a href="/request_preview2/<?= $item['id'] ?>" class="btn btn-click">Click</a></td>
                   </tr>
-              <?php } ?>
+              <?php $i++; } ?>
               <?php }else{ ?>
                   <tr>
                     <td class="text-center" colspan="7"><b>No Data</b></td>
