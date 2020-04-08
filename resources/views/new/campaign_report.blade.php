@@ -11,18 +11,20 @@
             <div class="content-pdb2">
               <div class="form-group">
                  <div class="input-daterange datepicker">
+                 {!! Form::open(['action' => ['CampaignController@campaign_report', 'method' => 'GET']])!!}
                   <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                   <div class="input-group-inline">
                     <span>From</span>
-                    <input type="text" class="form-control form-input--date" name="start">
+                    <input type="text" class="form-control form-input--date" name="start" autocomplete="off">
                     <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                   </div>
                   <div class="input-group-inline">
                     <span>to</span>
-                    <input type="text" class="form-control form-input--date" name="end">
+                    <input type="text" class="form-control form-input--date" name="end" autocomplete="off">
                     <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                   </div>
-                  <a href="javascript:;" class="btn btn-click2">Apply</a>
+                  <button type="submit" class="btn btn-click2">Apply</button>
+                  {{ Form::close() }}
                 </div>
               </div>
             </div>
@@ -42,60 +44,17 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $i=0; foreach($item as $value){ ?>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>28/2/2020 </td>
-                  <td>Otto</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
+                  <th scope="row"><?= $i+1 ?></th>
+                  <td><?= $value['report_date'] ?></td>
+                  <td><?= $value['advertiser_name'] ?></td>
+                  <td><?= $value['report_type'] ?></td>
+                  <td><?= $value['campaign_name'] ?></td>
+                  <td><a href="/campaign_report_preview2/<?= $value['id'] ?>" class="btn-click">Edit</a></td>
+                  <td><a href="/campaign_report_download/<?= $value['id'] ?>" class="btn-click">Click</a></td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>28/2/2020 </td>
-                  <td>Thornton</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>28/2/2020 </td>
-                  <td>the Bird</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>28/2/2020 </td>
-                  <td>the Fish</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>28/2/2020 </td>
-                  <td>the Fish</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>28/2/2020 </td>
-                  <td>the Fish</td>
-                  <td>Inventory</td>
-                  <td>Xxxxx xxxxxxxxxxx xxxx</td>
-                  <td><a href="/campaign_report_preview2/372" class="btn-click">Edit</a></td>
-                  <td><a href="javascript:;" class="btn-click">Click</a></td>
-                </tr>
+                <?php $i++; } ?>
               </tbody>
             </table>
           </div>
@@ -109,7 +68,8 @@
 
     $('.datepicker').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        orientation: "bottom"
     });
 
 </script>

@@ -18,6 +18,9 @@ use App\Advertiser;
 use App\Campaign;
 use URL;
 use Input;
+use PDF;
+use Barryvdh\Snappy;
+use App;
 
 class CampaignController extends Controller
 {
@@ -26,9 +29,61 @@ class CampaignController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function campaign_report()
+    public function campaign_report(Request $request)
     {
-        return view('new.campaign_report');
+        $campaign = DB::connection('mysql')->select('select * from campaign'); // static method
+        $campaign =json_decode(json_encode($campaign), True);
+        $item=[];
+
+        if(isset($request->start) && isset($request->end))
+        {
+            $start = date_format(date_create($request->start),"Y-m-d");
+                $end = date_format(date_create($request->end),"Y-m-d");
+                $format = 'Y-m-d';
+                $interval = new DateInterval('P1D');
+                $realEnd = new DateTime($end);
+                $realEnd->add($interval);
+                $date_period = new DatePeriod(new DateTime($start), $interval, $realEnd);
+                       
+
+                foreach($date_period as $date)
+                { 
+                    $month[] = date("m",strtotime($date->format($format)));
+                    $day[] = date("d",strtotime($date->format($format)));
+                }
+                $month = array_unique($month);
+                $day = array_unique($day);
+            $i=0;
+            foreach($campaign as $value)
+            {
+                $report_date = date_format(date_create($value['update_at']),$format);
+                if(in_array(date("m",strtotime($report_date)),$month) && in_array(date("d",strtotime($report_date)),$day) )
+                {
+                    $item[$i]['id'] = $value['id'];
+                    $item[$i]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
+                    $item[$i]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$i]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$i]['campaign_name'] = $value['campaign_name'];
+                    $i++;
+                }
+            }
+        }
+        else
+        {
+            foreach($campaign as $key=>$value)
+            {
+                    $item[$key]['id'] = $value['id'];
+                    $item[$key]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
+                    $item[$key]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$key]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$key]['campaign_name'] = $value['campaign_name'];
+            }
+        }
+        $item = collect($item)->sortByDesc('report_date')->all();
+        //echo "<pre/>";print_r($item);
+        return view('new.campaign_report',[
+            'item'=>$item
+        ]);
     }
     
     public function campaign_report_create()
@@ -119,6 +174,11 @@ class CampaignController extends Controller
 
             return Redirect::to('campaign_success');
         }
+    }
+
+    public function campaign_download($id)
+    {
+        
     }
 
     public function campaign_success()
