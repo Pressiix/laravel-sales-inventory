@@ -109,29 +109,7 @@ class CampaignController extends Controller
         $campaign =json_decode(json_encode($campaign), True);
         $i=0;
         $item=[];
-        foreach($campaign as $key=>$value)
-        {
-            if($value['id'] == $id)
-            {
-                foreach($value as $key2=>$value2)
-                {
-                    if(!is_array(json_decode($value[$key2], True)))
-                    {
-                        $item[$key2] = $value[$key2];
-                    }
-                    else if(is_array(json_decode($value[$key2], True)) && count(json_decode($value[$key2], True)) === 1)
-                    {
-                        $item[$key2."_name"] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
-                        $item[$key2."_id"] = key(json_decode($value[$key2], True));
-                    }
-                    else
-                    {
-                        $item[$key2] = json_decode($value[$key2], True);
-                    }
-                }
-                break;
-            }
-        }
+        $item = $this->getCampaignDetail($campaign,$id);
         //echo "<pre/>";print_r($item);
         return view('new.campaign_report_preview',[
             'item'=>$item
@@ -149,7 +127,8 @@ class CampaignController extends Controller
         }
         else if($request->input('action') === 'Confirm')
         {
-            $report_type[$request->report_type_id] = $request->report_type_text;
+            //echo "<pre/>";print_r($request->all());
+            $report_type[$request->report_type_id] = $request->report_type_name;
             $advertiser[$request->advertiser_id] = $request->advertiser_name;
 
             $item = [
@@ -187,6 +166,16 @@ class CampaignController extends Controller
         $campaign =json_decode(json_encode($campaign), True);
         $i=0;
         $item=[];
+        $item = $this->getCampaignDetail($campaign,$id);
+        //echo "<pre/>";print_r($item);
+        return view('new.campaign_report_pdf',[
+            'item'=>$item
+        ]);
+    }
+
+    private function getCampaignDetail($campaign,$id)
+    {
+        $item=[];
         foreach($campaign as $key=>$value)
         {
             if($value['id'] == $id)
@@ -199,8 +188,20 @@ class CampaignController extends Controller
                     }
                     else if(is_array(json_decode($value[$key2], True)) && count(json_decode($value[$key2], True)) === 1)
                     {
-                        $item[$key2."_name"] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
-                        $item[$key2."_id"] = key(json_decode($value[$key2], True));
+                        if($key2=='ad_server_impression' ||$key2=='ad_server_click' ||$key2=='ad_server_ctr' || $key2 == 'date' || $key2 == 'item_name')
+                        {
+                            $item[$key2][0] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
+                        }
+                        else{
+                            if($key2 == 'report_type' || $key2 == 'advertiser')
+                            {
+                                $item[$key2."_name"] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
+                                $item[$key2."_id"] = key(json_decode($value[$key2], True));
+                            }
+                            else{
+                                $item[$key2] = json_decode($value[$key2], True)[key(json_decode($value[$key2], True))];
+                            }
+                        }
                     }
                     else
                     {
@@ -210,10 +211,7 @@ class CampaignController extends Controller
                 break;
             }
         }
-        //echo "<pre/>";print_r(compact('item'));
-        return view('new.campaign_report_pdf',[
-            'item'=>$item
-        ]);
+        return $item;
     }
 
     public function campaign_success()
