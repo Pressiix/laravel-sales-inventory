@@ -24,10 +24,14 @@
                   <td><?= (!empty($item['role']) ? $item['role'][0] : '') ?></td>
                   <td>
                   <?php if(!empty($item['role']) && $item['role'][0] !== 'dev'){ ?>
-                  <a href="#" data-target="#myModal" data-toggle="modal" class="btn btn-success" onclick="createHiddenField('<?= $item['id'] ?>','<?= (!empty($item['role']) ? $item['role'][0] : '')  ?>');">Role</a>
+                    <a href="#" data-target="#myModal" data-toggle="modal" class="btn btn-success" onclick="createHiddenField('<?= $item['id'] ?>','<?= (!empty($item['role']) ? $item['role'][0] : '')  ?>');">Role</a>
                   <?php } ?>
                   </td>
-                  <td><a href="/backend/users-destroy/<?= $item['id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a></td>
+                  <td>
+                  <?php if(!empty($item['role']) && $item['role'][0] !== 'dev'){ ?>
+                    <a href="/backend/users-destroy/<?= $item['id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                  <?php } ?>
+                  </td>
                 </tr>
               <?php } ?>
               </tbody>
