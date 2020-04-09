@@ -600,18 +600,7 @@ class AppController extends Controller
             ],compact('user'));
     }
 
-    public function ad_network()
-    {
-        return view('new.ad_network');
-    }
-    public function ad_network_bymonth()
-    {
-        return view('new.ad_network_bymonth');
-    }
-    public function ad_network_create()
-    {
-        return view('new.ad_network_create');
-    }
+    
     public function booking_inventory()
     {
         return view('new.booking_inventory');

@@ -121,7 +121,7 @@
                                 <div class="modal-body text-center">
                                 
                                 <form action="{{ url('/upload-image') }}" method="POST" enctype="multipart/form-data" runat="server">
-                                    <img id="blah" src="{{ url('/').$user->profile_picture }}" alt="your image" width="140px" height="140px"/>
+                                    <img id="blah" src="{{ ($user->profile_picture!=='' ? url('/').$user->profile_picture : '') }}" alt="your image" width="140px" height="140px"/>
                                     <br/><br/>
                                     {{ csrf_field() }}
                                     {{ method_field('POST') }}
