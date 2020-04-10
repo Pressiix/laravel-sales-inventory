@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  .custom-select {
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+}
+</style>
       <div class="col-15 bg-fff">
         <div class="content-inventory--full">
           <div class="box-title">
@@ -14,7 +21,7 @@
               <div class="content-box--select">
                 <div class="form-group row">
                   <div class="col-6">
-                    <select class="custom-select s-ad" style="display: none !important;">
+                    <select class="custom-select">
                       <option selected="">Month</option>
                       <option value="1">January</option>
                       <option value="2">February</option>
@@ -31,7 +38,7 @@
                     </select>
                   </div>
                   <div class="col-5">
-                    <select class="custom-select s-ad" style="display: none !important;">
+                    <select class="custom-select">
                       <option selected="">Year</option>
                       <option value="1">2020</option>
                       <option value="2">2019</option>
