@@ -429,6 +429,7 @@ class ComposerStaticInit6d6dc279cbfc6690578128b453e8c10e
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Customer' => __DIR__ . '/../..' . '/app/Customer.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AdNetworkController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdNetworkController.php',
         'App\\Http\\Controllers\\AdvertiserController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdvertiserController.php',
         'App\\Http\\Controllers\\AppController' => __DIR__ . '/../..' . '/app/Http/Controllers/AppController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'AppController@test');
+    Route::get('/test',  'AdNetworkController@test');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
@@ -89,10 +89,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/store_campaign', 'CampaignController@store_campaign');
         Route::get('/campaign_success', 'CampaignController@campaign_success');
         //AD NETWORK
-        Route::get('/ad_network', 'AdNetworkController@ad_network');
+        Route::get('/ad_network', ['as' => '/ad_network', 'uses' => 'AdNetworkController@ad_network']);
         Route::get('/ad_network_bymonth', 'AdNetworkController@ad_network_bymonth');
         Route::post('/ad_network_preview', 'AdNetworkController@ad_network_preview');
         Route::get('/ad_network_create', 'AdNetworkController@ad_network_create');
+        Route::post('/ad_network_store', 'AdNetworkController@ad_network_store');
 
         Route::get('/booking_inventory', 'AppController@booking_inventory');
         

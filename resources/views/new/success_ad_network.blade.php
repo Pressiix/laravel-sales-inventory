@@ -73,7 +73,7 @@
       <div class="txt-success">
         <h2>Success</h2>
         <p>The request has been submitted successfully.<br>You can check its status at <a href="javascript:;">Ad Network Revenue Dashboard</a>.</p>
-        <a href="javascript:;" class="btn btn-submit">OK</a>
+        <a href="/ad_network" class="btn btn-submit">OK</a>
       </div>
       
         </div>
@@ -91,7 +91,7 @@
 
 <script>
 
-
+window.history.pushState('ad_network_store', 'Title', '/ad_network_success');
     $('.datepicker').datepicker({
         autoclose: true,
         todayHighlight: true

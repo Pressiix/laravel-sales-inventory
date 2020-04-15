@@ -14,41 +14,39 @@
             <h2>AD Network Revenue Dashboard</h2>
             <div class="btn-create"><a href="/ad_network_create">Create AD Network</a></div>
           </div>
-          <form>
-
             <div style="position: relative;">
-
+            {{ Form::open(['route' => '/ad_network', 'method' => 'GET'])}}
               <div class="content-box--select">
                 <div class="form-group row">
                   <div class="col-6">
-                    <select class="custom-select">
+                    <select class="custom-select" name="month">
                       <option selected="">Month</option>
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
                       <option value="10">October</option>
                       <option value="11">November</option>
                       <option value="12">December</option>
                     </select>
                   </div>
                   <div class="col-5">
-                    <select class="custom-select">
+                    <select class="custom-select" name="year">
                       <option selected="">Year</option>
-                      <option value="1">2020</option>
-                      <option value="2">2019</option>
-                      <option value="3">2018</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
                   </div>
-                  <div class="col-4"><a href="javascript:;" class="btn btn-click2">Apply</a></div>
+                  <div class="col-4"><button type="submit" class="btn btn-click2">Apply</button></div>
                 </div>
               </div>
-
+              {{ Form::close() }}
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
@@ -486,7 +484,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <th scope="row">AdAsia</th>
+                            <th scope="row">AdAsiaXXXXXXXXX</th>
                             <td class="text-nowrap">
                               <div class="row-progress">
                                 <div class="progress">
@@ -1270,7 +1268,7 @@
 
             </div>
 
-          </form>
+          
         </div>
       </div>
 
