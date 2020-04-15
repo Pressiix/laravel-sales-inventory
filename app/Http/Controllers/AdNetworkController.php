@@ -50,7 +50,11 @@ class AdNetworkController extends Controller
 
 
         $pageview=array_values(array_unique($pageview));
-        echo "<pre/>";print_r($ad);
+        for($i=0;$i<count($pageview);$i++)
+        {
+            $item[$i]['name'] = $pageview[$i];
+        }
+        echo "<pre/>";print_r($item);
     }
     public function ad_network(Request $request)
     {
