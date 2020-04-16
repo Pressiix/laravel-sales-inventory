@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/campaign_success', 'CampaignController@campaign_success');
         //AD NETWORK
         Route::get('/ad_network', ['as' => '/ad_network', 'uses' => 'AdNetworkController@ad_network']);
-        Route::get('/ad_network_bymonth', 'AdNetworkController@ad_network_bymonth');
+        Route::post('/ad_network_bymonth', ['as' => '/ad_network_bymonth', 'uses' => 'AdNetworkController@ad_network_bymonth']);
         Route::post('/ad_network_preview', 'AdNetworkController@ad_network_preview');
         Route::get('/ad_network_create', 'AdNetworkController@ad_network_create');
         Route::post('/ad_network_store', 'AdNetworkController@ad_network_store');

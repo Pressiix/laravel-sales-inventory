@@ -165,15 +165,18 @@ class AdNetworkController extends Controller
             }
             //echo "<pre/>";print_r(array_values($item));
             return view('new.ad_network',[
-                'last_mont'=>\DateTime::createFromFormat('!m',$last_month)->format('F')." ".$last_year,
-                'current_month'=>\DateTime::createFromFormat('!m',$current_month)->format('F')." ".$current_year,
+                'last_month'=>\DateTime::createFromFormat('!m',$last_month)->format('F'),
+                'last_year'=>$last_year,
+                'current_month'=>\DateTime::createFromFormat('!m',$current_month)->format('F'),
+                'current_year'=>$current_year,
                 'item' => $item
             ]);
         
     }
-    public function ad_network_bymonth()
+    public function ad_network_bymonth(Request $request)
     {
-        return view('new.ad_network_bymonth');
+        echo "<pre/>"; print_r($request->all());
+        //return view('new.ad_network_bymonth');
     }
     public function ad_network_preview(Request $request)
     {

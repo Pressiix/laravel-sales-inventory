@@ -7,6 +7,15 @@
     width: 100%;
     height: 30px;
 }
+.href-button{
+    color: #fff;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
 </style>
       <div class="col-15 bg-fff">
         <div class="content-inventory--full">
@@ -19,8 +28,8 @@
               <div class="content-box--select">
                 <div class="form-group row">
                   <div class="col-6">
-                    <select class="custom-select" name="month">
-                      <option selected="">Month</option>
+                    <select class="custom-select" name="month" required>
+                      <option value="" selected="">Month</option>
                       <option value="01">January</option>
                       <option value="02">February</option>
                       <option value="03">March</option>
@@ -36,8 +45,8 @@
                     </select>
                   </div>
                   <div class="col-5">
-                    <select class="custom-select" name="year">
-                      <option selected="">Year</option>
+                    <select class="custom-select" name="year" required>
+                      <option value="" selected="">Year</option>
                       <option value="2020">2020</option>
                       <option value="2019">2019</option>
                       <option value="2018">2018</option>
@@ -65,8 +74,8 @@
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" class="bar-header" width="143">Monthly</th>
-                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;"><?= $last_mont ?></a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
-                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;"><?= $current_month ?></a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
+                            {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}<input type="hidden" name="last_mont" value="<?= $last_month ?>"><input type="hidden" name="last_year" value="<?= $last_year ?>"><th scope="col" colspan="4" class="bar-header"><button class="href-button" type="submit"><?= $last_month." ".$last_year ?> <img src="assets/images/icon-svg/arrow-detail.svg"></button></th>{{ Form::close() }}
+                            {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}<input type="hidden" name="current_month" value="<?= $current_month ?>"><input type="hidden" name="current_year" value="<?= $current_year ?>"><th scope="col" colspan="4" class="bar-header"><button class="href-button" type="submit"><?= $current_month." ".$current_year ?> <img src="assets/images/icon-svg/arrow-detail.svg"></button></th>{{ Form::close() }}
                           </tr>
                           <tr>
                             <th scope="col">Ad Network</th>
