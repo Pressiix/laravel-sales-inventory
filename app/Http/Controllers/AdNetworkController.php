@@ -94,10 +94,11 @@ class AdNetworkController extends Controller
     {
         if(isset($request->month) && isset($request->year))
         {
+            
             $current_month =  date_format(date_create($request->year."-".$request->month."-01"),"m");
             $last_month =  date('m', strtotime('-1 month', strtotime(date_format(date_create($request->year."-".$request->month."-01"),"Y-m-d"))));
-            $current_year = date_format(date_create($request->year),"Y");
-            $last_year = date('Y', strtotime('-1 year', strtotime(date_format(date_create($request->year),"Y-m-d"))));
+            $current_year = date_format(date_create($request->year."-".$request->month."-01"),"Y");
+            $last_year = date('Y', strtotime('-1 month', strtotime(date_format(date_create($request->year."-".$request->month."-01"),"Y-m-d"))));
         }
         else{
             $current_month =  date_format(date_create(now()->toDateTimeString()),"m");
@@ -142,7 +143,7 @@ class AdNetworkController extends Controller
                         //echo $pageview[$i]." = ".json_encode($ad[$j]['page_view'])."<br/>";
                         for($k=0;$k<count($ad[$j]['advertiser']);$k++)
                         {
-                            if(date_format(date_create($ad[$j]['start']),"m") == $current_month || date_format(date_create($ad[$j]['start']),"m") == $last_month)
+                            if((date_format(date_create($ad[$j]['start']),"m") == $current_month && date_format(date_create($ad[$j]['start']),"Y") == $current_year) || (date_format(date_create($ad[$j]['start']),"m") == $last_month && date_format(date_create($ad[$j]['start']),"Y") == $last_year))
                             {
                                 if($advertiser[$i] == $ad[$j]['advertiser'][$k])
                                 {
@@ -171,7 +172,6 @@ class AdNetworkController extends Controller
                 'current_year'=>$current_year,
                 'item' => $item
             ]);
-        
     }
     public function ad_network_bymonth(Request $request)
     {
