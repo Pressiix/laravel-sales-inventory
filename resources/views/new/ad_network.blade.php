@@ -65,8 +65,8 @@
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" class="bar-header" width="143">Monthly</th>
-                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;">September 2019</a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
-                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;">October 2019</a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
+                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;"><?= $last_mont ?></a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
+                            <th scope="col" colspan="4" class="bar-header"><a href="javascript:;"><?= $current_month ?></a> <img src="assets/images/icon-svg/arrow-detail.svg"></th>
                           </tr>
                           <tr>
                             <th scope="col">Ad Network</th>
@@ -81,14 +81,15 @@
                           </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($item as $key=>$value){ ?>
                           <tr>
-                            <th scope="row">AdAsia</th>
+                            <th scope="row"><?= (isset($value['advertiser']) ? $value['advertiser'] : '') ?></th>
                             <td class="text-nowrap">
                               <div class="row-progress">
                                 <div class="progress">
                                   <div class="progress-bar bg-orange" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>2,846,045</span>
+                                <span><?= (isset($value['impression'][0]) ? number_format((float) $value['impression'][0]) : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -96,7 +97,7 @@
                                 <div class="progress">
                                   <div class="progress-bar bg-sky" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>$ 0.18</span>
+                                <span>$ <?= (isset($value['ecpm'][0]) ? $value['ecpm'][0] : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -104,7 +105,7 @@
                                 <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>$ 2,221.78</span>
+                                <span>$ <?= (isset($value['revenue'][0]) ? number_format((float) $value['revenue'][0]) : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -120,7 +121,7 @@
                                 <div class="progress">
                                   <div class="progress-bar bg-orange" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>2,846,045</span>
+                                <span><?= (isset($value['impression'][1]) ? number_format((float) $value['impression'][1]) : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -128,7 +129,7 @@
                                 <div class="progress">
                                   <div class="progress-bar bg-sky" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>$ 0.18</span>
+                                <span>$ <?= (isset($value['ecpm'][1]) ? $value['ecpm'][1] : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -136,7 +137,7 @@
                                 <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>$ 2,221.78</span>
+                                <span>$ <?= (isset($value['revenue'][1]) ? number_format((float) $value['revenue'][1]) : '0') ?></span>
                               </div>
                             </td>
                             <td class="text-nowrap">
@@ -148,475 +149,7 @@
                               </div>
                             </td>
                           </tr>
-                          <tr>
-                            <th scope="row">Outbrain</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 5%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>219,931</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">AdAsia</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Outbrain</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 5%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>219,931</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">AdAsia</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Outbrain</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 5%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>219,931</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">AdAsiaXXXXXXXXX</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                               <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Outbrain</th>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 5%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>219,931</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-orange" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>2,846,045</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-sky" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 0.18</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-green" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>$ 2,221.78</span>
-                              </div>
-                            </td>
-                            <td class="text-nowrap">
-                              <div class="row-progress">
-                                <div class="progress">
-                                  <div class="progress-bar bg-red" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span>266%</span>
-                              </div>
-                            </td>
-                          </tr>
+                        <?php } ?>
 
                           <tr class="sum--bg-gray">
                             <th scope="row" class="text-center">House</th>
