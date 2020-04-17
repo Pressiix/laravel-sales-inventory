@@ -54,7 +54,7 @@
                   
                   <div class="content-tablist">
 
-                    <h3>September 2019</h3>
+                    <h3><?= $month." ".$year ?></h3>
  
                     <div class="table-responsive table-dashboard">
 
@@ -62,8 +62,8 @@
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" class="bar-header" width="143">Date</th>
-                            <th scope="col" colspan="4" class="bar-header">1-7 September 2019</th>
-                            <th scope="col" colspan="4" class="bar-header">8-14 September 2019</th>
+                            <th scope="col" colspan="4" class="bar-header">1-7 <?= $month." ".$year ?></th>
+                            <th scope="col" colspan="4" class="bar-header">8-14 <?= $month." ".$year ?></th>
                           </tr>
                           <tr>
                             <th scope="col">Ad Network</th>
@@ -472,8 +472,8 @@
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" class="bar-header" width="143">Date</th>
-                            <th scope="col" colspan="4" class="bar-header">15-21 September 2019</th>
-                            <th scope="col" colspan="4" class="bar-header">22-31 September 2019</th>
+                            <th scope="col" colspan="4" class="bar-header">15-21 <?= $month." ".$year ?></th>
+                            <th scope="col" colspan="4" class="bar-header">22-31 <?= $month." ".$year ?></th>
                           </tr>
                           <tr>
                             <th scope="col">Ad Network</th>

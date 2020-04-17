@@ -74,7 +74,7 @@
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" class="bar-header" width="143">Monthly</th>
-                            {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}<input type="hidden" name="last_mont" value="<?= $last_month ?>"><input type="hidden" name="last_year" value="<?= $last_year ?>"><th scope="col" colspan="4" class="bar-header"><button class="href-button" type="submit"><?= $last_month." ".$last_year ?> <img src="assets/images/icon-svg/arrow-detail.svg"></button></th>{{ Form::close() }}
+                            {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}<input type="hidden" name="last_month" value="<?= $last_month ?>"><input type="hidden" name="last_year" value="<?= $last_year ?>"><th scope="col" colspan="4" class="bar-header"><button class="href-button" type="submit"><?= $last_month." ".$last_year ?> <img src="assets/images/icon-svg/arrow-detail.svg"></button></th>{{ Form::close() }}
                             {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}<input type="hidden" name="current_month" value="<?= $current_month ?>"><input type="hidden" name="current_year" value="<?= $current_year ?>"><th scope="col" colspan="4" class="bar-header"><button class="href-button" type="submit"><?= $current_month." ".$current_year ?> <img src="assets/images/icon-svg/arrow-detail.svg"></button></th>{{ Form::close() }}
                           </tr>
                           <tr>

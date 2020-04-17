@@ -4,7 +4,7 @@
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Form</h2>
-          {!! Form::open(['action' => ['AppController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
+          {!! Form::open(['action' => ['RequestFormController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
           <?php if(isset($item['id'])){ ?>
               <input type="hidden" name='id' value="<?= $item['id'] ?>">
             <?php } 

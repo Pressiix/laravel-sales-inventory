@@ -4,7 +4,7 @@
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Preview</h2>
-          {!! Form::open(['action' => ['AppController@storeRequest', 'method' => 'POST']])!!}
+          {!! Form::open(['action' => ['RequestFormController@storeRequest', 'method' => 'POST']])!!}
             <?php if(isset($item['request_id'])){ ?>
               <input type="hidden" name='request_id' value="<?= $item['request_id'] ?>" readonly="">
             <?php }?>
@@ -411,6 +411,7 @@
                   if($userRole === "sale" || $userRole === "dev"){ ?>
                   <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
                 <?php } else if($userRole === "sale-management"){ ?>
+                  <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
                   <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
                 <?php } 
                 }

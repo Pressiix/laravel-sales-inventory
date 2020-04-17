@@ -94,7 +94,6 @@ class AdNetworkController extends Controller
     {
         if(isset($request->month) && isset($request->year))
         {
-            
             $current_month =  date_format(date_create($request->year."-".$request->month."-01"),"m");
             $last_month =  date('m', strtotime('-1 month', strtotime(date_format(date_create($request->year."-".$request->month."-01"),"Y-m-d"))));
             $current_year = date_format(date_create($request->year."-".$request->month."-01"),"Y");
@@ -105,7 +104,6 @@ class AdNetworkController extends Controller
             $last_month =  date('m', strtotime('-1 month', strtotime(date_format(date_create(now()->toDateTimeString()),"Y-m-d"))));
             $current_year = date_format(date_create(now()->toDateTimeString()),"Y");
             $last_year = date('Y', strtotime('-1 month', strtotime(date_format(date_create(now()->toDateTimeString()),"Y-m-d"))));
-            //echo $last_month;
         }
             $advertiser=[];
             $ad = json_decode(AdNetwork::all(),true);
@@ -175,8 +173,11 @@ class AdNetworkController extends Controller
     }
     public function ad_network_bymonth(Request $request)
     {
-        echo "<pre/>"; print_r($request->all());
-        //return view('new.ad_network_bymonth');
+        //echo "<pre/>"; print_r($request->all());
+        return view('new.ad_network_bymonth',[
+            'month' => (isset($request->last_month) ? $request->last_month : $request->current_month ),
+            'year' => (isset($request->last_year) ? $request->last_year : $request->current_year )
+        ]);
     }
     public function ad_network_preview(Request $request)
     {
@@ -216,9 +217,7 @@ class AdNetworkController extends Controller
                     unset($item['new_advertiser'][$i]);
                 }
             }
-            unset($item['advertiser_id']);
-            unset($item['advertiser_name']);
-            unset($item['new_advertiser']);
+            unset($item['advertiser_id'],$item['advertiser_name'],$item['new_advertiser']);
             //echo "<pre/>";print_r($item);
             $ad_network = AdNetwork::create([
                 'start'=>date_format(date_create($item['start']),"Y-m-d H:i:s"),

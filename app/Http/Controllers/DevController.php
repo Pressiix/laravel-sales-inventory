@@ -23,7 +23,16 @@ class DevController extends Controller
 
     public function test()
     {
-        return User::findUserById('202')->getPermissionsViaRoles()[0]['name'];
+        $team_id = Auth::user()->getOriginal()['team_id'];
+        $all_user = User::where('team_id', '=', $team_id)->get();
+        foreach($all_user as $key=>$value)
+        {
+            if(User::getUserRoleById($value['id']) == 'sale-management')
+            {
+                $email =  $value['email'];
+                break;
+            }
+        }echo $email;
     }
 
     /** 

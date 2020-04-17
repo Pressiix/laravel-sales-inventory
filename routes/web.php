@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'AdNetworkController@test');
+    Route::get('/test',  'DevController@test');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
@@ -66,12 +66,12 @@ Route::group(['middleware' => ['auth']], function () {
        
     Route::group(['middleware' => ['permission:create request|edit request']], function () {
         Route::group(['middleware' => ['role:sale|dev']], function () {
-            Route::get('/request_form', ['as' => 'request_form', 'uses' => 'AppController@request']);
+            Route::get('/request_form', ['as' => 'request_form', 'uses' => 'RequestFormController@request']);
         });
-        Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'AppController@review']);
-        Route::post('/request-save', ['as' => 'request-save', 'uses' => 'AppController@storeRequest']);
+        Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'RequestFormController@review']);
+        Route::post('/request-save', ['as' => 'request-save', 'uses' => 'RequestFormController@storeRequest']);
        
-        Route::get('/request_preview2/{id}','AppController@review2');
+        Route::get('/request_preview2/{id}','RequestFormController@review2');
     });
        
         //Customer
@@ -95,11 +95,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ad_network_create', 'AdNetworkController@ad_network_create');
         Route::post('/ad_network_store', 'AdNetworkController@ad_network_store');
 
-        Route::get('/booking_inventory', 'AppController@booking_inventory');
+        Route::get('/inventory', 'AppController@inventory');
         
-        Route::get('/revenue', 'AppController@revenue');
+        Route::get('/revenue', 'RevenueController@index');
         Route::get('/success', 'AppController@success');
-        Route::get('/success_ad_network', 'AppController@success_ad_network');
         
    
 });
