@@ -160,7 +160,7 @@ class DevController extends Controller
         
         $this->genAdmin();
 
-        return 'AAAA';//redirect('backend/users-display');
+        return redirect('backend/users-display');
     }
 
      public function showRole(Request $request, $id)
