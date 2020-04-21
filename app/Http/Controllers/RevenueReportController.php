@@ -21,7 +21,7 @@ use App\AdDescription;
 use URL;
 use Input;
 
-class RevenueController extends Controller
+class RevenueReportController extends Controller
 {
     public function index()
     {

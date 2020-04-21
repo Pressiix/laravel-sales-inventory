@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/inventory', 'AppController@inventory');
         
-        Route::get('/revenue', 'RevenueController@index');
+        Route::get('/revenue', 'RevenueReportController@index');
         Route::get('/success', 'AppController@success');
         
    
