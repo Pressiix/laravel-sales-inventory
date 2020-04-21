@@ -54,7 +54,7 @@ class DevController extends Controller
         return view('backend.user',[
             'items' => $items,
             'user' => $user,
-            'role' => 'dev',
+            'role' => 'admin',
             'role_dropdown'=>$role_dropdown
         ]);
      }
@@ -67,8 +67,7 @@ class DevController extends Controller
         
         return view('backend.role',[
             'items' => $items,
-            'user' => $user,
-            'role' => 'dev',
+            'user' => $user
         ]);
      }
 
@@ -80,8 +79,7 @@ class DevController extends Controller
         
         return view('backend.permission',[
             'items' => $items,
-            'user' => $user,
-            'role' => 'dev',
+            'user' => $user
         ]);
      }
 
@@ -92,27 +90,28 @@ class DevController extends Controller
      * assign a dev role to user if user has username = dev
      * 
      **/
-     public function genDev()
+     public function genAdmin()
      {
-         $dev_user = User::where('username', 'like', 'dev%')->first();
-         $role = Role::where('name', 'like', 'dev%')->first();
-         
-         if($dev_user)
+         $admin_user = User::where('username', '=', 'admin')->first();
+         $role = Role::where('name', '=', 'admin')->first();
+         //echo "<pre/>"; print_r($admin_user);
+         if($admin_user)
          {
-            return $dev_user->assignRole($role->name);
+             return $admin_user->assignRole($role->name);
          }
          else  //if you not have dev in database, system will create dev
          {
-            User::create([
-                'username' => 'dev',
+             User::create([
+                'username' => 'admin',
                 'firstname' => 'Watcharaphon',
                 'lastname' => 'Piamphuetna',
-                'email' => 'watcharapon.piam2@gmail.com',
+                'email' => 'watcharapon.piam@gmail.com',
                 'password' => Hash::make('bkpdev'),
-                'status' => 'ACTIVE'
+                'status' => 'ACTIVE',
+                'team_id'=>'0'
             ]);
 
-            return User::where('username', 'like', 'dev%')->first()->assignRole($role->name);
+            return User::where('username', '=', 'admin')->first()->assignRole($role->name);
          }
      }
 
@@ -132,31 +131,36 @@ class DevController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         //create role
-        Role::create(['name'=>'dev']);
+        Role::create(['name'=>'admin']);
         Role::create(['name'=>'general']);
         Role::create(['name'=>'marketing']);
         Role::create(['name'=>'ad-operation']);
         Role::create(['name'=>'sale']);
         Role::create(['name'=>'sale-management']);
         Role::create(['name'=>'management']);
+        
         //create permission
         Permission::create(['name'=>'create request']);
         Permission::create(['name'=>'edit request']);
         Permission::create(['name'=>'manage user']);
+        Permission::create(['name'=>'create ad network']);
         
         //assign permission to role
-        Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'manage user')->first());
-        Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
-        Role::where('name', '=', 'dev')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
+        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'manage user')->first());
+        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
 
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
 
         //Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
         Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
-     
-        $this->genDev();
-        return redirect('backend/users-display');
+
+        Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'create ad network')->first());
+        
+        $this->genAdmin();
+
+        return 'AAAA';//redirect('backend/users-display');
     }
 
      public function showRole(Request $request, $id)

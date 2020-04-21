@@ -74,7 +74,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             //'telephone' => '',
             //'profile_picture' => ''
-            'status' => 'INACTIVE'
+            'status' => 'INACTIVE',
+            'team_id'=>'0'
         ]);
     }
 }

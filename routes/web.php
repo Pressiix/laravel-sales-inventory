@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'DevController@test');
+    Route::get('/test',  'DevController@genAdmin');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
        
     Route::group(['middleware' => ['permission:create request|edit request']], function () {
-        Route::group(['middleware' => ['role:sale|dev']], function () {
+        Route::group(['middleware' => ['role:sale|admin']], function () {
             Route::get('/request_form', ['as' => 'request_form', 'uses' => 'RequestFormController@request']);
         });
         Route::post('/request_preview', ['as' => 'request_preview', 'uses' => 'RequestFormController@review']);

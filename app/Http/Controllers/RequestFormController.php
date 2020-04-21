@@ -58,8 +58,8 @@ class RequestFormController extends Controller
         else if(auth()->user()->hasRole('sale')){
             $userRole = 'sale';
         }
-        else if(auth()->user()->hasRole('dev')){
-            $userRole = 'dev';
+        else if(auth()->user()->hasRole('admin')){
+            $userRole = 'admin';
         }
         $item = $request->all();
         //echo "<pre/>"; print_r($request->all());
@@ -328,8 +328,8 @@ class RequestFormController extends Controller
         else if(auth()->user()->hasRole('sale')){
             $userRole = 'sale';
         }
-        else if(auth()->user()->hasRole('dev')){
-            $userRole = 'dev';
+        else if(auth()->user()->hasRole('admin')){
+            $userRole = 'admin';
         }
 
         $item = array_merge($request_form,$new_ad_desc);

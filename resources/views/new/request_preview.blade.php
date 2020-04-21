@@ -402,13 +402,13 @@
                 <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
              <?php } 
                if(strpos(url()->current(),'request_preview2')){ 
-                      if(($userRole === "sale-management" || $userRole === "dev") && (isset($item['status']) && $item['status'] !== 'Approve')){ ?>
+                      if(($userRole === "sale-management" || $userRole === "admin") && (isset($item['status']) && $item['status'] !== 'Approve')){ ?>
                           <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>
                           <div class="col-50 box-r"><input type="submit" name="action" value="Approve" class="btn btn-submit"></div>
               <?php } 
               }else{ 
                 if(isset($item['status']) && $item['status'] !== 'Approve' || (!isset($item['status']) && strpos(url()->previous(),'request_form'))){ 
-                  if($userRole === "sale" || $userRole === "dev"){ ?>
+                  if($userRole === "sale" || $userRole === "admin"){ ?>
                   <div class="col-50 box-r"><input type="submit" name="action" value="Submit" class="btn btn-submit"></div>
                 <?php } else if($userRole === "sale-management"){ ?>
                   <div class="col-50 box-l"><input type="submit" name="action" value="Edit" class="btn btn-submit"></div>

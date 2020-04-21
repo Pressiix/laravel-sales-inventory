@@ -76,7 +76,7 @@
                 </div>
                 <div class="nav-inventory">
                     <ul>
-                    <?php if(Auth::user()->hasRole('dev')){ ?>
+                    <?php if(Auth::user()->hasRole('admin')){ ?>
                         <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
                     <?php } ?>
                     <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">Profile</a></li>
@@ -152,7 +152,7 @@
                 </div>
             <?php } 
             else{
-                 if(Auth::user()->hasRole('dev') && strpos(Request::url(),"backend")){ ?>
+                 if(Auth::user()->hasRole('admin') && strpos(Request::url(),"backend")){ ?>
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">
