@@ -23,6 +23,12 @@ use Input;
 
 class RevenueReportController extends Controller
 {
+    private $field = array(
+        "update_at",
+        "sales_name",
+        "campaign_name",
+    );
+
     public function test()
     {
         $item = [];
@@ -58,26 +64,37 @@ class RevenueReportController extends Controller
             {
                 if(is_array(json_decode($item[$key][$key2],true)))
                 {
+                    //$item[$key][$key2] = array_values($item[$key][$key2]);
                     //echo $key2."<br/>";
-                    if(strpos($key2,"bp_") == true)
+                    if(strpos($key2,"bp_") !== false)
                     {
-                        $bp[$bp_index][$key2] = json_decode($item[$key][$key2],true);
+                        $bp[$bp_index][$key2] = array_values(json_decode($item[$key][$key2],true));
                     }
-                    if(strpos($key2,"ptd_") == true)
+                    if(strpos($key2,"ptd_") !== false)
                     {
-                        $ptd[$ptd_index][$key2] = json_decode($item[$key][$key2],true);
+                        $ptd[$ptd_index][$key2] = array_values(json_decode($item[$key][$key2],true));
                     }
                     
                 }else{
-                    if(strpos($key2,"bp_") == false)
+                    if(strpos($key2,"bp_") !== false && strpos($key2,"ptd_") == false){
+                        $bp[$bp_index][$key2] = $item[$key][$key2];
+                    }
+                    else if(strpos($key2,"bp_") == false && strpos($key2,"ptd_") !== false)
+                    {
+                        $ptd[$ptd_index][$key2] = $item[$key][$key2];
+                    }
+                    else if(strpos($key2,"bp_") == false && strpos($key2,"ptd_") == false){
                         $bp[$bp_index][$key2] = $item[$key][$key2];
                         $ptd[$ptd_index][$key2] = $item[$key][$key2];
+                    }      
                 }
             }
             $bp_index++;
             $ptd_index++;
-        } 
-        echo "<pre/>"; print_r($bp);
+        }
+        $revenue_detail['bangkokpost'] = $bp;
+        $revenue_detail['posttoday'] = $ptd;
+        echo "<pre/>"; print_r($revenue_detail);
     }
 
     public function index()
