@@ -60,7 +60,10 @@ class RequestFormController extends Controller
         }
         else if(auth()->user()->hasRole('admin')){
             $userRole = 'admin';
+        }else{
+            $userRole = '';
         }
+        
         $item = $request->all();
         //echo "<pre/>"; print_r($request->all());
 
@@ -330,6 +333,8 @@ class RequestFormController extends Controller
         }
         else if(auth()->user()->hasRole('admin')){
             $userRole = 'admin';
+        }else{
+            $userRole = '';
         }
 
         $item = array_merge($request_form,$new_ad_desc);
