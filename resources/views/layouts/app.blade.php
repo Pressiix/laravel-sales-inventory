@@ -81,7 +81,7 @@
                     <?php } ?>
                     <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">Profile</a></li>
                     <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}">Request Form</a></li>
-                    <li><a href="/booking_inventory" class="{{ Request::is('booking_inventory') ? 'actived' : '' }}">Booking Inventory</a></li>
+                    <li><a href="/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}">Booking Inventory</a></li>
                     <li><a href="/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}">Revenue</a></li>
                     <li><a href="/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}">Campaign Report</a></li>
                     <li><a href="/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}">Ad Network</a></li>

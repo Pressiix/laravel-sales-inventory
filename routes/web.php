@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ad_network_create', 'AdNetworkController@ad_network_create');
         Route::post('/ad_network_store', 'AdNetworkController@ad_network_store');
 
-        Route::get('/inventory', 'AppController@inventory');
+        Route::get('/inventory', 'InventoryController@indexs');
         
         Route::get('/revenue', ['as' => '/revenue', 'uses' => 'RevenueReportController@index']);
         Route::get('/success', 'AppController@success');
