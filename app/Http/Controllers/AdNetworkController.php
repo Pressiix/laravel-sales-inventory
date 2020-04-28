@@ -174,11 +174,144 @@ class AdNetworkController extends Controller
     }
     public function ad_network_bymonth(Request $request)
     {
-        //echo "<pre/>"; print_r($request->all());
-        return view('new.ad_network_bymonth',[
+        $month = (isset($request->last_month) ? $request->last_month : $request->current_month );
+        $year = (isset($request->last_year) ? $request->last_year : $request->current_year );
+
+        $month =  date_format(date_create($month." 01 ".$year),"m");
+
+        $advertiser=[];
+            $ad = json_decode(AdNetwork::all(),true);
+            $index=0;
+            $index2=0;
+            $item=[];
+            foreach($ad as $key=>$value)
+            {
+                foreach($value as $key2=>$value2)
+                {
+                    if($key2 !== 'id' && $key2 !== 'start' && $key2 !== 'end'){
+                        $ad[$index][$key2] = json_decode($value2,true);
+                        if($key2 == 'advertiser'){
+                            foreach(json_decode($value2,true) as $value3)
+                            {
+                                $advertiser[$index2] = $value3;
+                                $index2++;
+                            }
+                        }
+                    }
+                }
+                $index++;
+            }
+
+
+            $advertiser=array_values(array_unique($advertiser));
+            
+            for($i=0;$i<count($advertiser);$i++)
+            {
+                $index3=0;
+                for($j=0;$j<count($ad);$j++)
+                {
+                    if(in_array($advertiser[$i],$ad[$j]['advertiser']))
+                    {   
+                        for($k=0;$k<count($ad[$j]['advertiser']);$k++)
+                        {
+                            if((date_format(date_create($ad[$j]['start']),"m") == $month && date_format(date_create($ad[$j]['start']),"Y") == $year) || (date_format(date_create($ad[$j]['end']),"m") == $month && date_format(date_create($ad[$j]['end']),"Y") == $year))
+                            {
+                                if($advertiser[$i] == $ad[$j]['advertiser'][$k])
+                                {
+                                    //Select only dates that aren't in the specified month.
+                                    if(date_format(date_create($ad[$j]['start']),"m") !== date_format(date_create($ad[$j]['end']),"m"))
+                                    {
+                                        //if month number from start date = specific month number
+                                        if(date_format(date_create($ad[$j]['start']),"m") == $month)
+                                        {
+                                            $period = $this->getDatePeriod(date_format(date_create($ad[$j]['start']),"Y-m-d"),date("Y-m-t", strtotime(date_format(date_create($ad[$j]['start']),"Y-m-d"))) );
+                                        }
+                                        //if month number from end date = specific month number
+                                        if(date_format(date_create($ad[$j]['end']),"m") == $month)
+                                        {
+                                            $period = $this->getDatePeriod(date_format(date_create($year."-".$month."-01"),"Y-m-d"),date("Y-m-t", strtotime(date_format(date_create($ad[$j]['end']),"Y-m-d"))) );
+                                        }
+                                    }
+                                    else{
+                                        $period = $this->getDatePeriod(date_format(date_create($ad[$j]['start']),"Y-m-d"),date_format(date_create($ad[$j]['end']),"Y-m-d"));
+                                    }
+                                    foreach($period as $key=>$date)
+                                    {
+                                        if($key == 0)
+                                        {
+                                            $index3 = (int) date_format(date_create($period[$key]),"d");
+                                        }
+                                        $advertiser_name =  $ad[$j]['advertiser'][$k];
+                                        //echo $advertiser_name."[".$index3."] = ".(int) date_format(date_create($period[$key]),"d")."<br/>";
+                                        if($index3 >= 0 && $index3 <= 14)
+                                        {
+                                                    if((int) date_format(date_create($period[$key]),"d") <= 7)
+                                                    {
+                                                        //$item[0][$advertiser_name]['date'] = $period[$key];
+                                                        $item[0][$advertiser_name]['advertiser'] = $ad[$j]['advertiser'][$k];
+                                                        $item[0][$advertiser_name]['pageview'] = $ad[$j]['page_view'][$k];
+                                                        //$item[0][$advertiser_name]['total_day'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
+                                                        //$item[0][$advertiser_name]['start'] = $ad[$j]['start'];
+                                                        //$item[0][$advertiser_name]['end'] = $ad[$j]['end'];
+                                                        $item[0][$advertiser_name]['impression'] = $ad[$j]['impression'][$k];
+                                                        $item[0][$advertiser_name]['ecpm'] = $ad[$j]['ecpm'][$k];
+                                                        $item[0][$advertiser_name]['revenue'] = $ad[$j]['revenue'][$k];
+                                                    }
+                                                    if((int) date_format(date_create($period[$key]),"d") > 7 && (int) date_format(date_create($period[$key]),"d") <= 14)
+                                                    {   
+                                                        //$item[0][$advertiser_name]['date2'] = $period[$key];
+                                                        //$item[0][$advertiser_name]['advertiser2'] = $ad[$j]['advertiser'][$k];
+                                                        $item[0][$advertiser_name]['pageview2'] = $ad[$j]['page_view'][$k];
+                                                        //$item[0][$advertiser_name]['total_day2'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
+                                                        //$item[0][$advertiser_name]['start2'] = $ad[$j]['start'];
+                                                        //$item[0][$advertiser_name]['end2'] = $ad[$j]['end'];
+                                                        $item[0][$advertiser_name]['impression2'] = $ad[$j]['impression'][$k];
+                                                        $item[0][$advertiser_name]['ecpm2'] = $ad[$j]['ecpm'][$k];
+                                                        $item[0][$advertiser_name]['revenue2'] = $ad[$j]['revenue'][$k];
+                                                    }
+                                        }else if($index3 >= 15 && $index3 <= 31 )
+                                        {
+                                                    if((int) date_format(date_create($period[$key]),"d") > 14 && (int) date_format(date_create($period[$key]),"d") <= 21)
+                                                    {
+                                                        //$item[1][$advertiser_name]['date'] = $period[$key];
+                                                        $item[1][$advertiser_name]['advertiser'] = $ad[$j]['advertiser'][$k];
+                                                        $item[1][$advertiser_name]['pageview'] = $ad[$j]['page_view'][$k];
+                                                        //$item[1][$advertiser_name]['total_day'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
+                                                        //$item[1][$advertiser_name]['start'] = $ad[$j]['start'];
+                                                        //$item[1][$advertiser_name]['end'] = $ad[$j]['end'];
+                                                        $item[1][$advertiser_name]['impression'] = $ad[$j]['impression'][$k];
+                                                        $item[1][$advertiser_name]['ecpm'] = $ad[$j]['ecpm'][$k];
+                                                        $item[1][$advertiser_name]['revenue'] = $ad[$j]['revenue'][$k];
+                                                    }
+                                                    if((int) date_format(date_create($period[$key]),"d") > 21)
+                                                    {
+                                                        //$item[1][$advertiser_name]['date2'] = $period[$key];
+                                                        //$item[1][$advertiser_name]['advertiser2'] = $ad[$j]['advertiser'][$k];
+                                                        $item[1][$advertiser_name]['pageview2'] = $ad[$j]['page_view'][$k];
+                                                        //$item[1][$advertiser_name]['total_day2'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
+                                                        //$item[1][$advertiser_name]['start2'] = $ad[$j]['start'];
+                                                        //$item[1][$advertiser_name]['end2'] = $ad[$j]['end'];
+                                                        $item[1][$advertiser_name]['impression2'] = $ad[$j]['impression'][$k];
+                                                        $item[1][$advertiser_name]['ecpm2'] = $ad[$j]['ecpm'][$k];
+                                                        $item[1][$advertiser_name]['revenue2'] = $ad[$j]['revenue'][$k];
+                                                    }
+                                        }
+                                        $index3++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $item = array_values($item);
+            
+        echo "<pre/>";print_r($item);
+        /*return view('new.ad_network_bymonth',[
             'month' => (isset($request->last_month) ? $request->last_month : $request->current_month ),
-            'year' => (isset($request->last_year) ? $request->last_year : $request->current_year )
-        ]);
+            'year' => (isset($request->last_year) ? $request->last_year : $request->current_year ),
+            'item'=>$item
+        ]);*/
     }
     public function ad_network_preview(Request $request)
     {
@@ -232,5 +365,20 @@ class AdNetworkController extends Controller
 
             return view('new.success_ad_network');
         }
+    }
+
+    private function getDatePeriod($start,$end)
+    {
+                $format = 'Y-m-d';
+                $interval = new DateInterval('P1D');
+                $realEnd = new DateTime($end);
+                $realEnd->add($interval);
+                $date_period = new DatePeriod(new DateTime($start), $interval, $realEnd);
+
+                foreach($date_period as $date)
+                { 
+                    $date_array[] = date("Y-m-d",strtotime($date->format($format)));
+                }
+                return  $date_array;
     }
 }

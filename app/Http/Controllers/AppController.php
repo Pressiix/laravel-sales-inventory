@@ -25,7 +25,16 @@ class AppController extends Controller
 {
     public function test()
     {
-        
+        $format = 'Y-m-d';
+        $interval = new DateInterval('P1D');
+        $realEnd = new DateTime("2020-04-30");
+        $realEnd->add($interval);
+        $date_period = new DatePeriod(new DateTime("2020-04-01"), $interval, $realEnd);
+        foreach($date_period as $date)
+        { 
+            $date_array[] = date("Y-m-d",strtotime($date->format($format)));
+        }
+       echo "<pre/>"; print_r($date_array);
     }
     
     public function profile()
