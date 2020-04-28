@@ -61,7 +61,7 @@
                         <tbody>
                           <?php foreach($bp as $item){ ?>
                             <tr>
-                              <td scope="row"><?= $item['create_at'] ?></td>
+                              <td scope="row"><?= date("d/m/Y",strtotime($item['create_at'])) ?></td>
                               <td class="text-left text-nowrap"><?= $item['sales_name'] ?></td>
                               <td><?= $item['type'] ?></td>
                               <td class="text-nowrap"><?= $item['bp_section'] ?></td>
@@ -70,8 +70,8 @@
                               <td class="text-right"><?= number_format((float)$item['bp_impression_need']) ?></td>
                               <td class="text-right"><?= number_format((float)$item['bp_campaign_budget']) ?></td>
                               <td class="text-nowrap"><?= $item['bp_ad_detail'] ?></td>
-                              <td><?= $item['bp_period_from'] ?></td>
-                              <td><?= $item['bp_period_to'] ?></td>
+                              <td><?= date("d/m/Y",strtotime($item['bp_period_from'])) ?></td>
+                              <td><?= date("d/m/Y",strtotime($item['bp_period_to'])) ?></td>
                               <td class="text-nowrap">1-30 Nov 19</td>
                             </tr>
                           <?php } ?>
@@ -107,7 +107,7 @@
                         <tbody>
                         <?php foreach($ptd as $item){ ?>
                             <tr>
-                              <td scope="row"><?= $item['create_at'] ?></td>
+                              <td scope="row"><?= date("d/m/Y",strtotime($item['create_at'])) ?></td>
                               <td class="text-left text-nowrap"><?= $item['sales_name'] ?></td>
                               <td><?= $item['type'] ?></td>
                               <td class="text-nowrap"><?= $item['ptd_section'] ?></td>
@@ -116,8 +116,8 @@
                               <td class="text-right"><?= number_format((float)$item['ptd_impression_need']) ?></td>
                               <td class="text-right"><?= number_format((float)$item['ptd_campaign_budget']) ?></td>
                               <td class="text-nowrap"><?= $item['ptd_ad_detail'] ?></td>
-                              <td><?= $item['ptd_period_from'] ?></td>
-                              <td><?= $item['ptd_period_to'] ?></td>
+                              <td><?= date("d/m/Y",strtotime($item['ptd_period_from'])) ?></td>
+                              <td><?= date("d/m/Y",strtotime($item['ptd_period_to'])) ?></td>
                               <td class="text-nowrap">1-30 Nov 19</td>
                             </tr>
                           <?php } ?>

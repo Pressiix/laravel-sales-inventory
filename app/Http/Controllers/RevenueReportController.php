@@ -81,14 +81,20 @@ class RevenueReportController extends Controller
                                     $bp[$bp_index][$key2] = json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))];
 
                                 }else{
-                                    unset($bp[$bp_index]);
-                                    break;
+                                    if($key2 !== "bp_ad_detail")
+                                    {
+                                        unset($bp[$bp_index]);
+                                        break;
+                                    }else{
+                                        $bp[$bp_index][$key2] = "";
+                                    }
                                 }
                             }
                         }
                         //If the array key begins with the word "ptd_".
                         if(strpos($key2,"ptd_") !== false)
                         {
+                            //echo $key2."=".$item[$key][$key2]."<br/>";
                             if(count(json_decode($item[$key][$key2],true)) > 1)
                             {
                                 $ptd[$ptd_index][$key2] = array_values(json_decode($item[$key][$key2],true));
@@ -97,10 +103,15 @@ class RevenueReportController extends Controller
                                 if(isset(json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))]))
                                 {
                                     $ptd[$ptd_index][$key2] = json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))];
-
+                                    //echo "[".$ptd_index."] = ".json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))]."<br/>";
                                 }else{
-                                    unset($ptd[$ptd_index]);
-                                    break;
+                                    if($key2 !== "ptd_ad_detail")
+                                    {
+                                        unset($ptd[$ptd_index]);
+                                        break;
+                                    }else{
+                                        $ptd[$ptd_index][$key2] = "";
+                                    }
                                 }
                             }
                         }
@@ -142,12 +153,11 @@ class RevenueReportController extends Controller
             $bp = $this->getDetailByDatePeriod($bp,$start,$end,"bp");
             $ptd = $this->getDetailByDatePeriod($ptd,$start,$end,"ptd");
         }
-        
+        //echo "<pre/>";print_r($ptd);
         return view('new.revenue',[
             "bp"=>$bp,
             "ptd"=>$ptd
         ]);
-        
     }
 
     /**
