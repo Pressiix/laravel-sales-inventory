@@ -480,6 +480,7 @@ class RequestFormController extends Controller
         //Find team leader email by user team id
         $team_id = Auth::user()->getOriginal()['team_id'];
         $all_user = User::where('team_id', '=', $team_id)->get();
+        $email = "";
         foreach($all_user as $key=>$value)
         {
             if(User::getUserRoleById($value['id']) == 'sale-management')
@@ -488,13 +489,17 @@ class RequestFormController extends Controller
                 break;
             }
         }
+        if($email == "")
+        {
+            $email = "watcharaphonp@bnagkokpost.co.th";
+        }
 
         $details = [
             'title' => 'Notification!, Request form has been created',
             'body' => 'This is for testing email using smtp'
         ];
        
-        \Mail::to($email)->send(new \App\Mail\SendMail($details));
+        return \Mail::to($email)->send(new \App\Mail\SendMail($details));
     }
 
     public function success()
