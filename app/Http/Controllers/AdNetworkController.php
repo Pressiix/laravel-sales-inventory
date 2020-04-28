@@ -90,6 +90,7 @@ class AdNetworkController extends Controller
             'item' => $items
         ]);*/
     }
+
     public function ad_network(Request $request)
     {
         if(isset($request->month) && isset($request->year))
@@ -181,7 +182,7 @@ class AdNetworkController extends Controller
     }
     public function ad_network_preview(Request $request)
     {
-        echo "<pre/>";print_r($request->all());
+        //echo "<pre/>";print_r($request->all());
         return view('new.ad_network_preview',[
             'item' => $request->all()
         ]);
