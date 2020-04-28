@@ -169,7 +169,8 @@
       <script>
         $('.datepicker').datepicker({
             autoclose: true,
-            todayHighlight: true
+            todayHighlight: true,
+            orientation: "bottom"
         });
 
         function addItems(){

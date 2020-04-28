@@ -143,7 +143,8 @@
 
     $('.datepicker').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        orientation: "bottom"
     });
 
     $('#myTab a#posttoday-tab').on('click', function (e) {
