@@ -260,7 +260,7 @@ class AdNetworkController extends Controller
                                                     if((int) date_format(date_create($period[$key]),"d") > 7 && (int) date_format(date_create($period[$key]),"d") <= 14)
                                                     {   
                                                         //$item[0][$advertiser_name]['date2'] = $period[$key];
-                                                        //$item[0][$advertiser_name]['advertiser2'] = $ad[$j]['advertiser'][$k];
+                                                        $item[0][$advertiser_name]['advertiser'] = $ad[$j]['advertiser'][$k];
                                                         $item[0][$advertiser_name]['pageview2'] = $ad[$j]['page_view'][$k];
                                                         //$item[0][$advertiser_name]['total_day2'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
                                                         //$item[0][$advertiser_name]['start2'] = $ad[$j]['start'];
@@ -286,7 +286,7 @@ class AdNetworkController extends Controller
                                                     if((int) date_format(date_create($period[$key]),"d") > 21)
                                                     {
                                                         //$item[1][$advertiser_name]['date2'] = $period[$key];
-                                                        //$item[1][$advertiser_name]['advertiser2'] = $ad[$j]['advertiser'][$k];
+                                                        $item[1][$advertiser_name]['advertiser'] = $ad[$j]['advertiser'][$k];
                                                         $item[1][$advertiser_name]['pageview2'] = $ad[$j]['page_view'][$k];
                                                         //$item[1][$advertiser_name]['total_day2'] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
                                                         //$item[1][$advertiser_name]['start2'] = $ad[$j]['start'];
@@ -306,12 +306,13 @@ class AdNetworkController extends Controller
             }
             $item = array_values($item);
             
-        echo "<pre/>";print_r($item);
-        /*return view('new.ad_network_bymonth',[
+        //echo "<pre/>";print_r($item);
+        
+        return view('new.ad_network_bymonth',[
             'month' => (isset($request->last_month) ? $request->last_month : $request->current_month ),
             'year' => (isset($request->last_year) ? $request->last_year : $request->current_year ),
             'item'=>$item
-        ]);*/
+        ]);
     }
     public function ad_network_preview(Request $request)
     {
