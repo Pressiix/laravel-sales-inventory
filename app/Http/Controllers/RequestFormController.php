@@ -426,7 +426,7 @@ class RequestFormController extends Controller
                 //Send email to ...
                 $this->sendEmail();
                 
-                return Redirect::to('request_form')->with('success','Request form created successfully!');
+                return view('new.success_request_submit');
             }
             else if($request->input('action') === 'Approve')
             {
