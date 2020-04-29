@@ -476,7 +476,7 @@ class RequestFormController extends Controller
                     'ptd_campaign_budget'=>$request->ptd_campaign_budget,
                 ]);
 
-                return Redirect::to('profile2')->with('success','Request form update successfully!');
+                return view('new.success_request_approve');
             }
     }
 
@@ -496,7 +496,7 @@ class RequestFormController extends Controller
         }
         if($email == "")
         {
-            $email = "watcharaphonp@bnagkokpost.co.th";
+            $email = "watcharaphonp@bangkokpost.co.th";
         }
 
         $details = [
