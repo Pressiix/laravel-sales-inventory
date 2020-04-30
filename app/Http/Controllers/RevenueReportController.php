@@ -47,12 +47,12 @@ class RevenueReportController extends Controller
         //merge query result from request table and ad description table
         $item = array_values(array_replace_recursive($item1,$item2));
         //get report detail only approve status
-        for($k=0;$k<count($item);$k++)
+
+        foreach($item as $key=>$value)
         {
-            //remove a rows if status not equal approve status
-            if($item[$k]['status'] == 'Waiting')
+            if($value['status'] === 'Waiting')
             {
-                unset($item[$k]);
+                unset($item[$key]);
             }
         }
         //replace a new index for item array
@@ -61,6 +61,7 @@ class RevenueReportController extends Controller
         foreach($item as $key=>$value)
         {
             //loop for each sub element of an arrays
+            $a[] = array_keys($value);
             foreach(array_keys($value) as $key2)
             {
                 //If the value in the column is an array of data.
@@ -81,20 +82,13 @@ class RevenueReportController extends Controller
                                     $bp[$bp_index][$key2] = json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))];
 
                                 }else{
-                                    if($key2 !== "bp_ad_detail")
-                                    {
-                                        unset($bp[$bp_index]);
-                                        break;
-                                    }else{
                                         $bp[$bp_index][$key2] = "";
-                                    }
                                 }
                             }
                         }
-                        //If the array key begins with the word "ptd_".
+                        //If the array key begins with the word "ptd_"
                         if(strpos($key2,"ptd_") !== false)
                         {
-                            //echo $key2."=".$item[$key][$key2]."<br/>";
                             if(count(json_decode($item[$key][$key2],true)) > 1)
                             {
                                 $ptd[$ptd_index][$key2] = array_values(json_decode($item[$key][$key2],true));
@@ -103,21 +97,16 @@ class RevenueReportController extends Controller
                                 if(isset(json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))]))
                                 {
                                     $ptd[$ptd_index][$key2] = json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))];
-                                    //echo "[".$ptd_index."] = ".json_decode($item[$key][$key2],true)[array_key_first(json_decode($item[$key][$key2],true))]."<br/>";
                                 }else{
-                                    if($key2 !== "ptd_ad_detail")
-                                    {
-                                        unset($ptd[$ptd_index]);
-                                        break;
-                                    }else{
                                         $ptd[$ptd_index][$key2] = "";
-                                    }
                                 }
                             }
                         }
                     } 
                 }else{
-                    if(strpos($key2,"bp_") !== false && strpos($key2,"ptd_") == false){
+                    //echo $key2." = ".$item[$key][$key2]."<br/>";
+                    if(strpos($key2,"bp_") !== false && strpos($key2,"ptd_") == false)
+                    {
                         $bp[$bp_index][$key2] = $item[$key][$key2];
                         if(!isset($bp[$bp_index]['type']))
                         {
@@ -135,9 +124,10 @@ class RevenueReportController extends Controller
                     else if(strpos($key2,"bp_") == false && strpos($key2,"ptd_") == false){
                         $bp[$bp_index][$key2] = $item[$key][$key2];
                         $ptd[$ptd_index][$key2] = $item[$key][$key2];
-                    }      
+                    }
                 }
             }
+            //echo "=================================================<br/>";
             $bp_index++;
             $ptd_index++;
         }
@@ -150,14 +140,25 @@ class RevenueReportController extends Controller
             $start = date_format(date_create($request->start),"Y-m-d");
             $end = date_format(date_create($request->end),"Y-m-d");
 
-            $bp = $this->getDetailByDatePeriod($bp,$start,$end,"bp");
-            $ptd = $this->getDetailByDatePeriod($ptd,$start,$end,"ptd");
+            /*$bp = $this->getDetailByDatePeriod($bp,$start,$end,"bp");
+            $ptd = $this->getDetailByDatePeriod($ptd,$start,$end,"ptd");*/
+            $format = 'Y-m-d';
+                $interval = new DateInterval('P1D');
+                $realEnd = new DateTime($end);
+                $realEnd->add($interval);
+                $date_period = new DatePeriod(new DateTime($start), $interval, $realEnd);
+
+                foreach($date_period as $date)
+                { 
+                    $date_array[] = date("Y-m-d",strtotime($date->format($format)));
+                }
+                echo "<pre/>"; print_r($date_array);
         }
         //echo "<pre/>";print_r($ptd);
-        return view('new.revenue',[
+        /*return view('new.revenue',[
             "bp"=>$bp,
             "ptd"=>$ptd
-        ]);
+        ]);*/
     }
 
     /**
@@ -169,8 +170,57 @@ class RevenueReportController extends Controller
         $detail=[];
         foreach($web as $web_index=>$web_item)
         {
+            
                 foreach($web_item as $key=>$value)
                 {
+                    
+                        //echo "<pre/>";print_r($value);echo "<br/>";
+                        if(is_array($value))
+                        {
+                            for($i=0;$i<count($web[$web_index][$web_name."_size"]);$i++)
+                            {
+                                if($key == $web_name."_size")
+                                {
+                                    $x = $x+$i;
+                                }
+                                
+                                foreach(array_keys($web[0]) as $key2)
+                                {
+                                    if(is_array($web[$web_index][$key2]))
+                                    {
+                                        $detail[$x][$key2] = $web[$web_index][$key2][$i];
+                                    }else{
+                                        $detail[$x][$key2] = $web[$web_index][$key2];
+                                    }
+                                    
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if(!empty($web[$web_index][$web_name."_campaign_budget"]) )
+                            {
+                                $detail[$x][$key] = $value;
+                            }
+                            
+                        }
+                }
+                $x++;
+                
+        }
+        //echo "<pre/>";print_r($detail);
+        return $detail;
+    }
+
+    /*private function getReportDetail2($web,$web_name)
+    {
+        $x=0;
+        $detail=[];
+        foreach($web as $web_index=>$web_item)
+        {
+                foreach($web_item as $key=>$value)
+                {
+                    echo $key."<br/>";
                     if(is_array($value))
                     {
                         $detail[$x][$key] = $value[0];
@@ -190,19 +240,21 @@ class RevenueReportController extends Controller
                                         {
                                             $detail[$x][$web_key] = $web[$web_index][$web_key][$key2];
                                         }
-                                        else{
-                                            $detail[$x][$web_key] = $web[$web_index][$web_key];
-                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    if(strpos($key,"budget")!== false)
+                    {
+                        echo "====================<br/>";
+                    }
                 }
                 $x++;
         }
+        
         return $detail;
-    }
+    }*/
 
     /**
      * Create an array of dates between the period from and period to columns.
@@ -219,7 +271,8 @@ class RevenueReportController extends Controller
                 { 
                     $date_array[] = date("Y-m-d",strtotime($date->format($format)));
                 }
-                return  $date_array;
+                echo "<pre/>"; print_r($date_array);
+                //return  $date_array;
     }
 
     /**
