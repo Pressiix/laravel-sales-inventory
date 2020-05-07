@@ -271,8 +271,8 @@ class RevenueReportController extends Controller
                 { 
                     $date_array[] = date("Y-m-d",strtotime($date->format($format)));
                 }
-                echo "<pre/>"; print_r($date_array);
-                //return  $date_array;
+                //echo "<pre/>"; print_r($date_array);
+                return  $date_array;
     }
 
     /**
