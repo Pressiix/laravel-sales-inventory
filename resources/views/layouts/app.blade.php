@@ -107,7 +107,7 @@
                         
                         <div class="profile-avatar">
                             <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
-                                <img src="<?= ($user->profile_picture ? url('/').$user->profile_picture : "assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
+                                <img src="<?= ($user->profile_picture && file_exists(public_path().$user->profile_picture) ? $user->profile_picture : "/assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
                             </div>
                             <!-- modal -->
                             <div class="modal fade" id="myModal" role="dialog">
