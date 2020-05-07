@@ -61,17 +61,17 @@
                         <tbody>
                           <?php foreach($bp as $item){ ?>
                             <tr>
-                              <td scope="row"><?= date("d/m/Y",strtotime($item['create_at'])) ?></td>
+                            <td scope="row"><?= date("d/m/Y",strtotime($item['create_at'])) ?></td>
                               <td class="text-left text-nowrap"><?= $item['sales_name'] ?></td>
-                              <td><?= $item['type'] ?></td>
-                              <td class="text-nowrap"><?= $item['bp_section'] ?></td>
-                              <td class="text-nowrap"><?= $item['bp_position'] ?></td>
-                              <td class="text-nowrap"><?= $item['campaign_name'] ?></td>
-                              <td class="text-right"><?= number_format((float)$item['bp_impression_need']) ?></td>
-                              <td class="text-right"><?= number_format((float)$item['bp_campaign_budget']) ?></td>
-                              <td class="text-nowrap"><?= $item['bp_ad_detail'] ?></td>
-                              <td><?= date("d/m/Y",strtotime($item['bp_period_from'])) ?></td>
-                              <td><?= date("d/m/Y",strtotime($item['bp_period_to'])) ?></td>
+                              <td><?= (isset($item['type']) ? $item['type'] : "") ?></td>
+                              <td class="text-nowrap"><?= (isset($item['bp_section']) ? $item['bp_section'] : "") ?></td>
+                              <td class="text-nowrap"><?= (isset($item['bp_position']) ? $item['bp_position'] : "") ?></td>
+                              <td class="text-nowrap"><?=(isset($item['campaign_name']) ? $item['campaign_name'] : "") ?></td>
+                              <td class="text-right"><?= (isset($item['bp_impression_need']) ? ((float)$item['bp_impression_need']): "") ?></td>
+                              <td class="text-right"><?= (isset($item['bp_campaign_budget']) ? number_format((float)$item['bp_campaign_budget']) : "") ?></td>
+                              <td class="text-nowrap"><?=(isset($item['bp_ad_detail']) ? $item['bp_ad_detail'] : "") ?></td>
+                              <td><?= (isset($item['bp_period_from']) ? date("d/m/Y",strtotime($item['bp_period_from'])) : "") ?></td>
+                              <td><?= (isset($item['bp_period_to']) ? date("d/m/Y",strtotime($item['bp_period_to'])) : "")  ?></td>
                               <td class="text-nowrap">1-30 Nov 19</td>
                             </tr>
                           <?php } ?>
@@ -111,13 +111,13 @@
                               <td class="text-left text-nowrap"><?= $item['sales_name'] ?></td>
                               <td><?= (isset($item['type']) ? $item['type'] : "") ?></td>
                               <td class="text-nowrap"><?= (isset($item['ptd_section']) ? $item['ptd_section'] : "") ?></td>
-                              <td class="text-nowrap"><?= (isset($item['ptd_position'] ?></td>
-                              <td class="text-nowrap"><?=(isset($item['campaign_name'] ?></td>
+                              <td class="text-nowrap"><?= (isset($item['ptd_position']) ? $item['ptd_position'] : "") ?></td>
+                              <td class="text-nowrap"><?=(isset($item['campaign_name']) ? $item['campaign_name'] : "") ?></td>
                               <td class="text-right"><?= (isset($item['ptd_impression_need']) ? ((float)$item['ptd_impression_need']): "") ?></td>
                               <td class="text-right"><?= (isset($item['ptd_campaign_budget']) ? number_format((float)$item['ptd_campaign_budget']) : "") ?></td>
-                              <td class="text-nowrap"><?=(isset($item['ptd_ad_detail'] ?></td>
-                              <td><?= (isset(("d/m/Y",strtotime($item['ptd_period_from'])) ?></td>
-                              <td><?= (isset(("d/m/Y",strtotime($item['ptd_period_to'])) ?></td>
+                              <td class="text-nowrap"><?=(isset($item['ptd_ad_detail']) ? $item['ptd_ad_detail'] : "") ?></td>
+                              <td><?= (isset($item['ptd_period_from']) ? date("d/m/Y",strtotime($item['ptd_period_from'])) : "") ?></td>
+                              <td><?= (isset($item['ptd_period_to']) ? date("d/m/Y",strtotime($item['ptd_period_to'])) : "")  ?></td>
                               <td class="text-nowrap">1-30 Nov 19</td>
                             </tr>
                           <?php } ?>

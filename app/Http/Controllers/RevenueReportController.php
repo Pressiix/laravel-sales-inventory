@@ -155,10 +155,10 @@ class RevenueReportController extends Controller
                 echo "<pre/>"; print_r($date_array);
         }
         //echo "<pre/>";print_r($ptd);
-        /*return view('new.revenue',[
+        return view('new.revenue',[
             "bp"=>$bp,
             "ptd"=>$ptd
-        ]);*/
+        ]);
     }
 
     /**
