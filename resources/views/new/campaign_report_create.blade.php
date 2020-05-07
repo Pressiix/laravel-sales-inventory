@@ -36,7 +36,7 @@
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Campaign:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <input type="text" class="form-control" name="campaign_name" value="<?= (isset($item['campaign_name']) ? $item['campaign_name'] : '') ?>">
+                  <input type="text" class="form-control" name="campaign_name" value="<?= (isset($item['campaign_name']) ? $item['campaign_name'] : '') ?>" autocomplete="off">
                 </div>
               </div>
 
@@ -76,31 +76,31 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="item_name[]" class="form-control">
+                          <input type="text" name="item_name[]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="date[]" class="form-control">
+                          <input type="text" name="date[]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server impressions:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_impression[]" class="form-control">
+                          <input type="text" name="ad_server_impression[]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server clicks:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_click[]" class="form-control">
+                          <input type="text" name="ad_server_click[]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server CTR:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_ctr[]" class="form-control">
+                          <input type="text" name="ad_server_ctr[]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                     </div>
@@ -114,31 +114,31 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>">
+                          <input type="text" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="date[<?= $i ?>]" class="form-control" value="<?= $item['date'][$i] ?>">
+                          <input type="text" name="date[<?= $i ?>]" class="form-control" value="<?= $item['date'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server impressions:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_impression[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_impression'][$i] ?>">
+                          <input type="text" name="ad_server_impression[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_impression'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server clicks:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_click[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_click'][$i] ?>">
+                          <input type="text" name="ad_server_click[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_click'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server CTR:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_ctr[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_ctr'][$i] ?>">
+                          <input type="text" name="ad_server_ctr[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_ctr'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                     </div>
