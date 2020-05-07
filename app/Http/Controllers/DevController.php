@@ -41,7 +41,7 @@ class DevController extends Controller
     */
     public function showAllUser()
      {
-        if(Auth::user()->name == "admin")
+        if(Auth::user()->username == "admin")
         {
             $user = Auth::user();
             $role_dropdown = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
@@ -69,7 +69,7 @@ class DevController extends Controller
      //Show role lists on table
      public function showAllRole()
      {
-        if(Auth::user()->name == "admin")
+        if(Auth::user()->username == "admin")
         {
             $user = Auth::user();
             $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
@@ -87,7 +87,7 @@ class DevController extends Controller
      //Show permission lists on table
      public function showAllPermission()
      {
-        if(Auth::user()->name == "admin")
+        if(Auth::user()->username == "admin")
         {
             $user = Auth::user();
             $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('permissions')->get()), True),'name','id');
