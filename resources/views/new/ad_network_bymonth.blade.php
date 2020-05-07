@@ -5,7 +5,11 @@
         <div class="content-inventory--full">
           <div class="box-title">
             <h2>AD Network Revenue Dashboard</h2>
-            <div class="btn-create"><a href="campaign_report_create.html">Create AD Network</a></div>
+            <div class="btn-create">
+            <?php if($userRole == "ad-operation" || $userRole =="admin"){ ?>
+              <a href="/ad_network_create">Create AD Network</a>
+            <?php } ?>
+            </div>
           </div>
           <form>
 

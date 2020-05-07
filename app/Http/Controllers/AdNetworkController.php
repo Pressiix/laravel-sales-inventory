@@ -22,77 +22,23 @@ use Input;
 
 class AdNetworkController extends Controller
 {
-
-    public function test()
+    private function getUserRole()
     {
-            $current_month =  date_format(date_create(now()->toDateTimeString()),"m");
-            $last_month =  date('m', strtotime('-1 month', strtotime(date_format(date_create(now()->toDateTimeString()),"Y-m-d"))));
-            //echo $last_month;
-            $advertiser=[];
-            $ad = json_decode(AdNetwork::all(),true);
-            $index=0;
-            $index2=0;
-            $item=[];
-            foreach($ad as $key=>$value)
-            {
-                foreach($value as $key2=>$value2)
-                {
-                    if($key2 !== 'id' && $key2 !== 'start' && $key2 !== 'end'){
-                        $ad[$index][$key2] = json_decode($value2,true);
-                        if($key2 == 'advertiser'){
-                            foreach(json_decode($value2,true) as $value3)
-                            {
-                                $advertiser[$index2] = $value3;
-                                $index2++;
-                            }
-                        }
-                    }
-                }
-                $index++;
-            }
-
-
-            $advertiser=array_values(array_unique($advertiser));
-            
-            for($i=0;$i<count($advertiser);$i++)
-            {
-                $index3=0;
-                for($j=0;$j<count($ad);$j++)
-                {
-                    if(in_array($advertiser[$i],$ad[$j]['advertiser']))
-                    {   
-                        //echo $pageview[$i]." = ".json_encode($ad[$j]['page_view'])."<br/>";
-                        for($k=0;$k<count($ad[$j]['advertiser']);$k++)
-                        {
-                            if(date_format(date_create($ad[$j]['start']),"m") == $current_month || date_format(date_create($ad[$j]['start']),"m") == $last_month)
-                            {
-                                if($advertiser[$i] == $ad[$j]['advertiser'][$k])
-                                {
-                                    $index3 = ($index3 == 0 &&  date_format(date_create($ad[$j]['start']),"m") == $current_month ? 1 : $index3);
-                                    //echo "\$pageview[".$i."] = ".$ad[$j]['page_view'][$k]." / Start = ".$ad[$j]['start']." /End = ".$ad[$j]['end']." / Revenue = ".$ad[$j]['revenue'][$k]."<br/>";
-                                    $item[$i]['advertiser'] = $ad[$j]['advertiser'][$k];
-                                    $item[$i]['day'][$index3] = round((strtotime($ad[$j]['end'])-strtotime($ad[$j]['start'])) / (60 * 60 * 24));
-                                    $item[$i]['start'][$index3] = $ad[$j]['start'];
-                                    $item[$i]['end'][$index3] = $ad[$j]['end'];
-                                    $item[$i]['impression'][$index3] = $ad[$j]['impression'][$k];
-                                    $item[$i]['ecpm'][$index3] = $ad[$j]['ecpm'][$k];
-                                    $item[$i]['revenue'][$index3] = $ad[$j]['revenue'][$k];
-                                    $index3++;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-            }
-        echo "<pre/>";print_r(array_values($item));
-        /*return view('new.ad_network',[
-            'item' => $items
-        ]);*/
+        if(auth()->user()->hasRole('ad-operation')){
+            $userRole = 'ad-operation';
+        }
+        else if(auth()->user()->hasRole('admin')){
+            $userRole = 'admin';
+        }else{
+            $userRole = '';
+        }
+        return $userRole;
     }
 
     public function ad_network(Request $request)
     {
+        $userRole = $this->getUserRole();
+
         if(isset($request->month) && isset($request->year))
         {
             $current_month =  date_format(date_create($request->year."-".$request->month."-01"),"m");
@@ -165,6 +111,7 @@ class AdNetworkController extends Controller
             }
             //echo "<pre/>";print_r(array_values($item));
             return view('new.ad_network',[
+                'userRole' => $userRole,
                 'last_month'=>\DateTime::createFromFormat('!m',$last_month)->format('F'),
                 'last_year'=>$last_year,
                 'current_month'=>\DateTime::createFromFormat('!m',$current_month)->format('F'),
@@ -174,6 +121,8 @@ class AdNetworkController extends Controller
     }
     public function ad_network_bymonth(Request $request)
     {
+        $userRole = $this->getUserRole();
+        
         $month = (isset($request->last_month) ? $request->last_month : $request->current_month );
         $year = (isset($request->last_year) ? $request->last_year : $request->current_year );
 
@@ -309,6 +258,7 @@ class AdNetworkController extends Controller
         //echo "<pre/>";print_r($item);
         
         return view('new.ad_network_bymonth',[
+            'userRole' => $userRole,
             'month' => (isset($request->last_month) ? $request->last_month : $request->current_month ),
             'year' => (isset($request->last_year) ? $request->last_year : $request->current_year ),
             'item'=>$item
