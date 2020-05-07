@@ -23,6 +23,7 @@ class DevController extends Controller
 
     public function test()
     {
+        
         $team_id = Auth::user()->getOriginal()['team_id'];
         $all_user = User::where('team_id', '=', $team_id)->get();
         foreach($all_user as $key=>$value)
@@ -40,47 +41,65 @@ class DevController extends Controller
     */
     public function showAllUser()
      {
-        $user = Auth::user();
-        $role_dropdown = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
-        $items = DB::connection('mysql')->table('users')->get()->toArray();
-        $items = json_decode(json_encode($items), true);
-        foreach($items as $key => $value)
+        if(Auth::user()->name == "admin")
         {
-            //add role column to array
-            $role_name= User::getUserRoleById($value['id']);
-            $items[$key]['role'][0] = (!empty($role_name) ? $role_name : '');
+            $user = Auth::user();
+            $role_dropdown = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
+            $items = DB::connection('mysql')->table('users')->get()->toArray();
+            $items = json_decode(json_encode($items), true);
+            foreach($items as $key => $value)
+            {
+                //add role column to array
+                $role_name= User::getUserRoleById($value['id']);
+                $items[$key]['role'][0] = (!empty($role_name) ? $role_name : '');
+            }
+            
+            return view('backend.user',[
+                'items' => $items,
+                'user' => $user,
+                'role' => 'admin',
+                'role_dropdown'=>$role_dropdown
+            ]);
+        }else{
+            return abort('403');
         }
         
-        return view('backend.user',[
-            'items' => $items,
-            'user' => $user,
-            'role' => 'admin',
-            'role_dropdown'=>$role_dropdown
-        ]);
      }
 
      //Show role lists on table
      public function showAllRole()
      {
-        $user = Auth::user();
-        $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
+        if(Auth::user()->name == "admin")
+        {
+            $user = Auth::user();
+            $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('roles')->get()), True),'name','id');
+            
+            return view('backend.role',[
+                'items' => $items,
+                'user' => $user
+            ]);
+        }else{
+            return abort('403');
+        }
         
-        return view('backend.role',[
-            'items' => $items,
-            'user' => $user
-        ]);
      }
 
      //Show permission lists on table
      public function showAllPermission()
      {
-        $user = Auth::user();
-        $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('permissions')->get()), True),'name','id');
+        if(Auth::user()->name == "admin")
+        {
+            $user = Auth::user();
+            $items = array_column(json_decode(json_encode(DB::connection('mysql')->table('permissions')->get()), True),'name','id');
+            
+            return view('backend.permission',[
+                'items' => $items,
+                'user' => $user
+            ]);
+        }else{
+            return abort('403');
+        }
         
-        return view('backend.permission',[
-            'items' => $items,
-            'user' => $user
-        ]);
      }
 
      /*
