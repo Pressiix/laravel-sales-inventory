@@ -140,21 +140,11 @@ class RevenueReportController extends Controller
             $start = date_format(date_create($request->start),"Y-m-d");
             $end = date_format(date_create($request->end),"Y-m-d");
 
-            /*$bp = $this->getDetailByDatePeriod($bp,$start,$end,"bp");
-            $ptd = $this->getDetailByDatePeriod($ptd,$start,$end,"ptd");*/
-            $format = 'Y-m-d';
-                $interval = new DateInterval('P1D');
-                $realEnd = new DateTime($end);
-                $realEnd->add($interval);
-                $date_period = new DatePeriod(new DateTime($start), $interval, $realEnd);
-
-                foreach($date_period as $date)
-                { 
-                    $date_array[] = date("Y-m-d",strtotime($date->format($format)));
-                }
-                echo "<pre/>"; print_r($date_array);
+            $bp = $this->getDetailByDatePeriod($bp,$start,$end,"bp");
+            $ptd = $this->getDetailByDatePeriod($ptd,$start,$end,"ptd");
+            
         }
-        //echo "<pre/>";print_r($ptd);
+        //echo "<pre/>";print_r($bp);
         return view('new.revenue',[
             "bp"=>$bp,
             "ptd"=>$ptd
@@ -212,50 +202,6 @@ class RevenueReportController extends Controller
         return $detail;
     }
 
-    /*private function getReportDetail2($web,$web_name)
-    {
-        $x=0;
-        $detail=[];
-        foreach($web as $web_index=>$web_item)
-        {
-                foreach($web_item as $key=>$value)
-                {
-                    echo $key."<br/>";
-                    if(is_array($value))
-                    {
-                        $detail[$x][$key] = $value[0];
-                    }
-                    else
-                    {
-                        $detail[$x][$key] = $value;
-                        if(strpos($key,$web_name."_campaign_budget")!== false && is_array($web[$web_index][$web_name.'_size'])){
-                            foreach($web[$web_index][$web_name.'_size'] as $key2=>$value2)
-                            {
-                                if($key2 !== 0)
-                                {
-                                    $x++;
-                                    foreach(array_keys($web[$web_index]) as $web_key)
-                                    {
-                                        if(is_array($web[$web_index][$web_key]))
-                                        {
-                                            $detail[$x][$web_key] = $web[$web_index][$web_key][$key2];
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if(strpos($key,"budget")!== false)
-                    {
-                        echo "====================<br/>";
-                    }
-                }
-                $x++;
-        }
-        
-        return $detail;
-    }*/
-
     /**
      * Create an array of dates between the period from and period to columns.
      */
@@ -286,12 +232,9 @@ class RevenueReportController extends Controller
         {
             //Filter array by date period from and date period to
             $item_date_period = $this->getDatePeriod($array[$array_key][$web_name.'_period_from'],$array[$array_key][$web_name.'_period_to']);
-            foreach($item_date_period as $date)
+            if(count(array_intersect($item_date_period, $date_array)) == 0)
             {
-                if(!in_array($date,$date_array) && !in_array($date,$date_array) )
-                {
-                    unset($array[$array_key]);
-                }
+                unset($array[$array_key]);
             }
             //Filter array by another field name (create at)
             /*if(!in_array(($array[$array_key]['create_at'],$date_array)))
