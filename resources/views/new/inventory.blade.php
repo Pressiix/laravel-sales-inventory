@@ -23,7 +23,7 @@
             <h2>Inventory Dashboard</h2>
             <div class="btn-create"><a href="campaign_report_create.html">Create Inventory</a></div>
           </div>
-          <form>
+          
 
             <div style="position: relative;">
 
@@ -1023,7 +1023,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1434,7 +1434,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1442,10 +1442,28 @@
               </div>
 
             </div>
-
-
-
-          </form>
+            <!-- modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title"><b>Upload your excel file</b></h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <form action="{{ url('/inventory-import') }}" method="POST" enctype="multipart/form-data" runat="server">
+                          {{ csrf_field() }}
+                          {{ method_field('POST') }}
+                          <input type='file' name="excel" />
+                          <button class="btn btn-lg btn-success" type="submit">Upload</button>  
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                 </div>
+                </div>
         </div>
       </div>
 
