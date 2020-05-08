@@ -20,12 +20,19 @@ use App\RequestForm;
 use App\AdDescription;
 use URL;
 use Input;
+use Excel;
+use imports\InventoryImport;
 
 class InventoryController extends Controller
 {
     public function indexs()
     {
         return view('new.inventory');
+    }
+
+    public function import()
+    {
+        Excel::toArray();
     }
     
 }

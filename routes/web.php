@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/ad_network_store', 'AdNetworkController@ad_network_store');
 
         Route::get('/inventory', 'InventoryController@indexs');
+        Route::post('/inventory-import', 'InventoryController@import')->name('inventory-import');
         
         Route::get('/revenue', ['as' => '/revenue', 'uses' => 'RevenueReportController@index']);
         Route::get('/success', 'AppController@success');
