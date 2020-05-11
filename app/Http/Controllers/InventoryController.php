@@ -27,11 +27,14 @@ class InventoryController extends Controller
     public function import()
     {
         try {
-            $import = new InventoryImport();
-            echo "<pre/>"; print_r(Excel::toArray($import, request()->file('excel')));
+
+            echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
+          
           } catch (\Exception $e) {
-                return $e->getMessage();
+          
+                 //return $e->getMessage();
           }
+         
     }
     
 }
