@@ -15,6 +15,7 @@ use App\User;
 use Excel;
 use App\Imports\InventoryImport;
 
+
 class InventoryController extends Controller
 {
     public function index()
