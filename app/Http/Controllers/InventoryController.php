@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Excel;
 use App\Imports\InventoryImport;
+use App\Services\PayUService\Exception;
 
 
 class InventoryController extends Controller
@@ -25,7 +26,15 @@ class InventoryController extends Controller
 
     public function import()
     {
-         echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
+        try {
+
+            echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
+          
+          } catch (\Exception $e) {
+          
+                throw new CustomException($e->getMessage());
+          }
+         
     }
     
 }
