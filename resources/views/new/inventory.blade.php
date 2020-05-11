@@ -1494,6 +1494,7 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
+            
             <tbody>
               <tr>
                 <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
