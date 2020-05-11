@@ -32,7 +32,7 @@ class InventoryController extends Controller
           
           } catch (\Exception $e) {
           
-                throw new CustomException($e->getMessage());
+                 //return $e->getMessage();
           }
          
     }
