@@ -60,7 +60,7 @@ class CampaignController extends Controller
                     $item[$i]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
                     $item[$i]['report_date_time'] =  date_format(date_create($value['update_at']),"Y-m-d H:i:s");
                     $item[$i]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
-                    $item[$i]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$i]['report_type'] = "Inventory";//json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$i]['campaign_name'] = $value['campaign_name'];
                     $i++;
                 }
@@ -74,7 +74,7 @@ class CampaignController extends Controller
                     $item[$key]['report_date'] =  date_format(date_create($value['update_at']),"Y-m-d");
                     $item[$key]['report_date_time'] =  date_format(date_create($value['update_at']),"Y-m-d H:i:s");
                     $item[$key]['advertiser_name'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
-                    $item[$key]['report_type'] = json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
+                    $item[$key]['report_type'] = "Inventory";//json_decode($value['advertiser'],true)[key(json_decode($value['advertiser'],true))];
                     $item[$key]['campaign_name'] = $value['campaign_name'];
             }
         }
