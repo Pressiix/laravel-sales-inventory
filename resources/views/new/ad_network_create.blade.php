@@ -61,7 +61,7 @@
                             <div class="form-group row">
                               <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">New Advertiser</label>
                               <div class="col-sm-11 col-md-11 col-lg-12">
-                                <input type="text" class="form-control" name="new_advertiser[0]" required>
+                                <input type="text" class="form-control" name="new_advertiser[0]">
                               </div>
                             </div>
                           </div>
@@ -82,7 +82,7 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">eCPM:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                          <input type="text" class="form-control" placeholder="Impression and Revenue field has been required" id="ecpm0" name="ecpm[0]" disabled required>
+                          <input type="text" class="form-control" placeholder="Impression and Revenue field has been required" id="ecpm0" name="ecpm[0]" readonly required>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -102,7 +102,7 @@
                       <div class="form-group row">
                         <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                        <select class="custom-select" name="advertiser_id[<?= $i ?>]" onchange="document.getElementById('advertiser_name').value=this.options[this.selectedIndex].text"  required>
+                        <select class="custom-select" name="advertiser_id[<?= $i ?>]" onchange="document.getElementById('advertiser_name').value=this.options[this.selectedIndex].text">
                           <option <?= (!isset($item['advertiser_id'][$i]) ? 'selected' : '') ?> >Choose...</option>
                           <?php foreach($advertiser as $key=>$value){ ?>
                             <option <?= (isset($item['advertiser_id'][$i]) && $item['advertiser_id'][$i] ==$key ? 'selected' : '') ?> value="<?= $key ?>"><?= $value ?></option>
@@ -118,7 +118,7 @@
                             <div class="form-group row">
                               <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">New Advertiser</label>
                               <div class="col-sm-11 col-md-11 col-lg-12">
-                                <input type="text" class="form-control" name="new_advertiser[<?= $i ?>]" value="<?= (isset($item['new_advertiser'][$i]) ? $item['new_advertiser'][$i] : '') ?>"  required>
+                                <input type="text" class="form-control" name="new_advertiser[<?= $i ?>]" value="<?= (isset($item['new_advertiser'][$i]) ? $item['new_advertiser'][$i] : '') ?>" >
                               </div>
                             </div>
                           </div>

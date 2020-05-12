@@ -33,8 +33,6 @@ class AdvertiserController extends Controller
          DB::connection('mysql')->insert('
             insert into advertiser values (
                 NULL,
-                \''.$request->advertiser_firstname.'\',
-                \''.$request->advertiser_lastname.'\',
                 \''.$request->advertiser_firstname.' '.$request->advertiser_lastname.'\',
                 \''.$request->advertiser_nickname.'\',
                 \''.$request->advertiser_telephone.'\',

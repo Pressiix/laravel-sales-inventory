@@ -96,10 +96,10 @@ class CampaignController extends Controller
 
     public function campaign_report_preview(Request $request)
     {
-        //echo "<pre/>";print_r($request->all());
-        return view('new.campaign_report_preview',[
+        echo "<pre/>";print_r(date_format(date_create($request->date[0]),"Y-m-d"));
+        /*return view('new.campaign_report_preview',[
             'item'=>$request->all()
-        ]);
+        ]);*/
     }
 
     public function campaign_report_preview2($id)
@@ -127,7 +127,7 @@ class CampaignController extends Controller
         }
         else if($request->input('action') === 'Confirm')
         {
-            //echo "<pre/>";print_r($request->all());
+            echo "<pre/>";print_r($request->all());
             $report_type[$request->report_type_id] = $request->report_type_name;
             $advertiser[$request->advertiser_id] = $request->advertiser_name;
 

@@ -33,8 +33,6 @@ class CustomerController extends Controller
          DB::connection('mysql')->insert('
             insert into customer values (
                     NULL,
-                    \''.$request->customer_firstname.'\',
-                    \''.$request->customer_lastname.'\',
                     \''.$request->customer_firstname.' '.$request->customer_lastname.'\',
                     \''.$request->customer_nickname.'\',
                     \''.$request->customer_telephone.'\',

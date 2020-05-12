@@ -45,7 +45,7 @@
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Start Date:</label>
                   <div class="col-sm-4">
                     <div class="input-group-inline">
-                      <input type="text" class="form-control form-input--date d2" id="start" name="start" value="<?= (isset($item['start']) ? $item['start'] : '') ?>">
+                      <input type="text" class="form-control form-input--date d2" id="start" name="start" value="<?= (isset($item['start']) ? date_format(date_create($item['start']),"m/d/Y") : '') ?>">
                       <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="col-sm-4">
                     <div class="input-group-inline">
-                      <input type="text" class="form-control form-input--date d2" name="end" value="<?= (isset($item['end']) ? $item['end'] : '') ?>">
+                      <input type="text" class="form-control form-input--date d2" name="end" value="<?= (isset($item['end']) ? date_format(date_create($item['end']),"m/d/Y") : '') ?>">
                       <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                     </div>
                   </div>
@@ -71,36 +71,36 @@
                   <div id="campaign-item">
                   <?php if(!isset($item['item_name'])){ ?>
                   <div class="box-ad--banner" id="item-card">
-                    <div class="box-ad--title" id="item-title">Date 1 :<div id="date_text"> -</div></div>
+                    <div class="box-ad--title" id="item-title">Date : - </div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" id="item_name0" name="item_name[]" class="form-control" autocomplete="off" disabled>
+                          <input type="text" id="item_name0" name="item_name[0]" class="form-control" autocomplete="off" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
-                          <input type="text" id="date0" name="date[]" class="form-control" autocomplete="off" disabled>
+                          <input type="text" id="date0" name="date[0]" class="form-control" autocomplete="off" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server impressions:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_impression[]" class="form-control" autocomplete="off">
+                          <input type="text" name="ad_server_impression[0]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server clicks:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_click[]" class="form-control" autocomplete="off">
+                          <input type="text" name="ad_server_click[0]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server CTR:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_ctr[]" class="form-control" autocomplete="off">
+                          <input type="text" name="ad_server_ctr[0]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                     </div>
@@ -109,18 +109,18 @@
                   else{ 
                     for($i=0;$i<count($item['item_name']);$i++){ ?>
                       <div class="box-ad--banner" id="item-card">
-                    <div class="box-ad--title" id="item-title">Date <?= $i+1 ?>:<div id="date_text"></div></div>
+                    <div class="box-ad--title" id="item-title">Date : <?= (isset($item['start']) ? $item['start'] : '') ?></div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
                         <div class="col-sm-10">
-                          <input type="text" id="item_name<?= $i ?>" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>" autocomplete="off" disabled>
+                          <input type="text" id="item_name<?= $i ?>" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>" autocomplete="off" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
-                          <input type="text" id="date<?= $i ?>" name="date[<?= $i ?>]" class="form-control" value="<?= $item['date'][$i] ?>" autocomplete="off" disabled>
+                          <input type="text" id="date<?= $i ?>" name="date[<?= $i ?>]" class="form-control" value="<?= $item['date'][$i] ?>" autocomplete="off" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -173,8 +173,9 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
     });
 
     $(document).on("keyup change", '#start', function () {
-        $('input[id*="date"]').val(this.value);
-        $("#date_text").text(this.value);
+        var date = new Date(this.value);
+        $('input[id*="date"]').val(date.getDate()+"/"+(date.getMonth()+ 1)+"/"+date.getFullYear());
+        $('div[id*="item-title"]').text("Date : "+date.getDate()+"/"+(date.getMonth()+ 1)+"/"+date.getFullYear());
     });
 
     $(document).on("keyup", 'input[id*="revenue"]', function () {
@@ -227,9 +228,11 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
             Html.find("input[type='text']").each(function() {  //Replace input value
                 this.value= '';
             });
-            Html.find("div[id*='item-title']").each(function() { //Replace box title
-                this.textContent = this.textContent.replace('Date 1 :','Date '+(count+1)+' : ');
-            });
+            
+            /*Html.find("div[id*='item-title']").each(function() { //Replace box title
+                this.textContent = this.textContent.replace('-','-');
+                this.id= this.id.replace('0', count);
+            });*/
             $('#campaign-item').append(Html);
             count++;
     }
