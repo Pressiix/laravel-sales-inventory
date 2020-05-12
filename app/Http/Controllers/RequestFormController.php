@@ -25,7 +25,7 @@ class RequestFormController extends Controller
 {
     public function test()
     {
-        echo date_format(date_create('2020-04-04 15:0:00'),"Y-m-d");
+        echo auth()->user()->id;
         
     }
     /**

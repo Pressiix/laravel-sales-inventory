@@ -88,7 +88,8 @@ class AdNetworkController extends Controller
                         //echo $pageview[$i]." = ".json_encode($ad[$j]['page_view'])."<br/>";
                         for($k=0;$k<count($ad[$j]['advertiser']);$k++)
                         {
-                            if((date_format(date_create($ad[$j]['start']),"m") == $current_month && date_format(date_create($ad[$j]['start']),"Y") == $current_year) || (date_format(date_create($ad[$j]['start']),"m") == $last_month && date_format(date_create($ad[$j]['start']),"Y") == $last_year))
+                            if((date_format(date_create($ad[$j]['start']),"m") == $current_month && date_format(date_create($ad[$j]['start']),"Y") == $current_year) || (date_format(date_create($ad[$j]['start']),"m") == $last_month && date_format(date_create($ad[$j]['start']),"Y") == $last_year)
+                            || (date_format(date_create($ad[$j]['end']),"m") == $current_month && date_format(date_create($ad[$j]['end']),"Y") == $current_year) || (date_format(date_create($ad[$j]['end']),"m") == $last_month && date_format(date_create($ad[$j]['end']),"Y") == $last_year))
                             {
                                 if($advertiser[$i] == $ad[$j]['advertiser'][$k])
                                 {
@@ -109,7 +110,7 @@ class AdNetworkController extends Controller
                 }
                 
             }
-            //echo "<pre/>";print_r(array_values($item));
+            //echo "<pre/>";print_r($item);
             return view('new.ad_network',[
                 'userRole' => $userRole,
                 'last_month'=>\DateTime::createFromFormat('!m',$last_month)->format('F'),
@@ -162,9 +163,9 @@ class AdNetworkController extends Controller
                     if(in_array($advertiser[$i],$ad[$j]['advertiser']))
                     {   
                         for($k=0;$k<count($ad[$j]['advertiser']);$k++)
-                        {
+                        {   
                             if((date_format(date_create($ad[$j]['start']),"m") == $month && date_format(date_create($ad[$j]['start']),"Y") == $year) || (date_format(date_create($ad[$j]['end']),"m") == $month && date_format(date_create($ad[$j]['end']),"Y") == $year))
-                            {
+                            { 
                                 if($advertiser[$i] == $ad[$j]['advertiser'][$k])
                                 {
                                     //Select only dates that aren't in the specified month.
@@ -176,7 +177,7 @@ class AdNetworkController extends Controller
                                             $period = $this->getDatePeriod(date_format(date_create($ad[$j]['start']),"Y-m-d"),date("Y-m-t", strtotime(date_format(date_create($ad[$j]['start']),"Y-m-d"))) );
                                         }
                                         //if month number from end date = specific month number
-                                        if(date_format(date_create($ad[$j]['end']),"m") == $month)
+                                        else if(date_format(date_create($ad[$j]['end']),"m") == $month)
                                         {
                                             $period = $this->getDatePeriod(date_format(date_create($year."-".$month."-01"),"Y-m-d"),date("Y-m-t", strtotime(date_format(date_create($ad[$j]['end']),"Y-m-d"))) );
                                         }

@@ -94,7 +94,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item as $key=>$value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item as $key=>$value){ ?>
                           <tr>
                             <th scope="row"><?= (isset($value['advertiser']) ? $value['advertiser'] : '') ?></th>
                             <td class="text-nowrap">
@@ -162,7 +163,8 @@
                               </div>
                             </td>
                           </tr>
-                        <?php } ?>
+                        <?php }
+                      } ?>
 
                           <tr class="sum--bg-gray">
                             <th scope="row" class="text-center">House</th>
@@ -231,7 +233,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item as $key=>$value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item as $key=>$value){ ?>
                           <tr>
                             <th scope="row"><?= (isset($value['advertiser']) ? $value['advertiser'] : '') ?></th>
                             <td class="text-nowrap">
@@ -299,7 +302,8 @@
                               </div>
                             </td>
                           </tr>
-                        <?php } ?>
+                        <?php }
+                        } ?>
 
                           <tr class="sum--bg-gray">
                             <th scope="row" class="text-center">House Ad PPN</th>

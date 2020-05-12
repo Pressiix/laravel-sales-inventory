@@ -82,7 +82,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item[0] as $value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item[0] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
                             <td class="text-nowrap"><?= (isset($value['pageview']) ? $value['pageview'] : "0") ?></td>
@@ -149,6 +150,23 @@
                             <td class="text-nowrap">$ 11,501.07</td>
                             <td class="text-nowrap">107.56%</td>
                           </tr>
+                           <?php }else{ ?>
+                          <tr>
+                            <td colspan="9">No Data</td>
+                          </tr>
+                          <tr class="sum--bg-bkp">
+                            <th scope="row" class="text-center">Total</th>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
                         </tbody>
                       </table>
                     </div>
@@ -175,7 +193,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item[1] as $value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item[1] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
                             <td class="text-nowrap"><?= (isset($value['pageview']) ? $value['pageview'] : "0") ?></td>
@@ -242,6 +261,23 @@
                             <td class="text-nowrap">$ 11,501.07</td>
                             <td class="text-nowrap">107.56%</td>
                           </tr>
+                          <?php }else{ ?>
+                          <tr>
+                            <td colspan="9">No Data</td>
+                          </tr>
+                          <tr class="sum--bg-bkp">
+                            <th scope="row" class="text-center">Total</th>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
                         </tbody>
                       </table>
                     </div>
@@ -278,7 +314,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item[0] as $value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item[0] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
                             <td class="text-nowrap"><?= (isset($value['pageview']) ? $value['pageview'] : "0") ?></td>
@@ -346,6 +383,23 @@
                             <td class="text-nowrap">$ 11,501.07</td>
                             <td class="text-nowrap">107.56%</td>
                           </tr>
+                          <?php }else{ ?>
+                          <tr>
+                            <td colspan="9">No Data</td>
+                          </tr>
+                          <tr class="sum--bg-ptd">
+                            <th scope="row" class="text-center">Total</th>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
                         </tbody>
                       </table>
                     </div>
@@ -371,7 +425,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($item[1] as $value){ ?>
+                        <?php if(!empty($item)){
+                        foreach($item[1] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
                             <td class="text-nowrap"><?= (isset($value['pageview']) ? $value['pageview'] : "0") ?></td>
@@ -439,6 +494,22 @@
                             <td class="text-nowrap">$ 11,501.07</td>
                             <td class="text-nowrap">107.56%</td>
                           </tr>
+                        <?php }else{ ?>
+                          <tr>
+                            <td colspan="9">No Data</td>
+                          </tr>
+                          <tr class="sum--bg-ptd">
+                            <th scope="row" class="text-center">Total</th>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                            <td class="text-nowrap">-</td>
+                          </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>

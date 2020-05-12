@@ -1023,7 +1023,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="<?php echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1434,7 +1434,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="<?php echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1494,7 +1494,7 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            
+
             <tbody>
               <tr>
                 <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
