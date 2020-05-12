@@ -26,12 +26,13 @@
           
 
             <div style="position: relative;">
-
+            {{ Form::open(['route' => '/inventory', 'method' => 'GET'])}}
               <div class="content-box--select">
                 <div class="form-group row">
+                
                   <div class="col-6">
-                    <select class="custom-select">
-                      <option selected>Month</option>
+                    <select name="month" class="custom-select" required>
+                      <option value="" selected="">Month</option>
                       <option value="1">January</option>
                       <option value="2">February</option>
                       <option value="3">March</option>
@@ -47,17 +48,18 @@
                     </select>
                   </div>
                   <div class="col-5">
-                    <select class="custom-select">
-                      <option selected>Year</option>
+                    <select name="year" class="custom-select" required>
+                      <option value="" selected="">Year</option>
                       <option value="1">2020</option>
                       <option value="2">2019</option>
                       <option value="3">2018</option>
                     </select>
                   </div>
-                  <div class="col-4"><a href="javascript:;" class="btn btn-click2">Apply</a></div>
+                  <div class="col-4"><button type="submit" class="btn btn-click2">Apply</button></div>
+                  
                 </div>
               </div>
-
+              {{ Form::close() }}
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
@@ -1023,7 +1025,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1434,7 +1436,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
