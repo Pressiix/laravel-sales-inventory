@@ -21,7 +21,7 @@
         <div class="content-inventory--full">
           <div class="box-title">
             <h2>Inventory Dashboard</h2>
-            <div class="btn-create"><a href="campaign_report_create.html">Create Inventory</a></div>
+            <div class="btn-create"><a href="#">Create Inventory</a></div>
           </div>
           
 
