@@ -54,7 +54,7 @@
                   </div>
                   <div class="col-sm-4">
                     <div class="input-group-inline">
-                      <input type="text" class="form-control form-input--date d2" id="end" name="end" value="<?= (isset($item['end']) ? $item['end'] : '') ?>">
+                      <input type="text" class="form-control form-input--date d2" name="end" value="<?= (isset($item['end']) ? $item['end'] : '') ?>">
                       <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
                     </div>
                   </div>
@@ -71,7 +71,7 @@
                   <div id="campaign-item">
                   <?php if(!isset($item['item_name'])){ ?>
                   <div class="box-ad--banner" id="item-card">
-                    <div class="box-ad--title" id="item-title">Date 1 :</div>
+                    <div class="box-ad--title" id="item-title">Date 1 :<div id="date_text"> -</div></div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
@@ -109,7 +109,7 @@
                   else{ 
                     for($i=0;$i<count($item['item_name']);$i++){ ?>
                       <div class="box-ad--banner" id="item-card">
-                    <div class="box-ad--title" id="item-title">Date <?= $i+1 ?>:</div>
+                    <div class="box-ad--title" id="item-title">Date <?= $i+1 ?>:<div id="date_text"></div></div>
                     <div class="box-ad--container">
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Name:</label>
@@ -172,8 +172,9 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
         $('input[id*="item_name"]').val(this.value);
     });
 
-    $(document).on("keyup", 'input[id*="campaign_name"]', function () {
-        $('input[id*="item_name"]').val(this.value);
+    $(document).on("keyup change", '#start', function () {
+        $('input[id*="date"]').val(this.value);
+        $("#date_text").text(this.value);
     });
 
     $(document).on("keyup", 'input[id*="revenue"]', function () {
@@ -227,7 +228,7 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
                 this.value= '';
             });
             Html.find("div[id*='item-title']").each(function() { //Replace box title
-                this.textContent = this.textContent.replace('Line item 1:','Line item '+(count+1)+':');
+                this.textContent = this.textContent.replace('Date 1 :','Date '+(count+1)+' : ');
             });
             $('#campaign-item').append(Html);
             count++;
