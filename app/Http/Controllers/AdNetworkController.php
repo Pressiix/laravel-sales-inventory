@@ -256,14 +256,14 @@ class AdNetworkController extends Controller
             }
             $item = array_values($item);
             
-        echo "<pre/>";print_r($items);
+        //echo "<pre/>";print_r($items);
         
-        /*return view('new.ad_network_bymonth',[
+        return view('new.ad_network_bymonth',[
             'userRole' => $userRole,
             'month' => (isset($request->last_month) ? $request->last_month : $request->current_month ),
             'year' => (isset($request->last_year) ? $request->last_year : $request->current_year ),
             'item'=>$item
-        ]);*/
+        ]);
     }
     public function ad_network_preview(Request $request)
     {
