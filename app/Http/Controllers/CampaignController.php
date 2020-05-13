@@ -96,10 +96,10 @@ class CampaignController extends Controller
 
     public function campaign_report_preview(Request $request)
     {
-        echo "<pre/>";print_r(date_format(date_create($request->date[0]),"Y-m-d"));
-        /*return view('new.campaign_report_preview',[
+        //echo "<pre/>";print_r($request->all());
+        return view('new.campaign_report_preview',[
             'item'=>$request->all()
-        ]);*/
+        ]);
     }
 
     public function campaign_report_preview2($id)
@@ -138,7 +138,6 @@ class CampaignController extends Controller
                 'start'=>date_format(date_create($request->start),"Y-m-d"),
                 'end'=>date_format(date_create($request->end),"Y-m-d"),
                 'item_name'=>json_encode((object) $request->item_name),
-                'date'=>json_encode((object) $request->date),
                 'ad_server_impression'=>json_encode((object) $request->ad_server_impression),
                 'ad_server_click'=>json_encode((object) $request->ad_server_click),
                 'ad_server_ctr'=>json_encode((object) $request->ad_server_ctr),

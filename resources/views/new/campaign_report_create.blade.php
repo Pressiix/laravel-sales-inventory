@@ -79,7 +79,7 @@
                           <input type="text" id="item_name0" name="item_name[0]" class="form-control" autocomplete="off" readonly>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group row" style="display:none;">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
                           <input type="text" id="date0" name="date[0]" class="form-control" autocomplete="off" readonly>
@@ -88,19 +88,19 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server impressions:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_impression[0]" class="form-control" autocomplete="off">
+                          <input type="text" id="ad_server_impression0" name="ad_server_impression[0]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server clicks:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_click[0]" class="form-control" autocomplete="off">
+                          <input type="text" id="ad_server_click0" name="ad_server_click[0]" class="form-control" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server CTR:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_ctr[0]" class="form-control" autocomplete="off">
+                          <input type="text" id="ad_server_ctr0" name="ad_server_ctr[0]" placeholder="Ad server impressions and Ad server clicks field has been required" class="form-control" autocomplete="off" readonly>
                         </div>
                       </div>
                     </div>
@@ -117,7 +117,7 @@
                           <input type="text" id="item_name<?= $i ?>" name="item_name[<?= $i ?>]" class="form-control" value="<?= $item['item_name'][$i] ?>" autocomplete="off" readonly>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group row" style="display:none;">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Date:</label>
                         <div class="col-sm-10">
                           <input type="text" id="date<?= $i ?>" name="date[<?= $i ?>]" class="form-control" value="<?= $item['date'][$i] ?>" autocomplete="off" readonly>
@@ -126,19 +126,19 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server impressions:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_impression[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_impression'][$i] ?>" autocomplete="off">
+                          <input type="text" id="ad_server_impression<?= $i ?>" name="ad_server_impression[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_impression'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server clicks:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_click[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_click'][$i] ?>" autocomplete="off">
+                          <input type="text" id="ad_server_click<?= $i ?>" name="ad_server_click[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_click'][$i] ?>" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-5 col-form-label">Ad server CTR:</label>
                         <div class="col-sm-10">
-                          <input type="text" name="ad_server_ctr[<?= $i ?>]" class="form-control" value="<?= $item['ad_server_ctr'][$i] ?>" autocomplete="off">
+                          <input type="text" id="ad_server_ctr<?= $i ?>" name="ad_server_ctr[<?= $i ?>]" placeholder="Ad server impressions and Ad server clicks field has been required" class="form-control" value="<?= $item['ad_server_ctr'][$i] ?>" autocomplete="off" readonly>
                         </div>
                       </div>
                     </div>
@@ -178,39 +178,39 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
         $('div[id*="item-title"]').text("Date : "+date.getDate()+"/"+(date.getMonth()+ 1)+"/"+date.getFullYear());
     });
 
-    $(document).on("keyup", 'input[id*="revenue"]', function () {
+          $(document).on("keyup", 'input[id*="ad_server_impression"]', function () {
             var id = this.id;
             var index = id[id.length -1];
-            var impression = parseFloat($('input[id="impression'+index+'"]').val());
-            var revenue = parseFloat(this.value);
-            if($('input[id="impression'+index+'"]').val().length !== 0 && this.value.length !== 0)
+            var click = parseFloat($('input[id="ad_server_click'+index+'"]').val());
+            var  impression = parseFloat(this.value);
+            if($('input[id="ad_server_click'+index+'"]').val().length !== 0 && this.value.length !== 0)
             {
-              if(!isNaN((revenue/impression)*1000))
+              if(!isNaN(click/impression))
               {
-                $('input[id="ecpm'+index+'"]').val(((revenue/impression)*1000).toFixed(2));
+                $('input[id="ad_server_ctr'+index+'"]').val((click/impression).toFixed(2));
               }else{
-                $('input[id="ecpm'+index+'"]').val("");
+                $('input[id="ad_server_ctr'+index+'"]').val("");
               }
             }else{
-              $('input[id="ecpm'+index+'"]').val("");
+              $('input[id="ad_server_ctr'+index+'"]').val("");
             }
           });
 
-          $(document).on("keyup", 'input[id*="impression"]', function () {
+          $(document).on("keyup", 'input[id*="ad_server_click"]', function () {
             var id = this.id;
             var index = id[id.length -1];
-            var revenue = parseFloat($('input[id="revenue'+index+'"]').val());
-            var  impression = parseFloat(this.value);
-            if($('input[id="impression'+index+'"]').val().length !== 0 && this.value.length !== 0)
+            var click = parseFloat(this.value);
+            var  impression = parseFloat($('input[id="ad_server_impression'+index+'"]').val());
+            if($('input[id="ad_server_impression'+index+'"]').val().length !== 0 && this.value.length !== 0)
             {
-              if(!isNaN((revenue/impression)*1000))
+              if(!isNaN(click/impression))
               {
-                $('input[id="ecpm'+index+'"]').val(((revenue/impression)*1000).toFixed(2));
+                $('input[id="ad_server_ctr'+index+'"]').val((click/impression).toFixed(2));
               }else{
-                $('input[id="ecpm'+index+'"]').val("");
+                $('input[id="ad_server_ctr'+index+'"]').val("");
               }
             }else{
-              $('input[id="ecpm'+index+'"]').val("");
+              $('input[id="ad_server_ctr'+index+'"]').val("");
             }
           });
 
@@ -226,7 +226,22 @@ window.history.pushState('store_campaign', 'Title', '/campaign_report_create');
             });
             
             Html.find("input[type='text']").each(function() {  //Replace input value
+                this.id= this.id.replace('0', count);
+            });
+
+            Html.find("input[name*='ad_server_ctr']").each(function() {  //Replace input value
                 this.value= '';
+                this.id= this.id.replace('0', count);
+            });
+
+            Html.find("input[name*='ad_server_impression']").each(function() {  //Replace input value
+                this.value= '';
+                this.id= this.id.replace('0', count);
+            });
+
+            Html.find("input[name*='ad_server_click']").each(function() {  //Replace input value
+                this.value= '';
+                this.id= this.id.replace('0', count);
             });
             
             /*Html.find("div[id*='item-title']").each(function() { //Replace box title

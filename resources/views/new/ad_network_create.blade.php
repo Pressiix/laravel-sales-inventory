@@ -45,7 +45,7 @@
                       <div class="form-group row">
                         <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                        <select class="custom-select" name="advertiser_id[0]" onchange="document.getElementById('advertiser_name0').value=this.options[this.selectedIndex].text" required>
+                        <select class="custom-select" name="advertiser_id[0]" onchange="document.getElementById('advertiser_name0').value=this.options[this.selectedIndex].text" >
                           <option value="">Choose...</option>
                           <?php foreach($advertiser as $key=>$value){ ?>
                             <option value="<?= $key ?>"><?= $value ?></option>
@@ -139,7 +139,7 @@
                       <div class="form-group row">
                         <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">eCPM:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                          <input type="text" class="form-control" placeholder="Impression and Revenue field has been required" id="ecpm<?= $i ?>" name="ecpm[<?= $i ?>]" value="<?= (isset($item['ecpm'][$i]) ? $item['ecpm'][$i] : '') ?>"  required>
+                          <input type="text" class="form-control" placeholder="Impression and Revenue field has been required" id="ecpm<?= $i ?>" name="ecpm[<?= $i ?>]" value="<?= (isset($item['ecpm'][$i]) ? $item['ecpm'][$i] : '') ?>"  readonly required>
                         </div>
                       </div>
                       <div class="form-group row">

@@ -29,14 +29,14 @@
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Start Date:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext"><?= (isset($item['start']) ? $item['start'] : '') ?></div>
+                  <div class="form-control-plaintext"><?= (isset($item['start']) ? date_format(date_create($item['start']),"d-m-Y") : '') ?></div>
                   <input type="hidden" name="start" value="<?= (isset($item['start']) ? $item['start'] : '') ?>">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputCampaign" class="col-sm-4 col-md-4 col-lg-3 col-form-label">End Date:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
-                  <div class="form-control-plaintext"><?= (isset($item['end']) ? $item['end'] : '') ?></div>
+                  <div class="form-control-plaintext"><?= (isset($item['end']) ? date_format(date_create($item['end']),"d-m-Y") : '') ?></div>
                   <input type="hidden" name="end" value="<?= (isset($item['end']) ? $item['end'] : '') ?>">
                 </div>
               </div>
