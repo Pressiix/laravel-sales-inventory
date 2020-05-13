@@ -4,7 +4,7 @@
 /storage
 #/frontend-source
 #/vendor
-.env
+#.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -15,4 +15,4 @@ yarn-error.log
 #------custom ignore-----
 #/storage/app
 /resources/views/new/inventory.blade.php
-/config
+#/config
