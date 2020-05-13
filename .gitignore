@@ -15,3 +15,4 @@ yarn-error.log
 #------custom ignore-----
 #/storage/app
 resources/views/new/inventory.blade.php
+/config

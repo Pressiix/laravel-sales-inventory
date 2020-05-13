@@ -256,7 +256,7 @@ class AdNetworkController extends Controller
             }
             $item = array_values($item);
             
-        //echo "<pre/>";print_r($item);
+        //echo "<pre/>";print_r($items);
         
         return view('new.ad_network_bymonth',[
             'userRole' => $userRole,
