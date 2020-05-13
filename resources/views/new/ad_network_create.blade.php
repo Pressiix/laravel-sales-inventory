@@ -45,13 +45,13 @@
                       <div class="form-group row">
                         <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                        <select class="custom-select" name="advertiser_id[0]" onchange="document.getElementById('advertiser_name').value=this.options[this.selectedIndex].text" required>
+                        <select class="custom-select" name="advertiser_id[0]" onchange="document.getElementById('advertiser_name0').value=this.options[this.selectedIndex].text" required>
                           <option value="">Choose...</option>
                           <?php foreach($advertiser as $key=>$value){ ?>
                             <option value="<?= $key ?>"><?= $value ?></option>
                           <?php } ?>
                         </select>
-                        <input type="hidden" name="advertiser_name[0]" id="advertiser_name" value="<?= (isset($item['advertiser_name']) ? $item['advertiser_name'] : '') ?>"  required>
+                        <input type="hidden" name="advertiser_name[0]" id="advertiser_name0" value="<?= (isset($item['advertiser_name']) ? $item['advertiser_name'] : '') ?>"  required>
                           <div class="div-form--link"> or <a href="javascript:;" id="btn-addnew0" onclick="$('#addnews-advertiser'+this.id.substring(10,this.id.length,10)).show();">Add new</a></div>
                         </div>
                       </div>
@@ -102,13 +102,13 @@
                       <div class="form-group row">
                         <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                         <div class="col-sm-11 col-md-11 col-lg-12">
-                        <select class="custom-select" name="advertiser_id[<?= $i ?>]" onchange="document.getElementById('advertiser_name').value=this.options[this.selectedIndex].text">
+                        <select class="custom-select" name="advertiser_id[<?= $i ?>]" onchange="document.getElementById('advertiser_name<?= $i ?>').value=this.options[this.selectedIndex].text">
                           <option <?= (!isset($item['advertiser_id'][$i]) ? 'selected' : '') ?> >Choose...</option>
                           <?php foreach($advertiser as $key=>$value){ ?>
                             <option <?= (isset($item['advertiser_id'][$i]) && $item['advertiser_id'][$i] ==$key ? 'selected' : '') ?> value="<?= $key ?>"><?= $value ?></option>
                           <?php } ?>
                         </select>
-                        <input type="hidden" name="advertiser_name[<?= $i ?>]" id="advertiser_name" value="<?= (isset($item['advertiser_name'][$i]) ? $item['advertiser_name'][$i] : '') ?>"  required>
+                        <input type="hidden" name="advertiser_name[<?= $i ?>]" id="advertiser_name<?= $i ?>" value="<?= (isset($item['advertiser_name'][$i]) ? $item['advertiser_name'][$i] : '') ?>"  required>
                           <div class="div-form--link"> or <a href="javascript:;" id="btn-addnew1" onclick="$('#addnews-advertiser<?= $i ?>').show();">Add new</a></div>
                         </div>
                       </div>
@@ -224,7 +224,12 @@
                 Html.find("input[name*='new_advertiser']").each(function() {  //Replace input name
                     this.name= this.name.replace('0', count);
                 });
-
+                Html.find('select[name*="advertiser_id"]').each(function() {  //Replace input name
+                    this.name= this.name.replace('[0]', '['+count+']');
+                    $(this).removeAttr("onchange");
+                    $(this).attr("onchange","document.getElementById('advertiser_name"+count+"').value=this.options[this.selectedIndex].text");
+                    console.log(this);
+                });
                 Html.find('input').each(function() {  //Replace input name
                     this.name= this.name.replace('[0]', '['+count+']');
                     this.id= this.id.replace('0', count);

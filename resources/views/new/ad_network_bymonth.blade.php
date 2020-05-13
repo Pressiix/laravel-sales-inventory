@@ -82,7 +82,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php if(!empty($item)){
+                        <?php if(isset($item[0])){
                         foreach($item[0] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
@@ -193,7 +193,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php if(!empty($item)){
+                        <?php if(isset($item[1])){
                         foreach($item[1] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
@@ -314,7 +314,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php if(!empty($item)){
+                        <?php if(isset($item[0])){
                         foreach($item[0] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
@@ -425,7 +425,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <?php if(!empty($item)){
+                        <?php if(isset($item[1])){
                         foreach($item[1] as $value){ ?>
                           <tr>
                             <th scope="row"><?= $value['advertiser'] ?></th>
