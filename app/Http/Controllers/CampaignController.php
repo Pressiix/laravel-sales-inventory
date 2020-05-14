@@ -153,7 +153,6 @@ class CampaignController extends Controller
                 $campaign = Campaign::create($item);
             }
             //Insert campaign
-            
 
             return Redirect::to('campaign_success');
         }
