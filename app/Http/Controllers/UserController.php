@@ -56,19 +56,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        //Delete old profile picture in storage
-        if(Auth::user()->profile_picture)
-        {
-            if(\File::exists(public_path().Auth::user()->profile_picture)){
-                \File::delete(public_path().Auth::user()->profile_picture);
-            }
-        }
-        
         //Save upload image to 'avatar' folder which in 'storage/app/public' folder
         if($request->file('image'))
         {
             if(strpos($request->file('image')->getMimeType(), 'jpeg') !== false || strpos($request->file('image')->getMimeType(), 'png') !== false)
             {
+                //Delete old profile picture in storage
+                if(Auth::user()->profile_picture)
+                {
+                    if(\File::exists(public_path().Auth::user()->profile_picture)){
+                        \File::delete(public_path().Auth::user()->profile_picture);
+                    }
+                }
                 //Upload file to storage folder
                 \Storage::disk('storage')->put('public/avatar/', $request->file('image'));
                 //Update profile picture in database

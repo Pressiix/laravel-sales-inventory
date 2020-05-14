@@ -104,11 +104,13 @@
                 <div class="col-auto div-profile--left bg-fff">
                     <div class="content-profile--left">
                         <div class="pofile-info">
-                        
-                        <div class="profile-avatar">
-                            <a data-target="#myModal" data-toggle="modal"><span>Change</span></a>
+
+                        <a data-target="#myModal" data-toggle="modal">
+                            <div class="profile-avatar">
+                                <span>Change</span>
                                 <img src="<?= ($user->profile_picture && file_exists(public_path().$user->profile_picture) ? $user->profile_picture : "/assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
                             </div>
+                        </a>
                             <!-- modal -->
                             <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">

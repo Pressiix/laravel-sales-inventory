@@ -64,7 +64,7 @@ class RequestFormController extends Controller
             $userRole = '';
         }
         
-        $item = $request->all();
+        //$item = $request->all();
         //echo "<pre/>"; print_r($request->all());
 
         /********************************** */
@@ -275,7 +275,7 @@ class RequestFormController extends Controller
         $item['ptd_banner_file'] = $ptd_banner_file;
         $item['ptd_quotation_file'] = $ptd_quotation_file;
         //CHECK POST VARIABLE
-        //echo "<pre/>"; print_r($item);
+        echo "<pre/>"; print_r($item);
 
         if(isset($request->request_id))
         {
@@ -286,12 +286,12 @@ class RequestFormController extends Controller
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
         
-        return view('new.request_preview',[
+        /*return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
-        ]);
+        ]);*/
         
     }
 

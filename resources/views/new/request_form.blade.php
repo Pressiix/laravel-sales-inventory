@@ -4,7 +4,7 @@
       <div class="col-15 bg-fff">
         <div class="content-inventory">
           <h2>Request Form</h2>
-          {!! Form::open(['action' => ['RequestFormController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
+          {!! Form::open(['action' => ['RequestFormController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data', 'onsubmit'=>'return Validate(this);'])!!}
           <?php if(isset($item['id'])){ ?>
               <input type="hidden" name='id' value="<?= $item['id'] ?>">
             <?php } 
@@ -264,8 +264,8 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_banner_file[0]" class="custom-file-input" id="customFile" multiple />
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="bp_banner_file[0]" class="custom-file-input" id="customFile" multiple onchange="showFileName(this.name);"/>
+                                  <label id="bp_banner_file0" class="custom-file-label" for="customFile" >Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -274,8 +274,8 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation_file[]" class="custom-file-input" id="customFile"multiple />
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="bp_quotation_file[0]" class="custom-file-input" id="customFile"multiple onchange="showFileName(this.name);"/>
+                                  <label id="bp_quotation_file0" class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -287,7 +287,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -417,9 +417,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : '' ) ?>">
+                                  <input type="file" name="bp_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : '' ) ?>" onchange="showFileName(this.name);">
                                     <?php if(!empty($item['bp_banner_file'][$i])){ ?><input type="hidden" name="old_bp_banner_file[<?= $i ?>]" value="<?= $item['bp_banner_file'][$i] ?>" ><?php } ?>
-                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : 'Choose file' ) ?></label>
+                                  <label id="bp_banner_file<?= $i ?>" class="custom-file-label" for="customFile"><?= (!empty($item['bp_banner_file'][$i]) ? $item['bp_banner_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
@@ -428,9 +428,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="bp_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : '' ) ?>" alt=""/>
+                                  <input type="file" name="bp_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : '' ) ?>" alt="" onchange="showFileName(this.name);" />
                                   <?php if(!empty($item['bp_quotation_file'][$i])){ ?><input type="hidden" name="old_bp_quotation_file[<?= $i ?>]" value="<?= $item['bp_quotation_file'][$i] ?>" ><?php } ?>
-                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : 'Choose file' ) ?></label>
+                                  <label id="bp_quotation_file<?= $i ?>" class="custom-file-label" for="customFile"><?= (!empty($item['bp_quotation_file'][$i]) ? $item['bp_quotation_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -442,7 +442,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -680,7 +680,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -696,7 +696,7 @@
                           else{ ?>
                           <script>
                             var ptd_action = 'Edit';
-                            console.log(ptd_action);
+                            //console.log(ptd_action);
                             
                             var ptd_position_count = [<?= count($item['ptd_position_id']) ?>];
                             var ptd_section_count = [<?= count($item['ptd_section_id']) ?>];
@@ -836,7 +836,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="javascript:;" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -880,51 +880,6 @@
     var none_active_tab = 'posttoday';
     var options="";
     $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
-    /*if(bp_action=='Edit'){
-        
-        var web_name = 'bp';
-        var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
-        
-        for(i=0;i<bp_position_count.length;i++)
-        {
-          options = "";
-          position_value=bp_position_count[i];
-          section_value=bp_section_count[i];
-              if(Object.keys(jArray[position_value]).length == 1){
-                options="<option value='1'>-</option>";
-              }else{
-                options="<option value=''>Choose Section</option>";
-              }
-              
-              for(j=1;j<Object.keys(jArray[position_value]).length;j++){
-                  options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
-              }//console.log(i);
-              $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
-        }
-    }*/
-
-    /*if(ptd_action=='Edit'){
-        
-        var web_name = 'ptd';
-        var jArray = <?php echo json_encode($sectionArray); ?>[web_name+'_ad_section'];
-        
-        for(i=0;i<ptd_position_count.length;i++)
-        {
-          options = "";
-          position_value=ptd_position_count[i];
-          section_value=ptd_section_count[i];
-              if(Object.keys(jArray[position_value]).length == 1){
-                options="<option value='1'>-</option>";
-              }else{
-                options="<option value=''>Choose Section</option>";
-              }
-              
-              for(j=1;j<Object.keys(jArray[position_value]).length;j++){
-                  options+="<option value='"+j+"' "+(section_value == j ? "selected" : "")+">"+jArray[position_value][j]+"</option>";
-              }
-              $("select[name*='"+web_name+"_section_id["+i+"]']").html(options);
-        }
-    }*/
 
     function changeOptionValue(a){
      
@@ -1110,6 +1065,10 @@
             Html.find('input').each(function() {  //Replace input name
                 this.name= this.name.replace('[0]', '['+count+']');
             });
+            Html.find('label[for="customFile"]').each(function() {  //Replace input name
+                this.textContent= "Choose file";
+                this.id= this.id.replace('0', count);
+            });
             Html.find("input[type='hidden']").each(function() {  //Replace input name
                 this.id= this.id.replace('0', count);
             });
@@ -1167,16 +1126,65 @@
       });
     });
 
+    //If user click posttoday tab
     $('#myTab a#posttoday-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').addClass('tabs--ptd');
+      //alert('AAA');
+      var bp_input = document.querySelectorAll("input[name*='bp_']");
+      var ptd_input = document.querySelectorAll("input[name*='ptd_']");
+      var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
+      for(var i = 0; i < bp_input.length; i++){
+          bp_input[i].value = '';
+          bp_input[i].required = false;
+          bp_input[i].checked = false;
+          if(bp_input[i].type=="file")
+          {
+            var file_name = $('input[name="'+bp_input[i].name+'"]').val();
+            var fIndex = String(bp_input[i].name).match(/\d+/)[0];
+            var labelId = String(bp_input[i].name).replace('['+fIndex+']',fIndex);
+            $('label[id="'+labelId+'"]').text("");
+          }
+      }
+      for(var i = 0; i < bp_dropdown.length; i++){
+        bp_input[i].value = '';
+        bp_dropdown[i].required = false;
+      }
+      for(var i = 0; i < ptd_input.length; i++){
+        ptd_input[i].required = true;
+      }
     })
+
+    //If user click bangkokpost tab
     $('#myTab a#bangkokpost-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').removeClass('tabs--ptd');
+      //alert('BBB');
+      var ptd_input = document.querySelectorAll("input[name*='ptd_']");
+      var bp_input = document.querySelectorAll("input[name*='bp_']");
+      var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']");
+      for(var i = 0; i < ptd_input.length; i++){
+          ptd_input[i].value = '';
+          ptd_input[i].required = false;
+          ptd_input[i].checked  = false;
+          if(ptd_input[i].type=="file")
+          {
+            var file_name = $('input[name="'+ptd_input[i].name+'"]').val();
+            var fIndex = String(ptd_input[i].name).match(/\d+/)[0];
+            var labelId = String(ptd_input[i].name).replace('['+fIndex+']',fIndex);
+            $('label[id="'+labelId+'"]').text("");
+          }
+      }
+      for(var i = 0; i < ptd_dropdown.length; i++){
+        ptd_dropdown[i].value = '';
+        ptd_dropdown[i].required = false;
+      }
+      for(var i = 0; i < bp_input.length; i++){
+        bp_input[i].required = true;
+      }
     })
 
-    window.onbeforeunload = function (e) {
+    /*window.onbeforeunload = function (e) {
         e = e || window.event;
 
         // For IE and Firefox prior to version 4
@@ -1186,7 +1194,45 @@
 
         // For Safari
         return 'Any string';
-    };
+    };*/
+
+    function Validate(oForm) {
+      var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];    
+      var arrInputs = oForm.getElementsByTagName("input");
+      for (var i = 0; i < arrInputs.length; i++) {
+          var oInput = arrInputs[i];
+          if (oInput.type == "file") {
+              var sFileName = oInput.value;
+              if (sFileName.length > 0) {
+                  var blnValid = false;
+                  for (var j = 0; j < _validFileExtensions.length; j++) {
+                      var sCurExtension = _validFileExtensions[j];
+                      if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                          blnValid = true;
+                          break;
+                      }
+                  }
+                  
+                  if (!blnValid) {
+                      alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                      return false;
+                  }
+              }
+          }
+      }
+      return true;
+  }
+
+function showFileName(tagName)
+{
+  var file_name = $('input[name="'+tagName+'"]').val();
+  var fIndex = String(tagName).match(/\d+/)[0];
+  var labelId = String(tagName).replace('['+fIndex+']',fIndex);
+  console.log(labelId);
+  $('label[id="'+labelId+'"]').text(String(file_name).slice(String(file_name).lastIndexOf('\\') + 1));
+}
+
+
 
 </script>
 @endsection

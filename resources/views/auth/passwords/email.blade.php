@@ -5,7 +5,7 @@
     <div class="content-forgot">
         <div class="center-screen">
             <div class="logo-center">
-                <h1><img src="<?= url('/') ?>/assets/images/postgroup-logo_blue.svg" class="img-fluid"></h1>
+                <h1><a href="/login"><img src="<?= url('/') ?>/assets/images/postgroup-logo_blue.svg" class="img-fluid"></a></h1>
             </div>
             <div class="text-forgot">
                 <p><strong>Have you forgotten your password?</strong></p>
