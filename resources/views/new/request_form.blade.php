@@ -933,16 +933,79 @@
         validateCheckbox(active_tab,none_active_tab);
     }
     
-    $('#posttoday-tab').click(function() {
+    $('#posttoday-tab').click(function(e) {
+          e.preventDefault()
+          var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information, use the Save buttons.');
+          if (areYouSure === true) {
+            //$(this).tab('show')
+            $('.nav-requestForm').addClass('tabs--ptd');
             active_tab = 'posttoday';
             none_active_tab = 'bangkokpost';
             addTabClass(active_tab,none_active_tab);
+              //alert('AAA');
+              var bp_input = document.querySelectorAll("input[name*='bp_']");
+              var ptd_input = document.querySelectorAll("input[name*='ptd_']");
+              var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
+              for(var i = 0; i < bp_input.length; i++){
+                  bp_input[i].value = '';
+                  bp_input[i].required = false;
+                  bp_input[i].checked = false;
+                  if(bp_input[i].type=="file")
+                  {
+                    var file_name = $('input[name="'+bp_input[i].name+'"]').val();
+                    var fIndex = String(bp_input[i].name).match(/\d+/)[0];
+                    var labelId = String(bp_input[i].name).replace('['+fIndex+']',fIndex);
+                    $('label[id="'+labelId+'"]').text("");
+                  }
+              }
+              for(var i = 0; i < bp_dropdown.length; i++){
+                bp_input[i].value = '';
+                bp_dropdown[i].required = false;
+              }
+              for(var i = 0; i < ptd_input.length; i++){
+                ptd_input[i].required = true;
+              }
+          } else {
+            // do other stuff
+            return false;
+          }
+            
     });
 
-    $('#bangkokpost-tab').click(function() {
+    $('#bangkokpost-tab').click(function(e) {
+      e.preventDefault()
+      var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information, use the Save buttons.');
+          if (areYouSure === true) {
+            $('.nav-requestForm').removeClass('tabs--ptd');
             active_tab = 'bangkokpost';
             none_active_tab = 'posttoday';
             addTabClass(active_tab,none_active_tab);
+            var ptd_input = document.querySelectorAll("input[name*='ptd_']");
+            var bp_input = document.querySelectorAll("input[name*='bp_']");
+            var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']");
+            for(var i = 0; i < ptd_input.length; i++){
+                ptd_input[i].value = '';
+                ptd_input[i].required = false;
+                ptd_input[i].checked  = false;
+                if(ptd_input[i].type=="file")
+                {
+                  var file_name = $('input[name="'+ptd_input[i].name+'"]').val();
+                  var fIndex = String(ptd_input[i].name).match(/\d+/)[0];
+                  var labelId = String(ptd_input[i].name).replace('['+fIndex+']',fIndex);
+                  $('label[id="'+labelId+'"]').text("");
+                }
+            }
+            for(var i = 0; i < ptd_dropdown.length; i++){
+              ptd_dropdown[i].value = '';
+              ptd_dropdown[i].required = false;
+            }
+            for(var i = 0; i < bp_input.length; i++){
+              bp_input[i].required = true;
+            }
+          } else {
+            // do other stuff
+            return false;
+          }
     });
 
     function addTabClass(active_tab,none_active_tab)
@@ -1126,63 +1189,6 @@
       });
     });
 
-    //If user click posttoday tab
-    $('#myTab a#posttoday-tab').on('click', function (e) {
-      e.preventDefault()
-      $('.nav-requestForm').addClass('tabs--ptd');
-      //alert('AAA');
-      var bp_input = document.querySelectorAll("input[name*='bp_']");
-      var ptd_input = document.querySelectorAll("input[name*='ptd_']");
-      var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
-      for(var i = 0; i < bp_input.length; i++){
-          bp_input[i].value = '';
-          bp_input[i].required = false;
-          bp_input[i].checked = false;
-          if(bp_input[i].type=="file")
-          {
-            var file_name = $('input[name="'+bp_input[i].name+'"]').val();
-            var fIndex = String(bp_input[i].name).match(/\d+/)[0];
-            var labelId = String(bp_input[i].name).replace('['+fIndex+']',fIndex);
-            $('label[id="'+labelId+'"]').text("");
-          }
-      }
-      for(var i = 0; i < bp_dropdown.length; i++){
-        bp_input[i].value = '';
-        bp_dropdown[i].required = false;
-      }
-      for(var i = 0; i < ptd_input.length; i++){
-        ptd_input[i].required = true;
-      }
-    })
-
-    //If user click bangkokpost tab
-    $('#myTab a#bangkokpost-tab').on('click', function (e) {
-      e.preventDefault()
-      $('.nav-requestForm').removeClass('tabs--ptd');
-      //alert('BBB');
-      var ptd_input = document.querySelectorAll("input[name*='ptd_']");
-      var bp_input = document.querySelectorAll("input[name*='bp_']");
-      var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']");
-      for(var i = 0; i < ptd_input.length; i++){
-          ptd_input[i].value = '';
-          ptd_input[i].required = false;
-          ptd_input[i].checked  = false;
-          if(ptd_input[i].type=="file")
-          {
-            var file_name = $('input[name="'+ptd_input[i].name+'"]').val();
-            var fIndex = String(ptd_input[i].name).match(/\d+/)[0];
-            var labelId = String(ptd_input[i].name).replace('['+fIndex+']',fIndex);
-            $('label[id="'+labelId+'"]').text("");
-          }
-      }
-      for(var i = 0; i < ptd_dropdown.length; i++){
-        ptd_dropdown[i].value = '';
-        ptd_dropdown[i].required = false;
-      }
-      for(var i = 0; i < bp_input.length; i++){
-        bp_input[i].required = true;
-      }
-    })
 
     /*window.onbeforeunload = function (e) {
         e = e || window.event;
