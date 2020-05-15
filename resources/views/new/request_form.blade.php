@@ -1079,11 +1079,16 @@
             active_tab = 'posttoday';
             none_active_tab = 'bangkokpost';
             addTabClass(active_tab,none_active_tab);
-              //clear all input enter on previous tab
+              //clear all input value on previous tab
+              //1. Hiding checkbox option (Type/Social/Facebook)
+              $('#bp_option1').hide();
+              $('#bp_option2').hide();
+              $('#bp_option3').hide();
+              $('#bp_facebook_option').hide();
+              //2. reset all input value on previous tab
               var bp_input = document.querySelectorAll("input[name*='bp_']");
               var ptd_input = document.querySelectorAll("input[name*='ptd_']");
               var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
-              
               for(var i = 0; i < bp_input.length; i++){
                   bp_input[i].value = '';
                   bp_input[i].required = false;
@@ -1097,11 +1102,11 @@
                   }
               }
               for(var i = 0; i < bp_dropdown.length; i++){
-                //console.log(bp_dropdown[i].selectedIndex);
                 bp_dropdown[i].value = '';
                 bp_dropdown[i].selectedIndex  = 0;
                 bp_dropdown[i].required = false;
               }
+              //3. add require attribute to all input tag on this tab
               for(var i = 0; i < ptd_input.length; i++){
                 ptd_input[i].required = true;
               }
