@@ -83,6 +83,55 @@
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
+                    <!-- TYPE -->
+                    <div class="bar-title">Type:</div>
+                    <div id="bp-facebook-tab" class="form-group row">
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
+                            <label class="form-check-label" for="bp_type1">Social</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type2">Website</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type3">E-newsletter</label>
+                          </div>
+                        </div>
+                      </div>
+
+                  <!-- Social options -->
+                  <div id="bp_option1" style="display:none;">
+                      <div class="bar-title">Social:</div>
+                      <div id="bp-facebook-tab" class="form-group row">
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Facebook' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb1">Facebook</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social2" value="Line" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Line' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb2">Line</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Twitter' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb3">Twitter</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="bp_facebook_option" style="display:none;">
                       <div class="bar-title">Facebook:</div>
                       <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
@@ -98,6 +147,10 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+
+                    <!-- Website options -->
+                    <div id="bp_option2" style="display:none;">
                       <div class="bar-title mt-4">Website:</div>
                       <div class="form-group row" id="bp-tab-border">
                         <div class="col-sm-4">
@@ -156,6 +209,9 @@
                         </div>
                       </div>
                     </div>
+                    <!-- E-newsletter options -->
+                    <div id="bp_option3" style="display:none;">CCC</div>
+                  </div>
 
                     <div class="row">
                       <div  class="col-15">
@@ -287,7 +343,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" target="_blank" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -442,7 +498,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" target="_blank" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -657,8 +713,8 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile" multiple />
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile" multiple onchange="showFileName(this.name);"/>
+                                  <label id="ptd_banner_file0" class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -667,8 +723,8 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation_file[]" class="custom-file-input" id="customFile"multiple />
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                  <input type="file" name="ptd_quotation_file[0]" class="custom-file-input" id="customFile"multiple onchange="showFileName(this.name);"/>
+                                  <label id="ptd_quotation_file0" class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -680,7 +736,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" target="_blank" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -811,9 +867,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload banner:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '' ) ?>">
+                                  <input type="file" name="ptd_banner_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : '' ) ?>" onchange="showFileName(this.name);">
                                     <?php if(!empty($item['ptd_banner_file'][$i])){ ?><input type="hidden" name="old_ptd_banner_file[<?= $i ?>]" value="<?= $item['ptd_banner_file'][$i] ?>" ><?php } ?>
-                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : 'Choose file' ) ?></label>
+                                  <label id="ptd_banner_file<?= $i ?>" class="custom-file-label" for="customFile"><?= (!empty($item['ptd_banner_file'][$i]) ? $item['ptd_banner_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel</div>
                               </div>
@@ -822,9 +878,9 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>" alt=""/>
+                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>" alt="" onchange="showFileName(this.name);"/>
                                   <?php if(!empty($item['ptd_quotation_file'][$i])){ ?><input type="hidden" name="old_ptd_quotation_file[<?= $i ?>]" value="<?= $item['ptd_quotation_file'][$i] ?>" ><?php } ?>
-                                  <label class="custom-file-label" for="customFile"><?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : 'Choose file' ) ?></label>
+                                  <label id="ptd_quotation_file<?= $i ?>" class="custom-file-label" for="customFile"><?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -836,7 +892,7 @@
                                 <div class="text-ps--small">Impression is not enough.</div>
                               </div>
                               <div class="col-sm-3">
-                                <div class="mt-2"><a href="/inventory" class="btn btn-click">View dashboard</a></div>
+                                <div class="mt-2"><a href="/inventory" target="_blank" class="btn btn-click">View dashboard</a></div>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -880,6 +936,86 @@
     var none_active_tab = 'posttoday';
     var options="";
     $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
+
+    //Show Bangkokpost campaign option by value from option type 
+    $('input[id*="bp_type"]').each(function() {
+        $(this).on("change", function(){
+          var checkbox = $(this);
+          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
+          if( checkbox.is(':checked') ) { 
+            switch(checkboxIndex) {
+              case '1':
+                      $('#bp_option1').show();
+                      $('#bp_option2').hide();
+                      $('#bp_option3').hide();
+                      $('input[id="bp_social1"]').prop('checked', false);
+                      $('#bp_option1 :input').prop('checked', false);
+                      $('#bp_option2 :input').prop('checked', false);
+                      break;
+              case '2':
+                      $('#bp_option1').hide();
+                      $('#bp_option2').show();
+                      $('#bp_option3').hide();
+                      $('input[id="bp_social1"]').prop('checked', false);
+                      $('#bp_option1 :input').prop('checked', false);
+                      $('#bp_option2 :input').prop('checked', false);
+
+                      break;
+              case '3':
+                      $('#bp_option1').hide();
+                      $('#bp_option2').hide();
+                      $('#bp_option3').show();
+                      $('input[id="bp_social1"]').prop('checked', false);
+                      $('#bp_option1 :input').prop('checked', false);
+                      $('#bp_option2 :input').prop('checked', false);
+                      break;
+            }
+          }   
+        });
+    });
+
+
+    $('input[id*="bp_social"]').each(function() {
+        $(this).on("change", function(){
+          var checkbox = $(this);
+          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
+          if( checkbox.is(':checked') && checkboxIndex == "1") {  //if user checked on facebook option (ID = 1)
+            $('#bp_facebook_option').show();
+          } else{
+            $('#bp_facebook_option').hide();
+            $('#bp_facebook_option :input').prop('checked', false);
+          } 
+        });
+    });
+
+    
+
+    //Show Posttoday campaign option by value from option type
+    $('input[id*="ptd_type"]').each(function() {
+        $(this).on("change", function(){
+          var checkbox = $(this);
+          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
+          if( checkbox.is(':checked') ) { 
+            switch(checkboxIndex) {
+              case '1':
+                      $('#ptd_option1').show();
+                      $('#ptd_option2').hide();
+                      $('#ptd_option3').hide();
+                      break;
+              case '2':
+                      $('#ptd_option1').hide();
+                      $('#ptd_option2').show();
+                      $('#ptd_option3').hide();
+                      break;
+              case '3':
+                      $('#ptd_option1').hide();
+                      $('#ptd_option2').hide();
+                      $('#ptd_option3').show();
+                      break;
+            }
+          }   
+        });
+    });
 
     function changeOptionValue(a){
      
@@ -933,19 +1069,21 @@
         validateCheckbox(active_tab,none_active_tab);
     }
     
+    //Event when user clicked on posttoday tab
     $('#posttoday-tab').click(function(e) {
           e.preventDefault()
-          var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information, use the Save buttons.');
+          var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.');
           if (areYouSure === true) {
-            //$(this).tab('show')
+            //if user change current tab, Show a posstoday tab
             $('.nav-requestForm').addClass('tabs--ptd');
             active_tab = 'posttoday';
             none_active_tab = 'bangkokpost';
             addTabClass(active_tab,none_active_tab);
-              //alert('AAA');
+              //clear all input enter on previous tab
               var bp_input = document.querySelectorAll("input[name*='bp_']");
               var ptd_input = document.querySelectorAll("input[name*='ptd_']");
               var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
+              
               for(var i = 0; i < bp_input.length; i++){
                   bp_input[i].value = '';
                   bp_input[i].required = false;
@@ -959,7 +1097,9 @@
                   }
               }
               for(var i = 0; i < bp_dropdown.length; i++){
-                bp_input[i].value = '';
+                //console.log(bp_dropdown[i].selectedIndex);
+                bp_dropdown[i].value = '';
+                bp_dropdown[i].selectedIndex  = 0;
                 bp_dropdown[i].required = false;
               }
               for(var i = 0; i < ptd_input.length; i++){
@@ -972,22 +1112,24 @@
             
     });
 
+    //Event when user clicked on bangkokpost tab
     $('#bangkokpost-tab').click(function(e) {
       e.preventDefault()
-      var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information, use the Save buttons.');
+      var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.');
           if (areYouSure === true) {
+            //if user change current tab, hide posstoday tab and show bangkokpost tab
             $('.nav-requestForm').removeClass('tabs--ptd');
             active_tab = 'bangkokpost';
             none_active_tab = 'posttoday';
-            addTabClass(active_tab,none_active_tab);
-            var ptd_input = document.querySelectorAll("input[name*='ptd_']");
-            var bp_input = document.querySelectorAll("input[name*='bp_']");
-            var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']");
-            for(var i = 0; i < ptd_input.length; i++){
+            addTabClass(active_tab,none_active_tab); //add and remove some attribute on this tab
+            var ptd_input = document.querySelectorAll("input[name*='ptd_']"); //clear all input enter on previous tab
+            var bp_input = document.querySelectorAll("input[name*='bp_']");  //get all input tag element on this tab
+            var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']"); //get all dropdown element on this tab 
+            for(var i = 0; i < ptd_input.length; i++){  //clear value for each input tag element
                 ptd_input[i].value = '';
                 ptd_input[i].required = false;
                 ptd_input[i].checked  = false;
-                if(ptd_input[i].type=="file")
+                if(ptd_input[i].type=="file") //clear file value and file name label 
                 {
                   var file_name = $('input[name="'+ptd_input[i].name+'"]').val();
                   var fIndex = String(ptd_input[i].name).match(/\d+/)[0];
@@ -995,11 +1137,13 @@
                   $('label[id="'+labelId+'"]').text("");
                 }
             }
-            for(var i = 0; i < ptd_dropdown.length; i++){
+            for(var i = 0; i < ptd_dropdown.length; i++){ //clear value for each dropdown element
+              console.log(i);console.log(ptd_dropdown);
               ptd_dropdown[i].value = '';
+              ptd_dropdown[i].selectedIndex  = 0;
               ptd_dropdown[i].required = false;
             }
-            for(var i = 0; i < bp_input.length; i++){
+            for(var i = 0; i < bp_input.length; i++){ //add required attribute to input tag on this tab
               bp_input[i].required = true;
             }
           } else {
@@ -1091,7 +1235,7 @@
           }
         }
       }
-      location.href = (active_tab == 'bangkokpost' ? "#bangkokpost" : "#posttoday" );
+      //location.href = (active_tab == 'bangkokpost' ? "#bangkokpost" : "#posttoday" );
     }
     
     //create a new input field for posting a customer and advertiser name before user clicked a submit button
@@ -1190,7 +1334,7 @@
     });
 
 
-    /*window.onbeforeunload = function (e) {
+    window.onbeforeunload = function (e) {
         e = e || window.event;
 
         // For IE and Firefox prior to version 4
@@ -1200,7 +1344,7 @@
 
         // For Safari
         return 'Any string';
-    };*/
+    };
 
     function Validate(oForm) {
       var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];    
@@ -1229,14 +1373,15 @@
       return true;
   }
 
+//Show file name on label tag
 function showFileName(tagName)
 {
   var file_name = $('input[name="'+tagName+'"]').val();
   var fIndex = String(tagName).match(/\d+/)[0];
   var labelId = String(tagName).replace('['+fIndex+']',fIndex);
-  console.log(labelId);
   $('label[id="'+labelId+'"]').text(String(file_name).slice(String(file_name).lastIndexOf('\\') + 1));
 }
+
 
 
 

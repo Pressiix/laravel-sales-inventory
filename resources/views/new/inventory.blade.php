@@ -33,15 +33,15 @@
                   <div class="col-6">
                     <select name="month" class="custom-select" required>
                       <option value="" selected="">Month</option>
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
                       <option value="10">October</option>
                       <option value="11">November</option>
                       <option value="12">December</option>
@@ -50,9 +50,9 @@
                   <div class="col-5">
                     <select name="year" class="custom-select" required>
                       <option value="" selected="">Year</option>
-                      <option value="1">2020</option>
-                      <option value="2">2019</option>
-                      <option value="3">2018</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
                   </div>
                   <div class="col-4"><button type="submit" class="btn btn-click2">Apply</button></div>
@@ -75,17 +75,31 @@
 
                     <h3>Homepage</h3>
                     <div class="content-box--select2">
+                    {{ Form::open(['route' => '/inventory', 'method' => 'GET'])}}
                       <div class="form-group row">
                         <div class="col-11 col-sm-9">
-                          <select class="custom-select">
-                            <option selected>Select</option>
-                            <option value="1">Select 1</option>
-                            <option value="2">Select 2</option>
-                            <option value="3">Select 3</option>
+                          <select name="section" class="custom-select">
+                            <option value="" selected>Select</option>
+                            <option value="Home">Home</option>
+                            <option value="Business">Business</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="World">World</option>
+                            <option value="Life">Life</option>
+                            <option value="Opinion">Opinion</option>
+                            <option value="Auto">Auto</option>
+                            <option value="Learning">Learning</option>
+                            <option value="Video">Video</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Tech">Tech</option>
+                            <option value="Property">Property</option>
+                            <option value="Photo">Photo</option>
+                            <option value="Jobs">Jobs</option>
                           </select>
                         </div>
                         <div class="col-4"><a href="javascript:;" class="btn btn-click2">Apply</a></div>
                       </div>
+                      {{ Form::close() }}
                     </div>
  
                     <div class="table-responsive table-dashboard inventory-dashboard">
@@ -1036,17 +1050,32 @@
 
                     <h3>Homepage</h3>
                     <div class="content-box--select2">
+                    {{ Form::open(['route' => '/inventory', 'method' => 'GET'])}}
                       <div class="form-group row">
                         <div class="col-11 col-sm-9">
                           <select class="custom-select">
-                            <option selected>Select</option>
-                            <option value="1">Select 1</option>
-                            <option value="2">Select 2</option>
-                            <option value="3">Select 3</option>
+                            <option value="" selected>Select</option>
+                            <option value="Home">Home</option>
+                            <option value="Politic">Politic</option>
+                            <option value="World">World</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Stock">Stock</option>
+                            <option value="Economy">Economy</option>
+                            <option value="Life">Life</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Property">Property</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Social">Social</option>
+                            <option value="Dhamma">Dhamma</option>
+                            <option value="PR">PR</option>
+                            <option value="Posttoday Exclusive">Posttoday Exclusive</option>
+                            <option value="Podcast">Podcast</option>
+                            <option value="Video">Video</option>
                           </select>
                         </div>
                         <div class="col-4"><a href="javascript:;" class="btn btn-click2">Apply</a></div>
                       </div>
+                      {{ Form::close() }}
                     </div>
 
                     <div class="table-responsive table-dashboard inventory-dashboard">
