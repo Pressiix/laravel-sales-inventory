@@ -112,19 +112,19 @@
                       <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Facebook' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Facebook' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb1">Facebook</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social2" value="Line" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Line' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social2" value="Line" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Line' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb2">Line</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_social" type="radio" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Twitter' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Twitter' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="bp_fb3">Twitter</label>
                           </div>
                         </div>
@@ -297,7 +297,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="form-group row">
+                            <div id="bp_device" class="form-group row">
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
@@ -532,6 +532,56 @@
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
+
+                    <!-- TYPE -->
+                      <div class="bar-title">Type:</div>
+                        <div id="bp-facebook-tab" class="form-group row">
+                            <div class="col-sm-4">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type1" value="Social" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Social' ? 'checked' : '') ?> >
+                                <label class="form-check-label" for="ptd_type1">Social</label>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type2" value="Website" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Website' ? 'checked' : '') ?>>
+                                <label class="form-check-label" for="ptd_type2">Website</label>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type3" value="E-newsletter" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'E-newsletter' ? 'checked' : '') ?>>
+                                <label class="form-check-label" for="ptd_type3">E-newsletter</label>
+                              </div>
+                        </div>
+                      </div>
+
+                    <!-- Social options -->
+                    <div id="ptd_option1" style="display:none;">
+                      <div class="bar-title">Social:</div>
+                      <div id="ptd-facebook-tab" class="form-group row">
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social1" value="Facebook" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Facebook' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="ptd_fb1">Facebook</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social2" value="Line" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Line' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="ptd_fb2">Line</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social3" value="Twitter" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Twitter' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="ptd_fb3">Twitter</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="ptd_facebook_option" style="display:none;">
                       <div class="bar-title">Facebook:</div>
                       <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
@@ -547,6 +597,9 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+
+                    <div id="ptd_option2" style="display:none;">
                       <div class="bar-title mt-4">Website:</div>
                       <div class="form-group row" id="ptd-tab-border">
                         <div class="col-sm-4">
@@ -604,6 +657,11 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+
+                    <!-- E-newsletter options -->
+                    <div id="ptd_option3" style="display:none;">CCC</div>
+
                     </div>
 
                     <div class="row">
@@ -690,7 +748,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" id="ptd_device">
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
@@ -937,83 +995,148 @@
     var options="";
     $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
 
-    //Show Bangkokpost campaign option by value from option type 
-    $('input[id*="bp_type"]').each(function() {
-        $(this).on("change", function(){
-          var checkbox = $(this);
+    //***------- DOCUMENT READY ------------****
+    $( document ).ready(function() {
+        $("select[name*='bp_']").prop('required',true);
+        $("input[name*='bp_']").prop('required',true);
+    });
+
+    function changeTabOption(element,tab_name)
+    {
+      var checkbox = element;
           var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
           if( checkbox.is(':checked') ) { 
             switch(checkboxIndex) {
-              case '1':
-                      $('#bp_option1').show();
-                      $('#bp_option2').hide();
-                      $('#bp_option3').hide();
-                      $('input[id="bp_social1"]').prop('checked', false);
-                      $('#bp_option1 :input').prop('checked', false);
-                      $('#bp_option2 :input').prop('checked', false);
+              case '1':  //Social
+                      $('#'+tab_name+'_option1').show();
+                      $('#'+tab_name+'_option2').hide();
+                      $('#'+tab_name+'_option2 :input').prop('required', false);
+                      $('#'+tab_name+'_option3').hide();
+                      $('div[id*="'+tab_name+'_device"]').each(function() {
+                        $(this).hide();
+                        $(this).find('input').prop('disabled', true);
+                        $(this).find('input').prop('required', false);
+                      });
+                      $('select[name*="bp_position_id"]').each(function() {
+                        $(this).prop('disabled', true);
+                        $(this).prop('required', false);
+                      });
+                      $('input[name*="bp_position_text"]').each(function() {
+                        $(this).prop('disabled', true);
+                        $(this).prop('required', false);
+                      });
+                      $('select[name*="bp_section_id"]').each(function() {
+                        $(this).prop('disabled', true);
+                        $(this).prop('required', false);
+                      });
+                      $('input[name*="bp_section_text"]').each(function() {
+                        $(this).prop('disabled', true);
+                        $(this).prop('required', false);
+                      });
                       break;
-              case '2':
-                      $('#bp_option1').hide();
-                      $('#bp_option2').show();
-                      $('#bp_option3').hide();
-                      $('input[id="bp_social1"]').prop('checked', false);
-                      $('#bp_option1 :input').prop('checked', false);
-                      $('#bp_option2 :input').prop('checked', false);
-
+              case '2':   //Website
+                      $('#'+tab_name+'_option1').hide();
+                      $('#'+tab_name+'_option2').show();
+                      $('#'+tab_name+'_option2 :input').prop('required', true);
+                      $('#'+tab_name+'_option3').hide();
+                      $('div[id*="'+tab_name+'_device"]').each(function() {
+                        $(this).show();
+                        $(this).find('input').prop('disabled', false);
+                        $(this).find('input').prop('required', true);
+                      });
+                      $('select[name*="'+tab_name+'_position_id"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('input[name*="'+tab_name+'_position_text"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('select[name*="'+tab_name+'_section_id"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('input[name*="'+tab_name+'_section_text"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
                       break;
-              case '3':
-                      $('#bp_option1').hide();
-                      $('#bp_option2').hide();
-                      $('#bp_option3').show();
-                      $('input[id="bp_social1"]').prop('checked', false);
-                      $('#bp_option1 :input').prop('checked', false);
-                      $('#bp_option2 :input').prop('checked', false);
+              case '3':   //E-newsletter
+                      $('#'+tab_name+'_option1').hide();
+                      $('#'+tab_name+'_option2').hide();
+                      $('#'+tab_name+'_option2 :input').prop('required', false);
+                      $('#'+tab_name+'_option3').show();
+                      $('div[id*="'+tab_name+'_device"]').each(function() {
+                        $(this).show();
+                        $(this).find('input').prop('disabled', false);
+                        $(this).find('input').prop('required', true);
+                      });
+                      $('select[name*="'+tab_name+'_position_id"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('input[name*="'+tab_name+'_position_text"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('select[name*="'+tab_name+'_section_id"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
+                      $('input[name*="'+tab_name+'_section_text"]').each(function() {
+                        $(this).prop('disabled', false);
+                        $(this).prop('required', true);
+                      });
                       break;
             }
-          }   
+                      $('#'+tab_name+'_facebook_option').hide();
+                      $('input[id="'+tab_name+'_social1"]').prop('checked', false);
+                      $('#'+tab_name+'_option1 :input').prop('checked', false);
+                      $('#'+tab_name+'_option2 :input').prop('checked', false);
+                      $('#'+tab_name+'_facebook_option :input').prop('checked', false);
+                      $('#'+tab_name+'_facebook_option :input').prop('disabled', true);
+                      $('div[id*="'+tab_name+'_device"]').each(function() {
+                        $(this).find('input').prop('checked', false);
+                      });
+          } 
+    }
+
+    function facebookCheckBoxOption(element,tab_name)
+    {
+      var checkbox = element;
+          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
+          if( checkbox.is(':checked') && checkboxIndex == "1") {  //if user checked on facebook option (ID = 1)
+            $('#'+tab_name+'_facebook_option').show();
+            $('#'+tab_name+'_facebook_option :input').prop('disabled', false);
+          } else if(!checkbox.is(':checked') && checkboxIndex == "1"){
+            $('#'+tab_name+'_facebook_option').hide();
+            $('#'+tab_name+'_facebook_option :input').prop('checked', false);
+          } 
+    }
+
+    //Show Bangkokpost campaign option by value from option type 
+    $('input[id*="bp_type"]').each(function() {
+        $(this).on("change", function(){
+          changeTabOption($(this),'bp');   
         });
     });
-
 
     $('input[id*="bp_social"]').each(function() {
         $(this).on("change", function(){
-          var checkbox = $(this);
-          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
-          if( checkbox.is(':checked') && checkboxIndex == "1") {  //if user checked on facebook option (ID = 1)
-            $('#bp_facebook_option').show();
-          } else{
-            $('#bp_facebook_option').hide();
-            $('#bp_facebook_option :input').prop('checked', false);
-          } 
+          facebookCheckBoxOption($(this),'bp');
         });
     });
-
-    
 
     //Show Posttoday campaign option by value from option type
     $('input[id*="ptd_type"]').each(function() {
         $(this).on("change", function(){
-          var checkbox = $(this);
-          var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
-          if( checkbox.is(':checked') ) { 
-            switch(checkboxIndex) {
-              case '1':
-                      $('#ptd_option1').show();
-                      $('#ptd_option2').hide();
-                      $('#ptd_option3').hide();
-                      break;
-              case '2':
-                      $('#ptd_option1').hide();
-                      $('#ptd_option2').show();
-                      $('#ptd_option3').hide();
-                      break;
-              case '3':
-                      $('#ptd_option1').hide();
-                      $('#ptd_option2').hide();
-                      $('#ptd_option3').show();
-                      break;
-            }
-          }   
+          changeTabOption($(this),'ptd');    
+        });
+    });
+
+    $('input[id*="ptd_social"]').each(function() {
+        $(this).on("change", function(){
+          facebookCheckBoxOption($(this),'ptd'); 
         });
     });
 
@@ -1042,31 +1165,55 @@
 
     function requireFieldOnCard(tab_name,value)
     {
-      $("select[name*='"+tab_name+"_size_id']").prop('required',true);
-      $("select[name*='"+tab_name+"_position_id']").prop('required',true);
-      $("select[name*='"+tab_name+"_section_id']").prop('required',true);
-      $("input[name*='"+tab_name+"_date_from']").prop('required',true);
-      $("input[name*='"+tab_name+"_date_to']").prop('required',true);
-      $("input[name*='"+tab_name+"_device']").prop('required',true);
-      $("input[name*='"+tab_name+"_banner_url']").prop('required',true);
-      $("input[name*='"+tab_name+"_ad_desc_file']").prop('required',true);
-      $("input[name*='"+tab_name+"_quotation']").prop('required',true);
-      $("input[name*='"+tab_name+"_impression_need']").prop('required',true);
+      if(value)
+      {
+        var require_status = true;
+        for(i=0;i<2;i++){
+          if(i==1){
+            tab_name = (tab_name == 'bp' ? 'ptd' : (tab_name == 'ptd' ? 'bp' : ''));
+            require_status = false;
+          } 
+          $("select[name*='"+tab_name+"_']").prop('required',require_status);
+          $("input[name*='"+tab_name+"_']").prop('required',require_status);
+        }
+      }
     }
-
-    //if user checked on bangkok post facebook checkbox
-    $("input[name*='bp_facebook']").click(function(){
-      requireFieldOnCard('bp',($("input[name*='bp_facebook']:checked").length ? 'true' : 'false'));
-    });
-    //if user checked on post today facebook checkbox
-    $("input[name*='ptd_facebook']").click(function(){
-      requireFieldOnCard('ptd',($("input[name*='ptd_facebook']:checked").length ? 'true' : 'false'));
-    });
 
     //Create input field before user click submit button
     function createHiddenField(){
         hiddenField();
-        validateCheckbox(active_tab,none_active_tab);
+        //validateCheckbox(active_tab,none_active_tab);
+    }
+
+    function clearPreviousTab(active_tab)
+    {
+        previous_tab_name = (active_tab == "bangkokpost" ? "ptd" : "bp");
+        //clear all input value on previous tab
+        //1. Hiding checkbox option (Type/Social/Facebook)
+        $('#'+previous_tab_name+'_option1').hide();
+        $('#'+previous_tab_name+'_option2').hide();
+        $('#'+previous_tab_name+'_option3').hide();
+        $('#'+previous_tab_name+'_facebook_option').hide();
+        //2. reset all input value on previous tab
+        var previous_tab_input = document.querySelectorAll("input[name*='"+previous_tab_name+"_']");
+        var previous_tab_dropdown = document.querySelectorAll("select[name*='"+previous_tab_name+"_']");
+        for(var i = 0; i < previous_tab_input.length; i++){
+          previous_tab_input[i].value = '';
+          previous_tab_input[i].required = false;
+          previous_tab_input[i].checked = false;
+            if(previous_tab_input[i].type=="file")
+            {
+              var file_name = $('input[name="'+previous_tab_input[i].name+'"]').val();
+              var fIndex = String(previous_tab_input[i].name).match(/\d+/)[0];
+              var labelId = String(previous_tab_input[i].name).replace('['+fIndex+']',fIndex);
+              $('label[id="'+labelId+'"]').text("");
+            }
+        }
+        for(var i = 0; i < previous_tab_dropdown.length; i++){
+          previous_tab_dropdown[i].value = '';
+          previous_tab_dropdown[i].selectedIndex  = 0;
+          previous_tab_dropdown[i].required = false;
+        }
     }
     
     //Event when user clicked on posttoday tab
@@ -1078,38 +1225,9 @@
             $('.nav-requestForm').addClass('tabs--ptd');
             active_tab = 'posttoday';
             none_active_tab = 'bangkokpost';
-            addTabClass(active_tab,none_active_tab);
-              //clear all input value on previous tab
-              //1. Hiding checkbox option (Type/Social/Facebook)
-              $('#bp_option1').hide();
-              $('#bp_option2').hide();
-              $('#bp_option3').hide();
-              $('#bp_facebook_option').hide();
-              //2. reset all input value on previous tab
-              var bp_input = document.querySelectorAll("input[name*='bp_']");
-              var ptd_input = document.querySelectorAll("input[name*='ptd_']");
-              var bp_dropdown = document.querySelectorAll("select[name*='bp_']");
-              for(var i = 0; i < bp_input.length; i++){
-                  bp_input[i].value = '';
-                  bp_input[i].required = false;
-                  bp_input[i].checked = false;
-                  if(bp_input[i].type=="file")
-                  {
-                    var file_name = $('input[name="'+bp_input[i].name+'"]').val();
-                    var fIndex = String(bp_input[i].name).match(/\d+/)[0];
-                    var labelId = String(bp_input[i].name).replace('['+fIndex+']',fIndex);
-                    $('label[id="'+labelId+'"]').text("");
-                  }
-              }
-              for(var i = 0; i < bp_dropdown.length; i++){
-                bp_dropdown[i].value = '';
-                bp_dropdown[i].selectedIndex  = 0;
-                bp_dropdown[i].required = false;
-              }
-              //3. add require attribute to all input tag on this tab
-              for(var i = 0; i < ptd_input.length; i++){
-                ptd_input[i].required = true;
-              }
+            addTabClass(active_tab,none_active_tab);  //add and remove some attribute on this tab
+            requireFieldOnCard('ptd',true);  //add require attribute to input field
+            clearPreviousTab(active_tab);  //clear all input value on previous tab
           } else {
             // do other stuff
             return false;
@@ -1127,30 +1245,8 @@
             active_tab = 'bangkokpost';
             none_active_tab = 'posttoday';
             addTabClass(active_tab,none_active_tab); //add and remove some attribute on this tab
-            var ptd_input = document.querySelectorAll("input[name*='ptd_']"); //clear all input enter on previous tab
-            var bp_input = document.querySelectorAll("input[name*='bp_']");  //get all input tag element on this tab
-            var ptd_dropdown = document.querySelectorAll("select[name*='ptd_']"); //get all dropdown element on this tab 
-            for(var i = 0; i < ptd_input.length; i++){  //clear value for each input tag element
-                ptd_input[i].value = '';
-                ptd_input[i].required = false;
-                ptd_input[i].checked  = false;
-                if(ptd_input[i].type=="file") //clear file value and file name label 
-                {
-                  var file_name = $('input[name="'+ptd_input[i].name+'"]').val();
-                  var fIndex = String(ptd_input[i].name).match(/\d+/)[0];
-                  var labelId = String(ptd_input[i].name).replace('['+fIndex+']',fIndex);
-                  $('label[id="'+labelId+'"]').text("");
-                }
-            }
-            for(var i = 0; i < ptd_dropdown.length; i++){ //clear value for each dropdown element
-              console.log(i);console.log(ptd_dropdown);
-              ptd_dropdown[i].value = '';
-              ptd_dropdown[i].selectedIndex  = 0;
-              ptd_dropdown[i].required = false;
-            }
-            for(var i = 0; i < bp_input.length; i++){ //add required attribute to input tag on this tab
-              bp_input[i].required = true;
-            }
+            requireFieldOnCard('bp',true);  //add require attribute to input field
+            clearPreviousTab(active_tab); //clear all input value on previous tab
           } else {
             // do other stuff
             return false;
@@ -1245,6 +1341,7 @@
     
     //create a new input field for posting a customer and advertiser name before user clicked a submit button
     function hiddenField() {
+      //event.preventDefault();
         for(i=0;i<2;i++)
         {
           switch(i){
@@ -1266,8 +1363,8 @@
           //append to form element that you want .
           document.getElementById("form").appendChild(input);
         }
-        $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
-        $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
+          $('form').append("<input type='hidden' name='total_bp_web' value='"+$("input[name*='bp_web']").length+"' />");
+          $('form').append("<input type='hidden' name='total_ptd_web' value='"+$("input[name*='ptd_web']").length+"' />");
     }
 
     //generate a new ad description box when user click Add more ad button
