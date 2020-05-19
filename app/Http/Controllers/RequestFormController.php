@@ -275,7 +275,7 @@ class RequestFormController extends Controller
         $item['ptd_banner_file'] = $ptd_banner_file;
         $item['ptd_quotation_file'] = $ptd_quotation_file;
         //CHECK POST VARIABLE
-        echo "<pre/>"; print_r($item);
+        //echo "<pre/>"; print_r($item);
 
         if(isset($request->request_id))
         {
@@ -286,12 +286,12 @@ class RequestFormController extends Controller
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
         
-        /*return view('new.request_preview',[
+        return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
-        ]);*/
+        ]);
         
     }
 
@@ -391,8 +391,10 @@ class RequestFormController extends Controller
                         'customer_id'=>$request->customer_id
                     ]);
                     $request_form->relateAd()->create([
-                        'bp_facebook' => $request->bp_facebook,
-                        'bp_web' => json_encode((object) $request->bp_web),
+                        'bp_type' => (isset($request->bp_type) ? $request->bp_type : ""),
+                        'bp_social' => (isset($request->bp_social) ? json_encode((object) $request->bp_social) : json_encode((object) array(NULL)) ),
+                        'bp_facebook' => (isset($request->bp_facebook) ? $request->bp_facebook : ""),
+                        'bp_web' => (isset($request->bp_web) ? json_encode((object) $request->bp_web) : json_encode((object) array(NULL)) ),
                         'bp_size'=> json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )),
                         'bp_position'=> json_encode((object) array_combine( $request->bp_position_id , $request->bp_position_text )),
                         'bp_section'=> json_encode((object) array_combine( $request->bp_section_id , $request->bp_section_text )),
@@ -405,8 +407,10 @@ class RequestFormController extends Controller
                         'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
                         'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
                         'bp_campaign_budget'=>$request->bp_campaign_budget,
-                        'ptd_facebook' => $request->ptd_facebook,
-                        'ptd_web' => json_encode((object) $request->ptd_web),
+                        'ptd_type' => (isset($request->ptd_type) ? $request->ptd_type : ""),
+                        'ptd_social' => (isset($request->ptd_social) ? json_encode((object) $request->ptd_social) : json_encode((object) array(NULL)) ),
+                        'ptd_facebook' => (isset($request->ptd_facebook) ? $request->ptd_facebook : ""),
+                        'ptd_web' => (isset($request->ptd_web) ? json_encode((object) $request->ptd_web) : json_encode((object) array(NULL)) ),
                         'ptd_size'=> json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )),
                         'ptd_position'=> json_encode((object) array_combine( $request->ptd_position_id , $request->ptd_position_text )),
                         'ptd_section'=> json_encode((object) array_combine( $request->ptd_section_id , $request->ptd_section_text )),
@@ -421,7 +425,8 @@ class RequestFormController extends Controller
                         'ptd_campaign_budget'=>$request->ptd_campaign_budget,
                     ]);
                 //echo json_encode((object) $request->bp_web);
-                //echo "<pre/>"; print_r($request->all()); echo "<pre/>";
+                //echo "<pre/>"; print_r($a); echo "<pre/><br/>";
+                //echo "<pre/>"; print_r($b); echo "<pre/>";
 
                 //Send email to ...
                 $this->sendEmail();
@@ -446,8 +451,10 @@ class RequestFormController extends Controller
 
                 $ad_desc_update = AdDescription::where('request_id', $request->id)
                 ->update([
-                    'bp_facebook' => $request->bp_facebook,
-                    'bp_web' => json_encode((object) $request->bp_web),
+                    'bp_type' => (isset($request->bp_type) ? $request->bp_type : ""),
+                    'bp_social' => (isset($request->bp_social) ? json_encode((object) $request->bp_social) : json_encode((object) array(NULL)) ),
+                    'bp_facebook' => (isset($request->bp_facebook) ? $request->bp_facebook : ""),
+                    'bp_web' => (isset($request->bp_web) ? json_encode((object) $request->bp_web) : json_encode((object) array(NULL)) ),
                     'bp_size'=> json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )),
                     'bp_position'=> json_encode((object) array_combine( $request->bp_position_id , $request->bp_position_text )),
                     'bp_section'=> json_encode((object) array_combine( $request->bp_section_id , $request->bp_section_text )),
@@ -460,8 +467,10 @@ class RequestFormController extends Controller
                     'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
                     'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
                     'bp_campaign_budget'=>$request->bp_campaign_budget,
-                    'ptd_facebook' => $request->ptd_facebook,
-                    'ptd_web' => json_encode((object) $request->ptd_web),
+                    'ptd_type' => (isset($request->ptd_type) ? $request->ptd_type : ""),
+                    'ptd_social' => (isset($request->ptd_social) ? json_encode((object) $request->ptd_social) : json_encode((object) array(NULL)) ),
+                    'ptd_facebook' => (isset($request->ptd_facebook) ? $request->ptd_facebook : ""),
+                    'ptd_web' => (isset($request->ptd_web) ? json_encode((object) $request->ptd_web) : json_encode((object) array(NULL)) ),
                     'ptd_size'=> json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )),
                     'ptd_position'=> json_encode((object) array_combine( $request->ptd_position_id , $request->ptd_position_text )),
                     'ptd_section'=> json_encode((object) array_combine( $request->ptd_section_id , $request->ptd_section_text )),

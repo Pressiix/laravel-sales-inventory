@@ -107,7 +107,7 @@
                       </div>
 
                   <!-- Social options -->
-                  <div id="bp_option1" style="display:none;">
+                  <div id="bp_option1" style="<?= (isset($item['bp_social']) && !empty($item['bp_social']) ? '' :'display:none') ?>;">
                       <div class="bar-title">Social:</div>
                       <div id="bp-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
@@ -557,31 +557,31 @@
                       </div>
 
                     <!-- Social options -->
-                    <div id="ptd_option1" style="display:none;">
+                    <div id="ptd_option1" style="<?= (isset($item['ptd_social']) && !empty($item['ptd_social']) ? '' :'display:none') ?>;">
                       <div class="bar-title">Social:</div>
                       <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social1" value="Facebook" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Facebook' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="ptd_social[0]" type="checkbox" id="ptd_social1" value="Facebook" <?= (!empty($item['ptd_social'][0]) && $item['ptd_social'][0] === 'Facebook' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb1">Facebook</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social2" value="Line" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Line' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="ptd_social[1]" type="checkbox" id="ptd_social2" value="Line" <?= (!empty($item['ptd_social'][1]) && $item['ptd_social'][1] === 'Line' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb2">Line</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[]" type="checkbox" id="ptd_social3" value="Twitter" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Twitter' ? 'checked' : '') ?>>
+                            <input class="form-check-input" name="ptd_social[2]" type="checkbox" id="ptd_social3" value="Twitter" <?= (!empty($item['ptd_social'][2]) && $item['ptd_social'][2] === 'Twitter' ? 'checked' : '') ?>>
                             <label class="form-check-label" for="ptd_fb3">Twitter</label>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div id="ptd_facebook_option" style="display:none;">
+                    <div id="ptd_facebook_option" style="<?= (isset($item['ptd_facebook']) && !empty($item['ptd_facebook']) ? '' :'display:none') ?>;">
                       <div class="bar-title">Facebook:</div>
                       <div id="ptd-facebook-tab" class="form-group row">
                         <div class="col-sm-4">
@@ -863,7 +863,7 @@
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 
-                                <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
+                                <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);" <?= ($item['ptd_type'] == 'Social' ? 'disabled' : '') ?>>
                                   <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
@@ -873,7 +873,7 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
+                                <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text" <?= ($item['ptd_type'] == 'Social' ? 'disabled' : '') ?>>
                                 <option value="">Choose Section</option>
                                 <?php 
                                 if(!empty($item['ptd_section_id'][$i])){
@@ -1008,28 +1008,32 @@
           if( checkbox.is(':checked') ) { 
             switch(checkboxIndex) {
               case '1':  //Social
+                      
                       $('#'+tab_name+'_option1').show();
                       $('#'+tab_name+'_option2').hide();
                       $('#'+tab_name+'_option2 :input').prop('required', false);
                       $('#'+tab_name+'_option3').hide();
+
                       $('div[id*="'+tab_name+'_device"]').each(function() {
                         $(this).hide();
                         $(this).find('input').prop('disabled', true);
                         $(this).find('input').prop('required', false);
                       });
-                      $('select[name*="bp_position_id"]').each(function() {
+                      $('select[name*="'+tab_name+'_position_id"]').each(function() {
+                        $(this).prop('disabled', true);
+                        $(this).prop('required', false);
+                        $(this).find('option').prop('selected', false);
+                      });
+                      $('input[name*="'+tab_name+'_position_text"]').each(function() {
                         $(this).prop('disabled', true);
                         $(this).prop('required', false);
                       });
-                      $('input[name*="bp_position_text"]').each(function() {
+                      $('select[name*="'+tab_name+'_section_id"]').each(function() {
                         $(this).prop('disabled', true);
                         $(this).prop('required', false);
+                        $(this).prop('selected', false);
                       });
-                      $('select[name*="bp_section_id"]').each(function() {
-                        $(this).prop('disabled', true);
-                        $(this).prop('required', false);
-                      });
-                      $('input[name*="bp_section_text"]').each(function() {
+                      $('input[name*="'+tab_name+'_section_text"]').each(function() {
                         $(this).prop('disabled', true);
                         $(this).prop('required', false);
                       });
@@ -1183,6 +1187,16 @@
     function createHiddenField(){
         hiddenField();
         //validateCheckbox(active_tab,none_active_tab);
+        
+        if($('div[id*="bp_option1"] :input').is(':checked') || $('div[id*="ptd_option1"] :input').is(':checked'))   //remove required property on social option if user checked on social option (at least 1)
+        {
+                $('input[name*="bp_social"]').each(function() {
+                  $(this).prop("required",false);
+                });
+                $('input[name*="ptd_social"]').each(function() {
+                  $(this).prop("required",false);
+                });
+        }
     }
 
     function clearPreviousTab(active_tab)

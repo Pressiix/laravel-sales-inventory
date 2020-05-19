@@ -13,6 +13,8 @@ class AdDescription extends Model
 
     protected $fillable = [
         'id',
+        'bp_type',
+        'bp_social',
         'bp_facebook',
         'bp_web',
         'bp_size',
@@ -27,6 +29,8 @@ class AdDescription extends Model
         'bp_impression_need',
         'bp_ad_detail',
         'bp_campaign_budget',
+        'ptd_type',
+        'ptd_social',
         'ptd_facebook',
         'ptd_web',
         'ptd_size',

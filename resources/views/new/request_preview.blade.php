@@ -101,9 +101,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Size:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['bp_size_text'][$i] }}</div>
-                                    <input type="hidden" name="bp_size_id[<?= $i ?>]" value="{{ $item['bp_size_id'][$i] }}">
-                                    <input type="hidden" name="bp_size_text[<?= $i ?>]" value="{{ $item['bp_size_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['bp_size_text'][$i]) ? $item['bp_size_text'][$i] : "") }}</div>
+                                    <input type="hidden" name="bp_size_id[<?= $i ?>]" value="{{ (isset($item['bp_size_id'][$i]) ? $item['bp_size_id'][$i] : '') }}">
+                                    <input type="hidden" name="bp_size_text[<?= $i ?>]" value="{{ (isset($item['bp_size_text'][$i]) ? $item['bp_size_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -111,9 +111,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['bp_position_text'][$i] }}</div>
-                                    <input type="hidden" name="bp_position_id[<?= $i ?>]" value="{{ $item['bp_position_id'][$i] }}">
-                                    <input type="hidden" name="bp_position_text[<?= $i ?>]" value="{{ $item['bp_position_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : "") }}</div>
+                                    <input type="hidden" name="bp_position_id[<?= $i ?>]" value="{{ (isset($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') }}">
+                                    <input type="hidden" name="bp_position_text[<?= $i ?>]" value="{{ (isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -121,9 +121,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['bp_section_text'][$i] }}</div>
-                                    <input type="hidden" name="bp_section_id[<?= $i ?>]" value="{{ $item['bp_section_id'][$i] }}">
-                                    <input type="hidden" name="bp_section_text[<?= $i ?>]" value="{{ $item['bp_section_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : "") }}</div>
+                                    <input type="hidden" name="bp_section_id[<?= $i ?>]" value="{{ (isset($item['bp_section_id'][$i]) ? $item['bp_section_id'][$i] : '') }}">
+                                    <input type="hidden" name="bp_section_text[<?= $i ?>]" value="{{ (isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -225,6 +225,31 @@
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
+
+                    <div class="bar-title mt-4">Type:</div>
+                      <div class="form-group row">
+                        <div class="col-15">
+                          <ul class="form-ad--answer">
+                          <li>{{ (!empty($item['ptd_type']) ? $item['ptd_type'] : '') }}</li>
+                            <input name="ptd_type" type="hidden" value="{{ (!empty($item['ptd_type']) ? $item['ptd_type'] : '') }}">
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="bar-title">Social:</div>
+                      <div class="form-group row">
+                        <div class="col-15">
+                          <ul class="form-ad--answer">
+                          <?php for($i=0;$i<=count($item['ptd_social']);$i++){
+                              echo (!empty($item['ptd_social'][$i]) ? "<li>".$item['ptd_social'][$i]."</li>" : ''); 
+                              if(!empty($item['ptd_social'][$i])){
+                          ?>
+                              <input type="hidden" name="ptd_social[<?= $i ?>]" value="{{ (!empty($item['ptd_social'][$i]) ? $item['ptd_social'][$i] : '') }}">
+                          <?php }} ?>
+                          </ul>
+                        </div>
+                      </div>
+
                       <div class="bar-title">Website:</div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -238,6 +263,7 @@
                           </ul>
                         </div>
                       </div>
+
                       <div class="bar-title mt-4">Facebook:</div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -247,6 +273,7 @@
                           </ul>
                         </div>
                       </div>
+
                     </div>
 
                     <div class="row">
@@ -260,9 +287,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Size:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['ptd_size_text'][$i] }}</div>
-                                    <input type="hidden" name="ptd_size_id[<?= $i ?>]" value="{{ $item['ptd_size_id'][$i] }}">
-                                    <input type="hidden" name="ptd_size_text[<?= $i ?>]" value="{{ $item['ptd_size_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_size_text'][$i]) ? $item['ptd_size_text'][$i] : "") }}</div>
+                                    <input type="hidden" name="ptd_size_id[<?= $i ?>]" value="{{ (isset($item['ptd_size_id'][$i]) ? $item['ptd_size_id'][$i] : '') }}">
+                                    <input type="hidden" name="ptd_size_text[<?= $i ?>]" value="{{ (isset($item['ptd_size_text'][$i]) ? $item['ptd_size_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -270,9 +297,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['ptd_position_text'][$i] }}</div>
-                                    <input type="hidden" name="ptd_position_id[<?= $i ?>]" value="{{ $item['ptd_position_id'][$i] }}">
-                                    <input type="hidden" name="ptd_position_text[<?= $i ?>]" value="{{ $item['ptd_position_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}</div>
+                                    <input type="hidden" name="ptd_position_id[<?= $i ?>]" value="{{ (isset($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') }}">
+                                    <input type="hidden" name="ptd_position_text[<?= $i ?>]" value="{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -280,9 +307,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ $item['ptd_section_text'][$i] }}</div>
-                                    <input type="hidden" name="ptd_section_id[<?= $i ?>]" value="{{ $item['ptd_section_id'][$i] }}">
-                                    <input type="hidden" name="ptd_section_text[<?= $i ?>]" value="{{ $item['ptd_section_text'][$i] }}">
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}</div>
+                                    <input type="hidden" name="ptd_section_id[<?= $i ?>]" value="{{ (isset($item['ptd_section_id'][$i]) ? $item['ptd_section_id'][$i] : '') }}">
+                                    <input type="hidden" name="ptd_section_text[<?= $i ?>]" value="{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
