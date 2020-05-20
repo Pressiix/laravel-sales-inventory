@@ -11,13 +11,39 @@ $(document).ready(function() {
     $("input[name*='bp_']").prop('required', true);
 });
 
+//Date picker option for default ad description card
+$('.datepicker').datepicker({
+    autoclose: true,
+    todayHighlight: true
+});
+
+$("body").on('focus', '.datepicker', function() {
+    $(this).datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+});
+
+
+window.onbeforeunload = function(e) {
+    e = e || window.event;
+
+    // For IE and Firefox prior to version 4
+    if (e) {
+        e.returnValue = 'Any string';
+    }
+
+    // For Safari
+    return 'Any string';
+};
+
+
 function changeTabOption(element, tab_name) {
     var checkbox = element;
     var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
     if (checkbox.is(':checked')) {
         switch (checkboxIndex) {
             case '1': //Social
-
                 $('#' + tab_name + '_option1').show();
                 $('#' + tab_name + '_option2').hide();
                 $('#' + tab_name + '_option2 :input').prop('required', false);
@@ -454,31 +480,6 @@ function addAds(web_name) {
     }
 }
 
-//Date picker option for default ad description card
-$('.datepicker').datepicker({
-    autoclose: true,
-    todayHighlight: true
-});
-
-$("body").on('focus', '.datepicker', function() {
-    $(this).datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-});
-
-
-window.onbeforeunload = function(e) {
-    e = e || window.event;
-
-    // For IE and Firefox prior to version 4
-    if (e) {
-        e.returnValue = 'Any string';
-    }
-
-    // For Safari
-    return 'Any string';
-};
 
 function Validate(oForm) {
     var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];
