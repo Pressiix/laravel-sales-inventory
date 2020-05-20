@@ -66,6 +66,33 @@
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
+
+                    <div class="bar-title mt-4">Type:</div>
+                      <div class="form-group row">
+                        <div class="col-15">
+                          <ul class="form-ad--answer">
+                          <li>{{ (!empty($item['bp_type']) ? $item['bp_type'] : '') }}</li>
+                            <input name="bp_type" type="hidden" value="{{ (!empty($item['bp_type']) ? $item['bp_type'] : '') }}">
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="bar-title">Social:</div>
+                      <div class="form-group row">
+                        <div class="col-15">
+                          <ul class="form-ad--answer">
+                          <?php 
+                            if(!empty($item['bp_social'])){
+                              for($i=0;$i<=count($item['bp_social']);$i++){
+                              echo "<li>".$item['bp_social'][$i]."</li>"; 
+                              
+                          ?>
+                              <input type="hidden" name="bp_social[<?= $i ?>]" value="{{ (!empty($item['bp_social'][$i]) ? $item['bp_social'][$i] : '') }}">
+                          <?php }} ?>
+                          </ul>
+                        </div>
+                      </div>
+
                       <div class="bar-title"><strong>Website:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -79,6 +106,7 @@
                           </ul>
                         </div>
                       </div>
+
                       <div class="bar-title mt-4"><strong>Facebook:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -88,6 +116,7 @@
                           </ul>
                         </div>
                       </div>
+
                     </div>
 
                     <div class="row">
@@ -240,9 +269,10 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                          <?php for($i=0;$i<=count($item['ptd_social']);$i++){
-                              echo (!empty($item['ptd_social'][$i]) ? "<li>".$item['ptd_social'][$i]."</li>" : ''); 
-                              if(!empty($item['ptd_social'][$i])){
+                          <?php 
+                            if(!empty($item['ptd_social'])){
+                              for($i=0;$i<=count($item['ptd_social']);$i++){
+                              echo "<li>".$item['ptd_social'][$i]."</li>"; 
                           ?>
                               <input type="hidden" name="ptd_social[<?= $i ?>]" value="{{ (!empty($item['ptd_social'][$i]) ? $item['ptd_social'][$i] : '') }}">
                           <?php }} ?>
