@@ -83,10 +83,9 @@
                         <div class="col-15">
                           <ul class="form-ad--answer">
                           <?php 
-                            if(!empty($item['bp_social'])){
+                            if(isset($item['bp_social'])){
                               for($i=0;$i<=count($item['bp_social']);$i++){
-                                echo (isset($item['bp_social'][$i]) ? "<li>".$item['bp_social'][$i]."</li>" : "");
-                              
+                              echo (isset($item['bp_social'][$i]) ? "<li>".$item['bp_social'][$i]."</li>" : ""); 
                           ?>
                               <input type="hidden" name="bp_social[<?= $i ?>]" value="{{ (!empty($item['bp_social'][$i]) ? $item['bp_social'][$i] : '') }}">
                           <?php }} ?>

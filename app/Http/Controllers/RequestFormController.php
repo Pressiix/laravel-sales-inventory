@@ -498,14 +498,14 @@ class RequestFormController extends Controller
         foreach($all_user as $key=>$value)
         {
             if(User::getUserRoleById($value['id']) == 'sale-management')
-            {
+            {   
                 $email =  $value['email'];
                 break;
             }
         }
         if($email == "")
         {
-            $email = "watcharaphonp@bangkokpost.co.th";
+            $email = "watcharapon.piam@gmail.com";
         }
 
         $details = [
