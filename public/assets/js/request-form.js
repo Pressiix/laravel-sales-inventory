@@ -7,8 +7,9 @@ $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
 
 //***------- DOCUMENT READY ------------****
 $(document).ready(function() {
-    $("select[name*='bp_']").prop('required', true);
-    $("input[name*='bp_']").prop('required', true);
+    //add required attribute to all input tag on default tab => Bangkokpost Tab *** 
+    $("select[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
+    $("input[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
 });
 
 //Date picker option for default ad description card
