@@ -15,3 +15,4 @@ yarn-error.log
 #------custom ignore-----
 #/storage/app
 .env
+.env

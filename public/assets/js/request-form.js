@@ -314,13 +314,17 @@ $('#ptd-modal-submit').click(function(e) {
     addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
     requireFieldOnCard('ptd', true); //add require attribute to input field
     clearPreviousTab(active_tab); //clear all input value on previous tab
-    $("div[id*='ptd-ad-card']").hide();
+    $('div[id*="bp-ad-card"]').each(function(index) { //destroy all cloned card on bangkokpost tab when user changed tab to posttoday
+        if (index !== 0) { //if this card not equal default card
+            $(this).remove(); //remove cloned card
+        }
+    });
+    $("div[id*='ptd-ad-card']").hide(); //hide default card
     $("div[id*='ptd-type-container']").hide();
 });
 
 //Event when user clicked on bangkokpost tab
 $('#bangkokpost-tab').click(function(e) {
-    console.log('Hey!');
     if (active_tab !== 'bangkokpost') {
         $('#bpModal').modal('show');
     }
@@ -334,7 +338,12 @@ $('#bp-modal-submit').click(function(e) {
     addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
     requireFieldOnCard('bp', true); //add require attribute to input field
     clearPreviousTab(active_tab); //clear all input value on previous tab
-    $("div[id*='bp-ad-card']").hide();
+    $('div[id*="ptd-ad-card"]').each(function(index) { //destroy all cloned card on posttoday tab when user changed tab to bangkokpost
+        if (index !== 0) { //if this card not equal default card
+            $(this).remove(); //remove cloned card
+        }
+    });
+    $("div[id*='bp-ad-card']").hide(); //hide default card
     $("div[id*='bp-type-container']").hide();
 });
 

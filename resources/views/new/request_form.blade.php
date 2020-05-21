@@ -5,7 +5,8 @@
         <div class="content-inventory">
           <h2>Request Form</h2>
           {!! Form::open(['action' => ['RequestFormController@review', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data', 'onsubmit'=>'return Validate(this);'])!!}
-          <?php if(isset($item['id'])){ ?>
+            <!-- get value from -->
+            <?php if(isset($item['id'])){ ?>
               <input type="hidden" name='id' value="<?= $item['id'] ?>">
             <?php } 
             if(isset($item['ad_desc_id'])){ ?>
