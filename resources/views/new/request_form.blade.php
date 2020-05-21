@@ -72,40 +72,41 @@
 
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="bangkokpost-tab"  role="tab" aria-controls="bangkokpost" aria-selected="false">Bangkokpost</a>
+                  <a class="nav-link <?= (isset($item['ptd_type']) || !empty($item['ptd_type']) ? '' : 'active')?>" id="bangkokpost-tab"  role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="posttoday-tab"  role="tab" aria-controls="posttoday" aria-selected="true">Posttoday</a>
+                  <a class="nav-link <?= (!empty($item['ptd_type']) ? 'active' : '')?>" id="posttoday-tab"  role="tab" aria-controls="posttoday" aria-selected="true">Posttoday</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
+                <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? '' : 'show active')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
                     <!-- TYPE -->
-                    <div class="bar-title">Type:</div>
-                    <div id="bp-facebook-tab" class="form-group row">
-                        <div class="col-sm-4">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
-                            <label class="form-check-label" for="bp_type1">Social</label>
+                    <div id="bp-type-container" style="<?= (isset($item['bp_type']) ? '' : 'display:none;')?>">
+                      <div class="bar-title">Type:</div>
+                      <div id="bp-facebook-tab" class="form-group row">
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
+                              <label class="form-check-label" for="bp_type1">Social</label>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bp_type2">Website</label>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_type2">Website</label>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_type" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bp_type3">E-newsletter</label>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_type3">E-newsletter</label>
+                            </div>
                           </div>
                         </div>
                       </div>
-
                   <!-- Social options -->
                   <div id="bp_option1" style="<?= (isset($item['bp_social']) && !empty($item['bp_social']) ? '' :'display:none') ?>;">
                       <div class="bar-title">Social:</div>
@@ -210,7 +211,7 @@
                       </div>
                     </div>
                     <!-- E-newsletter options -->
-                    <div id="bp_option3" style="display:none;">CCC</div>
+                    <!--div id="bp_option3" style="display:none;">CCC</!--div-->
                   </div>
 
                     <div class="row">
@@ -528,12 +529,13 @@
                 </div>
 
                 <!-- POST TODAY TAB -->
-                <div class="tab-pane fade" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
+                <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? 'show active' : '')?>" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
 
                     <!-- TYPE -->
+                    <div id="ptd-type-container" style="<?= (isset($item['ptd_type']) ? '' : 'display:none;')?>">
                       <div class="bar-title">Type:</div>
                         <div id="bp-facebook-tab" class="form-group row">
                             <div class="col-sm-4">
@@ -553,6 +555,7 @@
                                 <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type3" value="E-newsletter" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'E-newsletter' ? 'checked' : '') ?>>
                                 <label class="form-check-label" for="ptd_type3">E-newsletter</label>
                               </div>
+                          </div>
                         </div>
                       </div>
 
@@ -660,7 +663,7 @@
                     </div>
 
                     <!-- E-newsletter options -->
-                    <div id="ptd_option3" style="display:none;">CCC</div>
+                    <!--div id="ptd_option3" style="display:none;">CCC</!--div-->
 
                     </div>
 
@@ -670,7 +673,7 @@
                         <?php  if(!isset($item['ptd_size_id'])){ ?>
                           <script>
                             var ptd_action = 'New';
-                            console.log(ptd_action);
+                            //console.log(ptd_action);
                           </script>
                         <div id="ptd-ad-card" class="box-ad--banner" style="display:none;">
                           <div id="ptd-ad-title" class="box-ad--title">Ad 1 Description:</div>

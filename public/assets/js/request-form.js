@@ -1,7 +1,7 @@
 //Replace URL after user click to save request form
 window.history.pushState('request-save', 'Title', '/request_form');
-var active_tab = 'bangkokpost';
-var none_active_tab = 'posttoday';
+var active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'bangkokpost' : 'posttoday');
+var none_active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'posttoday' : 'bangkokpost');
 var options = "";
 $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
 
@@ -42,12 +42,14 @@ function changeTabOption(element, tab_name) {
     var checkbox = element;
     var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
     if (checkbox.is(':checked')) {
+        $('#' + tab_name + '-ad-card').removeAttr('style');
         switch (checkboxIndex) {
             case '1': //Social
                 $('#' + tab_name + '_option1').show();
                 $('#' + tab_name + '_option2').hide();
+                $('#' + tab_name + '_option1 :input').prop('required', true);
                 $('#' + tab_name + '_option2 :input').prop('required', false);
-                $('#' + tab_name + '_option3').hide();
+                //$('#' + tab_name + '_option3').hide();
 
                 $('div[id*="' + tab_name + '_device"]').each(function() {
                     $(this).hide();
@@ -76,8 +78,9 @@ function changeTabOption(element, tab_name) {
             case '2': //Website
                 $('#' + tab_name + '_option1').hide();
                 $('#' + tab_name + '_option2').show();
+                $('#' + tab_name + '_option1 :input').prop('required', false);
                 $('#' + tab_name + '_option2 :input').prop('required', true);
-                $('#' + tab_name + '_option3').hide();
+                //$('#' + tab_name + '_option3').hide();
                 $('div[id*="' + tab_name + '_device"]').each(function() {
                     $(this).show();
                     $(this).find('input').prop('disabled', false);
@@ -103,28 +106,31 @@ function changeTabOption(element, tab_name) {
             case '3': //E-newsletter
                 $('#' + tab_name + '_option1').hide();
                 $('#' + tab_name + '_option2').hide();
+                $('#' + tab_name + '_option1 :input').prop('required', false);
                 $('#' + tab_name + '_option2 :input').prop('required', false);
-                $('#' + tab_name + '_option3').show();
+                //$('#' + tab_name + '_option3').show();
                 $('div[id*="' + tab_name + '_device"]').each(function() {
-                    $(this).show();
-                    $(this).find('input').prop('disabled', false);
-                    $(this).find('input').prop('required', true);
+                    $(this).hide();
+                    $(this).find('input').prop('disabled', true);
+                    $(this).find('input').prop('required', false);
                 });
                 $('select[name*="' + tab_name + '_position_id"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
+                    $(this).prop('disabled', true);
+                    $(this).prop('required', false);
+                    $(this).find('option').prop('selected', false);
                 });
                 $('input[name*="' + tab_name + '_position_text"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
+                    $(this).prop('disabled', true);
+                    $(this).prop('required', false);
                 });
                 $('select[name*="' + tab_name + '_section_id"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
+                    $(this).prop('disabled', true);
+                    $(this).prop('required', false);
+                    $(this).prop('selected', false);
                 });
                 $('input[name*="' + tab_name + '_section_text"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
+                    $(this).prop('disabled', true);
+                    $(this).prop('required', false);
                 });
                 break;
         }
@@ -209,6 +215,7 @@ function beforeSubmit() {
         });
         $('input[name*="ptd_social"]').each(function() {
             $(this).prop("required", false);
+            //console.log($(this));
         });
     }
 
@@ -263,7 +270,7 @@ function clearPreviousTab(active_tab) {
     //1. Hiding checkbox option (Type/Social/Facebook)
     $('#' + previous_tab_name + '_option1').hide();
     $('#' + previous_tab_name + '_option2').hide();
-    $('#' + previous_tab_name + '_option3').hide();
+    //$('#' + previous_tab_name + '_option3').hide();
     $('#' + previous_tab_name + '_facebook_option').hide();
     //2. reset all input value on previous tab
     var previous_tab_input = document.querySelectorAll("input[name*='" + previous_tab_name + "_']");
@@ -286,11 +293,17 @@ function clearPreviousTab(active_tab) {
     }
 }
 
-$('#posttoday-tab').click(function(e) {
-    if (active_tab !== 'posttoday') {
-        $('#ptdModal').modal('show');
+
+$('#posttoday-tab').each(function() {
+    if ($(this).hasClass("active")) {
+        $('.nav-requestForm').addClass('tabs--ptd');
     }
-});
+    $(this).on('click', function(e) {
+        if (active_tab !== 'posttoday') {
+            $('#ptdModal').modal('show');
+        }
+    })
+})
 
 //Event when user clicked on posttoday tab
 $('#ptd-modal-submit').click(function(e) {
@@ -301,10 +314,13 @@ $('#ptd-modal-submit').click(function(e) {
     addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
     requireFieldOnCard('ptd', true); //add require attribute to input field
     clearPreviousTab(active_tab); //clear all input value on previous tab
+    $("div[id*='ptd-ad-card']").hide();
+    $("div[id*='ptd-type-container']").hide();
 });
 
 //Event when user clicked on bangkokpost tab
 $('#bangkokpost-tab').click(function(e) {
+    console.log('Hey!');
     if (active_tab !== 'bangkokpost') {
         $('#bpModal').modal('show');
     }
@@ -318,6 +334,8 @@ $('#bp-modal-submit').click(function(e) {
     addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
     requireFieldOnCard('bp', true); //add require attribute to input field
     clearPreviousTab(active_tab); //clear all input value on previous tab
+    $("div[id*='bp-ad-card']").hide();
+    $("div[id*='bp-type-container']").hide();
 });
 
 function addTabClass(active_tab, none_active_tab) {
@@ -426,7 +444,8 @@ function addAds(web_name) {
     var count = $("div[id*='" + web_name + "-ad-card']").length;
 
     if (count == '1' && !$('#' + web_name + '-ad-card').is(':visible')) {
-        $('#' + web_name + '-ad-card').removeAttr('style');
+        //$('#' + web_name + '-ad-card').removeAttr('style');
+        $('#' + web_name + '-type-container').removeAttr('style');
     } else {
         var Html = $("div[id*='" + web_name + "-ad-card']").eq(0).clone();
         Html.find('input').each(function() { //Replace input name

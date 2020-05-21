@@ -55,14 +55,14 @@
 
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
+                  <a class="nav-link <?= (!empty($item['bp_type']) ? 'active' : '')?>" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="false">Posttoday</a>
+                  <a class="nav-link <?= (!empty($item['ptd_type']) ? 'active' : '')?>" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="false">Posttoday</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
+                <div class="tab-pane fade <?= (!empty($item['bp_type']) ? 'show active' : '')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
@@ -77,6 +77,7 @@
                         </div>
                       </div>
 
+                      <div style="<?= (isset($item['bp_social']) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title">Social:</div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -84,7 +85,7 @@
                           <?php 
                             if(!empty($item['bp_social'])){
                               for($i=0;$i<=count($item['bp_social']);$i++){
-                              echo "<li>".$item['bp_social'][$i]."</li>"; 
+                                echo (isset($item['bp_social'][$i]) ? "<li>".$item['bp_social'][$i]."</li>" : "");
                               
                           ?>
                               <input type="hidden" name="bp_social[<?= $i ?>]" value="{{ (!empty($item['bp_social'][$i]) ? $item['bp_social'][$i] : '') }}">
@@ -92,7 +93,9 @@
                           </ul>
                         </div>
                       </div>
+                      </div>
 
+                      <div style="<?= (isset($item['bp_web']) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title"><strong>Website:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -105,6 +108,7 @@
                            <?php } } ?>
                           </ul>
                         </div>
+                      </div>
                       </div>
 
                       <div class="bar-title mt-4"><strong>Facebook:</strong></div>
@@ -250,11 +254,12 @@
                   </div>
 
                 </div>
-                <div class="tab-pane fade" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
+                <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? 'show active' : '')?>" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
                     <div class="form-ad--detail">
 
+                    <div style="<?= (isset($item['ptd_type']) ? '' : 'display:none;' ) ?>">
                     <div class="bar-title mt-4">Type:</div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -264,22 +269,26 @@
                           </ul>
                         </div>
                       </div>
+                      </div>
 
+                      <div style="<?= (isset($item['ptd_social']) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title">Social:</div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
                           <?php 
-                            if(!empty($item['ptd_social'])){
+                            if(isset($item['ptd_social'])){
                               for($i=0;$i<=count($item['ptd_social']);$i++){
-                              echo "<li>".$item['ptd_social'][$i]."</li>"; 
+                              echo (isset($item['ptd_social'][$i]) ? "<li>".$item['ptd_social'][$i]."</li>" : ""); 
                           ?>
                               <input type="hidden" name="ptd_social[<?= $i ?>]" value="{{ (!empty($item['ptd_social'][$i]) ? $item['ptd_social'][$i] : '') }}">
                           <?php }} ?>
                           </ul>
                         </div>
                       </div>
-
+                      </div>
+                      
+                      <div style="<?= (!isset($item['ptd_web']) && !empty($item['ptd_web']) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title">Website:</div>
                       <div class="form-group row">
                         <div class="col-15">
@@ -292,6 +301,7 @@
                           <?php }} ?>
                           </ul>
                         </div>
+                      </div>
                       </div>
 
                       <div class="bar-title mt-4">Facebook:</div>
@@ -486,9 +496,15 @@
         todayHighlight: true
     });
 
-    $('#myTab a#posttoday-tab').on('click', function (e) {
-      e.preventDefault()
-      $('.nav-requestForm').addClass('tabs--ptd');
+    $('#posttoday-tab').each(function(){
+      if($(this).hasClass( "active" ))
+      {
+        $('.nav-requestForm').addClass('tabs--ptd');
+      }
+      $(this).on('click', function (e) {
+        e.preventDefault()
+        $('.nav-requestForm').addClass('tabs--ptd');
+      })
     })
     $('#myTab a#bangkokpost-tab').on('click', function (e) {
       e.preventDefault()
