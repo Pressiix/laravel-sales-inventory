@@ -164,8 +164,8 @@ class RevenueReportController extends Controller
                 foreach($web_item as $key=>$value)
                 {
                     
-                        //echo "<pre/>";print_r($value);echo "<br/>";
-                        if(is_array($value))
+                        //echo "<pre/>";print_r($web[$web_index][$web_name."_size"]);echo "<br/>----------------<br/";
+                        if(is_array($value) && is_array($web[$web_index][$web_name."_size"]))
                         {
                             for($i=0;$i<count($web[$web_index][$web_name."_size"]);$i++)
                             {

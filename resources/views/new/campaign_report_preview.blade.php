@@ -3,7 +3,14 @@
 @section('content')
       <div class="col-15 bg-fff">
         <div class="content-inventory">
-          <h2>Create Campaign Report</h2>
+        <div class="head--top">
+            <div class="head--postgroup-logo"><img src="/assets/images/postgroup-logo_blue.svg" class="img-fluid" alt=""></div>
+            <div class="head--postgroup-address">
+              Bangkok Post Public Company Limited<br>
+              135 Sunthorn Kosa Road, Klong Toey, Bangkok 10110
+            </div>
+          </div>
+          <h2 class="text-center">Create Campaign Report</h2>
           {!! Form::open(['action' => ['CampaignController@store_campaign', 'method' => 'POST'],'name'=>'form','id'=>'form','enctype'=>'multipart/form-data'])!!}
             <?php if(isset($item['id'])){ ?>
               <input type="hidden" name='id' value="<?= $item['id'] ?>" readonly="">
