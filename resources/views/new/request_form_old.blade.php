@@ -83,83 +83,76 @@
                 <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? '' : 'show active')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
-                  <div id="bp-all-detail">
-                  <div id="bp_detail--1">  <!-- default content (for copy)-->
                     <div class="form-ad--detail">
                     <!-- TYPE -->
-                      <div class="choose--type" id="bp-type-container">
-                        <div class="row">
-                          <div class="col-sm-5">
-                            <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
-                              <label class="form-check-label" for="bkp_choose1">Social</label>
+                    <div id="bp-type-container" style="<?= (isset($item['bp_type']) ? '' : 'display:none;')?>">
+                      <div class="bar-title">Type:</div>
+                      <div id="bp-facebook-tab" class="form-group row">
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
+                              <label class="form-check-label" for="bp_type1">Social</label>
                             </div>
                           </div>
-                          <div class="col-sm-5">
-                            <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bkp_choose2">Website</label>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_type2">Website</label>
                             </div>
                           </div>
-                          <div class="col-sm-5">
-                            <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bkp_choose3">E-newsletter</label>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_type" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_type3">E-newsletter</label>
                             </div>
                           </div>
                         </div>
                       </div>
-
                   <!-- Social options -->
-                  <div class="bkp_type--choose div-choose--type" id="bkp_type--1" style="display: none;">
-                  
-                      <div id="bp-facebook-tab" class="form-group border-title">
-                        <div class="row">
-                          <div class="col-sm-4">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" name="bp_social[0]" type="radio" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Facebook' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bp_fb1">Facebook</label>
-                            </div>
-                          </div>
-                          <div class="col-sm-4">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" name="bp_social[0]" type="radio" id="bp_social2" value="Line" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Line' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bp_fb2">Line</label>
-                            </div>
-                          </div>
-                          <div class="col-sm-4">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" name="bp_social[0]" type="radio" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Twitter' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bp_fb3">Twitter</label>
-                            </div>
-                          </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <div class="col-sm-2 col-md-2">
+                  <div id="bp_option1" style="<?= (isset($item['bp_social']) && !empty($item['bp_social']) ? '' :'display:none') ?>;">
+                      <div class="bar-title">Social:</div>
+                      <div id="bp-facebook-tab" class="form-group row">
+                        <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <label class="form-check-label"><strong>Type:</strong></label>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Facebook' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb1">Facebook</label>
                           </div>
                         </div>
-                        <div class="col-sm-4 col-md-4">
+                        <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bkp_type1">Normal Post</label>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social2" value="Line" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Line' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb2">Line</label>
                           </div>
                         </div>
-                        <div class="col-sm-4 col-md-3">
+                        <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bkp_type2">Boost Post</label>
+                            <input class="form-check-input" name="bp_social[]" type="checkbox" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social']) && $item['bp_social'] === 'Twitter' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb3">Twitter</label>
                           </div>
                         </div>
                       </div>
+                    </div>
 
+                    <div id="bp_facebook_option" style="display:none;">
+                      <div class="bar-title">Facebook:</div>
+                      <div id="bp-facebook-tab" class="form-group row">
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb1">Normal Post</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_fb2">Facebook Boost Post</label>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     <!-- Website options -->
-                    <div class="bkp_type--choose  div-choose--type" id="bkp_type--2" style="display: none;">
+                    <div id="bp_option2" style="display:none;">
                       <div class="bar-title mt-4">Website:</div>
                       <div class="form-group row" id="bp-tab-border">
                         <div class="col-sm-4">
@@ -230,7 +223,7 @@
                             var bp_action = 'New';
                             //console.log(bp_action);
                           </script>
-                        <div id="bp-ad-card--1" class="box-ad--banner" style="display:none;">
+                        <div id="bp-ad-card" class="box-ad--banner" style="display:none;">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
@@ -522,14 +515,10 @@
                           } 
                         ?>
                         </div>
-                        </div>
-                    </div>
-                    </div>
-                  </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
-                      
-                    
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -980,7 +969,7 @@
                           } 
                         ?>
                         </div>
-                        <div class="box-btn--addmore"><a href="javascript:;"  class="btn btn-addmore">+ ADD MORE AD</a></div>
+                        <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('ptd');" class="btn btn-addmore">+ ADD MORE AD</a></div>
 
                       </div>
                     </div>
@@ -1009,7 +998,7 @@
                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                </div>
                <div class="modal-body text-center">
-                    ????????????Submit ?????????????????????
+                    คุณยังไม่ได้Submit ข้อมูลที่กรอกไว้จะหาย
                </div>
                <div class="modal-footer">
                <button id="bp-modal-submit" type="button" class="btn btn-default close" data-dismiss="modal">OK</button>
@@ -1027,7 +1016,7 @@
                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                </div>
                <div class="modal-body text-center">
-                    ????????????Submit ?????????????????????
+                    คุณยังไม่ได้Submit ข้อมูลที่กรอกไว้จะหาย
                </div>
                <div class="modal-footer">
                <button id="ptd-modal-submit" type="button" class="btn btn-default close" data-dismiss="modal">OK</button>
@@ -1039,77 +1028,5 @@
        
       </div>
 
-      <!--script src="<?= url('/') ?>/assets/js/request-form.js" type="text/javascript"></!--script-->
-      <script>
-        $("input[name*='bp_type']").click(function() {
-            var x = String($(this).attr('name')).match(/\d+/)[0];
-
-            $(".bkp_type--choose").hide();
-            $("#bkp_type--" + x).show();
-            $("#bp-ad-card--1").show();
-        });
-
-        $("input[name$='ptd_type']").click(function() {
-            var x = String($(this).attr('id')).match(/\d+/)[0];
-
-            $(".ptd_type--choose").hide();
-            $("#ptd_type--" + x).show();
-            $("#ptd_ad--1").show();
-        });
-
-        function addAds(web_name) {
-            var count = $('div[id*="' + web_name + '_detail--1"]').length;
-            var Html = $('div[id="bp_detail--1"]').eq(0).clone();
-            Html.find('input').each(function() { //Replace input name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-        });
-        Html.find('label[for="customFile"]').each(function() { //Replace input name
-            this.textContent = "Choose file";
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='hidden']").each(function() { //Replace input name
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[type='text']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[type='radio']").each(function() { //Replace input value
-            this.checked = false;
-        });
-        Html.find("input[name*='old_bp_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_bp_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find('select').each(function() { //Replace dropdown name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-            var id = this.name.split('_id[' + count + ']')[0]; //set hidden input id for posting dropdown text
-
-            var select_name = this.name.substring(
-                this.name.lastIndexOf(web_name + "_") + (web_name == 'bp' ? 3 : 4),
-                this.name.lastIndexOf("_")
-            );
-            if (select_name == 'position') {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
-            } else {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;');
-            }
-        });
-        Html.find("div[id*='" + web_name + "-ad-title']").each(function() { //Replace box title
-            this.textContent = this.textContent.replace('Ad 1 Description:', 'Ad ' + (count + 1) + ' Description:');
-        });
-           $('#' + web_name + '-all-detail').append(Html);
-           count++;
-        }
-      </script>
+      <script src="<?= url('/') ?>/assets/js/request-form.js" type="text/javascript"></script>
 @endsection
