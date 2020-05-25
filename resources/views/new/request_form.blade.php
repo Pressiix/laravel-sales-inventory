@@ -1271,7 +1271,7 @@
       function beforeSubmit() {
           createHiddenField();
           //validateCheckbox(active_tab,none_active_tab);
-          //event.preventDefault();
+          event.preventDefault();
           var i = 0;
           while(i<2)
           {
@@ -1362,10 +1362,10 @@
 
           $('div[class="custom-file"] :input').each(function() {
               if ($(this).val() !== "") {
-                  $('div[class="custom-file"] :input').each(function() {
+                  //$('div[class="custom-file"] :input').each(function() {
                       $(this).prop("required", false);
-                  });
-                  return false;
+                  //});
+                  //return false;
               }
           });
       }
