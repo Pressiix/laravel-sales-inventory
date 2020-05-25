@@ -91,27 +91,27 @@
                         <div class="row">
                           <div class="col-sm-5">
                             <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> >
-                              <label class="form-check-label" for="bkp_choose1">Social</label>
+                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type1-1" value="Social" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Social' ? 'checked' : '') ?> onchange="showOption($(this),'bp')" >
+                              <label class="form-check-label" for="bp_choose1">Social</label>
                             </div>
                           </div>
                           <div class="col-sm-5">
                             <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type2" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bkp_choose2">Website</label>
+                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type2-1" value="Website" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'Website' ? 'checked' : '') ?> onchange="showOption($(this),'bp')">
+                              <label class="form-check-label" for="bp_choose2">Website</label>
                             </div>
                           </div>
                           <div class="col-sm-5">
                             <div class="form-check form-check-inline choose--type-form">
-                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type3" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?>>
-                              <label class="form-check-label" for="bkp_choose3">E-newsletter</label>
+                              <input class="form-check-input" name="bp_type[0]" type="radio" id="bp_type3-1" value="E-newsletter" <?= (!empty($item['bp_type']) && $item['bp_type'] === 'E-newsletter' ? 'checked' : '') ?> onchange="showOption($(this),'bp')">
+                              <label class="form-check-label" for="bp_choose3">E-newsletter</label>
                             </div>
                           </div>
                         </div>
                       </div>
 
                   <!-- Social options -->
-                  <div class="bkp_type--choose div-choose--type" id="bkp_type--1" style="display: none;">
+                  <div class="bp_type--choose div-choose--type" id="bp_type--1-1" style="display: none;">
                   
                       <div id="bp-facebook-tab" class="form-group border-title">
                         <div class="row">
@@ -144,14 +144,14 @@
                         </div>
                         <div class="col-sm-4 col-md-4">
                           <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bkp_type1">Normal Post</label>
+                          <input class="form-check-input" name="bp_facebook[0]" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type1">Normal Post</label>
                           </div>
                         </div>
                         <div class="col-sm-4 col-md-3">
                           <div class="form-check form-check-inline">
-                          <input class="form-check-input" name="bp_facebook" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="bkp_type2">Boost Post</label>
+                          <input class="form-check-input" name="bp_facebook[0]" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook']) && $item['bp_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type2">Boost Post</label>
                           </div>
                         </div>
                       </div>
@@ -159,60 +159,60 @@
                     </div>
 
                     <!-- Website options -->
-                    <div class="bkp_type--choose  div-choose--type" id="bkp_type--2" style="display: none;">
+                    <div class="bp_type--choose  div-choose--type" id="bp_type--2-1" style="display: none;">
                       <div class="bar-title mt-4">Website:</div>
                       <div class="form-group row" id="bp-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[0]" <?= (!empty($item['bp_web'][0]) && $item['bp_web'][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
+                            <input class="form-check-input" name="bp_web[0][0]" <?= (!empty($item['bp_web'][0][0]) && $item['bp_web'][0][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
                             <label class="form-check-label" for="bp_web">Banner</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[1]" <?= (!empty($item['bp_web'][1]) && $item['bp_web'][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
+                            <input class="form-check-input" name="bp_web[0][1]" <?= (!empty($item['bp_web'][0][1]) && $item['bp_web'][0][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
                             <label class="form-check-label" for="bp_web">Nytive Ad</label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[2]" <?= (!empty($item['bp_web'][2]) && $item['bp_web'][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
+                            <input class="form-check-input" name="bp_web[0][2]" <?= (!empty($item['bp_web'][0][2]) && $item['bp_web'][0][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
                             <label class="form-check-label" for="bp_web">Premium Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[3]" <?= (!empty($item['bp_web'][3]) && $item['bp_web'][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
+                            <input class="form-check-input" name="bp_web[0][3]" <?= (!empty($item['bp_web'][0][3]) && $item['bp_web'][0][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
                             <label class="form-check-label" for="bp_web">Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[4]" <?= (!empty($item['bp_web'][4]) && $item['bp_web'][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
+                            <input class="form-check-input" name="bp_web[0][4]" <?= (!empty($item['bp_web'][0][4]) && $item['bp_web'][0][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
                             <label class="form-check-label" for="bp_web">Property Listing</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[5]" <?= (!empty($item['bp_web'][5]) && $item['bp_web'][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
+                            <input class="form-check-input" name="bp_web[0][5]" <?= (!empty($item['bp_web'][0][5]) && $item['bp_web'][0][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
                             <label class="form-check-label" for="bp_web">Special event</label>
                           </div>
                         </div>
                          <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input"  name="bp_web[6]" <?= (!empty($item['bp_web'][6]) && $item['bp_web'][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
+                            <input class="form-check-input"  name="bp_web[0][6]" <?= (!empty($item['bp_web'][0][6]) && $item['bp_web'][0][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
                             <label class="form-check-label" for="bp_web">Sponsor Link</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[7]" <?= (!empty($item['bp_web'][7]) && $item['bp_web'][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
+                            <input class="form-check-input" name="bp_web[0][7]" <?= (!empty($item['bp_web'][0][7]) && $item['bp_web'][0][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
                             <label class="form-check-label" for="bp_web">Jobs</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="bp_web[8]" <?= (!empty($item['bp_web'][8]) && $item['bp_web'][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
+                            <input class="form-check-input" name="bp_web[0][8]" <?= (!empty($item['bp_web'][0][8]) && $item['bp_web'][0][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
                             <label class="form-check-label" for="bp_web">PR</label>
                           </div>
                         </div>
@@ -1041,75 +1041,363 @@
 
       <!--script src="<?= url('/') ?>/assets/js/request-form.js" type="text/javascript"></!--script-->
       <script>
-        $("input[name*='bp_type']").click(function() {
-            var x = String($(this).attr('name')).match(/\d+/)[0];
+        window.history.pushState('request-save', 'Title', '/request_form');
+        var active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'bangkokpost' : 'posttoday');
+        var none_active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'posttoday' : 'bangkokpost');
+        $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
 
-            $(".bkp_type--choose").hide();
-            $("#bkp_type--" + x).show();
-            $("#bp-ad-card--1").show();
+        $(document).ready(function() {
+            //add required attribute to all input tag on default tab => Bangkokpost Tab *** 
+            $("select[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
+            $("input[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
         });
 
-        $("input[name$='ptd_type']").click(function() {
-            var x = String($(this).attr('id')).match(/\d+/)[0];
-
-            $(".ptd_type--choose").hide();
-            $("#ptd_type--" + x).show();
-            $("#ptd_ad--1").show();
+        //Date picker option for default ad description card
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true
         });
+
+        $("body").on('focus', '.datepicker', function() {
+            $(this).datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+
+
+        window.onbeforeunload = function(e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Any string';
+            }
+
+            // For Safari
+            return 'Any string';
+        };
+
+        function showOption(element,web_name)
+        {
+          //var web_name = 'bp';
+          var id = element.attr('id');
+          x = id.substr(id.length - 3).charAt(0);
+          y = id.substr(id.length - 1);
+          $("#"+web_name+"_type--"+(x=='1' ? '2' : '1')+"-"+y).hide();
+
+          if(x=='2'||x=='3')  //if user selected 'Website' or 'E-newsletter'
+          {
+            $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
+              $(this).show();
+              $(this).find('input[name*="'+web_name+'_device"]').each(function(){
+                $(this).prop('required',true);
+                $(this).prop('disabled',false);
+                $(this).prop('checked', false);
+              })
+            });
+
+            if(x=='2') //if user selected 'Website'
+            {
+              $("#"+web_name+"_type--1-"+y).hide();
+              
+            }else if(x=='3') //if user selected 'E-newsletter'
+            { 
+              $("#"+web_name+"_type--1-"+y).hide(); 
+              $("#"+web_name+"_type--2-"+y).hide(); 
+              for(i=0;i<2;i++)  //remove required properties for all option
+              {
+                $("#"+web_name+"_type--"+(i+1)+"-"+y+" :input").each(function(){
+                  $(this).prop('required',false);
+                });
+              }
+            }
+          }
+          
+          if(x=='1') //if user selected 'Social'
+          {
+              $("#"+web_name+"_type--2-"+y).hide();
+              $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
+                  $(this).hide();
+                  $(this).find('input').each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('disabled',true);
+                  $(this).prop('checked', false);
+                });
+              });
+          }
+
+          if(x=='1'||x=='3')  //if user selected 'Social' or 'E-newsletter'
+          {
+              var position_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_id"]');
+              var position_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_text"]');
+              var section_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_id"]');
+              var section_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_text"]');
+              position_dropdown.each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('disabled',true);
+                  $(this).prop('selected',false);
+              });
+              position_text.each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('disabled',true);
+                  $(this).val() = '';
+              });
+              section_dropdown.each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('disabled',true);
+                  $(this).prop('selected',false);
+              });
+              section_text.each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('disabled',true);
+                  $(this).val() = '';
+              });
+          }
+
+          $("#"+web_name+"_type--"+x+"-"+y+" :input").each(function(){
+            $(this).prop('required',true);
+          });
+          $("#"+web_name+"_type--"+(x=='1'?'2':'1' )+"-"+y+" :input").each(function(){
+            $(this).prop('required',false);
+          });
+          $("#"+web_name+"_type--" + x + "-"+y).show();
+          $("#"+web_name+"-ad-card--1").show();
+        }
+
 
         function addAds(web_name) {
             var count = $('div[id*="' + web_name + '_detail--1"]').length;
-            var Html = $('div[id="bp_detail--1"]').eq(0).clone();
+            var Html = $('div[id="' + web_name + '_detail--1"]').eq(0).clone();
             Html.find('input').each(function() { //Replace input name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-        });
-        Html.find('label[for="customFile"]').each(function() { //Replace input name
-            this.textContent = "Choose file";
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='hidden']").each(function() { //Replace input name
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[type='text']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[type='radio']").each(function() { //Replace input value
-            this.checked = false;
-        });
-        Html.find("input[name*='old_bp_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_bp_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find('select').each(function() { //Replace dropdown name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-            var id = this.name.split('_id[' + count + ']')[0]; //set hidden input id for posting dropdown text
-
-            var select_name = this.name.substring(
-                this.name.lastIndexOf(web_name + "_") + (web_name == 'bp' ? 3 : 4),
-                this.name.lastIndexOf("_")
-            );
-            if (select_name == 'position') {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
-            } else {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;');
-            }
-        });
-        Html.find("div[id*='" + web_name + "-ad-title']").each(function() { //Replace box title
-            this.textContent = this.textContent.replace('Ad 1 Description:', 'Ad ' + (count + 1) + ' Description:');
-        });
+                this.name = this.name.replace('[0]', '[' + count + ']');
+                if(this.type!=='radio')
+                {
+                  this.value = '';
+                }
+            });
+            Html.find('div[id*="' + web_name + '_device"]').each(function(){
+                this.removeAttribute('style');
+            });
+            Html.find('input[name*="' + web_name + '_device"]').each(function(){
+                this.removeAttribute('disabled');
+                this.required = true;
+            });
+            Html.find('label[for="customFile"]').each(function() { //Replace input name
+                this.textContent = "Choose file";
+                this.id = this.id.replace('0', count);
+            });
+            Html.find("input[type='hidden']").each(function() { //Replace input name
+                this.id = this.id.replace('0', count);
+            });
+            Html.find("input[type='radio']").each(function() { //Replace input value
+                this.checked = false;
+            });
+            Html.find('input[name*="' + web_name + '_type"]').each(function(){
+                this.id = this.id.replace('1-1','1-'+(count+1));
+                this.id = this.id.replace('2-1','2-'+(count+1));
+                this.id = this.id.replace('3-1','3-'+(count+1));
+            });
+            Html.find('input[name*="' + web_name + '_web"]').each(function(){
+                this.id = this.id.replace('[0][','['+(count+1)+'][');
+            });
+            Html.find('div[id*="' + web_name + '_type--"]').each(function(){
+                this.id = this.id.replace(this.id.substr(this.id.length - 3).charAt(0)+'-'+this.id.substr(this.id.length - 1),this.id.substr(this.id.length - 3).charAt(0)+'-'+(count+1));
+                this.setAttribute('style', 'display:none;');
+            });
+            Html.find('select').each(function() { //Replace dropdown name
+                this.name = this.name.replace('[0]', '[' + count + ']');
+                this.removeAttribute('disabled');
+                var id = this.name.split('_id[' + count + ']')[0]; //set hidden input id for posting dropdown text
+                var select_name = this.name.substring(
+                    this.name.lastIndexOf(web_name + "_") + (web_name == 'bp' ? 3 : 4),
+                    this.name.lastIndexOf("_")
+                );
+                if (select_name == 'position') {
+                    this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
+                } else {
+                    this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;');
+                }
+            });
+            Html.find("div[id*='" + web_name + "-ad-title']").each(function() { //Replace box title
+                this.textContent = this.textContent.replace('Ad 1 Description:', 'Ad ' + (count + 1) + ' Description:');
+            });
+            Html.find('div[id*="'+ web_name +'-ad-card--"]').each(function(){ //replace card index
+              this.id = this.id.replace('1',(count+1));
+            });
            $('#' + web_name + '-all-detail').append(Html);
            count++;
         }
+
+        function Validate(oForm) {
+          var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];
+          var arrInputs = oForm.getElementsByTagName("input");
+          for (var i = 0; i < arrInputs.length; i++) {
+              var oInput = arrInputs[i];
+              if (oInput.type == "file") {
+                  var sFileName = oInput.value;
+                  if (sFileName.length > 0) {
+                      var blnValid = false;
+                      for (var j = 0; j < _validFileExtensions.length; j++) {
+                          var sCurExtension = _validFileExtensions[j];
+                          if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                              blnValid = true;
+                              break;
+                          }
+                      }
+
+                      if (!blnValid) {
+                          alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                          return false;
+                      }
+                  }
+              }
+          }
+          return true;
+      }
+
+      //Show file name on label tag
+      function showFileName(tagName) {
+          var file_name = $('input[name="' + tagName + '"]').val();
+          var fIndex = String(tagName).match(/\d+/)[0];
+          var labelId = String(tagName).replace('[' + fIndex + ']', fIndex);
+          $('label[id="' + labelId + '"]').text(String(file_name).slice(String(file_name).lastIndexOf('\\') + 1));
+      }
+
+      function getCheckBoxIndex(checkbox) {
+          return String(checkbox.attr('id')).match(/\d+/)[0];
+      }
+      //Create input field before user click submit button
+      function beforeSubmit() {
+          createHiddenField();
+          //validateCheckbox(active_tab,none_active_tab);
+          //event.preventDefault();
+          var i = 0;
+          while(i<2)
+          {
+            if(i=='0')  //remove required properties from social option
+            {
+              $('div[id*="bp_type--1"]').each(function(){     //remove required properties from bp social option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function(){
+                    if($(this).is(':checked')){
+                      $('div[id*="bp_type--1-'+index+'"] :input').each(function() {
+                          $(this).prop("required", false);
+                      });
+                    }
+                });
+              });
+
+              $('div[id*="ptd_type--1"]').each(function(){  //remove required properties from ptd social option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function(){
+                    if($(this).is(':checked')){
+                      $('div[id*="ptd_type--1-'+index+'"] :input').each(function() {
+                          $(this).prop("required", false);
+                      });
+                    }
+                });
+              });
+            }else{  //remove required properties from web option
+              $('div[id*="bp_type--2"]').each(function(){     //remove required properties from bp web option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function(){
+                    if($(this).is(':checked')){
+                      $('div[id*="bp_type--2-'+index+'"] :input').each(function() {
+                          $(this).prop("required", false);
+                      });
+                    }
+                });
+              });
+
+              $('div[id*="ptd_type--2"]').each(function(){  //remove required properties from ptd web option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function(){
+                    if($(this).is(':checked')){
+                      $('div[id*="ptd_type--2-'+index+'"] :input').each(function() {
+                          $(this).prop("required", false);
+                      });
+                    }
+                });
+              });
+            }
+            i++;
+          }
+          
+
+          /*$('input[id*="bp_type"]').each(function() {
+              var boxIndex = getCheckBoxIndex($(this));
+              if ($(this).is(':checked') && boxIndex !== '2') {
+                  $('input[name*="bp_web"]').each(function() {
+                      $(this).prop("required", false);
+                  });
+
+                  if (boxIndex == '1') {
+                      $('div[id*="bp_device"]').each(function() {
+                          $(this).hide();
+                          $(this).find('input').prop('disabled', true);
+                          $(this).find('input').prop('required', false);
+                          $(this).find('input').prop('checked', false);
+                      });
+                  }
+              }
+          });
+
+          $('input[id*="ptd_type"]').each(function() {
+              var boxIndex = getCheckBoxIndex($(this));
+              if ($(this).is(':checked') && boxIndex !== '2') {
+                  $('input[name*="ptd_web"]').each(function() {
+                      $(this).prop("required", false);
+                  });
+                  if (boxIndex == '1') {
+                      $('div[id*="ptd_device"]').each(function() {
+                          $(this).hide();
+                          $(this).find('input').prop('disabled', true);
+                          $(this).find('input').prop('required', false);
+                          $(this).find('input').prop('checked', false);
+                      });
+                  }
+              }
+          });*/
+
+          $('div[class="custom-file"] :input').each(function() {
+              if ($(this).val() !== "") {
+                  $('div[class="custom-file"] :input').each(function() {
+                      $(this).prop("required", false);
+                  });
+                  return false;
+              }
+          });
+      }
+
+      function createHiddenField() {
+          //event.preventDefault();
+          for (i = 0; i < 2; i++) {
+              switch (i) {
+                  case 0: //for customer name
+                      var selIndex = document.form.customer_id.selectedIndex;
+                      var selText = document.form.customer_id.options[selIndex].text;
+                      var input_name = 'customer_name';
+                      break;
+                  case 1: //for advertiser name
+                      var selIndex = document.form.advertiser_id.selectedIndex;
+                      var selText = document.form.advertiser_id.options[selIndex].text;
+                      var input_name = 'advertiser_name';
+                      break;
+              }
+              var input = document.createElement("input");
+              input.setAttribute("type", "hidden");
+              input.setAttribute("name", input_name);
+              input.setAttribute("value", selText);
+              //append to form element that you want .
+              document.getElementById("form").appendChild(input);
+          }
+          $('div[id*="bp_type--2-"]').each(function(index){
+            $('form').append("<input type='hidden' name='total_bp_web["+index+"]' value='" + $(this).find('input').length + "' />");
+          });
+          $('div[id*="ptd_type--2-"]').each(function(index){
+            $('form').append("<input type='hidden' name='total_ptd_web["+index+"]' value='" + $(this).find('input').length + "' />");
+          });
+      }
       </script>
 @endsection

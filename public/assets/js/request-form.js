@@ -445,8 +445,9 @@ function createHiddenField() {
         //append to form element that you want .
         document.getElementById("form").appendChild(input);
     }
-    $('form').append("<input type='hidden' name='total_bp_web' value='" + $("input[name*='bp_web']").length + "' />");
-    $('form').append("<input type='hidden' name='total_ptd_web' value='" + $("input[name*='ptd_web']").length + "' />");
+
+    $('form').append("<input type='text' name='total_bp_web' value='" + $("input[name*='bp_web']").length + "' />");
+    $('form').append("<input type='text' name='total_ptd_web' value='" + $("input[name*='ptd_web']").length + "' />");
 }
 
 //generate a new ad description box when user click Add more ad button
