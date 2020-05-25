@@ -1086,22 +1086,13 @@
           y = id.substr(id.length - 1);
           $("#"+web_name+"_type--"+(x=='1' ? '2' : '1')+"-"+y).hide();
 
-          if(x=='2'||x=='3')  //if user selected 'Website' or 'E-newsletter'
+          if(x=='1'||x=='3')  //if user selected 'Social' or 'E-newsletter'
           {
-            $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
-              $(this).show();
-              $(this).find('input[name*="'+web_name+'_device"]').each(function(){
-                $(this).prop('required',true);
-                $(this).prop('disabled',false);
-                $(this).prop('checked', false);
-              })
-            });
-
-            if(x=='2') //if user selected 'Website'
+            if(x=='1') //if user selected 'Social'
             {
-              $("#"+web_name+"_type--1-"+y).hide();
-              
-            }else if(x=='3') //if user selected 'E-newsletter'
+                $("#"+web_name+"_type--2-"+y).hide();
+            }
+            else if(x=='3') //if user selected 'E-newsletter'
             { 
               $("#"+web_name+"_type--1-"+y).hide(); 
               $("#"+web_name+"_type--2-"+y).hide(); 
@@ -1112,12 +1103,7 @@
                 });
               }
             }
-          }
-          
-          if(x=='1') //if user selected 'Social'
-          {
-              $("#"+web_name+"_type--2-"+y).hide();
-              $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
+            $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
                   $(this).hide();
                   $(this).find('input').each(function(){
                   $(this).prop('required',false);
@@ -1125,10 +1111,7 @@
                   $(this).prop('checked', false);
                 });
               });
-          }
 
-          if(x=='1'||x=='3')  //if user selected 'Social' or 'E-newsletter'
-          {
               var position_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_id"]');
               var position_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_text"]');
               var section_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_id"]');
@@ -1154,6 +1137,18 @@
                   $(this).val() = '';
               });
           }
+          else if(x=='2') //if user selected 'Website'
+          {
+              $("#"+web_name+"_type--1-"+y).hide();
+              $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
+                $(this).show();
+                $(this).find('input[name*="'+web_name+'_device"]').each(function(){
+                  $(this).prop('required',true);
+                  $(this).prop('disabled',false);
+                  $(this).prop('checked', false);
+                })
+              });
+            }
 
           $("#"+web_name+"_type--"+x+"-"+y+" :input").each(function(){
             $(this).prop('required',true);
@@ -1271,7 +1266,7 @@
       function beforeSubmit() {
           createHiddenField();
           //validateCheckbox(active_tab,none_active_tab);
-          event.preventDefault();
+          //event.preventDefault();
           var i = 0;
           while(i<2)
           {
