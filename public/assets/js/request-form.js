@@ -186,7 +186,7 @@ $('input[id*="ptd_social"]').each(function() {
 });
 
 
-
+//*** */
 function requireFieldOnCard(tab_name, value) {
     if (value) {
         var require_status = true;
