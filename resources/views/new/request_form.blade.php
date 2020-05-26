@@ -238,33 +238,39 @@
                                 <select name="bp_size_id[0]" class="custom-select" onchange="document.getElementById('bp_size_text0').value=this.options[this.selectedIndex].text" >
                                       <option value="">Choose Size</option>
                                       <optgroup label="Rectangle Desktop & Mobile">
-                                          <option value="1">300x250</option>
+                                          <option value="1" label="300x250">Rectangle Desktop &Mobile 300x250</option>
                                       </optgroup>
                                       <optgroup label="Double Rectangle Desktop">
-                                        <option value="2">300x600</option>
+                                        <option value="2" label="300x600">Double Rectangle Desktop 300x600</option>
                                       </optgroup>
                                       <optgroup label="Leaderboard Desktop">
-                                        <option value="3">728x90</option>
-                                        <option value="4">970x90</option>
-                                        <option value="5">970x250</option>
-                                        <option value="6">1200x90</option>
-                                        <option value="7">1200x250</option>
+                                        <option value="3" label="728x90">Leaderboard Desktop 728x90</option>
+                                        <option value="4" label="970x90">Leaderboard Desktop 970x90</option>
+                                        <option value="5" label="970x250">Leaderboard Desktop 970x250</option>
+                                        <option value="6" label="1200x90">Leaderboard Desktop 1200x90</option>
+                                        <option value="7" label="1200x250">Leaderboard Desktop 1200x250</option>
                                       </optgroup>
                                       <optgroup label="Leaderboard Mobile">
-                                        <option value="8">320x100</option>
-                                        <option value="9">320x50</option>
-                                        <option value="10">300x100</option>
-                                        <option value="11">300x50</option>
+                                        <option value="8" label="320x100">Leaderboard Mobile 320x100</option>
+                                        <option value="9" label="320x50">Leaderboard Mobile 320x50</option>
+                                        <option value="10" label="300x100">Leaderboard Mobile 300x100</option>
+                                        <option value="11" label="300x50">Leaderboard Mobile 300x50</option>
                                       </optgroup>
                                       <optgroup label="Coverpage Desktop">
-                                        <option value="12">800x500</option>
+                                        <option value="12" label="800x500">Coverpage Desktop 800x500</option>
                                       </optgroup>
                                       <optgroup label="Coverpage Mobile">
-                                        <option value="13">300x250</option>
+                                        <option value="13" label="300x250">Coverpage Mobile 300x250</option>
                                       </optgroup>
                                       <optgroup label="InRead">
-                                        <option value="14">300x250</option>
-                                        <option value="15">640x360</option>
+                                        <option value="14" label="300x250">InRead300x250</option>
+                                        <option value="15" label="640x360">InRead640x360</option>
+                                      </optgroup>
+                                      <optgroup label="Other">
+                                        <option option value="16" label="E-newsletter">E-newsletter</option>
+                                        <option value="17" label="Facebook">Facebook</option>
+                                        <option value="18" label="Line">Line</option>
+                                        <option value="19" label="Twitter">Twitter</option>
                                       </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
@@ -275,10 +281,9 @@
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 <select name="bp_position_id[0]" class="custom-select"  onchange="document.getElementById('bp_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
-                                  <option value="">Choose Position</option>
-                                  <?php foreach($sectionArray['bp_ad_section'] as $key => $item){ ?>
-                                    <option value="<?= $key ?>"><?= $item['position'] ?></option>
-                                  <?php } ?>
+                                    <option value="">Choose Position</option>
+                                    <option value="1">Section</option>
+                                    <option value="2">Article</option>
                                 </select>
                                 <input type="hidden" name="bp_position_text[0]" id="bp_position_text0" value="" />
                               </div>
@@ -286,6 +291,9 @@
                                 <label>Section:</label>
                                 <select name="bp_section_id[0]" class="custom-select" onchange="document.getElementById('bp_section_text0').value=this.options[this.selectedIndex].text">
                                   <option value="">Choose Section</option>
+                                  <?php foreach($sectionArray['bp'] as $key=>$value){ ?>
+                                    <option value="<?= $key ?>"><?= $value ?></option>
+                                  <?php } ?>
                                 </select>
                                 <input type="hidden" name="bp_section_text[0]" id="bp_section_text0" value="" />
                               </div>
@@ -420,7 +428,7 @@
                                 
                                 <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
-                                  <?php foreach($sectionArray['bp_ad_section'] as $key => $value){ ?>
+                                  <?php foreach($sectionArray['bp'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
                                 </select>
@@ -433,7 +441,7 @@
                                 <?php 
                                   if(!empty($item['bp_section_id'][$i])){
                                   $position_key = $item['bp_position_id'][$i];
-                                  foreach($sectionArray['bp_ad_section'][$position_key] as $key => $value){ 
+                                  foreach($sectionArray['bp'][$position_key] as $key => $value){ 
                                     if($key !== 'position'){
                                 ?>
                                   <option value="<?= $key ?>" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
@@ -738,9 +746,7 @@
                                 <label>Position:</label>
                                 <select name="ptd_position_id[0]" class="custom-select"  onchange="document.getElementById('ptd_position_text0').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
-                                  <?php foreach($sectionArray['ptd_ad_section'] as $key => $item){ ?>
-                                    <option value="<?= $key ?>"><?= $item['position'] ?></option>
-                                  <?php } ?>
+                                  <!-- -->
                                 </select>
                                 <input type="hidden" name="ptd_position_text[0]" id="ptd_position_text0" value="" />
                               </div>
@@ -882,7 +888,7 @@
                                 
                                 <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
-                                  <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
+                                  <?php foreach($sectionArray['ptd'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
                                   <?php } ?>
                                 </select>
@@ -895,7 +901,7 @@
                                 <?php 
                                   if(!empty($item['ptd_section_id'][$i])){
                                   $position_key = $item['ptd_position_id'][$i];
-                                  foreach($sectionArray['ptd_ad_section'][$position_key] as $key => $value){ 
+                                  foreach($sectionArray['ptd'][$position_key] as $key => $value){ 
                                     if($key !== 'position'){
                                 ?>
                                   <option value="<?= $key ?>" <?= (!empty($item['ptd_section_id'][$i]) && $item['ptd_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
@@ -1040,6 +1046,7 @@
         window.history.pushState('request-save', 'Title', '/request_form');
         var active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'bangkokpost' : 'posttoday');
         var none_active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'posttoday' : 'bangkokpost');
+        var onSubmit = false;
         $('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
 
         $(document).ready(function() {
@@ -1062,13 +1069,14 @@
         });
 
         window.onbeforeunload = function(e) {
-          
-          $('#confirmModal').modal("show");
-          $('#confirmModal').delay(8000).fadeOut(1000);
-          setTimeout(function(){
-            $('#confirmModal').modal("hide");
-          }, 4000);
-
+          if(!onSubmit)
+          {
+            $('#confirmModal').modal("show");
+            $('#confirmModal').delay(8000).fadeOut(1000);
+            setTimeout(function(){
+              $('#confirmModal').modal("hide");
+            }, 4000);
+          }
         };
 
         function showOption(element,web_name)
@@ -1078,6 +1086,10 @@
           x = id.substr(id.length - 3).charAt(0);
           y = id.substr(id.length - 1);
           $("#"+web_name+"_type--"+(x=='1' ? '2' : '1')+"-"+y).hide();
+          var position_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_id"]');
+          var position_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_text"]');
+          var section_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_id"]');
+          var section_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_text"]');
 
           if(x=='1'||x=='3')  //if user selected 'Social' or 'E-newsletter'
           {
@@ -1104,11 +1116,7 @@
                   $(this).prop('checked', false);
                 });
               });
-
-              var position_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_id"]');
-              var position_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_position_text"]');
-              var section_dropdown = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_id"]');
-              var section_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_text"]');
+              
               position_dropdown.each(function(){
                   $(this).prop('required',false);
                   $(this).prop('disabled',true);
@@ -1141,7 +1149,28 @@
                   $(this).prop('checked', false);
                 })
               });
-            }
+
+              position_dropdown.each(function(){
+                  $(this).prop('required',true);
+                  $(this).prop('disabled',false);
+                  $(this).prop('selected',false);
+              });
+              position_text.each(function(){
+                  $(this).prop('required',true);
+                  $(this).prop('disabled',false);
+                  $(this).val() = '';
+              });
+              section_dropdown.each(function(){
+                  $(this).prop('required',true);
+                  $(this).prop('disabled',false);
+                  $(this).prop('selected',false);
+              });
+              section_text.each(function(){
+                  $(this).prop('required',true);
+                  $(this).prop('disabled',false);
+                  $(this).val() = '';
+              });
+          }
 
           $("#"+web_name+"_type--"+x+"-"+y+" :input").each(function(){
             $(this).prop('required',true);
@@ -1164,7 +1193,7 @@
             })
             Html.find('input').each(function() { //Replace input name
                 this.name = this.name.replace('[0]', '[' + count + ']');
-                if(this.type!=='radio')
+                if(this.type!=='radio' && this.type!=='checkbox')
                 {
                   this.value = '';
                 }
@@ -1337,51 +1366,14 @@
             }
             i++;
           }
-          
-
-          /*$('input[id*="bp_type"]').each(function() {
-              var boxIndex = getCheckBoxIndex($(this));
-              if ($(this).is(':checked') && boxIndex !== '2') {
-                  $('input[name*="bp_web"]').each(function() {
-                      $(this).prop("required", false);
-                  });
-
-                  if (boxIndex == '1') {
-                      $('div[id*="bp_device"]').each(function() {
-                          $(this).hide();
-                          $(this).find('input').prop('disabled', true);
-                          $(this).find('input').prop('required', false);
-                          $(this).find('input').prop('checked', false);
-                      });
-                  }
-              }
-          });
-
-          $('input[id*="ptd_type"]').each(function() {
-              var boxIndex = getCheckBoxIndex($(this));
-              if ($(this).is(':checked') && boxIndex !== '2') {
-                  $('input[name*="ptd_web"]').each(function() {
-                      $(this).prop("required", false);
-                  });
-                  if (boxIndex == '1') {
-                      $('div[id*="ptd_device"]').each(function() {
-                          $(this).hide();
-                          $(this).find('input').prop('disabled', true);
-                          $(this).find('input').prop('required', false);
-                          $(this).find('input').prop('checked', false);
-                      });
-                  }
-              }
-          });*/
 
           $('div[class="custom-file"] :input').each(function() {
               if ($(this).val() !== "") {
-                  //$('div[class="custom-file"] :input').each(function() {
                       $(this).prop("required", false);
-                  //});
-                  //return false;
               }
           });
+
+          onSubmit = true;
       }
 
       function createHiddenField() {
