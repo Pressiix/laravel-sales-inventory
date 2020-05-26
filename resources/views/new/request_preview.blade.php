@@ -65,66 +65,72 @@
                 <div class="tab-pane fade <?= (!empty($item['bp_type']) ? 'show active' : '')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
+                    <?php for($bp_index=0;$bp_index<count($item['bp_type']);$bp_index++){ ?>
+                    <div class="card">
+                    <div class="card-header"><strong>Ad <?= ($bp_index+1) ?></strong></div>
+                    <div class="card-body">
                     <div class="form-ad--detail">
 
-                    <div class="bar-title mt-4">Type:</div>
+                    <div class="bar-title mt-4"><strong>Type:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                          <li>{{ (!empty($item['bp_type']) ? $item['bp_type'] : '') }}</li>
-                            <input name="bp_type" type="hidden" value="{{ (!empty($item['bp_type']) ? $item['bp_type'] : '') }}">
+                          <li>{{ (!empty($item['bp_type'][$bp_index]) ? $item['bp_type'][$bp_index] : '') }}</li>
+                            <input name="bp_type[<?= $bp_index ?>]" type="hidden" value="{{ (!empty($item['bp_type'][$bp_index]) ? $item['bp_type'][$bp_index] : '') }}">
                           </ul>
                         </div>
                       </div>
 
-                      <div style="<?= (isset($item['bp_social']) ? '' : 'display:none;' ) ?>">
-                      <div class="bar-title">Social:</div>
+                      <div style="<?= (isset($item['bp_social'][$bp_index]) ? '' : 'display:none;' ) ?>">
+                      <div class="bar-title"><strong>Social:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
                           <?php 
-                            if(isset($item['bp_social'])){
-                              for($i=0;$i<=count($item['bp_social']);$i++){
-                              echo (isset($item['bp_social'][$i]) ? "<li>".$item['bp_social'][$i]."</li>" : ""); 
+                            /*if(isset($item['bp_social'])){
+                              for($i=0;$i<=count($item['bp_social']);$i++){*/
+                              echo (isset($item['bp_social'][$bp_index]) ? "<li>".$item['bp_social'][$bp_index]."</li>" : ""); 
                           ?>
-                              <input type="hidden" name="bp_social[<?= $i ?>]" value="{{ (!empty($item['bp_social'][$i]) ? $item['bp_social'][$i] : '') }}">
-                          <?php }} ?>
+                              <input type="hidden" name="bp_social[<?= $bp_index ?>]" value="{{ (!empty($item['bp_social'][$bp_index]) ? $item['bp_social'][$bp_index] : '') }}">
+                          <?php /*}}*/ ?>
                           </ul>
                         </div>
                       </div>
                       </div>
 
-                      <div style="<?= (isset($item['bp_web']) ? '' : 'display:none;' ) ?>">
+                      <div style="<?= (isset($item['bp_web'][$bp_index]) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title"><strong>Website:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <?php for($i=0;$i<=$item['total_bp_web'];$i++){
-                              echo (!empty($item['bp_web'][$i]) ? "<li>".$item['bp_web'][$i]."</li>" : '');
-                              if(!empty($item['bp_web'][$i])){
+                            <?php for($i=0;$i<=$item['total_bp_web'][$bp_index];$i++){
+                              echo (!empty($item['bp_web'][$bp_index][$i]) ? "<li>".$item['bp_web'][$bp_index][$i]."</li>" : '');
+                              if(!empty($item['bp_web'][$bp_index][$i])){
                             ?>
-                              <input type="hidden" name="bp_web[<?= $i ?>]" value="<?= (!empty($item['bp_web'][$i]) ? $item['bp_web'][$i] : '') ?>">
+                              <input type="hidden" name="bp_web[<?= $bp_index ?>][<?= $i ?>]" value="<?= (!empty($item['bp_web'][$bp_index][$i]) ? $item['bp_web'][$bp_index][$i] : '') ?>">
                            <?php } } ?>
                           </ul>
                         </div>
                       </div>
                       </div>
 
+                      <div style="<?= (isset($item['bp_facebook'][$bp_index]) ? '' : 'display:none;' ) ?>">
                       <div class="bar-title mt-4"><strong>Facebook:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <li>{{ (!empty($item['bp_facebook']) ? $item['bp_facebook'] : '') }}</li>
-                            <input name="bp_facebook" type="hidden" value="{{ (!empty($item['bp_facebook']) ? $item['bp_facebook'] : '') }}">
+                            <li>{{ (!empty($item['bp_facebook'][$bp_index]) ? $item['bp_facebook'][$bp_index] : '') }}</li>
+                            <input name="bp_facebook[<?=$bp_index?>]" type="hidden" value="{{ (!empty($item['bp_facebook'][$bp_index]) ? $item['bp_facebook'][$bp_index] : '') }}">
                           </ul>
                         </div>
+                      </div>
                       </div>
 
                     </div>
 
                     <div class="row">
                       <div class="col-15">
-                      <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
+                      <?php $i=$bp_index;/*for($i=0;$i<count($item['bp_size_id']);$i++){*/ ?>
                       <div class="box-ad--banner">
                           <div class="box-ad--title">Ad <?= $i+1 ?> Description:</div>
                           <div class="box-ad--container">
@@ -239,10 +245,12 @@
                             </div>
                           </div>
                         </div>
-                        <?php } ?>
-
+                        </div>
+                    </div>
                       </div>
                     </div>
+                    <br/>
+                    <?php } ?>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -250,75 +258,81 @@
                         <input type="hidden" name="bp_campaign_budget" value="{{ $item['bp_campaign_budget'] }}">
                       </div>
                     </div>
+                    
                   </div>
 
                 </div>
                 <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? 'show active' : '')?>" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
+                  <?php if(isset($item['ptd_type'])){
+                  for($ptd_index=0;$ptd_index<count($item['ptd_type']);$ptd_index++){ ?>
+                    <div class="card">
+                    <div class="card-header"><strong>Ad <?= ($ptd_index+1) ?></strong></div>
+                    <div class="card-body">
                     <div class="form-ad--detail">
 
-                    <div style="<?= (isset($item['ptd_type']) ? '' : 'display:none;' ) ?>">
-                    <div class="bar-title mt-4">Type:</div>
+                    <div class="bar-title mt-4"><strong>Type:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                          <li>{{ (!empty($item['ptd_type']) ? $item['ptd_type'] : '') }}</li>
-                            <input name="ptd_type" type="hidden" value="{{ (!empty($item['ptd_type']) ? $item['ptd_type'] : '') }}">
+                          <li>{{ (!empty($item['ptd_type'][$ptd_index]) ? $item['ptd_type'][$ptd_index] : '') }}</li>
+                            <input name="ptd_type[<?= $ptd_index ?>]" type="hidden" value="{{ (!empty($item['ptd_type'][$ptd_index]) ? $item['ptd_type'][$ptd_index] : '') }}">
                           </ul>
                         </div>
                       </div>
-                      </div>
 
-                      <div style="<?= (isset($item['ptd_social']) ? '' : 'display:none;' ) ?>">
-                      <div class="bar-title">Social:</div>
+                      <div style="<?= (isset($item['ptd_social'][$ptd_index]) ? '' : 'display:none;' ) ?>">
+                      <div class="bar-title"><strong>Social:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
                           <?php 
-                            if(isset($item['ptd_social'])){
-                              for($i=0;$i<=count($item['ptd_social']);$i++){
-                              echo (isset($item['ptd_social'][$i]) ? "<li>".$item['ptd_social'][$i]."</li>" : ""); 
+                            /*if(isset($item['ptd_social'])){
+                              for($i=0;$i<=count($item['ptd_social']);$i++){*/
+                              echo (isset($item['ptd_social'][$ptd_index]) ? "<li>".$item['ptd_social'][$ptd_index]."</li>" : ""); 
                           ?>
-                              <input type="hidden" name="ptd_social[<?= $i ?>]" value="{{ (!empty($item['ptd_social'][$i]) ? $item['ptd_social'][$i] : '') }}">
-                          <?php }} ?>
-                          </ul>
-                        </div>
-                      </div>
-                      </div>
-                      
-                      <div style="<?= (!isset($item['ptd_web']) && !empty($item['ptd_web']) ? '' : 'display:none;' ) ?>">
-                      <div class="bar-title">Website:</div>
-                      <div class="form-group row">
-                        <div class="col-15">
-                          <ul class="form-ad--answer">
-                          <?php for($i=0;$i<=$item['total_ptd_web'];$i++){
-                              echo (!empty($item['ptd_web'][$i]) ? "<li>".$item['ptd_web'][$i]."</li>" : ''); 
-                              if(!empty($item['ptd_web'][$i])){
-                          ?>
-                              <input type="hidden" name="ptd_web[<?= $i ?>]" value="<?= (!empty($item['ptd_web'][$i]) ? $item['ptd_web'][$i] : '') ?>">
-                          <?php }} ?>
+                              <input type="hidden" name="ptd_social[<?= $ptd_index ?>]" value="{{ (!empty($item['ptd_social'][$ptd_index]) ? $item['ptd_social'][$ptd_index] : '') }}">
+                          <?php /*}}*/ ?>
                           </ul>
                         </div>
                       </div>
                       </div>
 
-                      <div class="bar-title mt-4">Facebook:</div>
+                      <div style="<?= (isset($item['ptd_web'][$ptd_index]) ? '' : 'display:none;' ) ?>">
+                      <div class="bar-title"><strong>Website:</strong></div>
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                          <li>{{ (!empty($item['ptd_facebook']) ? $item['ptd_facebook'] : '') }}</li>
-                            <input name="ptd_facebook" type="hidden" value="{{ (!empty($item['ptd_facebook']) ? $item['ptd_facebook'] : '') }}">
+                            <?php for($i=0;$i<=$item['total_ptd_web'][$ptd_index];$i++){
+                              echo (!empty($item['ptd_web'][$ptd_index][$i]) ? "<li>".$item['ptd_web'][$ptd_index][$i]."</li>" : '');
+                              if(!empty($item['ptd_web'][$ptd_index][$i])){
+                            ?>
+                              <input type="hidden" name="ptd_web[<?= $ptd_index ?>][<?= $i ?>]" value="<?= (!empty($item['ptd_web'][$ptd_index][$i]) ? $item['ptd_web'][$ptd_index][$i] : '') ?>">
+                           <?php } } ?>
                           </ul>
                         </div>
+                      </div>
+                      </div>
+
+                      <div style="<?= (isset($item['ptd_facebook'][$ptd_index]) ? '' : 'display:none;' ) ?>">
+                      <div class="bar-title mt-4"><strong>Facebook:</strong></div>
+                      <div class="form-group row">
+                        <div class="col-15">
+                          <ul class="form-ad--answer">
+                            <li>{{ (!empty($item['ptd_facebook'][$ptd_index]) ? $item['ptd_facebook'][$ptd_index] : '') }}</li>
+                            <input name="ptd_facebook[<?=$ptd_index?>]" type="hidden" value="{{ (!empty($item['ptd_facebook'][$ptd_index]) ? $item['ptd_facebook'][$ptd_index] : '') }}">
+                          </ul>
+                        </div>
+                      </div>
                       </div>
 
                     </div>
 
                     <div class="row">
                       <div class="col-15">
-                      <?php for($i=0;$i<count($item['ptd_size_id']);$i++){ ?>
-                        <div class="box-ad--banner">
+                      <?php $i=$ptd_index;/*for($i=0;$i<count($item['ptd_size_id']);$i++){*/ ?>
+                      <div class="box-ad--banner">
                           <div class="box-ad--title">Ad <?= $i+1 ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
@@ -336,7 +350,7 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}</div>
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : "") }}</div>
                                     <input type="hidden" name="ptd_position_id[<?= $i ?>]" value="{{ (isset($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') }}">
                                     <input type="hidden" name="ptd_position_text[<?= $i ?>]" value="{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}">
                                   </div>
@@ -346,7 +360,7 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}</div>
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : "") }}</div>
                                     <input type="hidden" name="ptd_section_id[<?= $i ?>]" value="{{ (isset($item['ptd_section_id'][$i]) ? $item['ptd_section_id'][$i] : '') }}">
                                     <input type="hidden" name="ptd_section_text[<?= $i ?>]" value="{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}">
                                   </div>
@@ -432,15 +446,17 @@
                             </div>
                           </div>
                         </div>
-                      <?php } ?>
-
+                        </div>
+                    </div>
                       </div>
                     </div>
+                    <br/>
+                    <?php }} ?>
                     <div class="form-group row">
-                      <label class="col-sm-5 col-form-label">Campaign budget (THB):</label>
+                      <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
                         <div class="form-control-plaintext">{{ number_format((float) $item['ptd_campaign_budget']) }}</div>
-                        <input name="ptd_campaign_budget" type="hidden" value="{{ $item['ptd_campaign_budget'] }}">
+                        <input type="hidden" name="ptd_campaign_budget" value="{{ $item['ptd_campaign_budget'] }}">
                       </div>
                     </div>
                   </div>
