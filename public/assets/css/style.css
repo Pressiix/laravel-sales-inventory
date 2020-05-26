@@ -1783,6 +1783,22 @@ footer .turehits {
     color: #323941;
 }
 
+.alert--detail {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.alert--img {
+    width: 112px;
+    margin: 0 auto;
+}
+
+.alert--text {
+    font-size: 24px;
+    line-height: 28px;
+    padding: 40px 0 0 0;
+}
+
 td:focus {
     outline: auto 2px Highlight;
     outline: -webkit-focus-ring-color auto 2px;
@@ -1797,5 +1813,14 @@ td:focus {
 @media (max-width: 767px) {
     .head--top {
         display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .alert--img {
+        width: 82px;
+    }
+    .alert--text {
+        font-size: 20px;
     }
 }
