@@ -228,7 +228,6 @@
                         <?php  if(!isset($item['bp_size_id'])){ ?>
                           <script>
                             var bp_action = 'New';
-                            //console.log(bp_action);
                           </script>
                         <div id="bp-ad-card--1" class="box-ad--banner" style="display:none;">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
@@ -368,7 +367,6 @@
                           else{ ?>
                           <script>
                             var bp_action = 'Edit';
-                            console.log(bp_action);
                             var bp_position_count = [<?= count($item['bp_position_id'])  ?>];
                             var bp_section_count = [<?= count($item['bp_section_id']) ?>];
                           </script>
@@ -543,131 +541,138 @@
                 <!-- POST TODAY TAB -->
                 <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? 'show active' : '')?>" id="posttoday" role="taptdanel" aria-labelledby="posttoday-tab">
                   
-                  <div class="content-tablist">
+                <div class="content-tablist">
+                  <div id="ptd-all-detail">
+                  <div id="ptd_detail--1">
                     <div class="form-ad--detail">
 
                     <!-- TYPE -->
-                    <div id="ptd-type-container" style="<?= (isset($item['ptd_type']) ? '' : 'display:none;')?>">
-                      <div class="bar-title">Type:</div>
-                        <div id="bp-facebook-tab" class="form-group row">
-                            <div class="col-sm-4">
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type1" value="Social" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Social' ? 'checked' : '') ?> >
-                                <label class="form-check-label" for="ptd_type1">Social</label>
-                              </div>
+                    <div class="choose--type" id="ptd-type-container">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="ptd_type[0]" type="radio" id="ptd_type1-1" value="Social" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Social' ? 'checked' : '') ?> onchange="showOption($(this),'ptd')" >
+                              <label class="form-check-label" for="ptd_choose1">Social</label>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type2" value="Website" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Website' ? 'checked' : '') ?>>
-                                <label class="form-check-label" for="ptd_type2">Website</label>
-                              </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="ptd_type[0]" type="radio" id="ptd_type2-1" value="Website" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'Website' ? 'checked' : '') ?> onchange="showOption($(this),'ptd')">
+                              <label class="form-check-label" for="ptd_choose2">Website</label>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="ptd_type" type="radio" id="ptd_type3" value="E-newsletter" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'E-newsletter' ? 'checked' : '') ?>>
-                                <label class="form-check-label" for="ptd_type3">E-newsletter</label>
-                              </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="ptd_type[0]" type="radio" id="ptd_type3-1" value="E-newsletter" <?= (!empty($item['ptd_type']) && $item['ptd_type'] === 'E-newsletter' ? 'checked' : '') ?> onchange="showOption($(this),'ptd')">
+                              <label class="form-check-label" for="ptd_choose3">E-newsletter</label>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                    <!-- Social options -->
-                    <div id="ptd_option1" style="<?= (isset($item['ptd_social']) && !empty($item['ptd_social']) ? '' :'display:none') ?>;">
-                      <div class="bar-title">Social:</div>
-                      <div id="ptd-facebook-tab" class="form-group row">
-                        <div class="col-sm-4">
+                  <!-- Social options -->
+                  <div class="ptd_type--choose div-choose--type" id="ptd_type--1-1" style="display: none;">
+                  
+                      <div id="ptd-facebook-tab" class="form-group border-title">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="ptd_social[0]" type="radio" id="ptd_social1" value="Facebook" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Facebook' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="ptd_fb1">Facebook</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="ptd_social[0]" type="radio" id="ptd_social2" value="Line" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Line' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="ptd_fb2">Line</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="ptd_social[0]" type="radio" id="ptd_social3" value="Twitter" <?= (!empty($item['ptd_social']) && $item['ptd_social'] === 'Twitter' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="ptd_fb3">Twitter</label>
+                            </div>
+                          </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-2 col-md-2">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[0]" type="checkbox" id="ptd_social1" value="Facebook" <?= (!empty($item['ptd_social'][0]) && $item['ptd_social'][0] === 'Facebook' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="ptd_fb1">Facebook</label>
+                            <label class="form-check-label"><strong>Type:</strong></label>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 col-md-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[1]" type="checkbox" id="ptd_social2" value="Line" <?= (!empty($item['ptd_social'][1]) && $item['ptd_social'][1] === 'Line' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="ptd_fb2">Line</label>
+                          <input class="form-check-input" name="ptd_facebook[0]" type="radio" id="ptd_fb1" value="Normal Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="ptd_type1">Normal Post</label>
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 col-md-3">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_social[2]" type="checkbox" id="ptd_social3" value="Twitter" <?= (!empty($item['ptd_social'][2]) && $item['ptd_social'][2] === 'Twitter' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="ptd_fb3">Twitter</label>
+                          <input class="form-check-input" name="ptd_facebook[0]" type="radio" id="ptd_fb2" value="Facebook Boost Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="ptd_type2">Boost Post</label>
                           </div>
                         </div>
                       </div>
+
                     </div>
 
-                    <div id="ptd_facebook_option" style="<?= (isset($item['ptd_facebook']) && !empty($item['ptd_facebook']) ? '' :'display:none') ?>;">
-                      <div class="bar-title">Facebook:</div>
-                      <div id="ptd-facebook-tab" class="form-group row">
-                        <div class="col-sm-4">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb1" value="Normal Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Normal Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="ptd_fb1">Normal Post</label>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_facebook" type="radio" id="ptd_fb2" value="Facebook Boost Post" <?= (!empty($item['ptd_facebook']) && $item['ptd_facebook'] === 'Facebook Boost Post' ? 'checked' : '') ?>>
-                            <label class="form-check-label" for="ptd_fb2">Facebook Boost Post</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div id="ptd_option2" style="<?= (isset($item['ptd_web']) && !empty($item['ptd_web']) ? '' :'display:none') ?>;">
+                    <!-- Website options -->
+                    <div class="ptd_type--choose  div-choose--type" id="ptd_type--2-1" style="display: none;">
                       <div class="bar-title mt-4">Website:</div>
                       <div class="form-group row" id="ptd-tab-border">
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[0]" <?= (!empty($item['ptd_web'][0]) && $item['ptd_web'][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="ptd_web1" value="Banner">
+                            <input class="form-check-input" name="ptd_web[0][0]" <?= (!empty($item['ptd_web'][0][0]) && $item['ptd_web'][0][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="ptd_web1" value="Banner">
                             <label class="form-check-label" for="ptd_web">Banner</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[1]" <?= (!empty($item['ptd_web'][1]) && $item['ptd_web'][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="ptd_web2" value="Nytive Ad">
+                            <input class="form-check-input" name="ptd_web[0][1]" <?= (!empty($item['ptd_web'][0][1]) && $item['ptd_web'][0][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="ptd_web2" value="Nytive Ad">
                             <label class="form-check-label" for="ptd_web">Nytive Ad</label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[2]" <?= (!empty($item['ptd_web'][2]) && $item['ptd_web'][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web3" value="Premium Advertorial">
+                            <input class="form-check-input" name="ptd_web[0][2]" <?= (!empty($item['ptd_web'][0][2]) && $item['ptd_web'][0][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web3" value="Premium Advertorial">
                             <label class="form-check-label" for="ptd_web">Premium Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[3]" <?= (!empty($item['ptd_web'][3]) && $item['ptd_web'][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web4" value="Advertorial">
+                            <input class="form-check-input" name="ptd_web[0][3]" <?= (!empty($item['ptd_web'][0][3]) && $item['ptd_web'][0][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="ptd_web4" value="Advertorial">
                             <label class="form-check-label" for="ptd_web">Advertorial</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[4]" <?= (!empty($item['ptd_web'][4]) && $item['ptd_web'][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="ptd_web5" value="Property Listing">
+                            <input class="form-check-input" name="ptd_web[0][4]" <?= (!empty($item['ptd_web'][0][4]) && $item['ptd_web'][0][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="ptd_web5" value="Property Listing">
                             <label class="form-check-label" for="ptd_web">Property Listing</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[5]" <?= (!empty($item['ptd_web'][5]) && $item['ptd_web'][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="ptd_web6" value="Special event">
+                            <input class="form-check-input" name="ptd_web[0][5]" <?= (!empty($item['ptd_web'][0][5]) && $item['ptd_web'][0][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="ptd_web6" value="Special event">
                             <label class="form-check-label" for="ptd_web">Special event</label>
                           </div>
                         </div>
                          <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input"  name="ptd_web[6]" <?= (!empty($item['ptd_web'][6]) && $item['ptd_web'][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="ptd_web7" value="Sponsor Link">
+                            <input class="form-check-input"  name="ptd_web[0][6]" <?= (!empty($item['ptd_web'][0][6]) && $item['ptd_web'][0][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="ptd_web7" value="Sponsor Link">
                             <label class="form-check-label" for="ptd_web">Sponsor Link</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[7]" <?= (!empty($item['ptd_web'][7]) && $item['ptd_web'][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="ptd_web8" value="Jobs">
+                            <input class="form-check-input" name="ptd_web[0][7]" <?= (!empty($item['ptd_web'][0][7]) && $item['ptd_web'][0][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="ptd_web8" value="Jobs">
                             <label class="form-check-label" for="ptd_web">Jobs</label>
                           </div>
                         </div>
                         <div class="col-sm-4">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" name="ptd_web[8]" <?= (!empty($item['ptd_web'][8]) && $item['ptd_web'][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="ptd_web9" value="PR">
+                            <input class="form-check-input" name="ptd_web[0][8]" <?= (!empty($item['ptd_web'][0][8]) && $item['ptd_web'][0][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="ptd_web9" value="PR">
                             <label class="form-check-label" for="ptd_web">PR</label>
                           </div>
                         </div>
@@ -685,16 +690,15 @@
                         <?php  if(!isset($item['ptd_size_id'])){ ?>
                           <script>
                             var ptd_action = 'New';
-                            //console.log(ptd_action);
                           </script>
-                        <div id="ptd-ad-card" class="box-ad--banner" style="display:none;">
+                        <div id="ptd-ad-card--1" class="box-ad--banner" style="display:none;">
                           <div id="ptd-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
                               <div class="col-md-5 mb-3">
                                 <label>Size:</label>
                                 <select name="ptd_size_id[0]" class="custom-select" onchange="document.getElementById('ptd_size_text0').value=this.options[this.selectedIndex].text" >
-                                <option value="">Choose Size</option>
+                                      <option value="">Choose Size</option>
                                       <optgroup label="Rectangle Desktop & Mobile">
                                           <option value="1">300x250</option>
                                       </optgroup>
@@ -763,7 +767,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="form-group row" id="ptd_device">
+                            <div id="ptd_device" class="form-group row">
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
@@ -787,7 +791,7 @@
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
                                   <input type="file" name="ptd_banner_file[0]" class="custom-file-input" id="customFile" multiple onchange="showFileName(this.name);"/>
-                                  <label id="ptd_banner_file0" class="custom-file-label" for="customFile">Choose file</label>
+                                  <label id="ptd_banner_file0" class="custom-file-label" for="customFile" >Choose file</label>
                                 </div>
                                 <div class="text-ps--small">Please choose only .JPG, GIF, AI, PSD, txt, Excel, Zip</div>
                               </div>
@@ -825,14 +829,12 @@
                           else{ ?>
                           <script>
                             var ptd_action = 'Edit';
-                            //console.log(ptd_action);
-                            
-                            var ptd_position_count = [<?= count($item['ptd_position_id']) ?>];
+                            var ptd_position_count = [<?= count($item['ptd_position_id'])  ?>];
                             var ptd_section_count = [<?= count($item['ptd_section_id']) ?>];
                           </script>
                         <?php for($i=0;$i<count($item['ptd_size_id']);$i++){ ?>
                         
-                          <div id="ptd-ad-card" class="box-ad--banner">
+                        <div id="ptd-ad-card" class="box-ad--banner">
                           <div id="ptd-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
@@ -878,7 +880,7 @@
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 
-                                <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);" <?= ($item['ptd_type'] == 'Social' ? 'disabled' : '') ?>>
+                                <select name="ptd_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('ptd_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['ptd_ad_section'] as $key => $value){ ?>
                                     <option value="<?= $key ?>" <?= (!empty($item['ptd_position_id'][$i]) && $item['ptd_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
@@ -888,10 +890,10 @@
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text" <?= ($item['ptd_type'] == 'Social' ? 'disabled' : '') ?>>
+                                <select name="ptd_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('ptd_section_text<?= $i ?>').value=this.options[this.selectedIndex].text">
                                 <option value="">Choose Section</option>
                                 <?php 
-                                if(!empty($item['ptd_section_id'][$i])){
+                                  if(!empty($item['ptd_section_id'][$i])){
                                   $position_key = $item['ptd_position_id'][$i];
                                   foreach($sectionArray['ptd_ad_section'][$position_key] as $key => $value){ 
                                     if($key !== 'position'){
@@ -917,7 +919,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div id="ptd_device" class="form-group row" style="<?= (!empty($item['ptd_device'][$i]) ? '' : 'display:none') ?>;">
+                            <div class="form-group row">
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
@@ -951,7 +953,7 @@
                               <label class="col-md-4 col-lg-3 col-form-label label-normal">Upload quotation:</label>
                               <div class="col-md-11 col-lg-12">
                                 <div class="custom-file">
-                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>" alt="" onchange="showFileName(this.name);"/>
+                                  <input type="file" name="ptd_quotation_file[<?= $i ?>]" class="custom-file-input" id="customFile" value="<?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : '' ) ?>" alt="" onchange="showFileName(this.name);" />
                                   <?php if(!empty($item['ptd_quotation_file'][$i])){ ?><input type="hidden" name="old_ptd_quotation_file[<?= $i ?>]" value="<?= $item['ptd_quotation_file'][$i] ?>" ><?php } ?>
                                   <label id="ptd_quotation_file<?= $i ?>" class="custom-file-label" for="customFile"><?= (!empty($item['ptd_quotation_file'][$i]) ? $item['ptd_quotation_file'][$i] : 'Choose file' ) ?></label>
                                 </div>
@@ -976,14 +978,15 @@
                             </div>
                           </div>
                         </div>
-                        <?php } 
+                        <?php }
                           } 
                         ?>
                         </div>
-                        <div class="box-btn--addmore"><a href="javascript:;"  class="btn btn-addmore">+ ADD MORE AD</a></div>
-
-                      </div>
+                        </div>
                     </div>
+                    </div>
+                    </div>
+                    <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('ptd');" class="btn btn-addmore">+ ADD MORE AD</a></div>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -1001,41 +1004,34 @@
             {!! Form::close() !!}
         </div>
 
-        <div class="modal fade" id="bpModal" role="dialog">
-           <div class="modal-dialog">
-           
-           <div class="modal-content">
-               <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               <div class="modal-body text-center">
-                    ????????????Submit ?????????????????????
-               </div>
-               <div class="modal-footer">
-               <button id="bp-modal-submit" type="button" class="btn btn-default close" data-dismiss="modal">OK</button>
-               </div>
-           </div>
-           
-           </div>
-       </div>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="alert--detail">
+                            <div class="alert--img"><img src="assets/images/icon-svg/alert.svg"></div>
+                            <div class="alert--text">คุณยังไม่ได้ submit ข้อมูลที่กรอกไว้จะหาย</div>
+                            <div class="text-center"><button type="button" class="btn btn-submit" data-dismiss="modal">OK</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="modal fade" id="ptdModal" role="dialog">
-           <div class="modal-dialog">
-           
-           <div class="modal-content">
-               <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               <div class="modal-body text-center">
-                    ????????????Submit ?????????????????????
-               </div>
-               <div class="modal-footer">
-               <button id="ptd-modal-submit" type="button" class="btn btn-default close" data-dismiss="modal">OK</button>
-               </div>
-           </div>
-           
-           </div>
-       </div>
+        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="alert--detail">
+                            <div class="alert--img"><img src="assets/images/icon-svg/alert.svg"></div>
+                            <div class="alert--text alert-type-required-text"></div>
+                            <div class="text-center"><button type="button" class="btn btn-submit" data-dismiss="modal">OK</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
        
       </div>
 
@@ -1065,17 +1061,14 @@
             });
         });
 
-
         window.onbeforeunload = function(e) {
-            e = e || window.event;
+          
+          $('#confirmModal').modal("show");
+          $('#confirmModal').delay(8000).fadeOut(1000);
+          setTimeout(function(){
+            $('#confirmModal').modal("hide");
+          }, 4000);
 
-            // For IE and Firefox prior to version 4
-            if (e) {
-                e.returnValue = 'Any string';
-            }
-
-            // For Safari
-            return 'Any string';
         };
 
         function showOption(element,web_name)
@@ -1157,13 +1150,18 @@
             $(this).prop('required',false);
           });
           $("#"+web_name+"_type--" + x + "-"+y).show();
-          $("#"+web_name+"-ad-card--1").show();
+          $("#"+web_name+"-ad-card--"+y).show();
         }
 
 
         function addAds(web_name) {
+          if($('input[name="'+web_name+'_type[0]"]').is(':checked'))
+          {
             var count = $('div[id*="' + web_name + '_detail--1"]').length;
             var Html = $('div[id="' + web_name + '_detail--1"]').eq(0).clone();
+            Html.each(function(){
+              this.id = this.id.replace('1',(count+1));
+            })
             Html.find('input').each(function() { //Replace input name
                 this.name = this.name.replace('[0]', '[' + count + ']');
                 if(this.type!=='radio')
@@ -1219,9 +1217,14 @@
             });
             Html.find('div[id*="'+ web_name +'-ad-card--"]').each(function(){ //replace card index
               this.id = this.id.replace('1',(count+1));
+              this.setAttribute('style', 'display:none;');
             });
            $('#' + web_name + '-all-detail').append(Html);
            count++;
+          }else{
+            $(".alert-type-required-text").text('กรุณาเลือกประเภท (Social/ Website/ E-newsletter)');
+            $("#alertModal").modal('show');
+          }
         }
 
         function Validate(oForm) {
@@ -1242,7 +1245,9 @@
                       }
 
                       if (!blnValid) {
-                          alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                          //alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                          $(".alert-type-required-text").text("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                          $("#alertModal").modal('show');
                           return false;
                       }
                   }
@@ -1261,6 +1266,20 @@
 
       function getCheckBoxIndex(checkbox) {
           return String(checkbox.attr('id')).match(/\d+/)[0];
+      }
+
+      function requireFieldOnCard(tab_name, value) {
+          if (value) {
+              var require_status = true;
+              for (i = 0; i < 2; i++) {
+                  if (i == 1) {
+                      tab_name = (tab_name == 'bp' ? 'ptd' : (tab_name == 'ptd' ? 'bp' : ''));
+                      require_status = false;
+                  }
+                  $("select[name*='" + tab_name + "_']").prop('required', require_status);
+                  $("input[name*='" + tab_name + "_']").prop('required', require_status);
+              }
+          }
       }
       //Create input field before user click submit button
       function beforeSubmit() {
@@ -1394,5 +1413,100 @@
             $('form').append("<input type='hidden' name='total_ptd_web["+index+"]' value='" + $(this).find('input').length + "' />");
           });
       }
+
+      function clearPreviousTab(active_tab) {
+          previous_tab_name = (active_tab == "bangkokpost" ? "ptd" : "bp");
+          //clear all input value on previous tab
+          //1. Hiding checkbox option (Type/Social/Facebook)
+          $('#' + previous_tab_name + '_option1').hide();
+          $('#' + previous_tab_name + '_option2').hide();
+          //$('#' + previous_tab_name + '_option3').hide();
+          $('#' + previous_tab_name + '_facebook_option').hide();
+          //2. reset all input value on previous tab
+          var previous_tab_input = document.querySelectorAll("input[name*='" + previous_tab_name + "_']");
+          var previous_tab_dropdown = document.querySelectorAll("select[name*='" + previous_tab_name + "_']");
+          for (var i = 0; i < previous_tab_input.length; i++) {
+            if (previous_tab_input[i].type !== "radio" && previous_tab_input[i].type !== "checkbox") 
+            {  
+              previous_tab_input[i].value = '';
+            }
+              previous_tab_input[i].required = false;
+              previous_tab_input[i].checked = false;
+              if (previous_tab_input[i].type == "file") {
+                  var file_name = $('input[name="' + previous_tab_input[i].name + '"]').val();
+                  var fIndex = String(previous_tab_input[i].name).match(/\d+/)[0];
+                  var labelId = String(previous_tab_input[i].name).replace('[' + fIndex + ']', fIndex);
+                  $('label[id="' + labelId + '"]').text("");
+              }
+          }
+          for (var i = 0; i < previous_tab_dropdown.length; i++) {
+              previous_tab_dropdown[i].value = '';
+              previous_tab_dropdown[i].selectedIndex = 0;
+              previous_tab_dropdown[i].required = false;
+          }
+      }
+
+
+      $('#posttoday-tab').each(function() {
+          if ($(this).hasClass("active")) {
+              $('.nav-requestForm').addClass('tabs--ptd');
+          }
+          $(this).on('click', function(e) {
+              if (active_tab !== 'posttoday') {
+                  active_tab = 'posttoday';
+                  none_active_tab = 'bangkokpost';
+                  addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
+                  requireFieldOnCard('ptd', true); //add require attribute to input field
+                  clearPreviousTab(active_tab); //clear all input value on previous tab
+                  $('div[id*="bp_detail--"]').each(function(index) { //destroy all cloned card on bangkokpost tab when user changed tab to posttoday
+                      if (index !== 0) { //if this card not equal default card
+                          $(this).remove(); //remove cloned card
+                      }
+                  });
+                  $("div[id*='ptd-ad-card']").hide(); //hide default card
+                  $("div[id*='ptd_type--1']").hide();
+                  $("div[id*='ptd_type--2']").hide();
+              }
+          })
+      })
+
+      //Event when user clicked on bangkokpost tab
+      $('#bangkokpost-tab').click(function(e) {
+          if (active_tab !== 'bangkokpost') {
+              //if user change current tab, hide posstoday tab and show bangkokpost tab
+              $('.nav-requestForm').removeClass('tabs--ptd');
+              active_tab = 'bangkokpost';
+              none_active_tab = 'posttoday';
+              addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
+              requireFieldOnCard('bp', true); //add require attribute to input field
+              clearPreviousTab(active_tab); //clear all input value on previous tab
+              $('div[id*="ptd_detail--"]').each(function(index) { //destroy all cloned card on posttoday tab when user changed tab to bangkokpost
+                  if (index !== 0) { //if this card not equal default card
+                      $(this).remove(); //remove cloned card
+                  }
+              });
+              $("div[id*='bp-ad-card']").hide(); //hide default card
+              $("div[id*='bp_type--1']").hide();
+              $("div[id*='bp_type--2']").hide();
+          }
+      });
+
+      function addTabClass(active_tab, none_active_tab) {
+          $("#" + active_tab).addClass('show');
+          $("#" + active_tab).addClass('active');
+          $("#" + none_active_tab + "-tab").css("background-color", "#F2F2F2");
+          $("#" + none_active_tab + "-tab").css("color", "#000");
+          $("#" + active_tab + "-tab").css("color", "#ffff");
+          $("#" + none_active_tab).removeClass('show');
+          $("#" + none_active_tab).removeClass('active');
+          if (active_tab == 'posttoday') {
+              $("#" + active_tab + "-tab").css("background-color", "#D13E3E");
+              $("#myTab").css("border-bottom", "5px solid #D13E3E");
+          } else {
+              $("#" + active_tab + "-tab").css("background-color", "#396EB5");
+              $("#myTab").css("border-bottom", "5px solid #396EB5");
+          }
+      }
+
       </script>
 @endsection
