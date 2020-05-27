@@ -65,7 +65,8 @@
                 <div class="tab-pane fade <?= (!empty($item['bp_type']) ? 'show active' : '')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
-                    <?php for($bp_index=0;$bp_index<count($item['bp_type']);$bp_index++){ ?>
+                    <?php if(isset($item['bp_type'])){
+                    for($bp_index=0;$bp_index<count($item['bp_type']);$bp_index++){ ?>
                     <div class="card">
                     <div class="card-header"><strong>Ad <?= ($bp_index+1) ?></strong></div>
                     <div class="card-body">
@@ -149,9 +150,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : "") }}</div>
+                                    <div class="form-control-plaintext">{{ (isset($item['bp_position_id'][$i])&&isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : "") }}</div>
                                     <input type="hidden" name="bp_position_id[<?= $i ?>]" value="{{ (isset($item['bp_position_id'][$i]) ? $item['bp_position_id'][$i] : '') }}">
-                                    <input type="hidden" name="bp_position_text[<?= $i ?>]" value="{{ (isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') }}">
+                                    <input type="hidden" name="bp_position_text[<?= $i ?>]" value="{{ (isset($item['bp_position_id'][$i])&&isset($item['bp_position_id'][$i]) && isset($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -159,9 +160,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : "") }}</div>
+                                    <div class="form-control-plaintext">{{ (isset($item['bp_section_id'][$i])&&isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : "") }}</div>
                                     <input type="hidden" name="bp_section_id[<?= $i ?>]" value="{{ (isset($item['bp_section_id'][$i]) ? $item['bp_section_id'][$i] : '') }}">
-                                    <input type="hidden" name="bp_section_text[<?= $i ?>]" value="{{ (isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') }}">
+                                    <input type="hidden" name="bp_section_text[<?= $i ?>]" value="{{ (isset($item['bp_section_id'][$i])&&isset($item['bp_section_id'][$i]) && isset($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -250,7 +251,7 @@
                       </div>
                     </div>
                     <br/>
-                    <?php } ?>
+                    <?php }} ?>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -350,9 +351,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Position:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : "") }}</div>
+                                    <div class="form-control-plaintext">{{ (isset($item['ptd_position_id'][$i]) && isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}</div>
                                     <input type="hidden" name="ptd_position_id[<?= $i ?>]" value="{{ (isset($item['ptd_position_id'][$i]) ? $item['ptd_position_id'][$i] : '') }}">
-                                    <input type="hidden" name="ptd_position_text[<?= $i ?>]" value="{{ (isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}">
+                                    <input type="hidden" name="ptd_position_text[<?= $i ?>]" value="{{ (isset($item['ptd_position_id'][$i]) && isset($item['ptd_position_text'][$i]) ? $item['ptd_position_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
@@ -360,9 +361,9 @@
                                 <div class="form-group row">
                                   <label for="customerSelect" class="col-auto col-form-label">Section:</label>
                                   <div class="col-auto">
-                                    <div class="form-control-plaintext">{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : "") }}</div>
+                                    <div class="form-control-plaintext">{{ (!empty($item['ptd_section_id'][$i]) && isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}</div>
                                     <input type="hidden" name="ptd_section_id[<?= $i ?>]" value="{{ (isset($item['ptd_section_id'][$i]) ? $item['ptd_section_id'][$i] : '') }}">
-                                    <input type="hidden" name="ptd_section_text[<?= $i ?>]" value="{{ (isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}">
+                                    <input type="hidden" name="ptd_section_text[<?= $i ?>]" value="{{ (!empty($item['ptd_section_id'][$i]) && isset($item['ptd_section_text'][$i]) ? $item['ptd_section_text'][$i] : '') }}">
                                   </div>
                                 </div>
                               </div>
