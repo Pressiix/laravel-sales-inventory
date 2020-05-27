@@ -1068,16 +1068,23 @@
             });
         });
 
-        window.onbeforeunload = function(e) {
-          if(!onSubmit)
-          {
-            $('#confirmModal').modal("show");
-            $('#confirmModal').delay(8000).fadeOut(1000);
-            setTimeout(function(){
-              $('#confirmModal').modal("hide");
-            }, 4000);
-          }
-        };
+        var confirmOnPageExit = function (e) {
+// If we haven't been passed the event get the window.event
+e = e || window.event;
+
+var message = "Are you sure you want to navigate away from this page? All unsaved changes will be lost.";
+
+// For IE6-8 and Firefox prior to version 4
+if (e) 
+{
+    e.returnValue = message;
+}
+
+// For Chrome, Safari, IE8+ and Opera 12+
+return message;
+};
+
+window.onbeforeunload = confirmOnPageExit;
 
         function showOption(element,web_name)
         {
