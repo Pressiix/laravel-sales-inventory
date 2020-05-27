@@ -85,6 +85,8 @@
                   <div class="content-tablist">
                   <div id="bp-all-detail">
                   <div id="bp_detail--1">  <!-- default content (for copy)-->
+                  <?php  if(!isset($item['bp_size_id'])){ ?>
+                  <script> var bp_action = 'New';</script>
                     <div class="form-ad--detail">
                     <!-- TYPE -->
                       <div class="choose--type" id="bp-type-container">
@@ -222,13 +224,9 @@
                     <!--div id="bp_option3" style="display:none;">CCC</!--div-->
                   </div>
 
-                    <div class="row">
+                  <div class="row">
                       <div  class="col-15">
                         <div id="bp-ad-description">
-                        <?php  if(!isset($item['bp_size_id'])){ ?>
-                          <script>
-                            var bp_action = 'New';
-                          </script>
                         <div id="bp-ad-card--1" class="box-ad--banner" style="display:none;">
                           <div id="bp-ad-title" class="box-ad--title">Ad 1 Description:</div>
                           <div class="box-ad--container">
@@ -370,7 +368,10 @@
                             </div>
                           </div>
                         </div>
-                        <?php  
+                        </div>
+                        </div>
+                    </div>
+                  <?php  
                           }
                           else{ ?>
                           <script>
@@ -378,9 +379,149 @@
                             var bp_position_count = [<?= count($item['bp_position_id'])  ?>];
                             var bp_section_count = [<?= count($item['bp_section_id']) ?>];
                           </script>
-                        <?php for($i=0;$i<count($item['bp_size_id']);$i++){ ?>
+                        <?php for($i=0;$i<count($item['bp_type']);$i++){ ?>
+                          <div class="form-ad--detail">
+                    <!-- TYPE -->
+                      <div class="choose--type" id="bp-type-container">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="bp_type[<?= $i ?>]" type="radio" id="bp_type1-<?= ($i+1) ?>" value="Social" <?= (!empty($item['bp_type'][$i]) && $item['bp_type'][$i] === 'Social' ? 'checked' : '') ?> onchange="showOption($(this),'bp')" >
+                              <label class="form-check-label" for="bp_choose1">Social</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="bp_type[<?=$i?>]" type="radio" id="bp_type2-<?= ($i+1) ?>" value="Website" <?= (!empty($item['bp_type'][$i]) && $item['bp_type'][$i] === 'Website' ? 'checked' : '') ?> onchange="showOption($(this),'bp')">
+                              <label class="form-check-label" for="bp_choose2">Website</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-check form-check-inline choose--type-form">
+                              <input class="form-check-input" name="bp_type[<?=$i?>]" type="radio" id="bp_type3-<?= ($i+1) ?>" value="E-newsletter" <?= (!empty($item['bp_type'][$i]) && $item['bp_type'][$i] === 'E-newsletter' ? 'checked' : '') ?> onchange="showOption($(this),'bp')">
+                              <label class="form-check-label" for="bp_choose3">E-newsletter</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                  <!-- Social options -->
+                  <div class="bp_type--choose div-choose--type" id="bp_type--1-<?= ($i+1) ?>" style="<?= (isset($item['bp_social'][$i]) ? '' : 'display: none;') ?>">
+                  
+                      <div id="bp-facebook-tab" class="form-group border-title">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_social[<?= $i ?>]" type="radio" id="bp_social1" value="Facebook" <?= (!empty($item['bp_social'][$i]) && $item['bp_social'][$i] === 'Facebook' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_fb1">Facebook</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_social[<?= $i ?>]" type="radio" id="bp_social2" value="Line" <?= (!empty($item['bp_social'][$i]) && $item['bp_social'][$i] === 'Line' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_fb2">Line</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="bp_social[<?= $i ?>]" type="radio" id="bp_social3" value="Twitter" <?= (!empty($item['bp_social'][$i]) && $item['bp_social'][$i] === 'Twitter' ? 'checked' : '') ?>>
+                              <label class="form-check-label" for="bp_fb3">Twitter</label>
+                            </div>
+                          </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-2 col-md-2">
+                          <div class="form-check form-check-inline">
+                            <label class="form-check-label"><strong>Type:</strong></label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bp_facebook[<?= $i ?>]" type="radio" id="bp_fb1" value="Normal Post" <?= (!empty($item['bp_facebook'][$i]) && $item['bp_facebook'][$i] === 'Normal Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type1">Normal Post</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="bp_facebook[<?= $i ?>]" type="radio" id="bp_fb2" value="Facebook Boost Post" <?= (!empty($item['bp_facebook'][$i]) && $item['bp_facebook'][$i] === 'Facebook Boost Post' ? 'checked' : '') ?>>
+                            <label class="form-check-label" for="bp_type2">Boost Post</label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- Website options -->
+                    <div class="bp_type--choose  div-choose--type" id="bp_type--2-<?= ($i+1) ?>" style="<?= (isset($item['bp_web'][$i]) ? '' : 'display: none;') ?>">
+                      <div class="bar-title mt-4">Website:</div>
+                      <div class="form-group row" id="bp-tab-border">
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][0]" <?= (!empty($item['bp_web'][$i][0]) && $item['bp_web'][$i][0] === 'Banner' ? 'checked' : '') ?> type="checkbox" id="bp_web1" value="Banner">
+                            <label class="form-check-label" for="bp_web">Banner</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][1]" <?= (!empty($item['bp_web'][$i][1]) && $item['bp_web'][$i][1] === 'Nytive Ad' ? 'checked' : '') ?> type="checkbox" id="bp_web2" value="Nytive Ad">
+                            <label class="form-check-label" for="bp_web">Nytive Ad</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][2]" <?= (!empty($item['bp_web'][$i][2]) && $item['bp_web'][$i][2] === 'Premium Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web3" value="Premium Advertorial">
+                            <label class="form-check-label" for="bp_web">Premium Advertorial</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][3]" <?= (!empty($item['bp_web'][$i][3]) && $item['bp_web'][$i][3] === 'Advertorial' ? 'checked' : '') ?> type="checkbox" id="bp_web4" value="Advertorial">
+                            <label class="form-check-label" for="bp_web">Advertorial</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][4]" <?= (!empty($item['bp_web'][$i][4]) && $item['bp_web'][$i][4] === 'Property Listing' ? 'checked' : '') ?> type="checkbox" id="bp_web5" value="Property Listing">
+                            <label class="form-check-label" for="bp_web">Property Listing</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][5]" <?= (!empty($item['bp_web'][$i][5]) && $item['bp_web'][$i][5] === 'Special event' ? 'checked' : '') ?> type="checkbox" id="bp_web6" value="Special event">
+                            <label class="form-check-label" for="bp_web">Special event</label>
+                          </div>
+                        </div>
+                         <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input"  name="bp_web[<?= $i ?>][6]" <?= (!empty($item['bp_web'][$i][6]) && $item['bp_web'][$i][6] === 'Sponsor Link' ? 'checked' : '') ?> type="checkbox" id="bp_web7" value="Sponsor Link">
+                            <label class="form-check-label" for="bp_web">Sponsor Link</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][7]" <?= (!empty($item['bp_web'][$i][7]) && $item['bp_web'][$i][7] === 'Jobs' ? 'checked' : '') ?> type="checkbox" id="bp_web8" value="Jobs">
+                            <label class="form-check-label" for="bp_web">Jobs</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="bp_web[<?= $i ?>][8]" <?= (!empty($item['bp_web'][$i][8]) && $item['bp_web'][$i][8] === 'PR' ? 'checked' : '') ?> type="checkbox" id="bp_web9" value="PR">
+                            <label class="form-check-label" for="bp_web">PR</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- E-newsletter options -->
+                    <!--div id="bp_option3" style="display:none;">CCC</!--div-->
+                  </div>
+
+                  <div class="row">
+                      <div  class="col-15">
+                        <div id="bp-ad-description">
                         
-                        <div id="bp-ad-card" class="box-ad--banner">
+                        <div id="bp-ad-card--<?= ($i+1) ?>" class="box-ad--banner">
                           <div id="bp-ad-title" class="box-ad--title">Ad <?= ($i+1) ?> Description:</div>
                           <div class="box-ad--container">
                             <div class="form-row">
@@ -429,7 +570,7 @@
                                 <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);">
                                   <option value="">Choose Position</option>
                                   <?php foreach($sectionArray['bp'] as $key => $value){ ?>
-                                    <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value['position'] ?></option>
+                                    <option value="<?= $key ?>" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == $key ? 'selected' : '') ?>><?= $value ?></option>
                                   <?php } ?>
                                 </select>
                                 <input type="hidden" name="bp_position_text[<?= $i ?>]" id="bp_position_text<?= $i ?>" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
@@ -440,12 +581,12 @@
                                 <option value="">Choose Section</option>
                                 <?php 
                                   if(!empty($item['bp_section_id'][$i])){
-                                  $position_key = $item['bp_position_id'][$i];
-                                  foreach($sectionArray['bp'][$position_key] as $key => $value){ 
-                                    if($key !== 'position'){
+                                  //$position_key = $item['bp_position_id'][$i];
+                                  foreach($sectionArray['bp'] as $key => $value){ 
+                                    //if($key !== 'position'){
                                 ?>
                                   <option value="<?= $key ?>" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
-                                <?php }}} ?>
+                                    <?php /*}*/}} ?>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
                               </div>
@@ -465,7 +606,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="form-group row">
+                            <div id="bp_device" class="form-group row" style="<?= (isset($item['bp_device'][$i]) ? '' : 'display:none;') ?>">
                               <label for="inputUsername" class="col-auto col-sm-4 col-md-4 col-lg-3 col-form-label label-normal pt-0">Device:</label>
                               <div class="col-auto col-sm-11 col-md-11 col-lg-12">
                                 <div class="form-check form-check-inline">
@@ -524,12 +665,15 @@
                             </div>
                           </div>
                         </div>
-                        <?php }
-                          } 
-                        ?>
+                        
                         </div>
                         </div>
                     </div>
+                        
+                        <?php }
+                          } 
+                        ?>
+                        
                     </div>
                   </div>
                         <div class="box-btn--addmore"><a href="javascript:;" onclick="addAds('bp');" class="btn btn-addmore">+ ADD MORE AD</a></div>
@@ -1092,15 +1236,27 @@
           var section_text = $('#'+web_name+'-ad-card--'+y).find('select[name*="'+web_name+'_section_text"]');
 
           if(x=='1'||x=='3')  //if user selected 'Social' or 'E-newsletter'
-          {
+          {   //console.log("web name = "+web_name+" x = "+x+" : y = "+y);
             if(x=='1') //if user selected 'Social'
             {
                 $("#"+web_name+"_type--2-"+y).hide();
+                $("#"+web_name+"_type--2-"+y+" :input").each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('checked', false);
+                });
             }
             else if(x=='3') //if user selected 'E-newsletter'
             { 
-              $("#"+web_name+"_type--1-"+y).hide(); 
-              $("#"+web_name+"_type--2-"+y).hide(); 
+              $("#"+web_name+"_type--1-"+y).hide();
+              $("#"+web_name+"_type--1-"+y+" :input").each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('checked', false);
+              }); 
+              $("#"+web_name+"_type--2-"+y).hide();
+              $("#"+web_name+"_type--2-"+y+" :input").each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('checked', false);
+              }); 
               for(i=0;i<2;i++)  //remove required properties for all option
               {
                 $("#"+web_name+"_type--"+(i+1)+"-"+y+" :input").each(function(){
@@ -1109,6 +1265,7 @@
               }
             }
             $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
+              console.log('AAA');
                   $(this).hide();
                   $(this).find('input').each(function(){
                   $(this).prop('required',false);
@@ -1141,6 +1298,10 @@
           else if(x=='2') //if user selected 'Website'
           {
               $("#"+web_name+"_type--1-"+y).hide();
+              $("#"+web_name+"_type--1-"+y+" :input").each(function(){
+                  $(this).prop('required',false);
+                  $(this).prop('checked', false);
+              });
               $('#'+web_name+'-ad-card--'+y).find('div[id*="'+web_name+'_device"]').each(function(){
                 $(this).show();
                 $(this).find('input[name*="'+web_name+'_device"]').each(function(){
