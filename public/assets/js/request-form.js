@@ -407,12 +407,9 @@ function createHiddenField() {
         //append to form element that you want .
         document.getElementById("form").appendChild(input);
     }
-    $('div[id*="bp_type--2-"]').each(function(index) {
-        $('form').append("<input type='hidden' name='total_bp_web[" + index + "]' value='" + $(this).find('input').length + "' />");
-    });
-    $('div[id*="ptd_type--2-"]').each(function(index) {
-        $('form').append("<input type='hidden' name='total_ptd_web[" + index + "]' value='" + $(this).find('input').length + "' />");
-    });
+    $('form').append("<input type='hidden' name='total_bp_web' value='9' />");
+    $('form').append("<input type='hidden' name='total_ptd_web' value='9' />");
+
 }
 
 function clearPreviousTab(active_tab) {

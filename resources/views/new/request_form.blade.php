@@ -1376,7 +1376,7 @@
             });
         });
 
-        window.onbeforeunload = function(e) {
+        /*window.onbeforeunload = function(e) {
           if(onSubmit)
           { 
             $('#confirmModal').modal("show");
@@ -1385,7 +1385,7 @@
               $('#confirmModal').modal("hide");
             }, 9000);
           }
-        };
+        };*/
 
         
 
