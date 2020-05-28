@@ -8,7 +8,7 @@ function showOption(element, web_name) {
     var position_text = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_position_text"]');
     var section_dropdown = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_section_id"]');
     var section_text = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_section_text"]');
-    console.log(position_text)
+    //console.log(position_text)
     if (x == '1' || x == '3') //if user selected 'Social' or 'E-newsletter'
     { //console.log("web name = "+web_name+" x = "+x+" : y = "+y);
         if (x == '1') //if user selected 'Social'
@@ -128,7 +128,7 @@ function showOption(element, web_name) {
 
 function addAds(web_name) {
     if ($('input[name="' + web_name + '_type[0]"]').is(':checked')) {
-        var count = $('div[id*="' + web_name + '_detail--1"]').length;
+        var count = $('div[id*="' + web_name + '_detail--"]').length;
         var Html = $('div[id="' + web_name + '_detail--1"]').eq(0).clone();
         Html.each(function() {
             this.id = this.id.replace('1', (count + 1));
@@ -281,8 +281,22 @@ function beforeSubmit() {
                                 $(this).find('input[name*="bp_device"]').each(function() {
                                     $(this).prop('required', false);
                                 });
+                                if (j == 2) { //remove all checkbox required when type = E-newsletter
+                                    for (k = 0; k < 3; k++) {
+                                        $('input[id="bp_type' + (k + 1) + '-' + index + '"]').prop("required", false);
+                                    }
+                                    $('input[name*="bp_facebook[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                    $('input[name*="bp_social[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                    $('input[name*="bp_web[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                }
                             });
-                            break;
+
                         }
                     }
                 }
@@ -309,7 +323,20 @@ function beforeSubmit() {
                                     $(this).prop('required', false);
                                 });
                             });
-                            break;
+                            if (j == 2) { //remove all checkbox required when type = E-newsletter
+                                for (k = 0; k < 3; k++) {
+                                    $('input[id="ptd_type' + (k + 1) + '-' + index + '"]').prop("required", false);
+                                }
+                                $('input[name*="ptd_facebook[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                                $('input[name*="ptd_social[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                                $('input[name*="ptd_web[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                            }
                         }
                     }
                 }

@@ -530,39 +530,39 @@
                                 <select name="bp_size_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_size_text<?= $i ?>').value=this.options[this.selectedIndex].text" >
                                       <option value="" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '' ? 'selected' : '') ?>>Choose Size</option>
                                       <optgroup label="Rectangle Desktop & Mobile">
-                                          <option value="1" label="300x250" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '1' ? 'selected' : '') ?>>Rectangle Desktop &Mobile 300x250</option>
+                                          <option value="1" label="300x250" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Rectangle Desktop &Mobile 300x250' ? 'selected' : '') ?>>Rectangle Desktop &Mobile 300x250</option>
                                       </optgroup>
                                       <optgroup label="Double Rectangle Desktop">
-                                        <option value="2" label="300x600" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '2' ? 'selected' : '') ?>>Double Rectangle Desktop 300x600</option>
+                                        <option value="2" label="300x600" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Double Rectangle Desktop 300x600' ? 'selected' : '') ?>>Double Rectangle Desktop 300x600</option>
                                       </optgroup>
                                       <optgroup label="Leaderboard Desktop">
-                                        <option value="3" label="728x90" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '3' ? 'selected' : '') ?>>Leaderboard Desktop 728x90</option>
-                                        <option value="4" label="970x90" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '4' ? 'selected' : '') ?>>Leaderboard Desktop 970x90</option>
-                                        <option value="5" label="970x250" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '5' ? 'selected' : '') ?>>Leaderboard Desktop 970x250</option>
-                                        <option value="6" label="1200x90" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '6' ? 'selected' : '') ?>>Leaderboard Desktop 1200x90</option>
-                                        <option value="7" label="1200x250" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '7' ? 'selected' : '') ?>>Leaderboard Desktop 1200x250</option>
+                                        <option value="3" label="728x90" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Desktop 728x90' ? 'selected' : '') ?>>Leaderboard Desktop 728x90</option>
+                                        <option value="4" label="970x90" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Desktop 970x250' ? 'selected' : '') ?>>Leaderboard Desktop 970x250</option>
+                                        <option value="5" label="970x250" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Desktop 970x250' ? 'selected' : '') ?>>Leaderboard Desktop 970x250</option>
+                                        <option value="6" label="1200x90" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Desktop 1200x90' ? 'selected' : '') ?>>Leaderboard Desktop 1200x90</option>
+                                        <option value="7" label="1200x250" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Desktop 1200x250' ? 'selected' : '') ?>>Leaderboard Desktop 1200x250</option>
                                       </optgroup>
                                       <optgroup label="Leaderboard Mobile">
-                                        <option value="8" label="320x100" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '8' ? 'selected' : '') ?>>Leaderboard Mobile 320x100</option>
-                                        <option value="9" label="320x50" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '9' ? 'selected' : '') ?>>Leaderboard Mobile 320x50</option>
-                                        <option value="10" label="300x100" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '10' ? 'selected' : '') ?>>Leaderboard Mobile 300x100</option>
-                                        <option value="11" label="300x50" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '11' ? 'selected' : '') ?>>Leaderboard Mobile 300x50</option>
+                                        <option value="8" label="320x100" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Mobile 320x100' ? 'selected' : '') ?>>Leaderboard Mobile 320x100</option>
+                                        <option value="9" label="320x50" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Mobile 320x50' ? 'selected' : '') ?>>Leaderboard Mobile 320x50</option>
+                                        <option value="10" label="300x100" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Mobile 300x100' ? 'selected' : '') ?>>Leaderboard Mobile 300x100</option>
+                                        <option value="11" label="300x50" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Leaderboard Mobile 300x50' ? 'selected' : '') ?>>Leaderboard Mobile 300x50</option>
                                       </optgroup>
                                       <optgroup label="Coverpage Desktop">
-                                        <option value="12" label="800x500" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '12' ? 'selected' : '') ?>>Coverpage Desktop 800x500</option>
+                                        <option value="12" label="800x500" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Coverpage Desktop 800x500' ? 'selected' : '') ?>>Coverpage Desktop 800x500</option>
                                       </optgroup>
                                       <optgroup label="Coverpage Mobile">
-                                        <option value="13" label="300x250" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '13' ? 'selected' : '') ?>>Coverpage Mobile 300x250</option>
+                                        <option value="13" label="300x250" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Coverpage Mobile 300x250' ? 'selected' : '') ?>>Coverpage Mobile 300x250</option>
                                       </optgroup>
                                       <optgroup label="InRead">
-                                        <option value="14" label="300x250" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '14' ? 'selected' : '') ?>>InRead300x250</option>
-                                        <option value="15" label="640x360" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '15' ? 'selected' : '') ?>>InRead640x360</option>
+                                        <option value="14" label="300x250" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'InRead300x250' ? 'selected' : '') ?>>InRead300x250</option>
+                                        <option value="15" label="640x360" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'InRead640x360' ? 'selected' : '') ?>>InRead640x360</option>
                                       </optgroup>
                                       <optgroup label="Other">
-                                        <option value="16" label="E-newsletter" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '16' ? 'selected' : '') ?>>E-newsletter</option>
-                                        <option value="17" label="Facebook" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '17' ? 'selected' : '') ?>>Facebook</option>
-                                        <option value="18" label="Line" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '18' ? 'selected' : '') ?>>Line</option>
-                                        <option value="19" label="Twitter" <?= (!empty($item['bp_size_id'][$i]) && $item['bp_size_id'][$i] == '19' ? 'selected' : '') ?>>Twitter</option>
+                                        <option value="16" label="E-newsletter" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'E-newsletter' ? 'selected' : '') ?>>E-newsletter</option>
+                                        <option value="17" label="Facebook" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Facebook' ? 'selected' : '') ?>>Facebook</option>
+                                        <option value="18" label="Line" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Line' ? 'selected' : '') ?>>Line</option>
+                                        <option value="19" label="Twitter" <?= (!empty($item['bp_size_text'][$i]) && $item['bp_size_text'][$i] == 'Twitter' ? 'selected' : '') ?>>Twitter</option>
                                       </optgroup>
                                 </select>
                                 <div class="invalid-feedback">
@@ -573,16 +573,16 @@
                               <div class="col-md-5 mb-3">
                                 <label>Position:</label>
                                 
-                                <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);" <?= (isset($item['bp_position_id'][$i])&&!empty($item['bp_position_id'][$i]) ? '' : 'disabled') ?>>
+                                <select name="bp_position_id[<?= $i ?>]" class="custom-select"  onchange="document.getElementById('bp_position_text<?= $i ?>').value=this.options[this.selectedIndex].text;changeOptionValue(this);" <?= (isset($item['bp_position_text'][$i])&&!empty($item['bp_position_text'][$i]) ? '' : 'disabled') ?>>
                                   <option value="">Choose Position</option>
-                                  <option value="1" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == '1' ? 'selected' : '') ?>>Section</option>
-                                  <option value="2" <?= (!empty($item['bp_position_id'][$i]) && $item['bp_position_id'][$i] == '2' ? 'selected' : '') ?>>Article</option>
+                                  <option value="1" <?= (!empty($item['bp_position_text'][$i]) && $item['bp_position_text'][$i] == 'Section' ? 'selected' : '') ?>>Section</option>
+                                  <option value="2" <?= (!empty($item['bp_position_text'][$i]) && $item['bp_position_text'][$i] == 'Article' ? 'selected' : '') ?>>Article</option>
                                 </select>
                                 <input type="hidden" name="bp_position_text[<?= $i ?>]" id="bp_position_text<?= $i ?>" value="<?= (!empty($item['bp_position_text'][$i]) ? $item['bp_position_text'][$i] : '') ?>" />
                               </div>
                               <div class="col-md-5 mb-3">
                                 <label>Section:</label>
-                                <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text" <?= (isset($item['bp_section_id'][$i])&&!empty($item['bp_section_id'][$i]) ? '' : 'disabled') ?>>
+                                <select name="bp_section_id[<?= $i ?>]" class="custom-select" onchange="document.getElementById('bp_section_text<?= $i ?>').value=this.options[this.selectedIndex].text" <?= (isset($item['bp_section_text'][$i])&&!empty($item['bp_section_text'][$i]) ? '' : 'disabled') ?>>
                                 <option value="">Choose Section</option>
                                 <?php 
                                   //if(!empty($item['bp_section_id'][$i])){
@@ -590,7 +590,7 @@
                                   foreach($sectionArray['bp'] as $key => $value){ 
                                     //if($key !== 'position'){
                                 ?>
-                                  <option value="<?= $key ?>" <?= (!empty($item['bp_section_id'][$i]) && $item['bp_section_id'][$i] == $key ? 'selected' : '') ?> ><?= $value ?></option>
+                                  <option value="<?= $key ?>" <?= (!empty($item['bp_section_text'][$i]) && $item['bp_section_text'][$i] == $value ? 'selected' : '') ?> ><?= $value ?></option>
                                     <?php }/*}}*/ ?>
                                 </select>
                                 <input type="hidden" name="bp_section_text[<?= $i ?>]" id="bp_section_text<?= $i ?>" value="<?= (!empty($item['bp_section_text'][$i]) ? $item['bp_section_text'][$i] : '') ?>" />
@@ -1377,12 +1377,14 @@
         });
 
         window.onbeforeunload = function(e) {
-          alert('Hello, pissed off user!');  
-          $('#confirmModal').modal("show");
-          $('#confirmModal').delay(8000).fadeOut(1000);
-          setTimeout(function(){
-            $('#confirmModal').modal("hide");
-          }, 9000);
+          if(onSubmit)
+          { 
+            $('#confirmModal').modal("show");
+            $('#confirmModal').delay(8000).fadeOut(1000);
+            setTimeout(function(){
+              $('#confirmModal').modal("hide");
+            }, 9000);
+          }
         };
 
         

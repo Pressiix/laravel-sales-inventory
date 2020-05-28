@@ -55,17 +55,17 @@
 
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link <?= (!empty($item['bp_type']) ? 'active' : '')?>" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
+                  <a class="nav-link <?= (!empty($item['bp_type'][0]) ? 'active' : '')?>" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <?= (!empty($item['ptd_type']) ? 'active' : '')?>" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="false">Posttoday</a>
+                  <a class="nav-link <?= (!empty($item['ptd_type'][0]) ? 'active' : '')?>" id="posttoday-tab" data-toggle="tab" href="#posttoday" role="tab" aria-controls="posttoday" aria-selected="false">Posttoday</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade <?= (!empty($item['bp_type']) ? 'show active' : '')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
+                <div class="tab-pane fade <?= (!empty($item['bp_type'][0]) ? 'show active' : '')?>" id="bangkokpost" role="tabpanel" aria-labelledby="bangkokpost-tab">
                   
                   <div class="content-tablist">
-                    <?php if(isset($item['bp_type'])){
+                    <?php if(isset($item['bp_type']) && !empty($item['bp_type'][0])){
                     for($bp_index=0;$bp_index<count($item['bp_type']);$bp_index++){ ?>
                     <div class="card">
                     <div class="card-header"><strong>Ad <?= ($bp_index+1) ?></strong></div>
@@ -104,7 +104,7 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <?php for($i=0;$i<=$item['total_bp_web'][$bp_index];$i++){
+                            <?php for($i=0;$i<=$item['total_bp_web'];$i++){
                               echo (!empty($item['bp_web'][$bp_index][$i]) ? "<li>".$item['bp_web'][$bp_index][$i]."</li>" : '');
                               if(!empty($item['bp_web'][$bp_index][$i])){
                             ?>
@@ -251,7 +251,7 @@
                       </div>
                     </div>
                     <br/>
-                    <?php }} ?>
+                    <?php } ?>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -259,14 +259,14 @@
                         <input type="hidden" name="bp_campaign_budget" value="{{ $item['bp_campaign_budget'] }}">
                       </div>
                     </div>
-                    
+                    <?php } ?>
                   </div>
 
                 </div>
                 <div class="tab-pane fade <?= (!empty($item['ptd_type']) ? 'show active' : '')?>" id="posttoday" role="tabpanel" aria-labelledby="posttoday-tab">
                   
                   <div class="content-tablist">
-                  <?php if(isset($item['ptd_type'])){
+                  <?php if(isset($item['ptd_type']) && !empty($item['ptd_type'][0])){
                   for($ptd_index=0;$ptd_index<count($item['ptd_type']);$ptd_index++){ ?>
                     <div class="card">
                     <div class="card-header"><strong>Ad <?= ($ptd_index+1) ?></strong></div>
@@ -452,7 +452,7 @@
                       </div>
                     </div>
                     <br/>
-                    <?php }} ?>
+                    <?php } ?>
                     <div class="form-group row">
                       <label for="inputCampaign" class="col-sm-5 col-form-label">Campaign budget (THB):</label>
                       <div class="col-sm-10">
@@ -460,6 +460,7 @@
                         <input type="hidden" name="ptd_campaign_budget" value="{{ $item['ptd_campaign_budget'] }}">
                       </div>
                     </div>
+                    <?php } ?>
                   </div>
 
                 </div>
