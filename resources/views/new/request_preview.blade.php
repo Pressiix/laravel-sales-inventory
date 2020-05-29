@@ -305,7 +305,7 @@
                       <div class="form-group row">
                         <div class="col-15">
                           <ul class="form-ad--answer">
-                            <?php for($i=0;$i<=$item['total_ptd_web'][$ptd_index];$i++){
+                            <?php for($i=0;$i<=$item['total_ptd_web'];$i++){
                               echo (!empty($item['ptd_web'][$ptd_index][$i]) ? "<li>".$item['ptd_web'][$ptd_index][$i]."</li>" : '');
                               if(!empty($item['ptd_web'][$ptd_index][$i])){
                             ?>

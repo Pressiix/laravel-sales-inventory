@@ -20,6 +20,8 @@ use App\RequestForm;
 use App\AdDescription;
 use URL;
 use Input;
+use Excel;
+use App\Imports\InventoryImport;
 
 class RevenueReportController extends Controller
 {
@@ -243,5 +245,10 @@ class RevenueReportController extends Controller
             }*/
         }
         return array_values($array);
+    }
+
+    public function export()
+    {
+
     }
 }

@@ -1314,7 +1314,7 @@
             
             </div>
 
-            <div class="text-center"><button type="submit" onclick="beforeSubmit();" value="send" class="btn btn-submit">submit</button></div>
+            <div class="text-center"><button type="submit" onclick="beforeSubmit();" value="send" class="btn btn-submit">CONFIRM</button></div>
             {!! Form::close() !!}
         </div>
 
