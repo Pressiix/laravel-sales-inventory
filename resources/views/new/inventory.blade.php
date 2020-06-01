@@ -1039,7 +1039,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
@@ -1465,7 +1465,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit">download</button>
                   </div>
 
