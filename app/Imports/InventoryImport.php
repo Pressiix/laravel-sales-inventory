@@ -71,7 +71,7 @@ class InventoryImport implements ToModel, WithCalculatedFormulas, WithHeadingRow
         info("Sheet {$sheetName} was skipped");
     }
 
-    public function conditionalSheets(): array
+    public function conditionalSheets(): arra
     {
         return [
             0 => new FirstSheetImport(),

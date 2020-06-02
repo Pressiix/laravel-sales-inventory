@@ -19,6 +19,11 @@ use App\Services\PayUService\Exception;
 
 class InventoryController extends Controller
 {
+    public function __construct()
+    {
+        set_time_limit(8000000);
+    }
+
     public function index(Request $request)
     {
         return view('new.inventory');
