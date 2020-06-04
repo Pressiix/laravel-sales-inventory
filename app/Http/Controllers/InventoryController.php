@@ -41,14 +41,19 @@ class InventoryController extends Controller
                  return $e->getMessage();
           }*/
           $array = [];
+          $array2 = [];
           $row_index = 0;
           $type= array("leader board","sticky","hybrid","multi","leader board (mobile)","sticky  (mobile)","hybrid   (mobile)","multi  (mobile)");
           $content = '';
-            if ($request->hasFile('excel')) {
-                $file = $request->file('excel');// get file
-                //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
+
                 $reader = ReaderEntityFactory::createXLSXReader();
+                $file = $request->file('excel');// get file
+                
+                /*$file = "/assets/import/test_from_press.xlsx";*/
+
                 $reader->open($file);
+                
+                //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
                 // loop semua sheet dan dapatkan sheet orders
                 foreach ($reader->getSheetIterator() as $sheet) {
                     //$content .= '<table border="1">';
@@ -61,13 +66,13 @@ class InventoryController extends Controller
                         $row_index++;		
                     }
                 }
-                $array2 = [];
+                
                 foreach($array as $key => $value)
                 {
                     $array2[$key] = explode(",", $value);
                 }
                 echo "<pre/>"; print_r($array2);
-            }
+            
          
     }
 
