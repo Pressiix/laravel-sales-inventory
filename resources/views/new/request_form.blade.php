@@ -1376,16 +1376,18 @@
             });
         });
 
-        /*window.onbeforeunload = function(e) {
-          if(onSubmit)
+        
+
+        window.onbeforeunload = function(e) {
+          if(!onSubmit)
           { 
-            $('#confirmModal').modal("show");
+            $('#confirmModal').modal();
             $('#confirmModal').delay(8000).fadeOut(1000);
             setTimeout(function(){
               $('#confirmModal').modal("hide");
             }, 9000);
           }
-        };*/
+        };
 
         
 

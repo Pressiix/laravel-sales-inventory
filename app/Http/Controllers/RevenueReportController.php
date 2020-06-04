@@ -247,8 +247,17 @@ class RevenueReportController extends Controller
         return array_values($array);
     }
 
-    public function export()
-    {
+    // Export data
+    public function export(Request $request){
 
+        /*if ($request->input('exportexcel') != null ){
+        return Excel::download(new UsersExport, 'users.xlsx');
+        }
+
+        if ($request->input('exportcsv') != null ){
+        return Excel::download(new UsersExport, 'users.csv');
+        }
+
+        return redirect()->action('PagesController@index');*/
     }
 }

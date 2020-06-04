@@ -16,6 +16,7 @@ use Excel;
 use App\Imports\InventoryImport;
 use App\Services\PayUService\Exception;
 
+use ReaderEntityFactory;
 
 class InventoryController extends Controller
 {
@@ -29,16 +30,44 @@ class InventoryController extends Controller
         return view('new.inventory');
     }
 
-    public function import()
+    public function import(Request $request)
     {
-        //try {
+        /*try {
 
             echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
           
-          /*} catch (\Exception $e) {
+          } catch (\Exception $e) {
           
                  return $e->getMessage();
           }*/
+          $array = [];
+          $row_index = 0;
+          $type= array("leader board","sticky","hybrid","multi","leader board (mobile)","sticky  (mobile)","hybrid   (mobile)","multi  (mobile)");
+          $content = '';
+            if ($request->hasFile('excel')) {
+                $file = $request->file('excel');// get file
+                //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
+                $reader = ReaderEntityFactory::createXLSXReader();
+                $reader->open($file);
+                // loop semua sheet dan dapatkan sheet orders
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    //$content .= '<table border="1">';
+                    foreach ($sheet->getRowIterator() as $row) {
+                            $array[$row_index] = implode(array_map(function ($cell) {
+                                    return "\"".$cell."\",";
+                            }, $row->getCells()));
+                            
+                        //$array[$row_index] = explode(",", $array[$row_index]);
+                        $row_index++;		
+                    }
+                }
+                $array2 = [];
+                foreach($array as $key => $value)
+                {
+                    $array2[$key] = explode(",", $value);
+                }
+                echo "<pre/>"; print_r($array2);
+            }
          
     }
 

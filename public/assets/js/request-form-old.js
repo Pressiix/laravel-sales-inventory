@@ -263,6 +263,8 @@ function beforeSubmit() {
             return false;
         }
     });
+
+    onSubmit = true;
 }
 
 function clearPreviousTab(active_tab) {

@@ -230,6 +230,7 @@ return [
         'Html' => 'Collective\Html\HtmlFacade',
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'ReaderEntityFactory' => Box\Spout\Reader\Common\Creator\ReaderEntityFactory::class,
     ],
 
 ];
