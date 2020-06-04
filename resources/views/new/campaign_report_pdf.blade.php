@@ -43,7 +43,7 @@
 <section class="contentStatic-pageContent">
   <div class="container">
     <div class="row container--inventory">
-      <div class="col-15 bg-fff">
+      <div class="col-15 bg-fff" style="width: 21cm; height: 39.7cm;">
         <div class="content-inventory">
           <div class="head--top">
             <div class="head--postgroup-logo"><img src="/assets/images/bkp-logo-blue-pdf.png" class="img-fluid" alt="" style="width:280px;"></div>
@@ -128,8 +128,10 @@
 
 doc.addHTML(document.getElementsByClassName("col-15 bg-fff")[0],function() {
     doc.save('html.pdf');
-    window.close();
+    
+    //window.close();
 });
+//doc.output('dataurlnewwindow');
 </script>
 </body>
 </html>

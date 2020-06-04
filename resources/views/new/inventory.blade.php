@@ -104,7 +104,7 @@
  
                     <div class="table-responsive table-dashboard inventory-dashboard">
 
-                      <table id="ptd" class="table table-bordered text-center">
+                      <table id="bkp" class="table table-bordered text-center">
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
@@ -1080,7 +1080,7 @@
 
                     <div class="table-responsive table-dashboard inventory-dashboard">
 
-                      <table class="table table-bordered text-center">
+                      <table id="ptd" class="table table-bordered text-center">
                         <thead class="thead-ptd">
                           <tr>
                             <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
@@ -1516,7 +1516,7 @@
 
         <div class="table-responsive table-dashboard--popup">
 
-          <table id="bkp" class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped">
             <thead class="thead-bkp">
               <tr>
                 <th scope="col">Campaign</th>
