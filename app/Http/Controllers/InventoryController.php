@@ -55,16 +55,22 @@ class InventoryController extends Controller
                 
                 //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
                 // loop semua sheet dan dapatkan sheet orders
-                foreach ($reader->getSheetIterator() as $sheet) {
+                foreach ($reader->getSheetIterator() as $sheet) 
+                {
                     //$content .= '<table border="1">';
-                    foreach ($sheet->getRowIterator() as $row) {
+                    if ($sheet->getName() === 'Sheet2') //get array from specific sheet name ***
+                    {
+                        foreach ($sheet->getRowIterator() as $row) {
                             $array[$row_index] = implode(array_map(function ($cell) {
                                     return "\"".$cell."\",";
                             }, $row->getCells()));
                             
-                        //$array[$row_index] = explode(",", $array[$row_index]);
-                        $row_index++;		
+                            //$array[$row_index] = explode(",", $array[$row_index]);
+                            $row_index++;		
+                        }
+                    break;
                     }
+                    
                 }
                 
                 foreach($array as $key => $value)
