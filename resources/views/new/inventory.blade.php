@@ -104,7 +104,7 @@
  
                     <div class="table-responsive table-dashboard inventory-dashboard">
 
-                      <table class="table table-bordered text-center">
+                      <table id="ptd" class="table table-bordered text-center">
                         <thead class="thead-bkp">
                           <tr>
                             <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
@@ -1040,7 +1040,7 @@
 
                   <div class="box-border--center">
                     <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
-                    <button type="submit" value="send" class="btn btn-submit">download</button>
+                    <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
                 </div>
@@ -1466,7 +1466,7 @@
 
                   <div class="box-border--center">
                     <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
-                    <button type="submit" value="send" class="btn btn-submit">download</button>
+                    <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('ptd');">download</button>
                   </div>
 
                 </div>
@@ -1516,7 +1516,7 @@
 
         <div class="table-responsive table-dashboard--popup">
 
-          <table class="table table-bordered table-striped">
+          <table id="bkp" class="table table-bordered table-striped">
             <thead class="thead-bkp">
               <tr>
                 <th scope="col">Campaign</th>
@@ -1723,17 +1723,41 @@
   </div>
 </div>
 
-
+<script src="/assets/js/jquery.table2excel.js"></script>
 <script>
-
+var current_tab = "bkp";
     $('#myTab a#posttoday-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').addClass('tabs--ptd');
+      current_tab = "ptd";
     })
     $('#myTab a#bangkokpost-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').removeClass('tabs--ptd');
+      current_tab = "bkp";
     })
 
+
+    function downloadExcel(table_name) {
+            
+            $("#"+table_name).table2excel({
+              exclude: ".noExl",
+                name: "Excel Document Name"
+            }); 
+            
+      }
+        
+    try {
+      fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+        return true;
+      }).catch(function(e) {
+        var carbonScript = document.createElement("script");
+        carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+        carbonScript.id = "_carbonads_js";
+        document.getElementById("carbon-block").appendChild(carbonScript);
+      });
+    } catch (error) {
+      console.log(error);
+    }
 </script>
 @endsection
