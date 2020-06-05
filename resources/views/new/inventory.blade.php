@@ -106,17 +106,18 @@
 
                       <table id="bkp" class="table table-bordered text-center">
                         <thead class="thead-bkp">
-                          <tr>
-                            <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
+                          <tr class="cannot-select">
+                            <th scope="col" rowspan="2" class="bar-header1">Campaign</th>
                             <th scope="col" colspan="32" class="bar-header2"><div class="div-barheader2">January 2019</div></th>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <th scope="col" colspan="8">Week 1</th>
                             <th scope="col" colspan="8">Week 2</th>
                             <th scope="col" colspan="8">Week 3</th>
                             <th scope="col" colspan="8">Week 4</th>
                           </tr>
                           <tr>
+                            <th scope="col" style="display:none;">Campaign</th>
                             <th scope="col" width="60">1</th>
                             <th scope="col" width="60">2</th>
                             <th scope="col" width="60">3</th>
@@ -192,14 +193,14 @@
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Inventory</th>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap">175,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
@@ -1723,9 +1724,13 @@
   </div>
 </div>
 
+<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<div id="showJson"></div>
+
 <script src="/assets/js/jquery.table2excel.js"></script>
 <script>
-var current_tab = "bkp";
+    var current_tab = "bkp";
+
     $('#myTab a#posttoday-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').addClass('tabs--ptd');
@@ -1742,22 +1747,46 @@ var current_tab = "bkp";
             
             $("#"+table_name).table2excel({
               exclude: ".noExl",
-                name: "Excel Document Name"
+                name: "Inventory"
             }); 
             
       }
+
+       // A few jQuery helpers for exporting only
+      jQuery.fn.pop = [].pop;
+      jQuery.fn.shift = [].shift;
+
+      function saveData(table_name) {
+
+        //const $rows = $("#"+table_name).find('tr:not(:hidden)');
+        const $rows = $("#"+table_name).find('tr').not(".cannot-select");
+        const headers = [];
+        const data = [];
+
+        // Get the headers (add special header logic here)
+        //$($rows.shift()).find('th:not(:empty)').each(function () {
+        $($rows.shift()).find('th').each(function () {
+          headers.push($(this).text().toLowerCase());
+        });
+
+        // Turn all existing rows into a loopable array
+        $rows.each(function () {
+          const $td = $(this).find('td');
+          const h = {};
+
+          // Use the headers from earlier to name our hash keys
+          headers.forEach((header, i) => {
+
+            h[header] = $td.eq(i).text();
+          });
+
+          data.push(h);
+        });
+
+        // Output the result
+        $("#showJson").text(JSON.stringify(data));
+      }
         
-    try {
-      fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-        return true;
-      }).catch(function(e) {
-        var carbonScript = document.createElement("script");
-        carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-        carbonScript.id = "_carbonads_js";
-        document.getElementById("carbon-block").appendChild(carbonScript);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    
 </script>
 @endsection
