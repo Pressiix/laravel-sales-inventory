@@ -1,191 +1,242 @@
-//Replace URL after user click to save request form
-window.history.pushState('request-save', 'Title', '/request_form');
-var active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'bangkokpost' : 'posttoday');
-var none_active_tab = ($('#bangkokpost-tab').hasClass("active") ? 'posttoday' : 'bangkokpost');
-var options = "";
-$('input[type="file"]').attr('title', window.webkitURL ? ' ' : '');
-
-//***------- DOCUMENT READY ------------****
-$(document).ready(function() {
-    //add required attribute to all input tag on default tab => Bangkokpost Tab *** 
-    $("select[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
-    $("input[name*='bp_']").prop('required', ($('#bangkokpost-tab').hasClass("active") ? true : false));
-});
-
-//Date picker option for default ad description card
-$('.datepicker').datepicker({
-    autoclose: true,
-    todayHighlight: true
-});
-
-$("body").on('focus', '.datepicker', function() {
-    $(this).datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-});
-
-
-window.onbeforeunload = function(e) {
-    e = e || window.event;
-
-    // For IE and Firefox prior to version 4
-    if (e) {
-        e.returnValue = 'Any string';
-    }
-
-    // For Safari
-    return 'Any string';
-};
-
-
-function changeTabOption(element, tab_name) {
-    var checkbox = element;
-    var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
-    if (checkbox.is(':checked')) {
-        $('#' + tab_name + '-ad-card').removeAttr('style');
-        switch (checkboxIndex) {
-            case '1': //Social
-                $('#' + tab_name + '_option1').show();
-                $('#' + tab_name + '_option2').hide();
-                $('#' + tab_name + '_option1 :input').prop('required', true);
-                $('#' + tab_name + '_option2 :input').prop('required', false);
-                //$('#' + tab_name + '_option3').hide();
-
-                $('div[id*="' + tab_name + '_device"]').each(function() {
-                    $(this).hide();
-                    $(this).find('input').prop('disabled', true);
-                    $(this).find('input').prop('required', false);
-                });
-                $('select[name*="' + tab_name + '_position_id"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                    $(this).find('option').prop('selected', false);
-                });
-                $('input[name*="' + tab_name + '_position_text"]').each(function() {
-                    $(this).prop('disabled', true);
+function showOption(element, web_name) {
+    //var web_name = 'bp';
+    var id = element.attr('id');
+    x = id.substr(id.length - 3).charAt(0);
+    y = id.substr(id.length - 1);
+    $("#" + web_name + "_type--" + (x == '1' ? '2' : '1') + "-" + y).hide();
+    var position_dropdown = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_position_id"]');
+    var position_text = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_position_text"]');
+    var section_dropdown = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_section_id"]');
+    var section_text = $('#' + web_name + '-ad-card--' + y).find('select[name*="' + web_name + '_section_text"]');
+    //console.log(position_text)
+    if (x == '1' || x == '3') //if user selected 'Social' or 'E-newsletter'
+    { //console.log("web name = "+web_name+" x = "+x+" : y = "+y);
+        if (x == '1') //if user selected 'Social'
+        {
+            $("#" + web_name + "_type--2-" + y).hide();
+            $("#" + web_name + "_type--2-" + y + " :input").each(function() {
+                $(this).prop('required', false);
+                $(this).prop('checked', false);
+            });
+        } else if (x == '3') //if user selected 'E-newsletter'
+        {
+            $("#" + web_name + "_type--1-" + y).hide();
+            $("#" + web_name + "_type--1-" + y + " :input").each(function() {
+                $(this).prop('required', false);
+                $(this).prop('checked', false);
+            });
+            $("#" + web_name + "_type--2-" + y).hide();
+            $("#" + web_name + "_type--2-" + y + " :input").each(function() {
+                $(this).prop('required', false);
+                $(this).prop('checked', false);
+            });
+            for (i = 0; i < 2; i++) //remove required properties for all option
+            {
+                $("#" + web_name + "_type--" + (i + 1) + "-" + y + " :input").each(function() {
                     $(this).prop('required', false);
                 });
-                $('select[name*="' + tab_name + '_section_id"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                    $(this).prop('selected', false);
-                });
-                $('input[name*="' + tab_name + '_section_text"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                });
-                break;
-            case '2': //Website
-                $('#' + tab_name + '_option1').hide();
-                $('#' + tab_name + '_option2').show();
-                $('#' + tab_name + '_option1 :input').prop('required', false);
-                $('#' + tab_name + '_option2 :input').prop('required', true);
-                //$('#' + tab_name + '_option3').hide();
-                $('div[id*="' + tab_name + '_device"]').each(function() {
-                    $(this).show();
-                    $(this).find('input').prop('disabled', false);
-                    $(this).find('input').prop('required', true);
-                });
-                $('select[name*="' + tab_name + '_position_id"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
-                });
-                $('input[name*="' + tab_name + '_position_text"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
-                });
-                $('select[name*="' + tab_name + '_section_id"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
-                });
-                $('input[name*="' + tab_name + '_section_text"]').each(function() {
-                    $(this).prop('disabled', false);
-                    $(this).prop('required', true);
-                });
-                break;
-            case '3': //E-newsletter
-                $('#' + tab_name + '_option1').hide();
-                $('#' + tab_name + '_option2').hide();
-                $('#' + tab_name + '_option1 :input').prop('required', false);
-                $('#' + tab_name + '_option2 :input').prop('required', false);
-                //$('#' + tab_name + '_option3').show();
-                $('div[id*="' + tab_name + '_device"]').each(function() {
-                    $(this).hide();
-                    $(this).find('input').prop('disabled', true);
-                    $(this).find('input').prop('required', false);
-                });
-                $('select[name*="' + tab_name + '_position_id"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                    $(this).find('option').prop('selected', false);
-                });
-                $('input[name*="' + tab_name + '_position_text"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                });
-                $('select[name*="' + tab_name + '_section_id"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                    $(this).prop('selected', false);
-                });
-                $('input[name*="' + tab_name + '_section_text"]').each(function() {
-                    $(this).prop('disabled', true);
-                    $(this).prop('required', false);
-                });
-                break;
+            }
         }
-        $('#' + tab_name + '_facebook_option').hide();
-        $('input[id="' + tab_name + '_social1"]').prop('checked', false);
-        $('#' + tab_name + '_option1 :input').prop('checked', false);
-        $('#' + tab_name + '_option2 :input').prop('checked', false);
-        $('#' + tab_name + '_facebook_option :input').prop('checked', false);
-        $('#' + tab_name + '_facebook_option :input').prop('disabled', true);
-        $('div[id*="' + tab_name + '_device"]').each(function() {
-            $(this).find('input').prop('checked', false);
+        $('#' + web_name + '-ad-card--' + y).find('div[id*="' + web_name + '_device"]').each(function() {
+            $(this).hide();
+            $(this).find('input').each(function() {
+                $(this).prop('required', false);
+                $(this).prop('disabled', true);
+                $(this).prop('checked', false);
+            });
+        });
+
+        position_dropdown.each(function() {
+            $(this).prop('required', false);
+            $(this).prop('disabled', true);
+            $(this).prop('selected', false);
+        });
+        position_text.each(function() {
+            $(this).prop('required', false);
+            $(this).prop('disabled', true);
+            $(this).val() = '';
+        });
+        section_dropdown.each(function() {
+            $(this).prop('required', false);
+            $(this).prop('disabled', true);
+            $(this).prop('selected', false);
+        });
+        section_text.each(function() {
+            $(this).prop('required', false);
+            $(this).prop('disabled', true);
+            $(this).val() = '';
+        });
+    } else if (x == '2') //if user selected 'Website'
+    {
+        //console.log('it\'s worked');
+        $("#" + web_name + "_type--1-" + y).hide();
+        $("#" + web_name + "_type--1-" + y + " :input").each(function() {
+            $(this).prop('required', false);
+            $(this).prop('checked', false);
+        });
+        $('#' + web_name + '-ad-card--' + y).find('div[id*="' + web_name + '_device"]').each(function() {
+            $(this).show();
+            $(this).find('input[name*="' + web_name + '_device"]').each(function() {
+                $(this).prop('required', true);
+                $(this).prop('disabled', false);
+                $(this).prop('checked', false);
+            })
+        });
+
+        position_dropdown.each(function() {
+            console.log($(this));
+            $(this).prop('required', true);
+            $(this).prop('disabled', false);
+        });
+        position_text.each(function() {
+            $(this).prop('required', true);
+            $(this).prop('disabled', false);
+            $(this).val() = '';
+        });
+        section_dropdown.each(function() {
+            $(this).prop('required', true);
+            $(this).prop('disabled', false);
+        });
+        section_text.each(function() {
+            $(this).prop('required', true);
+            $(this).prop('disabled', false);
+            $(this).val() = '';
         });
     }
+
+    position_dropdown.each(function() {
+        $(this).find('option').each(function() {
+            $(this).prop('selected', false);
+        });
+    });
+    section_dropdown.each(function() {
+        $(this).find('option').each(function() {
+            $(this).prop('selected', false);
+        });
+    });
+
+    $("#" + web_name + "_type--" + x + "-" + y + " :input").each(function() {
+        $(this).prop('required', true);
+    });
+    $("#" + web_name + "_type--" + (x == '1' ? '2' : '1') + "-" + y + " :input").each(function() {
+        $(this).prop('required', false);
+    });
+    $("#" + web_name + "_type--" + x + "-" + y).show();
+    $("#" + web_name + "-ad-card--" + y).show();
 }
 
-function facebookCheckBoxOption(element, tab_name) {
-    var checkbox = element;
-    var checkboxIndex = String(checkbox.attr('id')).match(/\d+/)[0];
-    if (checkbox.is(':checked') && checkboxIndex == "1") { //if user checked on facebook option (ID = 1)
-        $('#' + tab_name + '_facebook_option').show();
-        $('#' + tab_name + '_facebook_option :input').prop('disabled', false);
-    } else if (!checkbox.is(':checked') && checkboxIndex == "1") {
-        $('#' + tab_name + '_facebook_option').hide();
-        $('#' + tab_name + '_facebook_option :input').prop('checked', false);
+
+function addAds(web_name) {
+    if ($('input[name="' + web_name + '_type[0]"]').is(':checked')) {
+        var count = $('div[id*="' + web_name + '_detail--"]').length;
+        var Html = $('div[id="' + web_name + '_detail--1"]').eq(0).clone();
+        Html.each(function() {
+            this.id = this.id.replace('1', (count + 1));
+        })
+        Html.find('input').each(function() { //Replace input name
+            this.name = this.name.replace('[0]', '[' + count + ']');
+            if (this.type !== 'radio' && this.type !== 'checkbox') {
+                this.value = '';
+            }
+        });
+        Html.find('div[id*="' + web_name + '_device"]').each(function() {
+            this.removeAttribute('style');
+        });
+        Html.find('input[name*="' + web_name + '_device"]').each(function() {
+            this.removeAttribute('disabled');
+            this.required = true;
+        });
+        Html.find('label[for="customFile"]').each(function() { //Replace input name
+            this.textContent = "Choose file";
+            this.id = this.id.replace('0', count);
+        });
+        Html.find("input[type='hidden']").each(function() { //Replace input name
+            this.id = this.id.replace('0', count);
+        });
+        Html.find("input[type='radio']").each(function() { //Replace input value
+            this.checked = false;
+        });
+        Html.find('input[name*="' + web_name + '_type"]').each(function() {
+            this.id = this.id.replace('1-1', '1-' + (count + 1));
+            this.id = this.id.replace('2-1', '2-' + (count + 1));
+            this.id = this.id.replace('3-1', '3-' + (count + 1));
+        });
+        Html.find('input[name*="' + web_name + '_web"]').each(function() {
+            this.id = this.id.replace('[0][', '[' + (count + 1) + '][');
+        });
+        Html.find('div[id*="' + web_name + '_type--"]').each(function() {
+            this.id = this.id.replace(this.id.substr(this.id.length - 3).charAt(0) + '-' + this.id.substr(this.id.length - 1), this.id.substr(this.id.length - 3).charAt(0) + '-' + (count + 1));
+            this.setAttribute('style', 'display:none;');
+        });
+        Html.find('select').each(function() { //Replace dropdown name
+            this.name = this.name.replace('[0]', '[' + count + ']');
+            this.removeAttribute('disabled');
+            var id = this.name.split('_id[' + count + ']')[0]; //set hidden input id for posting dropdown text
+            var select_name = this.name.substring(
+                this.name.lastIndexOf(web_name + "_") + (web_name == 'bp' ? 3 : 4),
+                this.name.lastIndexOf("_")
+            );
+            if (select_name == 'position') {
+                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
+            } else {
+                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;');
+            }
+        });
+        Html.find("div[id*='" + web_name + "-ad-title']").each(function() { //Replace box title
+            this.textContent = this.textContent.replace('Ad 1 Description:', 'Ad ' + (count + 1) + ' Description:');
+        });
+        Html.find('div[id*="' + web_name + '-ad-card--"]').each(function() { //replace card index
+            this.id = this.id.replace('1', (count + 1));
+            this.setAttribute('style', 'display:none;');
+        });
+        $('#' + web_name + '-all-detail').append(Html);
+        count++;
+    } else {
+        $(".alert-type-required-text").text('กรุณาเลือกประเภท (Social/ Website/ E-newsletter)');
+        $("#alertModal").modal('show');
     }
 }
 
-//Show Bangkokpost campaign option by value from option type 
-$('input[id*="bp_type"]').each(function() {
-    $(this).on("change", function() {
-        changeTabOption($(this), 'bp');
-    });
-});
+function Validate(oForm) {
+    var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];
+    var arrInputs = oForm.getElementsByTagName("input");
+    for (var i = 0; i < arrInputs.length; i++) {
+        var oInput = arrInputs[i];
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
 
-$('input[id*="bp_social"]').each(function() {
-    $(this).on("change", function() {
-        facebookCheckBoxOption($(this), 'bp');
-    });
-});
+                if (!blnValid) {
+                    //alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                    $(".alert-type-required-text").text("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                    $("#alertModal").modal('show');
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
 
-//Show Posttoday campaign option by value from option type
-$('input[id*="ptd_type"]').each(function() {
-    $(this).on("change", function() {
-        changeTabOption($(this), 'ptd');
-    });
-});
+//Show file name on label tag
+function showFileName(tagName) {
+    var file_name = $('input[name="' + tagName + '"]').val();
+    var fIndex = String(tagName).match(/\d+/)[0];
+    var labelId = String(tagName).replace('[' + fIndex + ']', fIndex);
+    $('label[id="' + labelId + '"]').text(String(file_name).slice(String(file_name).lastIndexOf('\\') + 1));
+}
 
-$('input[id*="ptd_social"]').each(function() {
-    $(this).on("change", function() {
-        facebookCheckBoxOption($(this), 'ptd');
-    });
-});
-
-
+function getCheckBoxIndex(checkbox) {
+    return String(checkbox.attr('id')).match(/\d+/)[0];
+}
 
 function requireFieldOnCard(tab_name, value) {
     if (value) {
@@ -200,60 +251,127 @@ function requireFieldOnCard(tab_name, value) {
         }
     }
 }
-
-function getCheckBoxIndex(checkbox) {
-    return String(checkbox.attr('id')).match(/\d+/)[0];
-}
 //Create input field before user click submit button
 function beforeSubmit() {
     createHiddenField();
     //validateCheckbox(active_tab,none_active_tab);
     //event.preventDefault();
-    if ($('div[id*="bp_option1"] :input').is(':checked') || $('div[id*="ptd_option1"] :input').is(':checked')) //remove required property on social option if user checked on social option (at least 1)
-    {
-        $('input[name*="bp_social"]').each(function() {
-            $(this).prop("required", false);
-        });
-        $('input[name*="ptd_social"]').each(function() {
-            $(this).prop("required", false);
-            //console.log($(this));
-        });
+    var i = 0;
+    while (i < 2) {
+        if (i == '0') //remove required properties from social option
+        {
+            $('div[id*="bp_type--1"]').each(function() { //remove required properties from bp social option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function() {
+                    //console.log($(this).attr('id'));
+                    if ($(this).is(':checked')) {
+                        $('div[id*="bp_type--1-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                        $('div[id*="bp_type--2-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                    }
+                });
+                for (j = 0; j < 3; j++) //remove require properties from bp device option if type = 1 or 3
+                {
+                    if (j == 0 || j == 2) {
+                        if ($('input[id="bp_type' + (j + 1) + '-' + index + '"]').is(':checked')) {
+                            $('div[id*="bp-ad-card--' + index + '"]').each(function() {
+                                $(this).find('input[name*="bp_device"]').each(function() {
+                                    $(this).prop('required', false);
+                                });
+                                if (j == 2) { //remove all checkbox required when type = E-newsletter
+                                    for (k = 0; k < 3; k++) {
+                                        $('input[id="bp_type' + (k + 1) + '-' + index + '"]').prop("required", false);
+                                    }
+                                    $('input[name*="bp_facebook[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                    $('input[name*="bp_social[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                    $('input[name*="bp_web[' + j + ']"]').each(function() {
+                                        $(this).prop("required", false);
+                                    });
+                                }
+                            });
+
+                        }
+                    }
+                }
+            });
+
+            $('div[id*="ptd_type--1"]').each(function() { //remove required properties from ptd social option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function() {
+                    if ($(this).is(':checked')) {
+                        $('div[id*="ptd_type--1-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                        $('div[id*="ptd_type--2-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                    }
+                });
+                for (j = 0; j < 3; j++) //remove require properties from bp device option if type = 1 or 3
+                {
+                    if (j == 0 || j == 2) {
+                        if ($('input[id="ptd_type' + (j + 1) + '-' + index + '"]').is(':checked')) {
+                            $('div[id*="ptd-ad-card--' + index + '"]').each(function() {
+                                $(this).find('input[name*="ptd_device"]').each(function() {
+                                    $(this).prop('required', false);
+                                });
+                            });
+                            if (j == 2) { //remove all checkbox required when type = E-newsletter
+                                for (k = 0; k < 3; k++) {
+                                    $('input[id="ptd_type' + (k + 1) + '-' + index + '"]').prop("required", false);
+                                }
+                                $('input[name*="ptd_facebook[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                                $('input[name*="ptd_social[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                                $('input[name*="ptd_web[' + j + ']"]').each(function() {
+                                    $(this).prop("required", false);
+                                });
+                            }
+                        }
+                    }
+                }
+            });
+        } else { //remove required properties from web option
+            $('div[id*="bp_type--2"]').each(function() { //remove required properties from bp web option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function() {
+                    if ($(this).is(':checked')) {
+                        $('div[id*="bp_type--2-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                        $('div[id*="bp_type--1-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                    }
+                });
+            });
+
+            $('div[id*="ptd_type--2"]').each(function() { //remove required properties from ptd web option
+                var index = $(this).attr('id').substr($(this).attr('id').length - 1);;
+                $(this).find('input').each(function() {
+                    if ($(this).is(':checked')) {
+                        $('div[id*="ptd_type--2-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                        $('div[id*="ptd_type--1-' + index + '"] :input').each(function() {
+                            $(this).prop("required", false);
+                        });
+                    }
+                });
+            });
+        }
+        i++;
     }
-
-    $('input[id*="bp_type"]').each(function() {
-        var boxIndex = getCheckBoxIndex($(this));
-        if ($(this).is(':checked') && boxIndex !== '2') {
-            $('input[name*="bp_web"]').each(function() {
-                $(this).prop("required", false);
-            });
-
-            if (boxIndex == '1') {
-                $('div[id*="bp_device"]').each(function() {
-                    $(this).hide();
-                    $(this).find('input').prop('disabled', true);
-                    $(this).find('input').prop('required', false);
-                    $(this).find('input').prop('checked', false);
-                });
-            }
-        }
-    });
-
-    $('input[id*="ptd_type"]').each(function() {
-        var boxIndex = getCheckBoxIndex($(this));
-        if ($(this).is(':checked') && boxIndex !== '2') {
-            $('input[name*="ptd_web"]').each(function() {
-                $(this).prop("required", false);
-            });
-            if (boxIndex == '1') {
-                $('div[id*="ptd_device"]').each(function() {
-                    $(this).hide();
-                    $(this).find('input').prop('disabled', true);
-                    $(this).find('input').prop('required', false);
-                    $(this).find('input').prop('checked', false);
-                });
-            }
-        }
-    });
 
     $('div[class="custom-file"] :input').each(function() {
         if ($(this).val() !== "") {
@@ -263,6 +381,35 @@ function beforeSubmit() {
             return false;
         }
     });
+
+    onSubmit = true;
+}
+
+function createHiddenField() {
+    //event.preventDefault();
+    for (i = 0; i < 2; i++) {
+        switch (i) {
+            case 0: //for customer name
+                var selIndex = document.form.customer_id.selectedIndex;
+                var selText = document.form.customer_id.options[selIndex].text;
+                var input_name = 'customer_name';
+                break;
+            case 1: //for advertiser name
+                var selIndex = document.form.advertiser_id.selectedIndex;
+                var selText = document.form.advertiser_id.options[selIndex].text;
+                var input_name = 'advertiser_name';
+                break;
+        }
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", input_name);
+        input.setAttribute("value", selText);
+        //append to form element that you want .
+        document.getElementById("form").appendChild(input);
+    }
+    $('form').append("<input type='hidden' name='total_bp_web' value='9' />");
+    $('form').append("<input type='hidden' name='total_ptd_web' value='9' />");
+
 }
 
 function clearPreviousTab(active_tab) {
@@ -277,7 +424,9 @@ function clearPreviousTab(active_tab) {
     var previous_tab_input = document.querySelectorAll("input[name*='" + previous_tab_name + "_']");
     var previous_tab_dropdown = document.querySelectorAll("select[name*='" + previous_tab_name + "_']");
     for (var i = 0; i < previous_tab_input.length; i++) {
-        previous_tab_input[i].value = '';
+        if (previous_tab_input[i].type !== "radio" && previous_tab_input[i].type !== "checkbox") {
+            previous_tab_input[i].value = '';
+        }
         previous_tab_input[i].required = false;
         previous_tab_input[i].checked = false;
         if (previous_tab_input[i].type == "file") {
@@ -301,51 +450,42 @@ $('#posttoday-tab').each(function() {
     }
     $(this).on('click', function(e) {
         if (active_tab !== 'posttoday') {
-            $('#ptdModal').modal('show');
+            active_tab = 'posttoday';
+            none_active_tab = 'bangkokpost';
+            addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
+            requireFieldOnCard('ptd', true); //add require attribute to input field
+            clearPreviousTab(active_tab); //clear all input value on previous tab
+            $('div[id*="bp_detail--"]').each(function(index) { //destroy all cloned card on bangkokpost tab when user changed tab to posttoday
+                if (index !== 0) { //if this card not equal default card
+                    $(this).remove(); //remove cloned card
+                }
+            });
+            $("div[id*='ptd-ad-card']").hide(); //hide default card
+            $("div[id*='ptd_type--1']").hide();
+            $("div[id*='ptd_type--2']").hide();
         }
     })
 })
 
-//Event when user clicked on posttoday tab
-$('#ptd-modal-submit').click(function(e) {
-    //if user change current tab, Show a posstoday tab
-    $('.nav-requestForm').addClass('tabs--ptd');
-    active_tab = 'posttoday';
-    none_active_tab = 'bangkokpost';
-    addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
-    requireFieldOnCard('ptd', true); //add require attribute to input field
-    clearPreviousTab(active_tab); //clear all input value on previous tab
-    $('div[id*="bp-ad-card"]').each(function(index) { //destroy all cloned card on bangkokpost tab when user changed tab to posttoday
-        if (index !== 0) { //if this card not equal default card
-            $(this).remove(); //remove cloned card
-        }
-    });
-    $("div[id*='ptd-ad-card']").hide(); //hide default card
-    $("div[id*='ptd-type-container']").hide();
-});
-
 //Event when user clicked on bangkokpost tab
 $('#bangkokpost-tab').click(function(e) {
     if (active_tab !== 'bangkokpost') {
-        $('#bpModal').modal('show');
+        //if user change current tab, hide posstoday tab and show bangkokpost tab
+        $('.nav-requestForm').removeClass('tabs--ptd');
+        active_tab = 'bangkokpost';
+        none_active_tab = 'posttoday';
+        addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
+        requireFieldOnCard('bp', true); //add require attribute to input field
+        clearPreviousTab(active_tab); //clear all input value on previous tab
+        $('div[id*="ptd_detail--"]').each(function(index) { //destroy all cloned card on posttoday tab when user changed tab to bangkokpost
+            if (index !== 0) { //if this card not equal default card
+                $(this).remove(); //remove cloned card
+            }
+        });
+        $("div[id*='bp-ad-card']").hide(); //hide default card
+        $("div[id*='bp_type--1']").hide();
+        $("div[id*='bp_type--2']").hide();
     }
-});
-
-$('#bp-modal-submit').click(function(e) {
-    //if user change current tab, hide posstoday tab and show bangkokpost tab
-    $('.nav-requestForm').removeClass('tabs--ptd');
-    active_tab = 'bangkokpost';
-    none_active_tab = 'posttoday';
-    addTabClass(active_tab, none_active_tab); //add and remove some attribute on this tab
-    requireFieldOnCard('bp', true); //add require attribute to input field
-    clearPreviousTab(active_tab); //clear all input value on previous tab
-    $('div[id*="ptd-ad-card"]').each(function(index) { //destroy all cloned card on posttoday tab when user changed tab to bangkokpost
-        if (index !== 0) { //if this card not equal default card
-            $(this).remove(); //remove cloned card
-        }
-    });
-    $("div[id*='bp-ad-card']").hide(); //hide default card
-    $("div[id*='bp-type-container']").hide();
 });
 
 function addTabClass(active_tab, none_active_tab) {
@@ -363,185 +503,4 @@ function addTabClass(active_tab, none_active_tab) {
         $("#" + active_tab + "-tab").css("background-color", "#396EB5");
         $("#myTab").css("border-bottom", "5px solid #396EB5");
     }
-}
-
-//validate checkbox on bangkokpost and posttoday tab
-function validateCheckbox(active_tab, none_active_tab) {
-    if (!$("input[name*='bp_facebook']:checked").length && !$("input[name*='ptd_facebook']:checked").length) {
-        event.preventDefault();
-        $("#bp-facebook-tab").css("border", "1px solid #D13E3E ");
-        $("#ptd-facebook-tab").css("border", "1px solid #D13E3E ");
-        $("#bp-tab-border").css("border", "1px solid #fff ");
-        $("#ptd-tab-border").css("border", "1px solid #fff ");
-    } else if (!$("input[name*='bp_facebook']:checked").length && $("input[name*='bp_web']:checked").length) {
-        event.preventDefault();
-        $("#bp-facebook-tab").css("border", "1px solid #D13E3E");
-        $("#bp-tab-border").css("border", "1px solid #fff ");
-        if ($("input[name*='ptd_facebook']:checked").length || $("input[name*='ptd_facebook']:checked").length) {
-            $("#ptd-facebook-tab").css("border", "1px solid #fff");
-        } else {
-            $("#ptd-facebook-tab").css("border", "1px solid #D13E3E");
-        }
-        if ($("input[name*='ptd_web']:checked").length) {
-            $("#ptd-tab-border").css("border", "1px solid #fff ");
-        } else {
-            $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
-        }
-    } else if (!$("input[name*='ptd_facebook']:checked").length && $("input[name*='ptd_web']:checked").length) {
-        event.preventDefault();
-        $("#ptd-facebook-tab").css("border", "1px solid #D13E3E");
-        $("#ptd-tab-border").css("border", "1px solid #fff ");
-        if ($("input[name*='bp_facebook']:checked").length) {
-            $("#bp-facebook-tab").css("border", "1px solid #fff");
-        } else {
-            $("#bp-facebook-tab").css("border", "1px solid #D13E3E");
-        }
-        if ($("input[name*='bp_web']:checked").length) {
-            $("#bp-tab-border").css("border", "1px solid #fff ");
-        } else {
-            $("#bp-tab-border").css("border", "1px solid #D13E3E ");
-        }
-    } else {
-        if ($("input[name*='bp_facebook']:checked").length) {
-            $("#bp-facebook-tab").css("border", "1px solid #fff");
-            $("#bp-tab-border").css("border", "1px solid #fff ");
-            if (!$("input[name*='bp_web']:checked").length) {
-                event.preventDefault();
-                $("#bp-tab-border").css("border", "1px solid #D13E3E ");
-            }
-        }
-        if ($("input[name*='ptd_facebook']:checked").length) {
-            $("#ptd-facebook-tab").css("border", "1px solid #fff");
-            $("#ptd-tab-border").css("border", "1px solid #fff ");
-            if (!$("input[name*='ptd_web']:checked").length) {
-                event.preventDefault();
-                $("#ptd-tab-border").css("border", "1px solid #D13E3E ");
-            }
-        }
-    }
-    //location.href = (active_tab == 'bangkokpost' ? "#bangkokpost" : "#posttoday" );
-}
-
-//create a new input field for posting a customer and advertiser name before user clicked a submit button
-function createHiddenField() {
-    //event.preventDefault();
-    for (i = 0; i < 2; i++) {
-        switch (i) {
-            case 0: //for customer name
-                var selIndex = document.form.customer_id.selectedIndex;
-                var selText = document.form.customer_id.options[selIndex].text;
-                var input_name = 'customer_name';
-                break;
-            case 1: //for advertiser name
-                var selIndex = document.form.advertiser_id.selectedIndex;
-                var selText = document.form.advertiser_id.options[selIndex].text;
-                var input_name = 'advertiser_name';
-                break;
-        }
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", input_name);
-        input.setAttribute("value", selText);
-        //append to form element that you want .
-        document.getElementById("form").appendChild(input);
-    }
-
-    $('form').append("<input type='text' name='total_bp_web' value='" + $("input[name*='bp_web']").length + "' />");
-    $('form').append("<input type='text' name='total_ptd_web' value='" + $("input[name*='ptd_web']").length + "' />");
-}
-
-//generate a new ad description box when user click Add more ad button
-function addAds(web_name) {
-    var count = $("div[id*='" + web_name + "-ad-card']").length;
-
-    if (count == '1' && !$('#' + web_name + '-ad-card').is(':visible')) {
-        //$('#' + web_name + '-ad-card').removeAttr('style');
-        $('#' + web_name + '-type-container').removeAttr('style');
-    } else {
-        var Html = $("div[id*='" + web_name + "-ad-card']").eq(0).clone();
-        Html.find('input').each(function() { //Replace input name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-        });
-        Html.find('label[for="customFile"]').each(function() { //Replace input name
-            this.textContent = "Choose file";
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='hidden']").each(function() { //Replace input name
-            this.id = this.id.replace('0', count);
-        });
-        Html.find("input[type='file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[type='text']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_bp_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_bp_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_banner_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find("input[name*='old_ptd_quotation_file']").each(function() { //Replace input value
-            this.value = '';
-        });
-        Html.find('select').each(function() { //Replace dropdown name
-            this.name = this.name.replace('[0]', '[' + count + ']');
-            var id = this.name.split('_id[' + count + ']')[0]; //set hidden input id for posting dropdown text
-
-            var select_name = this.name.substring(
-                this.name.lastIndexOf(web_name + "_") + (web_name == 'bp' ? 3 : 4),
-                this.name.lastIndexOf("_")
-            );
-            if (select_name == 'position') {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;changeOptionValue(this);');
-            } else {
-                this.setAttribute('onchange', 'document.getElementById(\"' + id + '_text' + count + '\").value=this.options[this.selectedIndex].text;');
-            }
-        });
-        Html.find("div[id*='" + web_name + "-ad-title']").each(function() { //Replace box title
-            this.textContent = this.textContent.replace('Ad 1 Description:', 'Ad ' + (count + 1) + ' Description:');
-        });
-        //var newOnChange = '';
-        $('#' + web_name + '-ad-description').append(Html);
-        count++;
-    }
-}
-
-
-function Validate(oForm) {
-    var _validFileExtensions = [".jpg", ".jpeg", ".zip", ".gif", ".png", ".rar", ".ai", ".psd", ".xls", ".xlsx", ".csv"];
-    var arrInputs = oForm.getElementsByTagName("input");
-    for (var i = 0; i < arrInputs.length; i++) {
-        var oInput = arrInputs[i];
-        if (oInput.type == "file") {
-            var sFileName = oInput.value;
-            if (sFileName.length > 0) {
-                var blnValid = false;
-                for (var j = 0; j < _validFileExtensions.length; j++) {
-                    var sCurExtension = _validFileExtensions[j];
-                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                        blnValid = true;
-                        break;
-                    }
-                }
-
-                if (!blnValid) {
-                    alert("Sorry, Your files is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-}
-
-//Show file name on label tag
-function showFileName(tagName) {
-    var file_name = $('input[name="' + tagName + '"]').val();
-    var fIndex = String(tagName).match(/\d+/)[0];
-    var labelId = String(tagName).replace('[' + fIndex + ']', fIndex);
-    $('label[id="' + labelId + '"]').text(String(file_name).slice(String(file_name).lastIndexOf('\\') + 1));
 }

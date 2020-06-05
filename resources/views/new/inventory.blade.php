@@ -104,19 +104,20 @@
  
                     <div class="table-responsive table-dashboard inventory-dashboard">
 
-                      <table class="table table-bordered text-center">
+                      <table id="bkp" class="table table-bordered text-center">
                         <thead class="thead-bkp">
-                          <tr>
-                            <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
+                          <tr class="cannot-select">
+                            <th scope="col" rowspan="2" class="bar-header1">Campaign</th>
                             <th scope="col" colspan="32" class="bar-header2"><div class="div-barheader2">January 2019</div></th>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <th scope="col" colspan="8">Week 1</th>
                             <th scope="col" colspan="8">Week 2</th>
                             <th scope="col" colspan="8">Week 3</th>
                             <th scope="col" colspan="8">Week 4</th>
                           </tr>
                           <tr>
+                            <th scope="col" style="display:none;">Campaign</th>
                             <th scope="col" width="60">1</th>
                             <th scope="col" width="60">2</th>
                             <th scope="col" width="60">3</th>
@@ -192,14 +193,14 @@
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Inventory</th>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap">175,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
                             <td class="text-nowrap">25,000</td>
@@ -1039,8 +1040,8 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
-                    <button type="submit" value="send" class="btn btn-submit">download</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
                 </div>
@@ -1080,7 +1081,7 @@
 
                     <div class="table-responsive table-dashboard inventory-dashboard">
 
-                      <table class="table table-bordered text-center">
+                      <table id="ptd" class="table table-bordered text-center">
                         <thead class="thead-ptd">
                           <tr>
                             <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
@@ -1465,8 +1466,8 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="<?php //echo "#myModal"; ?>" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
-                    <button type="submit" value="send" class="btn btn-submit">download</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('ptd');">download</button>
                   </div>
 
                 </div>
@@ -1723,17 +1724,69 @@
   </div>
 </div>
 
+<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<div id="showJson"></div>
 
+<script src="/assets/js/jquery.table2excel.js"></script>
 <script>
+    var current_tab = "bkp";
 
     $('#myTab a#posttoday-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').addClass('tabs--ptd');
+      current_tab = "ptd";
     })
     $('#myTab a#bangkokpost-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').removeClass('tabs--ptd');
+      current_tab = "bkp";
     })
 
+
+    function downloadExcel(table_name) {
+            
+            $("#"+table_name).table2excel({
+              exclude: ".noExl",
+                name: "Inventory"
+            }); 
+            
+      }
+
+       // A few jQuery helpers for exporting only
+      jQuery.fn.pop = [].pop;
+      jQuery.fn.shift = [].shift;
+
+      function saveData(table_name) {
+
+        //const $rows = $("#"+table_name).find('tr:not(:hidden)');
+        const $rows = $("#"+table_name).find('tr').not(".cannot-select");
+        const headers = [];
+        const data = [];
+
+        // Get the headers (add special header logic here)
+        //$($rows.shift()).find('th:not(:empty)').each(function () {
+        $($rows.shift()).find('th').each(function () {
+          headers.push($(this).text().toLowerCase());
+        });
+
+        // Turn all existing rows into a loopable array
+        $rows.each(function () {
+          const $td = $(this).find('td');
+          const h = {};
+
+          // Use the headers from earlier to name our hash keys
+          headers.forEach((header, i) => {
+
+            h[header] = $td.eq(i).text();
+          });
+
+          data.push(h);
+        });
+
+        // Output the result
+        $("#showJson").text(JSON.stringify(data));
+      }
+        
+    
 </script>
 @endsection

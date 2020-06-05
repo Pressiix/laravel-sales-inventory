@@ -44,7 +44,20 @@ class InventoryImport implements ToModel, WithCalculatedFormulas, WithHeadingRow
         return [
             // 1. Select sheet by index
             0 => new FirstSheetImport(),
-            1 => new SecondSheetImport()
+            1 => new SecondSheetImport(),
+            2 => new ThirdSheetImport(),
+            3 => new FourthSheetImport(),
+            4 => new FifthSheetImport(),
+            5 => new SixthSheetImport(),
+            6 => new SeventhSheetImport(),
+            7 => new EighthSheetImport(),
+            8 => new NinthSheetImport(),
+            9 => new TenthSheetImport(),
+            10 => new EleventhSheetImport(),
+            11 => new TwelfthSheetImport(),
+            12 => new ThirteenthSheetImport(),
+            13 => new FourteenthSheetImport(),
+            14 => new FifteenthSheetImport()
 
             // 2. Select sheet by sheet name
             //'Sheet1' => new FirstSheetImport(),
@@ -58,11 +71,24 @@ class InventoryImport implements ToModel, WithCalculatedFormulas, WithHeadingRow
         info("Sheet {$sheetName} was skipped");
     }
 
-    public function conditionalSheets(): array
+    public function conditionalSheets(): arra
     {
         return [
             0 => new FirstSheetImport(),
-            1 => new SecondSheetImport()
+            1 => new SecondSheetImport(),
+            2 => new ThirdSheetImport(),
+            3 => new FourthSheetImport(),
+            4 => new FifthSheetImport(),
+            5 => new SixthSheetImport(),
+            6 => new SeventhSheetImport(),
+            7 => new EighthSheetImport(),
+            8 => new NinthSheetImport(),
+            9 => new TenthSheetImport(),
+            10 => new EleventhSheetImport(),
+            11 => new TwelfthSheetImport(),
+            12 => new ThirteenthSheetImport(),
+            13 => new FourteenthSheetImport(),
+            14 => new FifteenthSheetImport()
         ];
     }
 

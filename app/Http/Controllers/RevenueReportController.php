@@ -20,6 +20,8 @@ use App\RequestForm;
 use App\AdDescription;
 use URL;
 use Input;
+use Excel;
+use App\Imports\InventoryImport;
 
 class RevenueReportController extends Controller
 {
@@ -243,5 +245,19 @@ class RevenueReportController extends Controller
             }*/
         }
         return array_values($array);
+    }
+
+    // Export data
+    public function export(Request $request){
+
+        /*if ($request->input('exportexcel') != null ){
+        return Excel::download(new UsersExport, 'users.xlsx');
+        }
+
+        if ($request->input('exportcsv') != null ){
+        return Excel::download(new UsersExport, 'users.csv');
+        }
+
+        return redirect()->action('PagesController@index');*/
     }
 }
