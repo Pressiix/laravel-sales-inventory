@@ -78,8 +78,8 @@ class RequestFormController extends Controller
                     if(count($request->old_bp_banner_file) == count($request->bp_banner_file))
                     {
                         foreach($request->old_bp_banner_file as $banner){
-                                //\File::delete(public_path().'/storage/files/'.$banner);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$banner);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                                 $i++;
                         }
@@ -89,9 +89,9 @@ class RequestFormController extends Controller
                             if(isset($request->bp_banner_file[$i])){
                                 if($banner !== $request->bp_banner_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$banner);
+                                    \File::delete(public_path().'/storage/files/'.$banner);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                             }
                             else{
@@ -113,7 +113,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->bp_banner_file)){
                 foreach($request->file('bp_banner_file') as $banner){
-                    //\Storage::disk('storage')->put('public/files/', $banner);
+                    \Storage::disk('storage')->put('public/files/', $banner);
                     $bp_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
@@ -127,8 +127,8 @@ class RequestFormController extends Controller
                     if(count($request->old_bp_quotation_file) == count($request->bp_quotation_file))
                     {
                         foreach($request->old_bp_quotation_file as $quotation){
-                                //\File::delete(public_path().'/storage/files/'.$quotation);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$quotation);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
                                 $bp_quotation_file[$i] = $request->file('bp_quotation_file')[$i]->hashName();
                                 $i++;
                         }
@@ -138,9 +138,9 @@ class RequestFormController extends Controller
                             if(isset($request->bp_quotation_file[$i])){
                                 if($quotation !== $request->bp_quotation_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$quotation);
+                                    \File::delete(public_path().'/storage/files/'.$quotation);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
                                 $bp_quotation_file[$i] = $request->file('bp_quotation_file')[$i]->hashName();
                             }
                             else{
@@ -162,7 +162,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->bp_quotation_file)){
                 foreach($request->file('bp_quotation_file') as $quotation){
-                    //\Storage::disk('storage')->put('public/files/', $quotation);
+                    \Storage::disk('storage')->put('public/files/', $quotation);
                     $bp_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
@@ -176,8 +176,8 @@ class RequestFormController extends Controller
                     if(count($request->old_ptd_banner_file) == count($request->ptd_banner_file))
                     {
                         foreach($request->old_ptd_banner_file as $banner){
-                                //\File::delete(public_path().'/storage/files/'.$banner);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$banner);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
                                 $ptd_banner_file[$i] = $request->file('ptd_banner_file')[$i]->hashName();
                                 $i++;
                         }
@@ -187,9 +187,9 @@ class RequestFormController extends Controller
                             if(isset($request->ptd_banner_file[$i])){
                                 if($banner !== $request->ptd_banner_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$banner);
+                                    \File::delete(public_path().'/storage/files/'.$banner);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
                                 $ptd_banner_file[$i] = $request->file('ptd_banner_file')[$i]->hashName();
                             }
                             else{
@@ -211,7 +211,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->ptd_banner_file)){
                 foreach($request->file('ptd_banner_file') as $banner){
-                    //\Storage::disk('storage')->put('public/files/', $banner);
+                    \Storage::disk('storage')->put('public/files/', $banner);
                     $ptd_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
@@ -225,8 +225,8 @@ class RequestFormController extends Controller
                     if(count($request->old_ptd_quotation_file) == count($request->ptd_quotation_file))
                     {
                         foreach($request->old_ptd_quotation_file as $quotation){
-                                //\File::delete(public_path().'/storage/files/'.$quotation);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$quotation);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
                                 $ptd_quotation_file[$i] = $request->file('ptd_quotation_file')[$i]->hashName();
                                 $i++;
                         }
@@ -236,9 +236,9 @@ class RequestFormController extends Controller
                             if(isset($request->ptd_quotation_file[$i])){
                                 if($quotation !== $request->ptd_quotation_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$quotation);
+                                    \File::delete(public_path().'/storage/files/'.$quotation);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
                                 $ptd_quotation_file[$i] = $request->file('ptd_quotation_file')[$i]->hashName();
                             }
                             else{
@@ -260,7 +260,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->ptd_quotation_file)){
                 foreach($request->file('ptd_quotation_file') as $quotation){
-                    //\Storage::disk('storage')->put('public/files/', $quotation);
+                    \Storage::disk('storage')->put('public/files/', $quotation);
                     $ptd_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
