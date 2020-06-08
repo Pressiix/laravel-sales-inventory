@@ -1040,7 +1040,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
@@ -1466,7 +1466,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('ptd');">download</button>
                   </div>
 
@@ -1724,7 +1724,7 @@
   </div>
 </div>
 
-<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<button style="display:none;" class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
 <div id="showJson"></div>
 
 <script src="/assets/js/jquery.table2excel.js"></script>

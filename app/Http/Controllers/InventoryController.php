@@ -58,7 +58,7 @@ class InventoryController extends Controller
                 foreach ($reader->getSheetIterator() as $sheet) 
                 {
                     //$content .= '<table border="1">';
-                    if ($sheet->getName() === 'Sheet2') //get array from specific sheet name ***
+                    if ($sheet->getName() === 'Sheet1') //get array from specific sheet name ***
                     {
                         foreach ($sheet->getRowIterator() as $row) {
                             $array[$row_index] = implode(array_map(function ($cell) {
