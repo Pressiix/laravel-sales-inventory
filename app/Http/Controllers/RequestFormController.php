@@ -25,7 +25,46 @@ class RequestFormController extends Controller
 {
     public function test()
     {
-        echo auth()->user()->id;
+        $datos = file_get_contents(storage_path().'/jsondata/result.json');
+        $data = json_decode($datos, true);
+        $campaign = [];
+        $index = 0;
+        $index2 = 0;
+        $new = [];
+
+        foreach($data as $key => $value)
+        {
+           $index = ($index > 3 ? 0 : $index);
+           if($index !== 1)  //remove empty row
+           {
+                if($data[$key]['campaign'] == 'Inventory' || $data[$key]['campaign'] == 'Available')
+                {
+                    $campaign[$key] = $value;
+                }else{
+                    $campaign[$key]['campaign'] = $data[$key]['campaign'];
+                }
+                              
+           }
+           $index++;
+        }
+        $campaign = array_values($campaign);
+        
+        foreach($campaign as $key => $value)
+        {
+            $index2 = ($index2 > 2 ? 0 : $index2);
+            //$new[$i] $campaign[$key]
+            if($index2 == 2)
+            {
+                echo $key."<br/>";
+            
+            }
+
+            $index2++;
+        }
+
+        
+        //echo "<pre/>";print_r($campaign);
+
         
     }
     /**

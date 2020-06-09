@@ -16,6 +16,12 @@
     cursor: pointer;
     padding: 0;
 }
+
+#tdHeader{
+  text-align:left;
+  font-size: 14px;
+  padding-left: 10px;
+}
 </style>
       <div class="col-15 bg-fff">
         <div class="content-inventory--full">
@@ -107,7 +113,7 @@
                       <table id="bkp" class="table table-bordered text-center">
                         <thead class="thead-bkp">
                           <tr class="cannot-select">
-                            <th scope="col" rowspan="2" class="bar-header1">Campaign</th>
+                            <th scope="col" rowspan="3" class="bar-header1">Campaign</th>
                             <th scope="col" colspan="32" class="bar-header2"><div class="div-barheader2">January 2019</div></th>
                           </tr>
                           <tr class="cannot-select">
@@ -157,109 +163,109 @@
                             <td colspan="33" class="td-header">Leader Board</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail" data-toggle="modal" data-target="#bkpModal-1"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail" data-toggle="modal" data-target="#bkpModal-1"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
                             <td class="text-nowrap" contenteditable="true">25,000</td>
                             <td class="text-nowrap" contenteditable="true">25,000</td>
                             <td class="text-nowrap" contenteditable="true">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">175,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">175,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -267,109 +273,109 @@
                             <td colspan="33" class="td-header">Sticky</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -377,109 +383,109 @@
                             <td colspan="33" class="td-header">Hybrid</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -487,109 +493,109 @@
                             <td colspan="33" class="td-header">Multi</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -597,109 +603,109 @@
                             <td colspan="33" class="td-header">LEADER BOARD <span>(mobile)</span></td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -707,109 +713,109 @@
                             <td colspan="33" class="td-header">STICKY <span>(mobile)</span></td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -817,109 +823,109 @@
                             <td colspan="33" class="td-header">HYBRID <span>(mobile)</span></td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -927,109 +933,109 @@
                             <td colspan="33" class="td-header">MULTI <span>(mobile)</span></td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
-                            <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
-                            <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td scope="row" id="tdHeader" class="text-nowrap">Available</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
                         </tbody>
@@ -1040,7 +1046,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
@@ -1134,108 +1140,108 @@
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail" data-toggle="modal" data-target="#ptdModal-1"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
                             <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -1244,108 +1250,108 @@
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
                             <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
 
@@ -1354,108 +1360,108 @@
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></th>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
-                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
                           </tr>
                           <tr>
                             <th scope="row" class="text-nowrap">Inventory</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
                           <tr style="color: #f00;">
                             <th scope="row" class="text-nowrap">Available</th>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap">25,000</td>
-                            <td class="text-nowrap"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true">25,000</td>
+                            <td class="text-nowrap" contenteditable="true"><strong>175,000</strong></td>
                           </tr>
 
                         </tbody>
@@ -1466,7 +1472,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('ptd');">download</button>
                   </div>
 
@@ -1529,76 +1535,76 @@
 
             <tbody>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
 
             </tbody>
@@ -1642,76 +1648,76 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
-                <td class="text-nowrap">Pornpimon Udomsukpornsiri</td>
-                <td class="text-nowrap">210,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Exposis BP HP LB 15Jan’20-14Feb’20</td> 
+                <td class="text-nowrap" contenteditable="true">Pornpimon Udomsukpornsiri</td>
+                <td class="text-nowrap" contenteditable="true">210,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">Impact Exibition</td>
-                <td class="text-nowrap">Sasinan Siripitipaisarn</td>
-                <td class="text-nowrap">25,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">Impact Exibition</td>
+                <td class="text-nowrap" contenteditable="true">Sasinan Siripitipaisarn</td>
+                <td class="text-nowrap" contenteditable="true">25,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
               <tr>
-                <td class="text-nowrap">EVA air  BP HP LB 3-31 Jan’20</td>
-                <td class="text-nowrap">Natenapa Kumchaiyapoom</td>
-                <td class="text-nowrap">165,000</td>
-                <td class="text-nowrap">&nbsp;</td>
+                <td class="text-nowrap" contenteditable="true">EVA air  BP HP LB 3-31 Jan’20</td>
+                <td class="text-nowrap" contenteditable="true">Natenapa Kumchaiyapoom</td>
+                <td class="text-nowrap" contenteditable="true">165,000</td>
+                <td class="text-nowrap" contenteditable="true">&nbsp;</td>
               </tr>
 
             </tbody>
@@ -1724,7 +1730,7 @@
   </div>
 </div>
 
-<button style="display:none;" class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
 <div id="showJson"></div>
 
 <script src="/assets/js/jquery.table2excel.js"></script>
