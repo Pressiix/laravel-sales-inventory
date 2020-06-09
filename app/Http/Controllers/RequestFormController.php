@@ -56,7 +56,7 @@ class RequestFormController extends Controller
             if($index2 == 2)
             {
                 echo $key."<br/>";
-            
+                //$new[$i][$key-2][0] = 
             }
 
             $index2++;
