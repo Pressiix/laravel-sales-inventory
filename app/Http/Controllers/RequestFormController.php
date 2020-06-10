@@ -29,14 +29,12 @@ class RequestFormController extends Controller
         $data = json_decode($datos, true);
         $campaign = [];
         $index = 0;
-        $index2 = 0;
-        $new = [];
+        
 
         foreach($data as $key => $value)
         {
            $index = ($index > 3 ? 0 : $index);
-           if($index !== 1)  //remove empty row
-           {
+           
                 if($data[$key]['campaign'] == 'Inventory' || $data[$key]['campaign'] == 'Available')
                 {
                     $campaign[$key] = $value;
@@ -44,29 +42,65 @@ class RequestFormController extends Controller
                     $campaign[$key]['campaign'] = $data[$key]['campaign'];
                 }
                               
-           }
            $index++;
         }
-        $campaign = array_values($campaign);
-        
-        foreach($campaign as $key => $value)
-        {
-            $index2 = ($index2 > 2 ? 0 : $index2);
-            //$new[$i] $campaign[$key]
-            if($index2 == 2)
-            {
-                echo $key."<br/>";
-                //$new[$i][$key-2][0] = 
-            }
-
-            $index2++;
-        }
 
         
-        //echo "<pre/>";print_r($campaign);
-
         
+        echo "<pre/>";print_r($this->getInventoryByCampaignType($campaign));  
     }
+
+    private function getInventoryByCampaignType($data)
+    {
+        $index = 0;
+        $index2 = 0;
+        $new = [];
+
+        foreach($data as $key => $value)
+        {
+            $index = ($index > 2 ? 0 : $index);
+            
+            if($index == 2)
+            {
+                for($i=0;$i<=count($data[$key]);$i++)
+                {
+                    if($i<=27)  //daily impression
+                    {
+                        if($i == 0)
+                        {
+                            $new[$index2]['campaign_name'] = $data[($key-2)]['campaign'];
+                        }
+                        $new[$index2][($i+1)] = array($data[($key-1)][($i+1)],$data[$key][($i+1)]);
+                    }else{
+                        if($i == 28)
+                        {
+                            $new[$index2]['Inventory'] = array($data[($key-1)]['campaign'],$data[$key]['campaign']);
+                        }
+                        if($i == 29)
+                        {
+                            $new[$index2]['week1'] = array($data[($key-1)]['week1'],$data[($key-1)]['week1']);
+                        }
+                        if($i == 30)
+                        {
+                            $new[$index2]['week2'] = array($data[($key-1)]['week2'],$data[($key-1)]['week2']);
+                        }
+                        if($i == 31)
+                        {
+                            $new[$index2]['week3'] = array($data[($key-1)]['week3'],$data[($key-1)]['week3']);
+                        }
+                        if($i == 32)
+                        {
+                            $new[$index2]['week4'] = array($data[($key-1)]['week4'],$data[($key-1)]['week4']);
+                        }
+                    }
+                }
+                $index2++;
+            }
+            $index++;
+        }
+        return $new;
+    }
+
     /**
      * Display a listing of the users
      *

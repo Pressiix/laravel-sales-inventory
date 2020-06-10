@@ -123,79 +123,79 @@
                             <th scope="col" colspan="8">Week 4</th>
                           </tr>
                           <tr>
-                            <th scope="col" style="display:none;">Campaign</th>
-                            <th scope="col" width="60">1</th>
-                            <th scope="col" width="60">2</th>
-                            <th scope="col" width="60">3</th>
-                            <th scope="col" width="60">4</th>
-                            <th scope="col" width="60">5</th>
-                            <th scope="col" width="60">6</th>
-                            <th scope="col" width="60">7</th>
-                            <th scope="col" width="60">(1-7)</th>
-                            <th scope="col" width="60">1</th>
-                            <th scope="col" width="60">2</th>
-                            <th scope="col" width="60">3</th>
-                            <th scope="col" width="60">4</th>
-                            <th scope="col" width="60">5</th>
-                            <th scope="col" width="60">6</th>
-                            <th scope="col" width="60">7</th>
-                            <th scope="col" width="50">(1-7)</th>
-                            <th scope="col" width="60">1</th>
-                            <th scope="col" width="60">2</th>
-                            <th scope="col" width="60">3</th>
-                            <th scope="col" width="60">4</th>
-                            <th scope="col" width="60">5</th>
-                            <th scope="col" width="60">6</th>
-                            <th scope="col" width="60">7</th>
-                            <th scope="col" width="50">(1-7)</th>
-                            <th scope="col" width="60">1</th>
-                            <th scope="col" width="60">2</th>
-                            <th scope="col" width="60">3</th>
-                            <th scope="col" width="60">4</th>
-                            <th scope="col" width="60">5</th>
-                            <th scope="col" width="60">6</th>
-                            <th scope="col" width="60">7</th>
-                            <th scope="col" width="50">(1-7)</th>
+                            <th scope="col" index="Campaign" style="display:none;">Campaign</th>
+                            <th scope="col" index="1" width="60">1</th>
+                            <th scope="col" index="2" width="60">2</th>
+                            <th scope="col" index="3" width="60">3</th>
+                            <th scope="col" index="4" width="60">4</th>
+                            <th scope="col" index="5" width="60">5</th>
+                            <th scope="col" index="6" width="60">6</th>
+                            <th scope="col" index="7" width="60">7</th>
+                            <th scope="col" index="week1" width="60">(1-7)</th>
+                            <th scope="col" index="8" width="60">1</th>
+                            <th scope="col" index="9" width="60">2</th>
+                            <th scope="col" index="10" width="60">3</th>
+                            <th scope="col" index="11" width="60">4</th>
+                            <th scope="col" index="12" width="60">5</th>
+                            <th scope="col" index="13" width="60">6</th>
+                            <th scope="col" index="14" width="60">7</th>
+                            <th scope="col" index="week2" width="50">(1-7)</th>
+                            <th scope="col" index="15" width="60">1</th>
+                            <th scope="col" index="16" width="60">2</th>
+                            <th scope="col" index="17" width="60">3</th>
+                            <th scope="col" index="18" width="60">4</th>
+                            <th scope="col" index="19" width="60">5</th>
+                            <th scope="col" index="20" width="60">6</th>
+                            <th scope="col" index="21" width="60">7</th>
+                            <th scope="col" index="week3" width="50">(1-7)</th>
+                            <th scope="col" index="22" width="60">1</th>
+                            <th scope="col" index="23" width="60">2</th>
+                            <th scope="col" index="24" width="60">3</th>
+                            <th scope="col" index="25" width="60">4</th>
+                            <th scope="col" index="26" width="60">5</th>
+                            <th scope="col" index="27" width="60">6</th>
+                            <th scope="col" index="28" width="60">7</th>
+                            <th scope="col" index="week4" width="50">(1-7)</th>
                           </tr>
                         </thead>
                         <tbody class="tbody-bkp">
                           <tr>
                             <td colspan="33" class="td-header">Leader Board</td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail" data-toggle="modal" data-target="#bkpModal-1"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -272,40 +272,40 @@
                           <tr>
                             <td colspan="33" class="td-header">Sticky</td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -382,40 +382,40 @@
                           <tr>
                             <td colspan="33" class="td-header">Hybrid</td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -492,40 +492,40 @@
                           <tr>
                             <td colspan="33" class="td-header">Multi</td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -602,40 +602,40 @@
                           <tr>
                             <td colspan="33" class="td-header">LEADER BOARD <span>(mobile)</span></td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -712,40 +712,40 @@
                           <tr>
                             <td colspan="33" class="td-header">STICKY <span>(mobile)</span></td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -822,40 +822,40 @@
                           <tr>
                             <td colspan="33" class="td-header">HYBRID <span>(mobile)</span></td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -932,40 +932,40 @@
                           <tr>
                             <td colspan="33" class="td-header">MULTI <span>(mobile)</span></td>
                           </tr>
-                          <tr>
+                          <tr class="cannot-select">
                             <td id="tdHeader" scope="row" class="text-nowrap">Booking (online) <a href="javascript:;" class="icn-detail"><img src="<?= url('/') ?>/assets/images/icon-svg/detail.svg"></a></td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 1 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 2 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 3 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td> <!-- 4 -->
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
-                            <td class="text-nowrap" contenteditable="true">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 1 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 2 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 3 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td> <!-- 4 -->
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
+                            <td class="text-nowrap">&nbsp;</td>
                           </tr>
                           <tr>
                             <td scope="row" id="tdHeader" class="text-nowrap">Inventory</td>
@@ -1772,7 +1772,8 @@
         // Get the headers (add special header logic here)
         //$($rows.shift()).find('th:not(:empty)').each(function () {
         $($rows.shift()).find('th').each(function () {
-          headers.push($(this).text().toLowerCase());
+          headers.push($(this).attr('index').toLowerCase());
+          //console.log(index);
         });
 
         // Turn all existing rows into a loopable array

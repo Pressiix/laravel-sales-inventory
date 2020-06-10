@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'RequestFormController@test');
+    Route::get('/test',  'InventoryController@test');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
