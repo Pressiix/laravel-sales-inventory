@@ -31,7 +31,7 @@ class InventoryController extends Controller
         $data = json_decode($datos, true);
         $campaign = [];
         $index = 0;
-        $campaign_type = '';
+        $campaign_type = [];
 
         foreach($data as $key => $value)
         {
@@ -76,22 +76,43 @@ class InventoryController extends Controller
                             }
                         }
                     }
-                }else if(empty($campaign_type)){
-                    $campaign_type = $inventory[$key]['campaign_name'];
+                }else{
+                    $a[$key][0] =  $inventory[$key]['campaign_name'];
+                    $b[$key][0] =  $inventory[$key]['campaign_name'];
                 }
             }
         }
+
+        $month = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
         
-            /*$request_form = Inventory::create([
+        foreach(array_keys($a) as $key=>$value)
+        {
+            $request_form = Inventory::where('type', $a[$key][0])->update([
                 'web' => 'bp',
-                'month'=>'december',
+                'month'=> 'January',
                 'year'=>'2020',
-                'type'=> $campaign_type,
+                'type'=> $a[$key][0],
                 'inventory'=> json_encode($a),
                 'available'=>json_encode($b)
-            ]); */
+            ]);
+        }
+
+        $c = (array) Inventory::all();
         
-            echo "<pre/>"; print_r(Inventory::all());
+        foreach($c[array_keys($c)[0]] as $key=>$value)
+        {
+            $i =0;
+            $c[array_keys($c)[0]][$key] = (array) $c[array_keys($c)[0]][$key];
+           foreach((array) $value as $key2=>$value2)
+           {
+               if($i !== 13)
+               {
+                unset($c[array_keys($c)[0]][$key][$key2]);
+               }
+               $i++;
+           }
+        }
+         echo "<pre/>"; print_r($c[array_keys($c)[0]]);
 
     }
 
