@@ -15,8 +15,8 @@ use App\User;
 use Excel;
 use App\Imports\InventoryImport;
 use App\Services\PayUService\Exception;
-
 use ReaderEntityFactory;
+use App\Inventory;
 
 class InventoryController extends Controller
 {
@@ -31,7 +31,7 @@ class InventoryController extends Controller
         $data = json_decode($datos, true);
         $campaign = [];
         $index = 0;
-        
+        $campaign_type = '';
 
         foreach($data as $key => $value)
         {
@@ -47,9 +47,52 @@ class InventoryController extends Controller
            $index++;
         }
 
+        $inventory = $this->getInventoryByCampaignType($campaign);
+        $a = [];    //inventory row
+        $b = [];    //Available row
+
+        foreach($inventory as $key=>$value)
+        {
+            foreach($value as $key2=>$value2)
+            {
+                if(is_array($value2))
+                {
+                    foreach($value2 as $key3=>$value3)
+                    {
+                        if($key3 == 0)
+                        {
+                            if(empty($a[$key][$key2]))
+                            {
+                                $a[$key][$key2] = $inventory[$key][$key2][$key3];
+                            } else{
+                                array_push($a[$key][$key2], array($inventory[$key][$key2][$key3]));
+                            }
+                        }else if($key3 == 1){
+                            if(empty($b[$key][$key2]))
+                            {
+                                $b[$key][$key2] = $inventory[$key][$key2][$key3];
+                            } else{
+                                array_push($b[$key][$key2], array($inventory[$key][$key2][$key3]));
+                            }
+                        }
+                    }
+                }else if(empty($campaign_type)){
+                    $campaign_type = $inventory[$key]['campaign_name'];
+                }
+            }
+        }
         
+            /*$request_form = Inventory::create([
+                'web' => 'bp',
+                'month'=>'december',
+                'year'=>'2020',
+                'type'=> $campaign_type,
+                'inventory'=> json_encode($a),
+                'available'=>json_encode($b)
+            ]); */
         
-        echo "<pre/>";print_r($this->getInventoryByCampaignType($campaign));  
+            echo "<pre/>"; print_r(Inventory::all());
+
     }
 
     public function index(Request $request)
