@@ -87,14 +87,23 @@ class InventoryController extends Controller
         
         foreach(array_keys($a) as $key=>$value)
         {
-            $request_form = Inventory::where('type', $a[$key][0])->update([
+            //echo $a[$key][0]."<br/>";
+            /*$request_form = Inventory::create([
+                'web' => 'bp',
+                'month'=> 'December',
+                'year'=>'2020',
+                'type'=> $a[$key][0],
+                'inventory'=> json_encode($a[$key]),
+                'available'=>json_encode($b[$key])
+            ]);*/
+            /*$request_form = Inventory::where('type', $a[$key][0])->update([
                 'web' => 'bp',
                 'month'=> 'January',
                 'year'=>'2020',
                 'type'=> $a[$key][0],
-                'inventory'=> json_encode($a),
-                'available'=>json_encode($b)
-            ]);
+                'inventory'=> json_encode($a[$key]),
+                'available'=>json_encode($b[$key])
+            ]);*/
         }
 
         $c = (array) Inventory::all();
@@ -113,7 +122,7 @@ class InventoryController extends Controller
            }
         }
          echo "<pre/>"; print_r($c[array_keys($c)[0]]);
-
+         //echo "<pre/>"; print_r($a);
     }
 
     public function index(Request $request)
