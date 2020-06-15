@@ -25,9 +25,11 @@ class InventoryController extends Controller
         set_time_limit(8000000);
     }
 
-    public function test()
+    /*public function test(Request $request)
     {
-        $datos = file_get_contents(storage_path().'/jsondata/result.json');
+        $input = $request->all();
+        
+        $datos = file_get_contents(storage_path().'/jsondata/copy.json');
         $data = json_decode($datos, true);
         $campaign = [];
         $index = 0;
@@ -49,7 +51,7 @@ class InventoryController extends Controller
 
         $inventory = $this->getInventoryByCampaignType($campaign);
         $a = [];    //inventory row
-        $b = [];    //Available row
+        $b = [];   //Available row
 
         foreach($inventory as $key=>$value)
         {
@@ -81,6 +83,7 @@ class InventoryController extends Controller
                     $b[$key][0] =  $inventory[$key]['campaign_name'];
                 }
             }
+            
         }
 
         $month = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
@@ -103,7 +106,7 @@ class InventoryController extends Controller
                 'type'=> $a[$key][0],
                 'inventory'=> json_encode($a[$key]),
                 'available'=>json_encode($b[$key])
-            ]);*/
+            ]);
         }
 
         $c = (array) Inventory::all();
@@ -121,8 +124,103 @@ class InventoryController extends Controller
                $i++;
            }
         }
-         echo "<pre/>"; print_r($c[array_keys($c)[0]]);
-         //echo "<pre/>"; print_r($a);
+         echo "<pre/>"; print_r($c[array_keys($c)[0]]);*/
+         //echo "<pre/>"; print_r($data);
+         //return response()->json(['success'=>json_encode($campaign)]);
+         
+    //}
+
+    public function test(Request $request)
+    {
+        $input = $request->all();
+        $data = json_decode(json_encode($input['data']),true);
+        $month = $input['month'];
+        $year = $input['year'];
+
+        return response()->json(['success'=>$this->test2($data,$month,$year)]);
+    }
+
+    public function test2($data,$month,$year)
+    {
+        $campaign = [];
+        $index = 0;
+        $campaign_type = [];
+
+        foreach($data as $key => $value)
+        {
+           $index = ($index > 3 ? 0 : $index);
+           
+                if($data[$key]['campaign'] == 'Inventory' || $data[$key]['campaign'] == 'Available')
+                {
+                    $campaign[$key] = $value;
+                }else{
+                    $campaign[$key]['campaign'] = $data[$key]['campaign'];
+                }
+                              
+           $index++;
+        }
+
+        $inventory = $this->getInventoryByCampaignType($campaign);
+        $a = [];    //inventory row
+        $b = [];   //Available row
+
+        foreach($inventory as $key=>$value)
+        {
+            foreach($value as $key2=>$value2)
+            {
+                if(is_array($value2))
+                {
+                    foreach($value2 as $key3=>$value3)
+                    {
+                        if($key3 == 0)
+                        {
+                            if(empty($a[$key][$key2]))
+                            {
+                                $a[$key][$key2] = $inventory[$key][$key2][$key3];
+                            } else{
+                                array_push($a[$key][$key2], array($inventory[$key][$key2][$key3]));
+                            }
+                        }else if($key3 == 1){
+                            if(empty($b[$key][$key2]))
+                            {
+                                $b[$key][$key2] = $inventory[$key][$key2][$key3];
+                            } else{
+                                array_push($b[$key][$key2], array($inventory[$key][$key2][$key3]));
+                            }
+                        }
+                    }
+                }else{
+                    $a[$key][0] =  $inventory[$key]['campaign_name'];
+                    $b[$key][0] =  $inventory[$key]['campaign_name'];
+                }
+            }
+            
+        }
+
+        $month = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
+        
+        foreach(array_keys($a) as $key=>$value)
+        {
+            //echo $a[$key][0]."<br/>";
+            /*$request_form = Inventory::create([
+                'web' => 'bp',
+                'month'=> 'December',
+                'year'=>'2020',
+                'type'=> $a[$key][0],
+                'inventory'=> json_encode($a[$key]),
+                'available'=>json_encode($b[$key])
+            ]);*/
+            $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->update([
+                'web' => 'bp',
+                'month'=> 'January',
+                'year'=>'2020',
+                'type'=> $a[$key][0],
+                'inventory'=> json_encode($a[$key]),
+                'available'=>json_encode($b[$key])
+            ]);
+        }
+
+        return "Data has been saved!";
     }
 
     public function index(Request $request)
@@ -193,8 +291,6 @@ class InventoryController extends Controller
         return view('ajaxRequest');
     }
 
-   
-
     /**
      * Create a new controller instance.
      *
@@ -204,6 +300,14 @@ class InventoryController extends Controller
     public function ajaxRequestPost(Request $request)
     {
         $input = $request->all();
+        $request_form = Inventory::where('type', 'Leader Board')->update([
+            'web' => 'bp',
+            'month'=> 'January',
+            'year'=>'2020',
+            'type'=> 'Leader Board',
+            'inventory'=> json_encode($input['data']),
+            'available'=>json_encode($input['data'])
+        ]);
         
         return response()->json(['success'=>json_encode($input['data'])]);
     }

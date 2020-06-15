@@ -1735,6 +1735,8 @@
 
 <script src="/assets/js/jquery.table2excel.js"></script>
 <script>
+    
+
     var current_tab = "bkp";
 
     $('#myTab a#posttoday-tab').on('click', function (e) {
@@ -1783,7 +1785,6 @@
 
           // Use the headers from earlier to name our hash keys
           headers.forEach((header, i) => {
-
             h[header] = $td.eq(i).text();
           });
 
@@ -1791,7 +1792,19 @@
         });
 
         // Output the result
-        $("#showJson").text(JSON.stringify(data));
+        //$("#showJson").text(JSON.stringify(data));
+        var current_month = $("#bkp").find(".div-barheader2").text();
+        var month = current_month.substr(0,current_month.indexOf(' '));
+        var year = current_month.substr(current_month.indexOf(' ')+1);
+        //console.log(year);
+        $.ajax({
+          type:'POST',
+          url:'/ajaxRequest',
+          data:{data:data,month:month,year:year},
+          success:function(messege){
+            console.log(messege.success);
+          }
+        });
       }
         
     
