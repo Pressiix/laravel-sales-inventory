@@ -12,13 +12,13 @@
                   <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                   <div class="input-group-inline">
                     <span>From</span>
-                    <input type="text" class="form-control form-input--date" name="start" autocomplete="off">
-                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                    <input type="text" class="form-control form-input--date" id="start" name="start" autocomplete="off">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20" id="date-from" onclick="document.getElementById('start').focus();"></span>
                   </div>
                   <div class="input-group-inline">
                     <span>to</span>
-                    <input type="text" class="form-control form-input--date" name="end" autocomplete="off">
-                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                    <input type="text" class="form-control form-input--date" id="end" name="end" autocomplete="off">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20" id="date-to"  onclick="document.getElementById('end').focus();"></span>
                   </div>
                   <button type="submit" class="btn btn-click2">Apply</button>
                 </div>
@@ -132,14 +132,14 @@
 
             </div>
 
-            <div class="text-center"><button type="submit" value="send" class="btn btn-submit">download</button></div>
+            <div class="text-center"><button type="submit" id="download-btn" value="send" class="btn btn-submit">download</button></div>
 
             
         </div>
       </div>
-
+      <script src="/assets/js/jquery.table2excel.js"></script>
 <script>
-
+    var current_tab = "bkp";
 
     $('.datepicker').datepicker({
         autoclose: true,
@@ -150,10 +150,12 @@
     $('#myTab a#posttoday-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').addClass('tabs--ptd');
+      current_tab = "ptd";
     })
     $('#myTab a#bangkokpost-tab').on('click', function (e) {
       e.preventDefault()
       $('.nav-requestForm').removeClass('tabs--ptd');
+      current_tab = "bkp";
     })
 
     function sortTable(index,table_name,option) {
@@ -222,6 +224,28 @@
           switching = true;
         }
       }
+    }
+
+    $(function() {
+            $("#download-btn").click(function(){
+            $("#"+current_tab).table2excel({
+              exclude: ".noExl",
+                name: "Excel Document Name"
+            }); 
+            });
+          });
+        
+    try {
+      fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+        return true;
+      }).catch(function(e) {
+        var carbonScript = document.createElement("script");
+        carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+        carbonScript.id = "_carbonads_js";
+        document.getElementById("carbon-block").appendChild(carbonScript);
+      });
+    } catch (error) {
+      console.log(error);
     }
 </script>
 @endsection

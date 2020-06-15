@@ -25,9 +25,82 @@ class RequestFormController extends Controller
 {
     public function test()
     {
-        echo auth()->user()->id;
+        $datos = file_get_contents(storage_path().'/jsondata/result.json');
+        $data = json_decode($datos, true);
+        $campaign = [];
+        $index = 0;
         
+
+        foreach($data as $key => $value)
+        {
+           $index = ($index > 3 ? 0 : $index);
+           
+                if($data[$key]['campaign'] == 'Inventory' || $data[$key]['campaign'] == 'Available')
+                {
+                    $campaign[$key] = $value;
+                }else{
+                    $campaign[$key]['campaign'] = $data[$key]['campaign'];
+                }
+                              
+           $index++;
+        }
+
+        
+        
+        echo "<pre/>";print_r($this->getInventoryByCampaignType($campaign));  
     }
+
+    private function getInventoryByCampaignType($data)
+    {
+        $index = 0;
+        $index2 = 0;
+        $new = [];
+
+        foreach($data as $key => $value)
+        {
+            $index = ($index > 2 ? 0 : $index);
+            
+            if($index == 2)
+            {
+                for($i=0;$i<=count($data[$key]);$i++)
+                {
+                    if($i<=27)  //daily impression
+                    {
+                        if($i == 0)
+                        {
+                            $new[$index2]['campaign_name'] = $data[($key-2)]['campaign'];
+                        }
+                        $new[$index2][($i+1)] = array($data[($key-1)][($i+1)],$data[$key][($i+1)]);
+                    }else{
+                        if($i == 28)
+                        {
+                            $new[$index2]['Inventory'] = array($data[($key-1)]['campaign'],$data[$key]['campaign']);
+                        }
+                        if($i == 29)
+                        {
+                            $new[$index2]['week1'] = array($data[($key-1)]['week1'],$data[($key-1)]['week1']);
+                        }
+                        if($i == 30)
+                        {
+                            $new[$index2]['week2'] = array($data[($key-1)]['week2'],$data[($key-1)]['week2']);
+                        }
+                        if($i == 31)
+                        {
+                            $new[$index2]['week3'] = array($data[($key-1)]['week3'],$data[($key-1)]['week3']);
+                        }
+                        if($i == 32)
+                        {
+                            $new[$index2]['week4'] = array($data[($key-1)]['week4'],$data[($key-1)]['week4']);
+                        }
+                    }
+                }
+                $index2++;
+            }
+            $index++;
+        }
+        return $new;
+    }
+
     /**
      * Display a listing of the users
      *
@@ -78,8 +151,8 @@ class RequestFormController extends Controller
                     if(count($request->old_bp_banner_file) == count($request->bp_banner_file))
                     {
                         foreach($request->old_bp_banner_file as $banner){
-                                //\File::delete(public_path().'/storage/files/'.$banner);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$banner);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                                 $i++;
                         }
@@ -89,9 +162,9 @@ class RequestFormController extends Controller
                             if(isset($request->bp_banner_file[$i])){
                                 if($banner !== $request->bp_banner_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$banner);
+                                    \File::delete(public_path().'/storage/files/'.$banner);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_banner_file')[$i]);
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                             }
                             else{
@@ -113,7 +186,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->bp_banner_file)){
                 foreach($request->file('bp_banner_file') as $banner){
-                    //\Storage::disk('storage')->put('public/files/', $banner);
+                    \Storage::disk('storage')->put('public/files/', $banner);
                     $bp_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
@@ -127,8 +200,8 @@ class RequestFormController extends Controller
                     if(count($request->old_bp_quotation_file) == count($request->bp_quotation_file))
                     {
                         foreach($request->old_bp_quotation_file as $quotation){
-                                //\File::delete(public_path().'/storage/files/'.$quotation);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$quotation);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
                                 $bp_quotation_file[$i] = $request->file('bp_quotation_file')[$i]->hashName();
                                 $i++;
                         }
@@ -138,9 +211,9 @@ class RequestFormController extends Controller
                             if(isset($request->bp_quotation_file[$i])){
                                 if($quotation !== $request->bp_quotation_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$quotation);
+                                    \File::delete(public_path().'/storage/files/'.$quotation);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('bp_quotation_file')[$i]);
                                 $bp_quotation_file[$i] = $request->file('bp_quotation_file')[$i]->hashName();
                             }
                             else{
@@ -162,7 +235,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->bp_quotation_file)){
                 foreach($request->file('bp_quotation_file') as $quotation){
-                    //\Storage::disk('storage')->put('public/files/', $quotation);
+                    \Storage::disk('storage')->put('public/files/', $quotation);
                     $bp_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
@@ -176,8 +249,8 @@ class RequestFormController extends Controller
                     if(count($request->old_ptd_banner_file) == count($request->ptd_banner_file))
                     {
                         foreach($request->old_ptd_banner_file as $banner){
-                                //\File::delete(public_path().'/storage/files/'.$banner);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$banner);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
                                 $ptd_banner_file[$i] = $request->file('ptd_banner_file')[$i]->hashName();
                                 $i++;
                         }
@@ -187,9 +260,9 @@ class RequestFormController extends Controller
                             if(isset($request->ptd_banner_file[$i])){
                                 if($banner !== $request->ptd_banner_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$banner);
+                                    \File::delete(public_path().'/storage/files/'.$banner);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_banner_file')[$i]);
                                 $ptd_banner_file[$i] = $request->file('ptd_banner_file')[$i]->hashName();
                             }
                             else{
@@ -211,7 +284,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->ptd_banner_file)){
                 foreach($request->file('ptd_banner_file') as $banner){
-                    //\Storage::disk('storage')->put('public/files/', $banner);
+                    \Storage::disk('storage')->put('public/files/', $banner);
                     $ptd_banner_file[$i] = $banner->hashName();
                     $i++;
                 }
@@ -225,8 +298,8 @@ class RequestFormController extends Controller
                     if(count($request->old_ptd_quotation_file) == count($request->ptd_quotation_file))
                     {
                         foreach($request->old_ptd_quotation_file as $quotation){
-                                //\File::delete(public_path().'/storage/files/'.$quotation);
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
+                                \File::delete(public_path().'/storage/files/'.$quotation);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
                                 $ptd_quotation_file[$i] = $request->file('ptd_quotation_file')[$i]->hashName();
                                 $i++;
                         }
@@ -236,9 +309,9 @@ class RequestFormController extends Controller
                             if(isset($request->ptd_quotation_file[$i])){
                                 if($quotation !== $request->ptd_quotation_file[$i])
                                 {
-                                    //\File::delete(public_path().'/storage/files/'.$quotation);
+                                    \File::delete(public_path().'/storage/files/'.$quotation);
                                 }
-                                //\Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
+                                \Storage::disk('storage')->put('public/files/', $request->file('ptd_quotation_file')[$i]);
                                 $ptd_quotation_file[$i] = $request->file('ptd_quotation_file')[$i]->hashName();
                             }
                             else{
@@ -260,7 +333,7 @@ class RequestFormController extends Controller
         else{  //NEW REQUEST FORM
             if(isset($request->ptd_quotation_file)){
                 foreach($request->file('ptd_quotation_file') as $quotation){
-                    //\Storage::disk('storage')->put('public/files/', $quotation);
+                    \Storage::disk('storage')->put('public/files/', $quotation);
                     $ptd_quotation_file[$i] = $quotation->hashName();
                     $i++;
                 }
@@ -275,7 +348,7 @@ class RequestFormController extends Controller
         $item['ptd_banner_file'] = $ptd_banner_file;
         $item['ptd_quotation_file'] = $ptd_quotation_file;
         //CHECK POST VARIABLE
-        echo "<pre/>"; print_r($request->all());
+        //echo "<pre/>"; print_r($request->all());
 
         if(isset($request->request_id))
         {
@@ -286,12 +359,12 @@ class RequestFormController extends Controller
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
         
-        /*return view('new.request_preview',[
+        return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
-        ]);*/
+        ]);
         
     }
 
@@ -373,8 +446,8 @@ class RequestFormController extends Controller
             else if($request->input('action') === 'Submit')
             {
                 //DELETE BEFORE SAVE
-                //AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
-                //RequestForm::where('request_id', $request->request_id)->delete();
+                AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
+                RequestForm::where('request_id', $request->request_id)->delete();
                 
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
                 //Save new request and ad description
@@ -391,42 +464,41 @@ class RequestFormController extends Controller
                         'customer_id'=>$request->customer_id
                     ]);
                     $request_form->relateAd()->create([
-                        'bp_type' => (isset($request->bp_type) ? $request->bp_type : ""),
+                        'bp_type' => (isset($request->bp_type) ? json_encode((object) $request->bp_type) : json_encode((object) array(NULL)) ),
                         'bp_social' => (isset($request->bp_social) ? json_encode((object) $request->bp_social) : json_encode((object) array(NULL)) ),
-                        'bp_facebook' => (isset($request->bp_facebook) ? $request->bp_facebook : ""),
+                        'bp_facebook' => (isset($request->bp_facebook) ? json_encode((object) $request->bp_facebook) : json_encode((object) array(NULL)) ),
                         'bp_web' => (isset($request->bp_web) ? json_encode((object) $request->bp_web) : json_encode((object) array(NULL)) ),
-                        'bp_size'=> json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )),
-                        'bp_position'=> json_encode((object) array_combine( $request->bp_position_id , $request->bp_position_text )),
-                        'bp_section'=> json_encode((object) array_combine( $request->bp_section_id , $request->bp_section_text )),
-                        'bp_period_from'=> json_encode((object) $request->bp_period_from),
-                        'bp_period_to'=>json_encode((object) $request->bp_period_to),
-                        'bp_device'=> json_encode((object) $request->bp_device),
-                        'bp_banner_url'=> json_encode((object) $request->bp_banner_url),
-                        'bp_banner_file'=> json_encode((object) $request->bp_banner_file),
-                        'bp_quotation_file'=> json_encode((object) $request->bp_quotation_file),
-                        'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
-                        'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
-                        'bp_campaign_budget'=>$request->bp_campaign_budget,
-                        'ptd_type' => (isset($request->ptd_type) ? $request->ptd_type : ""),
+                        'bp_size'=> (isset($request->bp_size_id) ? json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )) : json_encode((object) array(NULL)) ),
+                        'bp_position'=> (isset($request->bp_position_id) ? json_encode((object) array_combine( array_keys($request->bp_position_id) , $request->bp_position_text )) : json_encode((object) array(NULL)) ),
+                        'bp_section'=> (isset($request->bp_section_id) ? json_encode((object) array_combine( array_keys($request->bp_section_id) , $request->bp_section_text )) : json_encode((object) array(NULL)) ),
+                        'bp_period_from'=> (isset($request->bp_period_from) ? json_encode((object) $request->bp_period_from) : json_encode((object) array(NULL)) ),
+                        'bp_period_to'=> (isset($request->bp_period_to) ? json_encode((object) $request->bp_period_to) : json_encode((object) array(NULL)) ),
+                        'bp_device'=> (isset($request->bp_device) ? json_encode((object) $request->bp_device) : json_encode((object) array(NULL)) ),
+                        'bp_banner_url'=> (isset($request->bp_banner_url) ? json_encode((object) $request->bp_banner_url) : json_encode((object) array(NULL)) ),
+                        'bp_banner_file'=> (isset($request->bp_banner_file) ? json_encode((object) $request->bp_banner_file) : json_encode((object) array(NULL)) ),
+                        'bp_quotation_file'=> (isset($request->bp_quotation_file) ? json_encode((object) $request->bp_quotation_file) : json_encode((object) array(NULL)) ),
+                        'bp_impression_need'=> (isset($request->bp_impression_need) ? json_encode((object) $request->bp_impression_need) : json_encode((object) array(NULL)) ),
+                        'bp_ad_detail'=> (isset($request->bp_ad_detail) ? json_encode((object) $request->bp_ad_detail) : json_encode((object) array(NULL)) ),
+                        'bp_campaign_budget'=>(isset($request->bp_campaign_budget) ? $request->bp_campaign_budget : NULL),
+                        'ptd_type' => (isset($request->ptd_type) ? json_encode((object) $request->ptd_type) : json_encode((object) array(NULL)) ),
                         'ptd_social' => (isset($request->ptd_social) ? json_encode((object) $request->ptd_social) : json_encode((object) array(NULL)) ),
-                        'ptd_facebook' => (isset($request->ptd_facebook) ? $request->ptd_facebook : ""),
+                        'ptd_facebook' => (isset($request->ptd_facebook) ? json_encode((object) $request->ptd_facebook) : json_encode((object) array(NULL)) ),
                         'ptd_web' => (isset($request->ptd_web) ? json_encode((object) $request->ptd_web) : json_encode((object) array(NULL)) ),
-                        'ptd_size'=> json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )),
-                        'ptd_position'=> json_encode((object) array_combine( $request->ptd_position_id , $request->ptd_position_text )),
-                        'ptd_section'=> json_encode((object) array_combine( $request->ptd_section_id , $request->ptd_section_text )),
-                        'ptd_period_from'=> json_encode((object) $request->ptd_period_from),
-                        'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
-                        'ptd_device'=> json_encode((object) $request->ptd_device),
-                        'ptd_banner_url'=> json_encode((object) $request->ptd_banner_url),
-                        'ptd_banner_file'=> json_encode((object) $request->ptd_banner_file),
-                        'ptd_quotation_file'=> json_encode((object) $request->ptd_quotation_file),
-                        'ptd_impression_need'=> json_encode((object) $request->ptd_impression_need),
-                        'ptd_ad_detail'=> json_encode((object) $request->ptd_ad_detail),
-                        'ptd_campaign_budget'=>$request->ptd_campaign_budget,
+                        'ptd_size'=> (isset($request->ptd_size_id) ? json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_position'=> (isset($request->ptd_position_id) ? json_encode((object) array_combine( array_keys($request->ptd_position_id) , $request->ptd_position_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_section'=> (isset($request->ptd_section_id) ? json_encode((object) array_combine( array_keys($request->ptd_section_id) , $request->ptd_section_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_period_from'=> (isset($request->ptd_period_from) ? json_encode((object) $request->ptd_period_from) : json_encode((object) array(NULL)) ),
+                        'ptd_period_to'=> (isset($request->ptd_period_to) ? json_encode((object) $request->ptd_period_to) : json_encode((object) array(NULL)) ),
+                        'ptd_device'=> (isset($request->ptd_device) ? json_encode((object) $request->ptd_device) : json_encode((object) array(NULL)) ),
+                        'ptd_banner_url'=> (isset($request->ptd_banner_url) ? json_encode((object) $request->ptd_banner_url) : json_encode((object) array(NULL)) ),
+                        'ptd_banner_file'=> (isset($request->ptd_banner_file) ? json_encode((object) $request->ptd_banner_file) : json_encode((object) array(NULL)) ),
+                        'ptd_quotation_file'=> (isset($request->ptd_quotation_file) ? json_encode((object) $request->ptd_quotation_file) : json_encode((object) array(NULL)) ),
+                        'ptd_impression_need'=> (isset($request->ptd_impression_need) ? json_encode((object) $request->ptd_impression_need) : json_encode((object) array(NULL)) ),
+                        'ptd_ad_detail'=> (isset($request->ptd_ad_detail) ? json_encode((object) $request->ptd_ad_detail) : json_encode((object) array(NULL)) ),
+                        'ptd_campaign_budget'=>(isset($request->ptd_campaign_budget) ? $request->ptd_campaign_budget : NULL),
                     ]);
-                //echo json_encode((object) $request->bp_web);
-                //echo "<pre/>"; print_r($a); echo "<pre/><br/>";
-                //echo "<pre/>"; print_r($b); echo "<pre/>";
+               
+                    //echo "<pre/>"; print_r($b); echo "<pre/>";
 
                 //Send email to ...
                 $this->sendEmail();
@@ -451,38 +523,38 @@ class RequestFormController extends Controller
 
                 $ad_desc_update = AdDescription::where('request_id', $request->id)
                 ->update([
-                    'bp_type' => (isset($request->bp_type) ? $request->bp_type : ""),
-                    'bp_social' => (isset($request->bp_social) ? json_encode((object) $request->bp_social) : json_encode((object) array(NULL)) ),
-                    'bp_facebook' => (isset($request->bp_facebook) ? $request->bp_facebook : ""),
-                    'bp_web' => (isset($request->bp_web) ? json_encode((object) $request->bp_web) : json_encode((object) array(NULL)) ),
-                    'bp_size'=> json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )),
-                    'bp_position'=> json_encode((object) array_combine( $request->bp_position_id , $request->bp_position_text )),
-                    'bp_section'=> json_encode((object) array_combine( $request->bp_section_id , $request->bp_section_text )),
-                    'bp_period_from'=> json_encode((object) $request->bp_period_from),
-                    'bp_period_to'=>json_encode((object) $request->bp_period_to),
-                    'bp_device'=> json_encode((object) $request->bp_device),
-                    'bp_banner_url'=> json_encode((object) $request->bp_banner_url),
-                    'bp_banner_file'=> json_encode((isset($request->bp_banner_file) && is_array($request->bp_banner_file) && !empty($request->bp_banner_file) ? (object) $request->bp_banner_file : (object) array(NULL))),
-                    'bp_quotation_file'=> json_encode((isset($request->bp_quotation_file) && is_array($request->bp_quotation_file) && !empty($request->bp_quotation_file) ? (object) $request->bp_quotation_file : (object) array(NULL))),
-                    'bp_impression_need'=> json_encode((object) $request->bp_impression_need),
-                    'bp_ad_detail'=> json_encode((object) $request->bp_ad_detail),
-                    'bp_campaign_budget'=>$request->bp_campaign_budget,
-                    'ptd_type' => (isset($request->ptd_type) ? $request->ptd_type : ""),
-                    'ptd_social' => (isset($request->ptd_social) ? json_encode((object) $request->ptd_social) : json_encode((object) array(NULL)) ),
-                    'ptd_facebook' => (isset($request->ptd_facebook) ? $request->ptd_facebook : ""),
-                    'ptd_web' => (isset($request->ptd_web) ? json_encode((object) $request->ptd_web) : json_encode((object) array(NULL)) ),
-                    'ptd_size'=> json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )),
-                    'ptd_position'=> json_encode((object) array_combine( $request->ptd_position_id , $request->ptd_position_text )),
-                    'ptd_section'=> json_encode((object) array_combine( $request->ptd_section_id , $request->ptd_section_text )),
-                    'ptd_period_from'=> json_encode((object) $request->ptd_period_from),
-                    'ptd_period_to'=> json_encode((object) $request->ptd_period_to),
-                    'ptd_device'=> json_encode((object) $request->ptd_device),
-                    'ptd_banner_url'=> json_encode((object) $request->ptd_banner_url),
-                    'ptd_banner_file'=> json_encode((isset($request->ptd_banner_file) && is_array($request->ptd_banner_file) && !empty($request->ptd_banner_file) ? (object) $request->ptd_banner_file : (object) array(NULL))),
-                    'ptd_quotation_file'=> json_encode((isset($request->ptd_quotation_file) && is_array($request->ptd_quotation_file) && !empty($request->ptd_quotation_file) ? (object) $request->ptd_quotation_file : (object) array(NULL))),
-                    'ptd_impression_need'=> json_encode((object) $request->ptd_impression_need),
-                    'ptd_ad_detail'=> json_encode((object) $request->ptd_ad_detail),
-                    'ptd_campaign_budget'=>$request->ptd_campaign_budget,
+                    'bp_type' => (isset($request->bp_type) ? json_encode((object) $request->bp_type) : json_encode((object) array(NULL)) ),
+                        'bp_social' => (isset($request->bp_social) ? json_encode((object) $request->bp_social) : json_encode((object) array(NULL)) ),
+                        'bp_facebook' => (isset($request->bp_facebook) ? json_encode((object) $request->bp_facebook) : json_encode((object) array(NULL)) ),
+                        'bp_web' => (isset($request->bp_web) ? json_encode((object) $request->bp_web) : json_encode((object) array(NULL)) ),
+                        'bp_size'=> (isset($request->bp_size_id) ? json_encode((object) array_combine( $request->bp_size_id , $request->bp_size_text )) : json_encode((object) array(NULL)) ),
+                        'bp_position'=> (isset($request->bp_position_id) ? json_encode((object) array_combine( array_keys($request->bp_position_id) , $request->bp_position_text )) : json_encode((object) array(NULL)) ),
+                        'bp_section'=> (isset($request->bp_section_id) ? json_encode((object) array_combine( array_keys($request->bp_section_id) , $request->bp_section_text )) : json_encode((object) array(NULL)) ),
+                        'bp_period_from'=> (isset($request->bp_period_from) ? json_encode((object) $request->bp_period_from) : json_encode((object) array(NULL)) ),
+                        'bp_period_to'=> (isset($request->bp_period_to) ? json_encode((object) $request->bp_period_to) : json_encode((object) array(NULL)) ),
+                        'bp_device'=> (isset($request->bp_device) ? json_encode((object) $request->bp_device) : json_encode((object) array(NULL)) ),
+                        'bp_banner_url'=> (isset($request->bp_banner_url) ? json_encode((object) $request->bp_banner_url) : json_encode((object) array(NULL)) ),
+                        'bp_banner_file'=> (isset($request->bp_banner_file) ? json_encode((object) $request->bp_banner_file) : json_encode((object) array(NULL)) ),
+                        'bp_quotation_file'=> (isset($request->bp_quotation_file) ? json_encode((object) $request->bp_quotation_file) : json_encode((object) array(NULL)) ),
+                        'bp_impression_need'=> (isset($request->bp_impression_need) ? json_encode((object) $request->bp_impression_need) : json_encode((object) array(NULL)) ),
+                        'bp_ad_detail'=> (isset($request->bp_ad_detail) ? json_encode((object) $request->bp_ad_detail) : json_encode((object) array(NULL)) ),
+                        'bp_campaign_budget'=>(isset($request->bp_campaign_budget) ? $request->bp_campaign_budget : NULL),
+                        'ptd_type' => (isset($request->ptd_type) ? json_encode((object) $request->ptd_type) : json_encode((object) array(NULL)) ),
+                        'ptd_social' => (isset($request->ptd_social) ? json_encode((object) $request->ptd_social) : json_encode((object) array(NULL)) ),
+                        'ptd_facebook' => (isset($request->ptd_facebook) ? json_encode((object) $request->ptd_facebook) : json_encode((object) array(NULL)) ),
+                        'ptd_web' => (isset($request->ptd_web) ? json_encode((object) $request->ptd_web) : json_encode((object) array(NULL)) ),
+                        'ptd_size'=> (isset($request->ptd_size_id) ? json_encode((object) array_combine( $request->ptd_size_id , $request->ptd_size_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_position'=> (isset($request->ptd_position_id) ? json_encode((object) array_combine( array_keys($request->ptd_position_id) , $request->ptd_position_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_section'=> (isset($request->ptd_section_id) ? json_encode((object) array_combine( array_keys($request->ptd_section_id) , $request->ptd_section_text )) : json_encode((object) array(NULL)) ),
+                        'ptd_period_from'=> (isset($request->ptd_period_from) ? json_encode((object) $request->ptd_period_from) : json_encode((object) array(NULL)) ),
+                        'ptd_period_to'=> (isset($request->ptd_period_to) ? json_encode((object) $request->ptd_period_to) : json_encode((object) array(NULL)) ),
+                        'ptd_device'=> (isset($request->ptd_device) ? json_encode((object) $request->ptd_device) : json_encode((object) array(NULL)) ),
+                        'ptd_banner_url'=> (isset($request->ptd_banner_url) ? json_encode((object) $request->ptd_banner_url) : json_encode((object) array(NULL)) ),
+                        'ptd_banner_file'=> (isset($request->ptd_banner_file) ? json_encode((object) $request->ptd_banner_file) : json_encode((object) array(NULL)) ),
+                        'ptd_quotation_file'=> (isset($request->ptd_quotation_file) ? json_encode((object) $request->ptd_quotation_file) : json_encode((object) array(NULL)) ),
+                        'ptd_impression_need'=> (isset($request->ptd_impression_need) ? json_encode((object) $request->ptd_impression_need) : json_encode((object) array(NULL)) ),
+                        'ptd_ad_detail'=> (isset($request->ptd_ad_detail) ? json_encode((object) $request->ptd_ad_detail) : json_encode((object) array(NULL)) ),
+                        'ptd_campaign_budget'=>(isset($request->ptd_campaign_budget) ? $request->ptd_campaign_budget : NULL),
                 ]);
 
                 return view('new.success_request_approve');

@@ -12,13 +12,13 @@
                   <div class="input-group-inline"><span><strong>Period:</strong></span></div>
                   <div class="input-group-inline">
                     <span>From</span>
-                    <input type="text" class="form-control form-input--date" name="start" autocomplete="off">
-                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                    <input type="text" class="form-control form-input--date" id="start" name="start" autocomplete="off">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20" onclick="document.getElementById('start').focus();"></span>
                   </div>
                   <div class="input-group-inline">
                     <span>to</span>
-                    <input type="text" class="form-control form-input--date" name="end" autocomplete="off">
-                    <span><img src="assets/images/icon-svg/calendar.svg" width="20"></span>
+                    <input type="text" class="form-control form-input--date" id="end" name="end" autocomplete="off">
+                    <span><img src="assets/images/icon-svg/calendar.svg" width="20" onclick="document.getElementById('end').focus();"></span>
                   </div>
                   <button type="submit" class="btn btn-click2">Apply</button>
                   {{ Form::close() }}

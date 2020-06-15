@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 <head>
@@ -14,34 +15,46 @@
 	
 <title>Bangkok Post</title>
 	
-  <script type="text/javascript" src="<?= url('/') ?>/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?= url('/') ?>/assets/js/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="<?= url('/') ?>/assets/bootstrap/css/bootstrap.css">
-  <script src="<?= url('/') ?>/assets/bootstrap/js/bootstrap.min.js"></script>
-  <link href="<?= url('/') ?>/assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
-  <link href="<?= url('/') ?>/assets/css/animate.min.css" rel="stylesheet">
-  
-  <link href="<?= url('/') ?>/assets/css/custom.css" rel="stylesheet" type="text/css">
-  <link href="<?= url('/') ?>/assets/css/style.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="<?= url('/') ?>/assets/js/scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
-  <style>
-    .container{
-        padding-top:120px;
-    }
-  </style>
+<link rel="stylesheet" href="<?= url('/') ?>/assets/bootstrap/css/bootstrap.css">
+<script src="<?= url('/') ?>/assets/bootstrap/js/bootstrap.min.js"></script>
+<link href="<?= url('/') ?>/assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
+<link href="<?= url('/') ?>/assets/css/animate.min.css" rel="stylesheet">
+
+<link href="<?= url('/') ?>/assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="<?= url('/') ?>/assets/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?= url('/') ?>/assets/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+<style>
+  .container{
+      padding-top:120px;
+  }
+</style>
+	
 </head>
 
 <body>
-<div class="container">
-          <h2>Create Campaign Report</h2>
-            <?php if(isset($item['id'])){ ?>
-              <input type="hidden" name='id' value="<?= $item['id'] ?>" readonly="">
-            <?php }?>
-            <input type="hidden" name="report_type_id" value="<?= (isset($item['report_type_id']) ? $item['report_type_id'] : '') ?>">
-            <input type="hidden" name="report_type_name" value="<?= (isset($item['report_type_name']) ? $item['report_type_name'] : '') ?>">
-            <div class="content-pdb">
+<!-- nav -->
+<div class="content-pd"></div>
+
+
+<section class="contentStatic-pageContent">
+  <div class="container">
+    <div class="row container--inventory">
+      <div class="col-15 bg-fff" style="width: 21cm; height: 39.7cm;">
+        <div class="content-inventory">
+          <div class="head--top">
+            <div class="head--postgroup-logo"><img src="/assets/images/bkp-logo-blue-pdf.png" class="img-fluid" alt="" style="width:280px;"></div>
+            <div class="head--postgroup-address">
+              Bangkok Post Public Company Limited<br>
+              135 Sunthorn Kosa Road, Klong Toey, Bangkok 10110
+            </div>
+          </div>
+          <h2 class="text-center">Create Campaign Report</h2>
+
+          <div class="content-pdb">
               <div class="form-group row">
                 <label for="customerSelect" class="col-sm-4 col-md-4 col-lg-3 col-form-label">Advertiser:</label>
                 <div class="col-sm-11 col-md-11 col-lg-12">
@@ -100,18 +113,25 @@
               </tbody>
             </table>
           </div>
-
             </div>
-</div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <script>
-    let doc = new jsPDF('body','pt','a4');
+ let doc = new jsPDF('body','pt','a4',true);
 
-doc.addHTML(document.body,function() {
+doc.addHTML(document.getElementsByClassName("col-15 bg-fff")[0],function() {
     doc.save('html.pdf');
-    window.close();
+    
+    //window.close();
 });
-
+//doc.output('dataurlnewwindow');
 </script>
-<!--action if auth = user-->
 </body>
 </html>
