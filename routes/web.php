@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/test',  'RequestFormController@test');
+    Route::post('/test',  'InventoryController@test');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
@@ -97,8 +97,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/inventory', ['as' => '/inventory', 'uses' => 'InventoryController@index']);
         Route::post('/inventory-import', 'InventoryController@import');
-        Route::get('ajaxRequest', 'InventoryController@ajaxRequest');
-        Route::post('ajaxRequest', 'InventoryController@ajaxRequestPost');
+        Route::get('/ajaxRequest', 'InventoryController@ajaxRequest');
+        Route::post('/ajaxRequest', 'InventoryController@test');
         
         Route::get('/revenue', ['as' => '/revenue', 'uses' => 'RevenueReportController@index']);
         Route::get('/success', 'AppController@success');

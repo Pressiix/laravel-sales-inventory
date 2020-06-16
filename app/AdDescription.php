@@ -8,10 +8,10 @@ class AdDescription extends Model
 {
     public $timestamps = false;
 
-    protected $connection = 'mysql';
-    protected $table = 'ad_description';
+    protected $connection = 'mysql';    //specific db connection type 
+    protected $table = 'ad_description';    //specific table name
 
-    protected $fillable = [
+    protected $fillable = [ //specific usable field
         'id',
         'bp_type',
         'bp_social',
@@ -48,8 +48,9 @@ class AdDescription extends Model
         'request_id'
     ];
 
+    /**Defining The Inverse Of The Relationship ad_description table => request table  */
     public function relateRequest()
     {
-        return self::belongsTo('App\Request','id');
+        return self::belongsTo('App\Request','id');  //foreign key field is 'id' (On request table)
     }
 }

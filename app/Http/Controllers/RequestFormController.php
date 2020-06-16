@@ -23,11 +23,6 @@ use Input;
 
 class RequestFormController extends Controller
 {
-    public function test()
-    {
-        echo auth()->user()->id;
-        
-    }
     /**
      * Display a listing of the users
      *
@@ -373,8 +368,8 @@ class RequestFormController extends Controller
             else if($request->input('action') === 'Submit')
             {
                 //DELETE BEFORE SAVE
-                //AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
-                //RequestForm::where('request_id', $request->request_id)->delete();
+                AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
+                RequestForm::where('request_id', $request->request_id)->delete();
                 
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
                 //Save new request and ad description

@@ -10,7 +10,12 @@ class Inventory extends Model
     
     protected $fillable = [
         'id',
-        'name',
+        'web',
+        'month',
+        'year',
+        'section',
+        'type',
+        'inventory',
         'available'
     ];
     
