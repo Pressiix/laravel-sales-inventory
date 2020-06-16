@@ -1792,15 +1792,15 @@
         });
 
         // Output the result
-        //$("#showJson").text(JSON.stringify(data));
+        $("#showJson").text(JSON.stringify(data));
         var current_month = $("#bkp").find(".div-barheader2").text();
         var month = current_month.substr(0,current_month.indexOf(' '));
         var year = current_month.substr(current_month.indexOf(' ')+1);
-        //console.log(year);
+        var section = $("#bangkokpost").find("h3").text();
         $.ajax({
           type:'POST',
           url:'/ajaxRequest',
-          data:{data:data,month:month,year:year},
+          data:{data:data,month:month,year:year,section:section},
           success:function(messege){
             console.log(messege.success);
           }
