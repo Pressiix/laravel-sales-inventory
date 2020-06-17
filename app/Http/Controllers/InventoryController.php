@@ -292,37 +292,6 @@ class InventoryController extends Controller
          
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    public function ajaxRequest()
-    {
-        return view('ajaxRequest');
-    }
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    public function ajaxRequestPost(Request $request)
-    {
-        $input = $request->all();
-        $request_form = Inventory::where('type', 'Leader Board')->update([
-            'web' => 'bp',
-            'month'=> 'January',
-            'year'=>'2020',
-            'type'=> 'Leader Board',
-            'inventory'=> json_encode($input['data']),
-            'available'=>json_encode($input['data'])
-        ]);
-        
-        return response()->json(['success'=>json_encode($input['data'])]);
-    }
 
     private function getInventoryByCampaignType($data)
     {
