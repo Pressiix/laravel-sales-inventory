@@ -222,7 +222,7 @@ class InventoryController extends Controller
         foreach(array_keys($a) as $key=>$value)
             {
                 $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->update([
-                    'web' => 'ptd',
+                    'web' => 'bp',
                     'month'=> $month,
                     'year'=>$year,
                     'section'=>$section,
