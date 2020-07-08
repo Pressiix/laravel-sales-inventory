@@ -274,7 +274,6 @@ class InventoryController extends Controller
                             $array[$row_index] = implode(array_map(function ($cell) {
                                     return "\"".$cell."\",";
                             }, $row->getCells()));
-                            
                             //$array[$row_index] = explode(",", $array[$row_index]);
                             $row_index++;		
                         }

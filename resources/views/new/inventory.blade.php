@@ -1802,7 +1802,7 @@
           url:'/ajaxRequest',
           data:{data:data,month:month,year:year,section:section},
           success:function(messege){
-            console.log(messege.success);
+            alert(messege.success); //show response messege from controller
           }
         });
       }
