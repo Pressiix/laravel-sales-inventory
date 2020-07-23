@@ -3,15 +3,12 @@ Changelog
 
 ## UNRELEASED
 
-<<<<<<< HEAD
 ## 1.9.1
 
 ## Fixed
 
 * provisional support for PHP 8.0
 
-=======
->>>>>>> ca06f3736ca28c7c52a74d0ff9524246336f6d76
 ## 1.9.0
 
 * added better Psalm support for `all*` & `nullOr*` methods
@@ -24,11 +21,7 @@ Changelog
 * the `all*` & `nullOr*` methods are now declared on an interface, instead of `@method` annotations.
 This interface is linked to the `Assert` class with a `@mixin` annotation. Most IDE's have supported this
 for a long time, and you should not lose any autocompletion capabilities. PHPStan has supported this since
-<<<<<<< HEAD
 version `0.12.20`. This package is marked incompatible (with a composer conflict) with phpstan version prior to that.
-=======
-version `0.12.20`. This package is marked incompatbible (with a composer conflict) with phpstan version prior to that.
->>>>>>> ca06f3736ca28c7c52a74d0ff9524246336f6d76
 If you do not use PHPStan than this does not matter.
 
 ## 1.8.0
