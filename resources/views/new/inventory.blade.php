@@ -1046,7 +1046,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
@@ -1730,7 +1730,7 @@
   </div>
 </div>
 
-<button style="display:none;" class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
 <div id="showJson"></div>
 
 <script src="/assets/js/jquery.table2excel.js"></script>
@@ -1802,7 +1802,7 @@
           url:'/ajaxRequest',
           data:{data:data,month:month,year:year,section:section},
           success:function(messege){
-            console.log(messege.success);
+            alert(messege.success); //show response messege from controller
           }
         });
       }
