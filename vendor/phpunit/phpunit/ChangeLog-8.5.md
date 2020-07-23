@@ -2,7 +2,6 @@
 
 All notable changes of the PHPUnit 8.5 release series are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
-<<<<<<< HEAD
 ## [8.5.8] - 2020-06-22
 
 ### Fixed
@@ -16,8 +15,6 @@ All notable changes of the PHPUnit 8.5 release series are documented in this fil
 * [#4299](https://github.com/sebastianbergmann/phpunit/issues/4299): "No tests executed" does not always result in exit code `1`
 * [#4306](https://github.com/sebastianbergmann/phpunit/issues/4306): Exceptions during code coverage driver initialization are not handled correctly
 
-=======
->>>>>>> ca06f3736ca28c7c52a74d0ff9524246336f6d76
 ## [8.5.6] - 2020-06-15
 
 ### Fixed
@@ -80,11 +77,8 @@ All notable changes of the PHPUnit 8.5 release series are documented in this fil
 * [#3967](https://github.com/sebastianbergmann/phpunit/issues/3967): Cannot double interface that extends interface that extends `\Throwable`
 * [#3968](https://github.com/sebastianbergmann/phpunit/pull/3968): Test class run in a separate PHP process are passing when `exit` called inside
 
-<<<<<<< HEAD
 [8.5.8]: https://github.com/sebastianbergmann/phpunit/compare/8.5.7...8.5.8
 [8.5.7]: https://github.com/sebastianbergmann/phpunit/compare/8.5.6...8.5.7
-=======
->>>>>>> ca06f3736ca28c7c52a74d0ff9524246336f6d76
 [8.5.6]: https://github.com/sebastianbergmann/phpunit/compare/8.5.5...8.5.6
 [8.5.5]: https://github.com/sebastianbergmann/phpunit/compare/8.5.4...8.5.5
 [8.5.4]: https://github.com/sebastianbergmann/phpunit/compare/8.5.3...8.5.4
