@@ -13,6 +13,7 @@ class Inventory extends Model
         'web',
         'month',
         'year',
+        'section',
         'type',
         'inventory',
         'available'

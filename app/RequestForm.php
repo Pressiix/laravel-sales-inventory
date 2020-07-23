@@ -8,7 +8,7 @@ class RequestForm extends Model
 {
     public $timestamps = false;
     
-    protected $fillable = [
+    protected $fillable = [ //specific usable field
         'id',
         'request_id',
         'sales_name',
@@ -22,12 +22,13 @@ class RequestForm extends Model
         'customer_id'
     ];
     
-    protected $connection = 'mysql';
-    protected $table = 'request';
+    protected $connection = 'mysql';    //specific db connection type 
+    protected $table = 'request';   //specific table name
 
+    /**Relationship between request table and ad_description table (One To One) */
     public function relateAd()
     {
-        return $this->hasOne('App\AdDescription','request_id');
+        return $this->hasOne('App\AdDescription','request_id'); //foreign key field is 'request_id' (On ad_description table)
     }
 
 }

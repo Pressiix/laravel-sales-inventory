@@ -562,7 +562,6 @@ class ComposerStaticInit6d6dc279cbfc6690578128b453e8c10e
         'App\\AdDescription' => __DIR__ . '/../..' . '/app/AdDescription.php',
         'App\\AdNetwork' => __DIR__ . '/../..' . '/app/AdNetwork.php',
         'App\\Advertiser' => __DIR__ . '/../..' . '/app/Advertiser.php',
-        'App\\Booking' => __DIR__ . '/../..' . '/app/Booking.php',
         'App\\Campaign' => __DIR__ . '/../..' . '/app/Campaign.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Customer' => __DIR__ . '/../..' . '/app/Customer.php',

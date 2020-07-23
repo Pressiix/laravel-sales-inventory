@@ -1046,7 +1046,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('bkp');">download</button>
                   </div>
 
@@ -1472,7 +1472,7 @@
                   </div>
 
                   <div class="box-border--center">
-                    <button data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
+                    <button style="display:none;" data-target="#myModal" data-toggle="modal" type="submit" value="send" class="btn btn-submit">import inventory</button>
                     <button type="submit" value="send" class="btn btn-submit" onclick="downloadExcel('ptd');">download</button>
                   </div>
 
@@ -1730,7 +1730,7 @@
   </div>
 </div>
 
-<button class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
+<button style="display:none;" class="btn btn-warning" onclick="saveData('bkp');">SAVE</button>
 <div id="showJson"></div>
 
 <script src="/assets/js/jquery.table2excel.js"></script>
@@ -1792,15 +1792,15 @@
         });
 
         // Output the result
-        //$("#showJson").text(JSON.stringify(data));
+        $("#showJson").text(JSON.stringify(data));
         var current_month = $("#bkp").find(".div-barheader2").text();
         var month = current_month.substr(0,current_month.indexOf(' '));
         var year = current_month.substr(current_month.indexOf(' ')+1);
-        //console.log(year);
+        var section = $("#bangkokpost").find("h3").text();
         $.ajax({
           type:'POST',
           url:'/ajaxRequest',
-          data:{data:data,month:month,year:year},
+          data:{data:data,month:month,year:year,section:section},
           success:function(messege){
             console.log(messege.success);
           }

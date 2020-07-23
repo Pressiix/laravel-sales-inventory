@@ -25,6 +25,7 @@ class InventoryController extends Controller
         set_time_limit(8000000);
     }
 
+    /** Test update data from json file */
     /*public function test(Request $request)
     {
         $input = $request->all();
@@ -136,11 +137,12 @@ class InventoryController extends Controller
         $data = json_decode(json_encode($input['data']),true);
         $month = $input['month'];
         $year = $input['year'];
+        $section = $input['section'];
 
-        return response()->json(['success'=>$this->test2($data,$month,$year)]);
+        return response()->json(['success'=>$this->test2($data,$month,$year,$section)]);
     }
 
-    public function test2($data,$month,$year)
+    public function test2($data,$month,$year,$section)
     {
         $campaign = [];
         $index = 0;
@@ -197,28 +199,38 @@ class InventoryController extends Controller
             
         }
 
-        $month = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
+        //Create data Test
+        /*$month_array = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
         
-        foreach(array_keys($a) as $key=>$value)
+        foreach($month_array as $m)
         {
-            //echo $a[$key][0]."<br/>";
-            /*$request_form = Inventory::create([
-                'web' => 'bp',
-                'month'=> 'December',
-                'year'=>'2020',
-                'type'=> $a[$key][0],
-                'inventory'=> json_encode($a[$key]),
-                'available'=>json_encode($b[$key])
-            ]);*/
-            $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->update([
-                'web' => 'bp',
-                'month'=> 'January',
-                'year'=>'2020',
-                'type'=> $a[$key][0],
-                'inventory'=> json_encode($a[$key]),
-                'available'=>json_encode($b[$key])
-            ]);
-        }
+            foreach(array_keys($a) as $key=>$value)
+            {
+                //echo $a[$key][0]."<br/>";
+                $request_form = Inventory::create([
+                    'web' => 'bp',
+                    'month'=> $m,
+                    'year'=>$year,
+                    'type'=> $a[$key][0],
+                    'inventory'=> json_encode($a[$key]),
+                    'available'=>json_encode($b[$key])
+                ]);
+            }  
+        }*/
+
+        //Update data Test
+        foreach(array_keys($a) as $key=>$value)
+            {
+                $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->update([
+                    'web' => 'bp',
+                    'month'=> $month,
+                    'year'=>$year,
+                    'section'=>$section,
+                    'type'=> $a[$key][0],
+                    'inventory'=> json_encode($a[$key]),
+                    'available'=>json_encode($b[$key])
+                ]);
+            }
 
         return "Data has been saved!";
     }
@@ -256,7 +268,7 @@ class InventoryController extends Controller
                 foreach ($reader->getSheetIterator() as $sheet) 
                 {
                     //$content .= '<table border="1">';
-                    if ($sheet->getName() === 'Sheet2') //get array from specific sheet name ***
+                    if ($sheet->getName() === 'Sheet1') //get array from specific sheet name ***
                     {
                         foreach ($sheet->getRowIterator() as $row) {
                             $array[$row_index] = implode(array_map(function ($cell) {

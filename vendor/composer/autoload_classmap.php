@@ -9,7 +9,6 @@ return array(
     'App\\AdDescription' => $baseDir . '/app/AdDescription.php',
     'App\\AdNetwork' => $baseDir . '/app/AdNetwork.php',
     'App\\Advertiser' => $baseDir . '/app/Advertiser.php',
-    'App\\Booking' => $baseDir . '/app/Booking.php',
     'App\\Campaign' => $baseDir . '/app/Campaign.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Customer' => $baseDir . '/app/Customer.php',
