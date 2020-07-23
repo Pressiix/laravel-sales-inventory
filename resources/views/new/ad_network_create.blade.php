@@ -199,7 +199,7 @@
             var  impression = parseFloat(this.value);
             if($('input[id="impression'+index+'"]').val().length !== 0 && this.value.length !== 0)
             {
-              if(!isNaN((revenue/impression)*1000))
+              if(!isNaN((revenue/impression)*1000)) //CPM ย่อมาจาก "cost per 1000 impressions" (ต้นทุนต่อการแสดงผลพันครั้ง)
               {
                 $('input[id="ecpm'+index+'"]').val(((revenue/impression)*1000).toFixed(2));
               }else{
