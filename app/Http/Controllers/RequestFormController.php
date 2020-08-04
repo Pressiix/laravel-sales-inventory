@@ -34,7 +34,7 @@ class RequestFormController extends Controller
             $advertiser = array_column(json_decode(json_encode(Advertiser::all()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
-    
+
             //echo "<pre/>";print_r($data);
             return view('new.request_form',[
                 'sales_name' => auth()->user()->firstname.' '.auth()->user()->lastname,
@@ -58,7 +58,7 @@ class RequestFormController extends Controller
         }else{
             $userRole = '';
         }
-        
+
         //$item = $request->all();
         //echo "<pre/>"; print_r($request->all());
 
@@ -69,7 +69,7 @@ class RequestFormController extends Controller
         $ptd_banner_file=[];
         $ptd_quotation_file=[];
         if(isset($request->old_bp_banner_file)){   //EDIT REQUEST FORM
-                if(isset($request->bp_banner_file)){    
+                if(isset($request->bp_banner_file)){
                     if(count($request->old_bp_banner_file) == count($request->bp_banner_file))
                     {
                         foreach($request->old_bp_banner_file as $banner){
@@ -78,7 +78,7 @@ class RequestFormController extends Controller
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                                 $i++;
                         }
-                        //echo 'A';
+
                     }else{
                         foreach($request->old_bp_banner_file as $banner){
                             if(isset($request->bp_banner_file[$i])){
@@ -94,15 +94,15 @@ class RequestFormController extends Controller
                             }
                             $i++;
                         }
-                        //echo 'B';
+
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_bp_banner_file as $banner){
                         $bp_banner_file[$i] = $banner;
                         $i++;
                     }$i=0;
-                    //echo 'C';
+
                 }
         }
         else{  //NEW REQUEST FORM
@@ -113,12 +113,12 @@ class RequestFormController extends Controller
                     $i++;
                 }
                 $i=0;
-                //echo 'D';
+
             }
         }
 
         if(isset($request->old_bp_quotation_file)){   //EDIT REQUEST FORM
-                if(isset($request->bp_quotation_file)){    
+                if(isset($request->bp_quotation_file)){
                     if(count($request->old_bp_quotation_file) == count($request->bp_quotation_file))
                     {
                         foreach($request->old_bp_quotation_file as $quotation){
@@ -146,7 +146,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_bp_quotation_file as $quotation){
                         $bp_quotation_file[$i] = $quotation;
                         $i++;
@@ -167,7 +167,7 @@ class RequestFormController extends Controller
         }
 
         if(isset($request->old_ptd_banner_file)){   //EDIT REQUEST FORM
-                if(isset($request->ptd_banner_file)){    
+                if(isset($request->ptd_banner_file)){
                     if(count($request->old_ptd_banner_file) == count($request->ptd_banner_file))
                     {
                         foreach($request->old_ptd_banner_file as $banner){
@@ -195,7 +195,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_ptd_banner_file as $banner){
                         $ptd_banner_file[$i] = $banner;
                         $i++;
@@ -216,7 +216,7 @@ class RequestFormController extends Controller
         }
 
         if(isset($request->old_ptd_quotation_file)){   //EDIT REQUEST FORM
-                if(isset($request->ptd_quotation_file)){    
+                if(isset($request->ptd_quotation_file)){
                     if(count($request->old_ptd_quotation_file) == count($request->ptd_quotation_file))
                     {
                         foreach($request->old_ptd_quotation_file as $quotation){
@@ -244,7 +244,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_ptd_quotation_file as $quotation){
                         $ptd_quotation_file[$i] = $quotation;
                         $i++;
@@ -280,18 +280,18 @@ class RequestFormController extends Controller
         {
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
-        
+
         return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
         ]);
-        
+
     }
 
-    
-    
+
+
     public function review2($id)
     {
         $request_form = RequestForm::find($id)->getOriginal();
@@ -340,7 +340,7 @@ class RequestFormController extends Controller
             'item' => $item,
             'userRole' => $userRole
         ]);
-        
+
     }
 
     public function storeRequest(Request $request)
@@ -370,7 +370,7 @@ class RequestFormController extends Controller
                 //DELETE BEFORE SAVE
                 AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
                 RequestForm::where('request_id', $request->request_id)->delete();
-                
+
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
                 //Save new request and ad description
                     $request_form = RequestForm::create([
@@ -419,12 +419,12 @@ class RequestFormController extends Controller
                         'ptd_ad_detail'=> (isset($request->ptd_ad_detail) ? json_encode((object) $request->ptd_ad_detail) : json_encode((object) array(NULL)) ),
                         'ptd_campaign_budget'=>(isset($request->ptd_campaign_budget) ? $request->ptd_campaign_budget : NULL),
                     ]);
-               
+
                     //echo "<pre/>"; print_r($b); echo "<pre/>";
 
                 //Send email to ...
                 $this->sendEmail();
-                
+
                 return view('new.success_request_submit');
             }
             else if($request->input('action') === 'Approve')
@@ -492,7 +492,7 @@ class RequestFormController extends Controller
         foreach($all_user as $key=>$value)
         {
             if(User::getUserRoleById($value['id']) == 'sale-management')
-            {   
+            {
                 $email =  $value['email'];
                 break;
             }
@@ -506,7 +506,7 @@ class RequestFormController extends Controller
             'title' => 'Notification!, Request form has been created',
             'body' => 'This is for testing email using smtp'
         ];
-       
+
         return \Mail::to($email)->send(new \App\Mail\SendMail($details));
     }
 
@@ -514,5 +514,5 @@ class RequestFormController extends Controller
     {
         return view('new.success');
     }
-    
+
 }
