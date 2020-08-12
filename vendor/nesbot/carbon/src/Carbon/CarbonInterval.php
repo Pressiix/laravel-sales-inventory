@@ -268,6 +268,11 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
         ];
     }
 
+    private static function areSameUnit($first, $second)
+    {
+        return self::standardizeUnit($first) === self::standardizeUnit($second);
+    }
+
     private static function standardizeUnit($unit)
     {
         $unit = rtrim($unit, 'sz').'s';
@@ -1052,6 +1057,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
 
                     break;
 
+<<<<<<< HEAD
                 case 'daysexcludeweek':
                 case 'dayzexcludeweek':
                     $this->d = $this->weeks * static::getDaysPerWeek() + $value;
@@ -1090,6 +1096,40 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
                         throw new UnknownSetterException($key);
                     }
 
+=======
+                case 'hour':
+                    $this->h = $value;
+
+                    break;
+
+                case 'minute':
+                    $this->i = $value;
+
+                    break;
+
+                case 'second':
+                    $this->s = $value;
+
+                    break;
+
+                case 'milli':
+                case 'millisecond':
+                    $this->microseconds = $value * Carbon::MICROSECONDS_PER_MILLISECOND + $this->microseconds % Carbon::MICROSECONDS_PER_MILLISECOND;
+
+                    break;
+
+                case 'micro':
+                case 'microsecond':
+                    $this->f = $value / Carbon::MICROSECONDS_PER_SECOND;
+
+                    break;
+
+                default:
+                    if ($this->localStrictModeEnabled ?? Carbon::isStrictModeEnabled()) {
+                        throw new UnknownSetterException($key);
+                    }
+
+>>>>>>> af66ab0e2da324d87c78a9bde6a3f20999d17cb4
                     $this->$key = $value;
             }
         }
@@ -1913,7 +1953,11 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
         }
 
         return $this->copyProperties(
+<<<<<<< HEAD
             static::create($yearPart)
+=======
+            static::__callStatic('years', [$yearPart])
+>>>>>>> af66ab0e2da324d87c78a9bde6a3f20999d17cb4
                 ->microseconds(abs($this->totalMicroseconds) * $factor)
                 ->cascade(),
             true
@@ -2074,6 +2118,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
      */
     public function cascade()
     {
+<<<<<<< HEAD
         return $this->doCascade(false);
     }
 
@@ -2092,11 +2137,66 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
     {
         foreach ($this->toArray() as $value) {
             if ($value > 0) {
+=======
+        $newData = $this->toArray();
+
+        do {
+            $data = $newData;
+            $nonZeroValues = $this->getNonZeroValues();
+            $biggestUnit = key($nonZeroValues);
+
+            foreach (static::getFlipCascadeFactors() as $source => [$target, $factor]) {
+                if ($source === 'dayz' && $target === 'weeks') {
+                    continue;
+                }
+
+                $targetZero = !$this->$target;
+                $value = $this->$source;
+                $modulo = ($factor + ($value % $factor)) % $factor;
+                $this->$source = $modulo;
+
+                if ($targetZero && $modulo > $value && self::areSameUnit($source, $biggestUnit)) {
+                    return $this->set(array_map(function ($originalValue) {
+                        return -$originalValue;
+                    }, $data))->cascade()->invert();
+                }
+
+                $this->$target += ($value - $modulo) / $factor;
+
+                if (!$targetZero && $this->$source > 0 && $this->$target < 0) {
+                    $this->$source -= $factor;
+                    $this->$target++;
+                }
+            }
+        } while ($this->hasNegativeValues() && $this->hasPositiveValues() && ($newData = $this->toArray()) !== $data);
+
+        return $this->solveNegativeInterval();
+    }
+
+    public function hasNegativeValues(): bool
+    {
+        foreach ($this->toArray() as $value) {
+            if ($value < 0) {
+>>>>>>> af66ab0e2da324d87c78a9bde6a3f20999d17cb4
                 return true;
             }
         }
 
         return false;
+<<<<<<< HEAD
+=======
+    }
+
+    public function hasPositiveValues(): bool
+    {
+        foreach ($this->toArray() as $value) {
+            if ($value > 0) {
+                return true;
+            }
+        }
+
+        return false;
+>>>>>>> af66ab0e2da324d87c78a9bde6a3f20999d17cb4
     }
 
     /**
