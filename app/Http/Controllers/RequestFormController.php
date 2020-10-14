@@ -367,9 +367,12 @@ class RequestFormController extends Controller
 
             else if($request->input('action') === 'Submit')
             {
-                //DELETE BEFORE SAVE
-                AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
-                RequestForm::where('request_id', $request->request_id)->delete();
+                $get_request = RequestForm::where('request_id', $request->request_id)->first();
+                if(!is_null($get_request)){
+                    //DELETE BEFORE SAVE
+                    AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
+                    RequestForm::where('request_id', $request->request_id)->delete();
+                }               
 
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
                 //Save new request and ad description

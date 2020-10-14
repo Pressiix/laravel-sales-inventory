@@ -1326,7 +1326,10 @@
                         <div class="alert--detail">
                             <div class="alert--img"><img src="assets/images/icon-svg/alert.svg"></div>
                             <div class="alert--text">คุณยังไม่ได้ submit ข้อมูลที่กรอกไว้จะหาย</div>
-                            <div class="text-center"><button type="button" class="btn btn-submit" data-dismiss="modal">OK</button></div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-submit" data-dismiss="modal">Stay in this page</button>
+                                <button type="button" class="btn btn-submit2" data-dismiss="modal" onclick="window.location.href = _des_page;">Go to new page</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1378,7 +1381,7 @@
 
         
 
-        window.onbeforeunload = function(e) {
+        /*window.onbeforeunload = function(e) {
           if(!onSubmit)
           { 
             $('#confirmModal').modal();
@@ -1387,7 +1390,7 @@
               $('#confirmModal').modal("hide");
             }, 9000);
           }
-        };
+        };*/
 
         
 

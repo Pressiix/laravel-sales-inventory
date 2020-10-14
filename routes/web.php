@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/backend/users-display','DevController@showAllUser');
         Route::post('/backend/users-find','DevController@findUser');
         Route::get('/backend/users-destroy/{id}','UserController@destroyUserById');
-        Route::get('/backend/role-display/{id}', 'DevController@showRole');
+    Route::get('/backend/roles-display/{id}', 'DevController@showRole' );
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
     });
        

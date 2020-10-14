@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  .custom-select {
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+}
+.href-button{
+    color: #fff;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+</style>
       <div class="col-15 bg-fff">
         <div class="content-inventory--full">
           <div class="box-title">
@@ -11,40 +27,41 @@
             <?php } ?>
             </div>
           </div>
-          <form>
-
+          <!-- <form> -->
+          
             <div style="position: relative;">
-
-              <div class="content-box--select">
+            {{ Form::open(['route' => '/ad_network_bymonth', 'method' => 'POST'])}}
+            <div class="content-box--select">
                 <div class="form-group row">
-                  <div class="col-50">
-                    <select class="custom-select s-ad">
-                      <option selected>Select Month</option>
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>
+                  <div class="col-6">
+                    <select class="custom-select" name="current_month" required>
+                      <option value="" selected="">Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
                     </select>
                   </div>
-                  <div class="col-50">
-                    <select class="custom-select s-ad">
-                      <option selected>Select Year</option>
-                      <option value="1">2020</option>
-                      <option value="2">2019</option>
-                      <option value="3">2018</option>
+                  <div class="col-5">
+                    <select class="custom-select" name="current_year" required>
+                      <option value="" selected="">Year</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
                   </div>
+                  <div class="col-4"><button type="submit" class="btn btn-click2">Apply</button></div>
                 </div>
               </div>
-
+              {{ Form::close() }}
               <ul class="nav nav-tabs nav-requestForm" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="bangkokpost-tab" data-toggle="tab" href="#bangkokpost" role="tab" aria-controls="bangkokpost" aria-selected="true">Bangkokpost</a>
@@ -522,7 +539,7 @@
             </div>
 
 
-          </form>
+          <!--</form>-->
         </div>
       </div>
   
