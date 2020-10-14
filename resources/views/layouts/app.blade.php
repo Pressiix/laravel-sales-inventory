@@ -71,7 +71,21 @@
     </script>
 </head>
 <body>
+    <script>
+        var _des_page = '';
 
+        //Confirm dialog for request form unload
+        function showConfirmPopUp()
+        {
+            var _path = window.location.pathname;
+            if (_path.indexOf("request_form") >= 0)
+            {
+                event.preventDefault();
+                    $('#confirmModal').modal();
+            }
+        }
+        
+    </script>
     <div id="app" class="contentStatic-pageBody">
     @guest <!--action if auth = guest-->
     @else <!--action if auth = user-->
@@ -91,18 +105,20 @@
                     <?php if(Auth::user()->hasRole('admin') && Auth::user()->username == "admin" ){ ?>
                         <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
                     <?php } ?>
-                    <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">Profile</a></li>
-                    <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}">Request Form</a></li>
-                    <li><a href="/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}">Booking Inventory</a></li>
-                    <li><a href="/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}">Revenue</a></li>
-                    <li><a href="/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}">Campaign Report</a></li>
-                    <li><a href="/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}">Ad Network</a></li>
+                    <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}" onclick="_des_page='/profile';showConfirmPopUp();">Profile</a></li>
+                    <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}" onclick="_des_page='/request_form';showConfirmPopUp();">Request Form</a></li>
+                    <li><a href="/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}" onclick="_des_page='/inventory';showConfirmPopUp();">Booking Inventory</a></li>
+                    <li><a href="/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}" onclick="_des_page='/revenue';showConfirmPopUp();">Revenue</a></li>
+                    <li><a href="/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}" onclick="_des_page='/campaign_report';showConfirmPopUp();">Campaign Report</a></li>
+                    <li><a href="/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}" onclick="_des_page='/ad_network';showConfirmPopUp();">Ad Network</a></li>
                     </ul>
                     <div class="box-logout"><a href="{{ url('/logout') }}">logout</a></div>
                 </div>
                 </div>
             </div>
         </header>
+
+        
 
         <div class="content-pd"></div>
         <div class="contentStatic-pageBody">

@@ -352,6 +352,21 @@ h3 {
     color: #fff;
 }
 
+.btn-submit2 {
+    background-color: #6c757d;
+    width: 216px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 40px;
+}
+
+.btn-submit2:hover {
+    background-color: #193B7C;
+    color: #fff;
+}
+
 .div-form--login {
     padding-top: 50px;
 }

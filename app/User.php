@@ -51,4 +51,16 @@ class User extends Authenticatable
         return (count($role) !== 0 ? $role[0] : '');
     }
 
+    public static function getUserPermissionById($id)
+    {
+        $user = self::where('id',$id)->first();
+        if(!is_null($user))
+        {
+            $permission =  $user->getAllPermissions();
+            return count($permission) !== 0 ? (array) json_decode($permission,true) : [];
+        }else{
+            return [];
+        } 
+    }
+
 }

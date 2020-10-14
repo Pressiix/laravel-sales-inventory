@@ -102,6 +102,13 @@ class DevController extends Controller
         
      }
 
+     public function genMockUpUser()
+     {
+        $gen = User::where('username', '=', 'test')->first()->assignRole(Role::where('name', '=', 'admin')->first());
+        $gen = User::where('username', '=', 'sale')->first()->assignRole(Role::where('name', '=', 'sale')->first());
+        $gen = User::where('username', '=', 'sale_m')->first()->assignRole(Role::where('name', '=', 'sale-management')->first());
+     }
+
      /*
      *
      * if system doesn't have a dev,It will created a dev
@@ -116,6 +123,8 @@ class DevController extends Controller
          //echo "<pre/>"; print_r($admin_user);
          if($admin_user)
          {
+            self::genMockUpUser();
+
              return $admin_user->assignRole($role->name);
          }
          else  //if you not have dev in database, system will create dev
@@ -141,43 +150,64 @@ class DevController extends Controller
     public function createRoleAndPermission()
     {
         //Clear old data before init
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('role_has_permissions')->truncate();
-        DB::table('model_has_permissions')->truncate();
-        DB::table('model_has_roles')->truncate();
-        DB::table('permissions')->truncate();
-        DB::table('roles')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::table('role_has_permissions')->truncate();
+        // DB::table('model_has_permissions')->truncate();
+        // DB::table('model_has_roles')->truncate();
+        // DB::table('permissions')->truncate();
+        // DB::table('roles')->truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         //create role
-        Role::create(['name'=>'admin']);
-        Role::create(['name'=>'general']);
-        Role::create(['name'=>'marketing']);
-        Role::create(['name'=>'ad-operation']);
-        Role::create(['name'=>'sale']);
-        Role::create(['name'=>'sale-management']);
-        Role::create(['name'=>'management']);
+        // Role::create(['name'=>'admin']);
+        // Role::create(['name'=>'general']);
+        // Role::create(['name'=>'marketing']);
+        // Role::create(['name'=>'ad-operation']);
+        // Role::create(['name'=>'sale']);
+        // Role::create(['name'=>'sale-management']);
+        // Role::create(['name'=>'management']);
         
         //create permission
-        Permission::create(['name'=>'create request']);
-        Permission::create(['name'=>'edit request']);
-        Permission::create(['name'=>'manage user']);
-        Permission::create(['name'=>'create ad network']);
+        // Permission::create(['name'=>'create request']);
+        // Permission::create(['name'=>'edit request']);
+        // Permission::create(['name'=>'manage user']);
+        // Permission::create(['name'=>'create ad network']);
+        // Permission::create(['name'=>'view ad network']);
+        // Permission::create(['name'=>'view inventory']);
+        // Permission::create(['name'=>'edit inventory']);
+        // Permission::create(['name'=>'view revenue']);
+        // Permission::create(['name'=>'view campaign']);
+        // Permission::create(['name'=>'create campaign']);
+        // Permission::create(['name'=>'download campaign report']);
+
+        //create new admin
+        // $this->genAdmin();
+        
         
         //assign permission to role
-        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'manage user')->first());
-        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
-        Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
-
-        Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
-        Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
-
-        //Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
-        Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
-
-        Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'create ad network')->first());
+        //ADMIN
+        // Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'manage user')->first());
+        // Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        // Role::where('name', '=', 'admin')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
         
-        $this->genAdmin();
+        //SALE
+        // Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        // Role::where('name', '=', 'sale')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
+        
+        //SALE MANAGEMENT
+        // Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'create request')->first());
+        // Role::where('name', '=', 'sale-management')->first()->givePermissionTo(Permission::where('name', '=', 'edit request')->first());
+        
+        //AD OPERATION
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'create ad network')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'view ad network')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'view inventory')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'edit inventory')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'view campaign')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'create campaign')->first());
+        // Role::where('name', '=', 'ad-operation')->first()->givePermissionTo(Permission::where('name', '=', 'download campaign report')->first());
+
+        
 
         return redirect('backend/users-display');
     }
@@ -187,14 +217,9 @@ class DevController extends Controller
         return User::getUserRoleById($id);
      }
 
-     /*public function showPermission(Request $request, $id)
-     {
-        return $this->findUserById($id)->getAllPermissions();
-     }*/
-
      public function assignRoleToUser(Request $request)
      {
-        $user =User::findUserById($request->user_id);
+        $user = User::findUserById($request->user_id);
         if($request->old_role){
             $user->removeRole($request->old_role);
         }
@@ -213,11 +238,7 @@ class DevController extends Controller
         //return redirect('backend/users-display');
      }
 
-     public function removeRoleFromUser(Request $request, $id, $role)
-     {
-        User::findUserById($id)->removeRole($role);
-        return redirect('backend/users-display');
-     }
+     
 
      public function findUserById($id)
      {
