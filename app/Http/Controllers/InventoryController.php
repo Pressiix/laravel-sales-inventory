@@ -130,19 +130,15 @@ class InventoryController extends Controller
             $count = count(Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->get());
             if($count == 0)
             {
-                    //foreach(array_keys($a) as $key2=>$value2)
-                    //{
-                        //Create data Test
-                        $request_form = Inventory::create([
-                            'web' => $web,
-                            'month'=> $month,
-                            'year'=>$year,
-                            'section'=>$section,
-                            'type'=> $a[$key][0],
-                            'inventory'=> json_encode($a[$key]),
-                            'available'=>json_encode($b[$key])
-                        ]);
-                    //} 
+                    $request_form = Inventory::create([
+                        'web' => $web,
+                        'month'=> $month,
+                        'year'=>$year,
+                        'section'=>$section,
+                        'type'=> $a[$key][0],
+                        'inventory'=> json_encode($a[$key]),
+                        'available'=>json_encode($b[$key])
+                    ]);
             }else{
                     //Update data Test
                     $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->update([

@@ -952,8 +952,6 @@
         // Output the result
         //$("#showJson").text(JSON.stringify(data));
         var current_month = $("#"+table_name).find(".div-barheader2").text();
-        // var month = current_month.substr(0,current_month.indexOf(' '));
-        // var year = current_month.substr(current_month.indexOf(' ')+1);
         
         var month = '<?= $month_label ?>';
         var year = '<?= $year ?>';
