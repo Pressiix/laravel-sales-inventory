@@ -38,19 +38,21 @@ class InventoryController extends Controller
         if(isset($request->month) && isset($request->year))
         {
             $month = $request->month;
+            $month_label = \DateTime::createFromFormat('!m',$month)->format('F');
             $year = $request->year;
         }else{
             $date = date_create(now()->toDateTimeString());
             $month = date_format($date,"m");
+            $month_label = \DateTime::createFromFormat('!m',$month)->format('F');
             $year = date_format($date,"Y");
         }
 
         return view('new.inventory',[
             "month" => $month,
-            "month_label" => \DateTime::createFromFormat('!m',$month)->format('F'),
+            "month_label" => $month_label,
             "year" => $year,
             "section" => $section,
-            "data" => self::getData()
+            "data" => self::getData($section,$month_label,$year)
         ]);
     }
 
