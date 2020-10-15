@@ -97,8 +97,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/inventory', ['as' => '/inventory', 'uses' => 'InventoryController@index']);
         Route::post('/inventory-import', 'InventoryController@import');
-        Route::get('/ajaxRequest', 'InventoryController@ajaxRequest');
-        Route::post('/ajaxRequest', 'InventoryController@test');
+        Route::get('/inventory/test', 'InventoryController@test3');
+        //Route::get('/ajaxRequest', 'InventoryController@ajaxRequest');
+        Route::post('/ajaxSave', 'InventoryController@ajaxSave');
         
         Route::get('/revenue', ['as' => '/revenue', 'uses' => 'RevenueReportController@index']);
         Route::get('/success', 'AppController@success');

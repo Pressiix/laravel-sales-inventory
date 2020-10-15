@@ -129,14 +129,14 @@ class DevController extends Controller
          }
          else  //if you not have dev in database, system will create dev
          {
-             User::create([
+            User::create([
                 'username' => 'admin',
                 'firstname' => 'Watcharaphon',
                 'lastname' => 'Piamphuetna',
                 'email' => 'watcharapon.piam@gmail.com',
                 'password' => Hash::make('bkpdev'),
                 'status' => 'ACTIVE',
-                'team_id'=>'0'
+                'team_id' => '0'
             ]);
 
             return User::where('username', '=', 'admin')->first()->assignRole($role->name);
