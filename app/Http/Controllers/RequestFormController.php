@@ -294,7 +294,12 @@ class RequestFormController extends Controller
 
     public function review2($id)
     {
-        $request_form = RequestForm::find($id)->getOriginal();
+        $request_form = RequestForm::find($id);
+        if(is_null($request_form))
+        {
+            \Redirect::to('/profile3')->with('error','Cannot read a file');
+        }
+        $request_form = $request_form->getOriginal();
         $ad_desc = AdDescription::where('request_id',$id)->first()->getOriginal();
         $new_ad_desc['ad_desc_id'] = $ad_desc['id'];
         $ad_desc = array_slice($ad_desc, 1, -1);

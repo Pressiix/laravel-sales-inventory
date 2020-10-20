@@ -53,7 +53,7 @@ class InventoryController extends Controller
             $active = "bangkokpost-tab";
         }
 
-        echo "<pre/>"; print_r(self::getData($bkp_section,$ptd_section,$month_label,$year));exit;
+        //echo "<pre/>"; print_r(self::getData($bkp_section,$ptd_section,$month_label,$year));exit;
         return view('new.inventory',[
             "month" => $month,
             "month_label" => $month_label,
@@ -246,12 +246,8 @@ class InventoryController extends Controller
 
             $result = Inventory::where('section',$section)->where('web',$web)->where('month',$month)->where('year',$year)->get()->toArray();
             
-            //get data from home section if current section has no data
-            // if(count($result) == 0){
-            //     $result = Inventory::where('section',"Home")->where('month',$month)->where('year',$year)->get()->toArray();
-            // }
-            if(count($result) !== 0){
-            
+            if(count($result) !== 0)
+            {
                 foreach($result as $key=>$item)
                 {
                     $item_inventory = json_decode($item['inventory'],true);
@@ -269,6 +265,7 @@ class InventoryController extends Controller
                     {
                         if(is_numeric($key))
                         {
+                            
                             if($i == 0)  //Vertical Header column
                             {
                                 $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = 'Inventory';
@@ -276,7 +273,7 @@ class InventoryController extends Controller
                             }else{  
                                 $key = $i <= 8 ? $key : $key-1;
                                 //Week 1 - 3
-                                $week = $i == 8 ? 1 : $i == 16 ? 2 : $i == 24 ? 3 : 0;
+                                $week = ($i == 8 ? 1 : ($i == 16 ? 2 : ($i == 24 ? 3 : 0)));
                                 if($week == 0) //Horizontal value of impression
                                 {
                                     $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory[$key];
@@ -365,64 +362,84 @@ class InventoryController extends Controller
          
     }
 
-    // public function test3()
-    // {
-    //     $result = Inventory::where('month','October')->where('year','2020')->get()->toArray();
-    //     $data = [];
-    //     foreach($result as $key=>$item)
-    //     {
-    //         $item_inventory = json_decode($item['inventory'],true);
-    //         unset($item_inventory['Inventory']);
-    //         $item_available = json_decode($item['available'],true);
-    //         unset($item_available['Available']);
-    //         $type = $item_inventory[0];
+    public function test3()
+    {
+        $bkp_section="Home";
+        $ptd_section="Home";
+        $month="October";
+        $year="2020";
 
-    //         $numeric_key_array = array_filter($item_inventory, function($key) { return is_numeric($key); }, ARRAY_FILTER_USE_KEY);
-    //         $last_key = key(array_slice($numeric_key_array, -1, 1, true));
-    //         $last_key = $last_key+4;  //4 = none numeric array keys
+        $data = [];
+        for($index=0;$index<2;$index++)  //looping twice for Bangkokpost and Posttoday
+        {
+            $section = $index == 0 ? $bkp_section : $ptd_section;
+            $web = $index == 0 ? "bkp" : "ptd";
 
-    //         $i=0;
-    //         foreach($item_inventory as $key=>$item)
-    //         {
-    //             if(is_numeric($key))
-    //             {
-    //                 if($i == 0)
-    //                 {
-    //                     $data[$type]['inventory'][$i] = 'Inventory';
-    //                     $data[$type]['available'][$i] = 'Available';
-    //                 }else{
-    //                     $key = $i <= 8 ? $key : $key-1;
-    //                     //Week 1 - 3
-    //                     $week = $i == 8 ? 1 : $i == 16 ? 2 : $i == 24 ? 3 : 0;
-    //                     if($week == 0)
-    //                     {
+            $result = Inventory::where('section',$section)->where('web',$web)->where('month',$month)->where('year',$year)->get()->toArray();
+            
+            //get data from home section if current section has no data
+            // if(count($result) == 0){
+            //     $result = Inventory::where('section',"Home")->where('month',$month)->where('year',$year)->get()->toArray();
+            // }
+            if(count($result) !== 0){
+            
+                foreach($result as $key=>$item)
+                {
+                    $item_inventory = json_decode($item['inventory'],true);
+                    unset($item_inventory['Inventory']);
+                    $item_available = json_decode($item['available'],true);
+                    unset($item_available['Available']);
+                    $type = $item_inventory[0];
+
+                    $numeric_key_array = array_filter($item_inventory, function($key) { return is_numeric($key); }, ARRAY_FILTER_USE_KEY);
+                    $last_key = key(array_slice($numeric_key_array, -1, 1, true));
+                    $last_key = $last_key+4;  //4 = none numeric array keys
+
+                    $i=0;
+                    foreach($item_inventory as $key=>$item)
+                    {
+                        if(is_numeric($key))
+                        {
                             
-    //                         $data[$type]['inventory'][$i] = $item_inventory[$key];
-    //                         $data[$type]['available'][$i] = $item_available[$key];
-    //                     }else{
-    //                         $data[$type]['inventory'][$i] = $item_inventory['week'.$week];
-    //                         $data[$type]['available'][$i] = $item_available['week'.$week];
-    //                         //$i++;
-    //                     }
-    //                 }
-    //             }else{
-    //                  $last_numeric_key = $last_key - 4;
-    //                  for($i=$last_key;$i>$last_numeric_key;$i--)
-    //                  {
-    //                     $data[$type]['inventory'][$i-1] = $item_inventory[$i-4];
-    //                     $data[$type]['available'][$i-1] = $item_available[$i-4];
-    //                     //echo ($i-1)." ".$item_inventory[$i-4]."<br/>";
-    //                  }
-    //                 //Week 4
-    //                 $data[$type]['inventory'][$last_key] = $item_inventory['week4'];
-    //                 $data[$type]['available'][$last_key] = $item_available['week4'];
-    //                 break;
-    //             }
-    //             $i++;
-    //         }
-    //     }
+                            if($i == 0)  //Vertical Header column
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = 'Inventory';
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = 'Available';
+                            }else{ 
+                                
+                                $key = $i <= 8 ? $key : $key-1;
+                                //Week 1 - 3
+                                $week = ($i == 8 ? 1 : ($i == 16 ? 2 : ($i == 24 ? 3 : 0)));
+                                if($week == 0) //Horizontal value of impression
+                                {
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory[$key];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available[$key];
+                                }else{  //Horizontal summary value of impression for each week
+                                    //echo $week."<br/>"; 
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory['week'.$week];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available['week'.$week];
+                                }
+                            }
+                        }else{  
+                            $last_numeric_key = $last_key - 4;
+                            for($i=$last_key;$i>$last_numeric_key;$i--)
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i-1] = $item_inventory[$i-4];
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i-1] = $item_available[$i-4];
+                                //echo ($i-1)." ".$item_inventory[$i-4]."<br/>";
+                            }
+                            //Week 4
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$last_key] = $item_inventory['week4'];
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$last_key] = $item_available['week4'];
+                            break;
+                        }
+                        $i++;
+                    }
+                }
+            }
+        }
         
-    //     echo "<pre/>"; print_r($data);
-    // }
+        echo "<pre/>"; print_r($data);
+    }
 
 }
