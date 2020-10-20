@@ -523,4 +523,45 @@ class RequestFormController extends Controller
         return view('new.success');
     }
 
+    public function GetApproveRequest()
+    {
+        $data_temp = [];
+        $data = [];
+        $r_keys = [];
+        $request = (array) RequestForm::where('status','Approve')->get();
+        $request = $request[array_keys($request)[0]];
+        foreach($request as $item)
+        {
+             array_push($r_keys,$item['id']);
+        }
+        $ad_desc = (array) AdDescription::whereIn('request_id', $r_keys)->get();
+        $ad_desc = $ad_desc[array_keys($ad_desc)[0]];
+
+        foreach($request as $key=>$item)
+        {
+            $data_temp['request_item'][$key] = $item->getOriginal();
+            $data_temp['ad_item'][$key] = $ad_desc[$key]->getOriginal();
+        }
+
+        foreach($data_temp['request_item'] as $key=>$item)
+        {
+            foreach($data_temp['ad_item'] as $key2=>$item2)
+            {
+                if(isset($data_temp['request_item'][$key]['matching']))
+                {
+                    break;
+                }else{
+                    if($item['id'] == $item2['request_id'])
+                    {
+                        unset($item2['id']);
+                        $data[$key] = array_merge($item,$item2);
+                        unset($data[$key]['id']);
+                        $data_temp['request_item'][$key]['matching'] = 1;
+                    }
+                }
+            }
+        }
+         echo "<pre/>"; print_r($data);
+    }
+
 }
