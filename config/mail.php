@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'bpinventory.test@gmail.com'),
-        'name' => 'InventorySystem',
+        'name' => 'Ad Inventory System',
     ],
 
     /*

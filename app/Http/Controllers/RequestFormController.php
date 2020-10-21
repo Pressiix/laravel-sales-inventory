@@ -20,6 +20,8 @@ use App\RequestForm;
 use App\AdDescription;
 use URL;
 use Input;
+use NotificationHelper;
+use Illuminate\Support\Facades\Log;
 
 class RequestFormController extends Controller
 {
@@ -431,7 +433,7 @@ class RequestFormController extends Controller
                     //echo "<pre/>"; print_r($b); echo "<pre/>";
 
                 //Send email to ...
-                $this->sendEmail();
+                NotificationHelper::sendNotificationEmail();
 
                 return view('new.success_request_submit');
             }
@@ -491,32 +493,6 @@ class RequestFormController extends Controller
             }
     }
 
-    public function sendEmail()
-    {
-        //Find team leader email by user team id
-        $team_id = Auth::user()->getOriginal()['team_id'];
-        $all_user = User::where('team_id', '=', $team_id)->get();
-        $email = "";
-        foreach($all_user as $key=>$value)
-        {
-            if(User::getUserRoleById($value['id']) == 'sale-management')
-            {
-                $email =  $value['email'];
-                break;
-            }
-        }
-        if($email == "")
-        {
-            $email = "watcharapon.piam@gmail.com";
-        }
-
-        $details = [
-            'title' => 'Notification!, Request form has been created',
-            'body' => 'This is for testing email using smtp'
-        ];
-
-        return \Mail::to($email)->send(new \App\Mail\SendMail($details));
-    }
 
     public function success()
     {
@@ -564,4 +540,10 @@ class RequestFormController extends Controller
          echo "<pre/>"; print_r($data);
     }
 
+    public static function test()
+    {
+        NotificationHelper::sendNotificationEmail();
+        //Log::useFiles('logs/mycustom.log');
+        //Log::channel('mail')->info('Hello world!sss');
+    }
 }
