@@ -18,12 +18,9 @@ class EmailHelper
     {
 		  $details = $data;
 		
-       $send = Mail::to($details['email'])
+       Mail::to($details['email'])
       //  ->cc($moreUsers)
        ->send(new \App\Mail\SendMail($details));
-
-       echo "<pre/>"; print_r($send);
-
     }
     
 }
