@@ -16,11 +16,11 @@ class EmailHelper
 {
 	public static function sendEmail($data)
     {
-		  $details = $data;
+	    $details = $data;
 		
-       Mail::to($details['email'])
-      //  ->cc($moreUsers)
-       ->send(new \App\Mail\SendMail($details));
+        Mail::to($details['email'])
+        //->cc($moreUsers)
+        ->send(new \App\Mail\SendMail($details));
     }
     
 }

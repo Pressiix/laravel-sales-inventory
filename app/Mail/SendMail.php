@@ -32,7 +32,7 @@ class SendMail extends Mailable
     {
         return $this->subject($this->details['subject'])->view($this->details['template'])
                 ->with([
-                    // 'orderName' => $this->order->name,
+                    'text' => 'aaasssddd',
                     // 'orderPrice' => $this->order->price,
                 ]);
     }
