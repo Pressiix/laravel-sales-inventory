@@ -51,6 +51,7 @@ class AdNetworkController extends Controller
             $last_month =  date('m', strtotime('-1 month', strtotime(date_format(date_create(now()->toDateTimeString()),"Y-m-d"))));
             $current_year = date_format(date_create(now()->toDateTimeString()),"Y");
             $last_year = date('Y', strtotime('-1 month', strtotime(date_format(date_create(now()->toDateTimeString()),"Y-m-d"))));
+            //echo $last_month; exit;
         }
             $advertiser=[];
             $ad = json_decode(AdNetwork::all(),true);
@@ -121,7 +122,7 @@ class AdNetworkController extends Controller
             ]);
     }
     public function ad_network_bymonth(Request $request)
-    {
+    {   //echo "<pre/>"; print_r($request->current_month);exit;
         $userRole = $this->getUserRole();
         
         $month = (isset($request->last_month) ? $request->last_month : $request->current_month );

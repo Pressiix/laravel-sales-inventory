@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/sales-inventory'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -224,6 +224,9 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
+        'InventoryReportHelper' => App\Helpers\InventoryReportHelper::class,
+        'EmailHelper' => App\Helpers\EmailHelper::class,
+        'NotificationHelper' => App\Helpers\NotificationHelper::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => 'Collective\Html\FormFacade',

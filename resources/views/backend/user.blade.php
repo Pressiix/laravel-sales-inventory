@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-auto div-profile--right bg-fff">
           <div class="container content-profile--right" style="padding-left:40px;padding-right:20px;">
-          <div class="row"><h2>User Data</h2></div>
+          <div class="row table-responsive"><h2>User Data</h2></div>
             <table id="myTable" class="table table-bordered table-hover">
               <thead>
                 <tr>
@@ -54,7 +54,9 @@
                                     <div class="col-sm-6 col-md-6 col-lg-6">
                                       <select name="role_name" class="form-control">
                                         <?php foreach($role_dropdown as $item){ ?>
+                                          <?php if($item !== 'admin'){ ?>
                                           <option value="<?= $item ?>"><?= $item ?></option>
+                                          <?php } ?>
                                         <?php } ?>
                                       </select>
                                       <input type="hidden" id="user_id" name="user_id">
@@ -93,7 +95,7 @@
             $('#form').on('submit', function(event){
               event.preventDefault();
               $.ajax({
-              url:"/backend/role-assign",
+              url:"<?= url('/') ?>/backend/role-assign",
               method:"POST",
               data:$(this).serialize(),
               beforeSend:function()

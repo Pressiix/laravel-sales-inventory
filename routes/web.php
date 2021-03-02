@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     //default
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::post('/test',  'InventoryController@test');
+    Route::get('/test',  'RequestFormController@test');
     Route::get('/profile', 'AppController@profile');
     Route::get('/profile2', 'AppController@profile2');
     Route::get('/profile3', ['as' => '/profile3', 'uses' => 'AppController@profile3']);
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/backend/users-display','DevController@showAllUser');
         Route::post('/backend/users-find','DevController@findUser');
         Route::get('/backend/users-destroy/{id}','UserController@destroyUserById');
-        Route::get('/backend/role-display/{id}', 'DevController@showRole');
+    Route::get('/backend/roles-display/{id}', 'DevController@showRole' );
         //Route::get('/backend/permission-display/{id}', 'DevController@showPermission');
     });
        
@@ -97,8 +97,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/inventory', ['as' => '/inventory', 'uses' => 'InventoryController@index']);
         Route::post('/inventory-import', 'InventoryController@import');
-        Route::get('/ajaxRequest', 'InventoryController@ajaxRequest');
-        Route::post('/ajaxRequest', 'InventoryController@test');
+        Route::get('/inventory/test', 'InventoryController@test3');
+        Route::post('/ajaxSave', 'InventoryController@ajaxSave');
         
         Route::get('/revenue', ['as' => '/revenue', 'uses' => 'RevenueReportController@index']);
         Route::get('/success', 'AppController@success');

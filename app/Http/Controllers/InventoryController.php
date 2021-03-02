@@ -25,125 +25,62 @@ class InventoryController extends Controller
         set_time_limit(8000000);
     }
 
-    /** Test update data from json file */
-    /*public function test(Request $request)
+    /**
+     * 
+     * Get : Month / Year / Section 
+     * 
+     * @return view : Inventory Dashboard
+     * 
+     */
+    public function index(Request $request)
     {
-        $input = $request->all();
-        
-        $datos = file_get_contents(storage_path().'/jsondata/copy.json');
-        $data = json_decode($datos, true);
-        $campaign = [];
-        $index = 0;
-        $campaign_type = [];
-
-        foreach($data as $key => $value)
+        $section = isset($request->section) ? $request->section : 'Home';
+        if(isset($request->month) && isset($request->year))
         {
-           $index = ($index > 3 ? 0 : $index);
-           
-                if($data[$key]['campaign'] == 'Inventory' || $data[$key]['campaign'] == 'Available')
-                {
-                    $campaign[$key] = $value;
-                }else{
-                    $campaign[$key]['campaign'] = $data[$key]['campaign'];
-                }
-                              
-           $index++;
+            $month = $request->month;
+            $month_label = \DateTime::createFromFormat('!m',$month)->format('F');
+            $year = $request->year;
+            $bkp_section = $request->bkp_section;
+            $ptd_section = $request->ptd_section;
+            $active = $request->active;
+        }else{
+            $date = date_create(now()->toDateTimeString());
+            $month = date_format($date,"m");
+            $month_label = \DateTime::createFromFormat('!m',$month)->format('F');
+            $year = date_format($date,"Y");
+            $bkp_section = "Home";
+            $ptd_section = "Home";
+            $active = "bangkokpost-tab";
         }
 
-        $inventory = $this->getInventoryByCampaignType($campaign);
-        $a = [];    //inventory row
-        $b = [];   //Available row
+        //echo "<pre/>"; print_r(self::getData($bkp_section,$ptd_section,$month_label,$year));exit;
+        return view('new.inventory',[
+            "month" => $month,
+            "month_label" => $month_label,
+            "year" => $year,
+            "bkp_section" => $bkp_section,
+            "ptd_section" => $ptd_section,
+            "active" => $active,
+            "data" => self::getData($bkp_section,$ptd_section,$month_label,$year)
+        ]);
+    }
 
-        foreach($inventory as $key=>$value)
-        {
-            foreach($value as $key2=>$value2)
-            {
-                if(is_array($value2))
-                {
-                    foreach($value2 as $key3=>$value3)
-                    {
-                        if($key3 == 0)
-                        {
-                            if(empty($a[$key][$key2]))
-                            {
-                                $a[$key][$key2] = $inventory[$key][$key2][$key3];
-                            } else{
-                                array_push($a[$key][$key2], array($inventory[$key][$key2][$key3]));
-                            }
-                        }else if($key3 == 1){
-                            if(empty($b[$key][$key2]))
-                            {
-                                $b[$key][$key2] = $inventory[$key][$key2][$key3];
-                            } else{
-                                array_push($b[$key][$key2], array($inventory[$key][$key2][$key3]));
-                            }
-                        }
-                    }
-                }else{
-                    $a[$key][0] =  $inventory[$key]['campaign_name'];
-                    $b[$key][0] =  $inventory[$key]['campaign_name'];
-                }
-            }
-            
-        }
 
-        $month = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
-        
-        foreach(array_keys($a) as $key=>$value)
-        {
-            //echo $a[$key][0]."<br/>";
-            /*$request_form = Inventory::create([
-                'web' => 'bp',
-                'month'=> 'December',
-                'year'=>'2020',
-                'type'=> $a[$key][0],
-                'inventory'=> json_encode($a[$key]),
-                'available'=>json_encode($b[$key])
-            ]);*/
-            /*$request_form = Inventory::where('type', $a[$key][0])->update([
-                'web' => 'bp',
-                'month'=> 'January',
-                'year'=>'2020',
-                'type'=> $a[$key][0],
-                'inventory'=> json_encode($a[$key]),
-                'available'=>json_encode($b[$key])
-            ]);
-        }
-
-        $c = (array) Inventory::all();
-        
-        foreach($c[array_keys($c)[0]] as $key=>$value)
-        {
-            $i =0;
-            $c[array_keys($c)[0]][$key] = (array) $c[array_keys($c)[0]][$key];
-           foreach((array) $value as $key2=>$value2)
-           {
-               if($i !== 13)
-               {
-                unset($c[array_keys($c)[0]][$key][$key2]);
-               }
-               $i++;
-           }
-        }
-         echo "<pre/>"; print_r($c[array_keys($c)[0]]);*/
-         //echo "<pre/>"; print_r($data);
-         //return response()->json(['success'=>json_encode($campaign)]);
-         
-    //}
-
-    public function test(Request $request)
+    /**
+     * ajax function for saving data to a Database
+     *
+     * @param Request $request
+     * @return Response-Message
+     */
+    public function ajaxSave(Request $request)
     {
         $input = $request->all();
         $data = json_decode(json_encode($input['data']),true);
         $month = $input['month'];
         $year = $input['year'];
         $section = $input['section'];
+        $web = $input['web'];
 
-        return response()->json(['success'=>$this->test2($data,$month,$year,$section)]);
-    }
-
-    public function test2($data,$month,$year,$section)
-    {
         $campaign = [];
         $index = 0;
         $campaign_type = [];
@@ -198,100 +135,46 @@ class InventoryController extends Controller
             }
             
         }
-
-        //Create data Test
-        /*$month_array = array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; });
         
-        foreach($month_array as $m)
-        {
-            foreach(array_keys($a) as $key=>$value)
-            {
-                //echo $a[$key][0]."<br/>";
-                $request_form = Inventory::create([
-                    'web' => 'bp',
-                    'month'=> $m,
-                    'year'=>$year,
-                    'type'=> $a[$key][0],
-                    'inventory'=> json_encode($a[$key]),
-                    'available'=>json_encode($b[$key])
-                ]);
-            }  
-        }*/
-
-        //Update data Test
         foreach(array_keys($a) as $key=>$value)
+        {
+            $count = count(Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->get());
+            if($count == 0)
             {
-                $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->update([
-                    'web' => 'bp',
-                    'month'=> $month,
-                    'year'=>$year,
-                    'section'=>$section,
-                    'type'=> $a[$key][0],
-                    'inventory'=> json_encode($a[$key]),
-                    'available'=>json_encode($b[$key])
-                ]);
-            }
-
-        return "Data has been saved!";
-    }
-
-    public function index(Request $request)
-    {
-        return view('new.inventory');
-    }
-
-    public function import(Request $request)
-    {
-        /*try {
-
-            echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
-          
-          } catch (\Exception $e) {
-          
-                 return $e->getMessage();
-          }*/
-          $array = [];
-          $array2 = [];
-          $row_index = 0;
-          $type= array("leader board","sticky","hybrid","multi","leader board (mobile)","sticky  (mobile)","hybrid   (mobile)","multi  (mobile)");
-          $content = '';
-
-                $reader = ReaderEntityFactory::createXLSXReader();
-                $file = $request->file('excel');// get file
-                
-                /*$file = "/assets/import/test_from_press.xlsx";*/
-
-                $reader->open($file);
-                
-                //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
-                // loop semua sheet dan dapatkan sheet orders
-                foreach ($reader->getSheetIterator() as $sheet) 
-                {
-                    //$content .= '<table border="1">';
-                    if ($sheet->getName() === 'Sheet1') //get array from specific sheet name ***
-                    {
-                        foreach ($sheet->getRowIterator() as $row) {
-                            $array[$row_index] = implode(array_map(function ($cell) {
-                                    return "\"".$cell."\",";
-                            }, $row->getCells()));
-                            //$array[$row_index] = explode(",", $array[$row_index]);
-                            $row_index++;		
-                        }
-                    break;
-                    }
+                    $request_form = Inventory::create([
+                        'web' => $web,
+                        'month'=> $month,
+                        'year'=>$year,
+                        'section'=>$section,
+                        'type'=> $a[$key][0],
+                        'inventory'=> json_encode($a[$key]),
+                        'available'=>json_encode($b[$key])
+                    ]);
+            }else{
+                    //Update data Test
+                    $request_form = Inventory::where('type',$a[$key][0])->where('month',$month)->where('year',$year)->where('section',$section)->update([
+                        'web' => $web,
+                        'month'=> $month,
+                        'year'=>$year,
+                        'section'=>$section,
+                        'type'=> $a[$key][0],
+                        'inventory'=> json_encode($a[$key]),
+                        'available'=>json_encode($b[$key])
+                    ]);
                     
-                }
-                
-                foreach($array as $key => $value)
-                {
-                    $array2[$key] = explode(",", $value);
-                }
-                echo "<pre/>"; print_r($array2);
-            
-         
+            }
+        }
+
+        return response()->json(['success'=>"Data has been saved!"]);
     }
 
 
+    /**
+     * ปรับ format ของข้อมูลก่อนทำการเซฟลง DB 
+     *
+     * @param [type] $data
+     * @return void
+     */
     private function getInventoryByCampaignType($data)
     {
         $index = 0;
@@ -341,6 +224,232 @@ class InventoryController extends Controller
             $index++;
         }
         return $new;
+    }
+
+
+    
+    /**
+     * Get data for display in Inventory Dashboard
+     *
+     * @param [type] $section
+     * @param [type] $month
+     * @param [type] $year
+     * @return void
+     */
+    private function getData($bkp_section,$ptd_section,$month,$year)
+    {
+        $data = [];
+        for($index=0;$index<2;$index++)  //looping twice for Bangkokpost and Posttoday
+        {
+            $section = $index == 0 ? $bkp_section : $ptd_section;
+            $web = $index == 0 ? "bkp" : "ptd";
+
+            $result = Inventory::where('section',$section)->where('web',$web)->where('month',$month)->where('year',$year)->get()->toArray();
+            
+            if(count($result) !== 0)
+            {
+                foreach($result as $key=>$item)
+                {
+                    $item_inventory = json_decode($item['inventory'],true);
+                    unset($item_inventory['Inventory']);
+                    $item_available = json_decode($item['available'],true);
+                    unset($item_available['Available']);
+                    $type = $item_inventory[0];
+
+                    $numeric_key_array = array_filter($item_inventory, function($key) { return is_numeric($key); }, ARRAY_FILTER_USE_KEY);
+                    $last_key = key(array_slice($numeric_key_array, -1, 1, true));
+                    $last_key = $last_key+4;  //4 = none numeric array keys
+
+                    $i=0;
+                    foreach($item_inventory as $key=>$item)
+                    {
+                        if(is_numeric($key))
+                        {
+                            
+                            if($i == 0)  //Vertical Header column
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = 'Inventory';
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = 'Available';
+                            }else{  
+                                $key = $i <= 8 ? $key : $key-1;
+                                //Week 1 - 3
+                                $week = ($i == 8 ? 1 : ($i == 16 ? 2 : ($i == 24 ? 3 : 0)));
+                                if($week == 0) //Horizontal value of impression
+                                {
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory[$key];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available[$key];
+                                }else{  //Horizontal summary value of impression for each week
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory['week'.$week];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available['week'.$week];
+                                }
+                            }
+                        }else{  
+                            $last_numeric_key = $last_key - 4;
+                            for($i=$last_key;$i>$last_numeric_key;$i--)
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i-1] = $item_inventory[$i-4];
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i-1] = $item_available[$i-4];
+                                //echo ($i-1)." ".$item_inventory[$i-4]."<br/>";
+                            }
+                            //Week 4
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$last_key] = $item_inventory['week4'];
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$last_key] = $item_available['week4'];
+                            break;
+                        }
+                        $i++;
+                    }
+                }
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Import Excel function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function import(Request $request)
+    {
+        /*try {
+
+            echo "<pre/>"; print_r(Excel::toArray(new InventoryImport, request()->file('excel')));
+          
+          } catch (\Exception $e) {
+          
+                 return $e->getMessage();
+          }*/
+          $array = [];
+          $array2 = [];
+          $row_index = 0;
+          $type= array("leader board","sticky","hybrid","multi","leader board (mobile)","sticky  (mobile)","hybrid   (mobile)","multi  (mobile)");
+          $content = '';
+
+                $reader = ReaderEntityFactory::createXLSXReader();
+                $file = $request->file('excel');// get file
+                
+                /*$file = "/assets/import/test_from_press.xlsx";*/
+
+                $reader->open($file);
+                
+                //$reader = ReaderFactory::create(Type::XLSX); // for XLSX files
+                // loop semua sheet dan dapatkan sheet orders
+                foreach ($reader->getSheetIterator() as $sheet) 
+                {
+                    //$content .= '<table border="1">';
+                    if ($sheet->getName() === 'Sheet1') //get array from specific sheet name ***
+                    {
+                        foreach ($sheet->getRowIterator() as $row) {
+                            $array[$row_index] = implode(array_map(function ($cell) {
+                                    return "\"".$cell."\",";
+                            }, $row->getCells()));
+                            //$array[$row_index] = explode(",", $array[$row_index]);
+                            $row_index++;		
+                        }
+                    break;
+                    }
+                    
+                }
+                
+                foreach($array as $key => $value)
+                {
+                    $array2[$key] = explode(",", $value);
+                }
+                echo "<pre/>"; print_r($array2);
+         
+    }
+
+<<<<<<< HEAD
+
+    private function getInventoryByCampaignType($data)
+    {
+        $index = 0;
+        $index2 = 0;
+        $new = [];
+
+        foreach($data as $key => $value)
+=======
+    public function test3()
+    {
+        $bkp_section="Home";
+        $ptd_section="Home";
+        $month="October";
+        $year="2020";
+
+        $data = [];
+        for($index=0;$index<2;$index++)  //looping twice for Bangkokpost and Posttoday
+>>>>>>> master
+        {
+            $section = $index == 0 ? $bkp_section : $ptd_section;
+            $web = $index == 0 ? "bkp" : "ptd";
+
+            $result = Inventory::where('section',$section)->where('web',$web)->where('month',$month)->where('year',$year)->get()->toArray();
+            
+            //get data from home section if current section has no data
+            // if(count($result) == 0){
+            //     $result = Inventory::where('section',"Home")->where('month',$month)->where('year',$year)->get()->toArray();
+            // }
+            if(count($result) !== 0){
+            
+                foreach($result as $key=>$item)
+                {
+                    $item_inventory = json_decode($item['inventory'],true);
+                    unset($item_inventory['Inventory']);
+                    $item_available = json_decode($item['available'],true);
+                    unset($item_available['Available']);
+                    $type = $item_inventory[0];
+
+                    $numeric_key_array = array_filter($item_inventory, function($key) { return is_numeric($key); }, ARRAY_FILTER_USE_KEY);
+                    $last_key = key(array_slice($numeric_key_array, -1, 1, true));
+                    $last_key = $last_key+4;  //4 = none numeric array keys
+
+                    $i=0;
+                    foreach($item_inventory as $key=>$item)
+                    {
+                        if(is_numeric($key))
+                        {
+                            
+                            if($i == 0)  //Vertical Header column
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = 'Inventory';
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = 'Available';
+                            }else{ 
+                                
+                                $key = $i <= 8 ? $key : $key-1;
+                                //Week 1 - 3
+                                $week = ($i == 8 ? 1 : ($i == 16 ? 2 : ($i == 24 ? 3 : 0)));
+                                if($week == 0) //Horizontal value of impression
+                                {
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory[$key];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available[$key];
+                                }else{  //Horizontal summary value of impression for each week
+                                    //echo $week."<br/>"; 
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i] = $item_inventory['week'.$week];
+                                    $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i] = $item_available['week'.$week];
+                                }
+                            }
+                        }else{  
+                            $last_numeric_key = $last_key - 4;
+                            for($i=$last_key;$i>$last_numeric_key;$i--)
+                            {
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$i-1] = $item_inventory[$i-4];
+                                $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$i-1] = $item_available[$i-4];
+                                //echo ($i-1)." ".$item_inventory[$i-4]."<br/>";
+                            }
+                            //Week 4
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['inventory'][$last_key] = $item_inventory['week4'];
+                            $data[$index == 0 ? 'bangkokpost' : 'posttoday'][$type]['available'][$last_key] = $item_available['week4'];
+                            break;
+                        }
+                        $i++;
+                    }
+                }
+            }
+        }
+        
+        echo "<pre/>"; print_r($data);
     }
 
 }

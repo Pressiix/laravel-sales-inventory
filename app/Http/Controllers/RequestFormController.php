@@ -20,6 +20,8 @@ use App\RequestForm;
 use App\AdDescription;
 use URL;
 use Input;
+use NotificationHelper;
+use Illuminate\Support\Facades\Log;
 
 class RequestFormController extends Controller
 {
@@ -34,7 +36,7 @@ class RequestFormController extends Controller
             $advertiser = array_column(json_decode(json_encode(Advertiser::all()), True),'advertiser_fullname','id');
             $datos = file_get_contents(storage_path().'/jsondata/request-form.json');
             $data = json_decode($datos, true);
-    
+
             //echo "<pre/>";print_r($data);
             return view('new.request_form',[
                 'sales_name' => auth()->user()->firstname.' '.auth()->user()->lastname,
@@ -58,7 +60,7 @@ class RequestFormController extends Controller
         }else{
             $userRole = '';
         }
-        
+
         //$item = $request->all();
         //echo "<pre/>"; print_r($request->all());
 
@@ -69,7 +71,7 @@ class RequestFormController extends Controller
         $ptd_banner_file=[];
         $ptd_quotation_file=[];
         if(isset($request->old_bp_banner_file)){   //EDIT REQUEST FORM
-                if(isset($request->bp_banner_file)){    
+                if(isset($request->bp_banner_file)){
                     if(count($request->old_bp_banner_file) == count($request->bp_banner_file))
                     {
                         foreach($request->old_bp_banner_file as $banner){
@@ -78,7 +80,7 @@ class RequestFormController extends Controller
                                 $bp_banner_file[$i] = $request->file('bp_banner_file')[$i]->hashName();
                                 $i++;
                         }
-                        //echo 'A';
+
                     }else{
                         foreach($request->old_bp_banner_file as $banner){
                             if(isset($request->bp_banner_file[$i])){
@@ -94,15 +96,15 @@ class RequestFormController extends Controller
                             }
                             $i++;
                         }
-                        //echo 'B';
+
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_bp_banner_file as $banner){
                         $bp_banner_file[$i] = $banner;
                         $i++;
                     }$i=0;
-                    //echo 'C';
+
                 }
         }
         else{  //NEW REQUEST FORM
@@ -113,12 +115,12 @@ class RequestFormController extends Controller
                     $i++;
                 }
                 $i=0;
-                //echo 'D';
+
             }
         }
 
         if(isset($request->old_bp_quotation_file)){   //EDIT REQUEST FORM
-                if(isset($request->bp_quotation_file)){    
+                if(isset($request->bp_quotation_file)){
                     if(count($request->old_bp_quotation_file) == count($request->bp_quotation_file))
                     {
                         foreach($request->old_bp_quotation_file as $quotation){
@@ -146,7 +148,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_bp_quotation_file as $quotation){
                         $bp_quotation_file[$i] = $quotation;
                         $i++;
@@ -167,7 +169,7 @@ class RequestFormController extends Controller
         }
 
         if(isset($request->old_ptd_banner_file)){   //EDIT REQUEST FORM
-                if(isset($request->ptd_banner_file)){    
+                if(isset($request->ptd_banner_file)){
                     if(count($request->old_ptd_banner_file) == count($request->ptd_banner_file))
                     {
                         foreach($request->old_ptd_banner_file as $banner){
@@ -195,7 +197,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_ptd_banner_file as $banner){
                         $ptd_banner_file[$i] = $banner;
                         $i++;
@@ -216,7 +218,7 @@ class RequestFormController extends Controller
         }
 
         if(isset($request->old_ptd_quotation_file)){   //EDIT REQUEST FORM
-                if(isset($request->ptd_quotation_file)){    
+                if(isset($request->ptd_quotation_file)){
                     if(count($request->old_ptd_quotation_file) == count($request->ptd_quotation_file))
                     {
                         foreach($request->old_ptd_quotation_file as $quotation){
@@ -244,7 +246,7 @@ class RequestFormController extends Controller
                         //echo 'B';
                     }
                     $i=0;
-                }else{      
+                }else{
                     foreach($request->old_ptd_quotation_file as $quotation){
                         $ptd_quotation_file[$i] = $quotation;
                         $i++;
@@ -280,21 +282,26 @@ class RequestFormController extends Controller
         {
             $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
         }
-        
+
         return view('new.request_preview',[
             'request_id'=>$request_id,
             'previous_url' => url()->previous(),
             'item' => $item,
             'userRole' => $userRole
         ]);
-        
+
     }
 
-    
-    
+
+
     public function review2($id)
     {
-        $request_form = RequestForm::find($id)->getOriginal();
+        $request_form = RequestForm::find($id);
+        if(is_null($request_form))
+        {
+            \Redirect::to('/profile3')->with('error','Cannot read a file');
+        }
+        $request_form = $request_form->getOriginal();
         $ad_desc = AdDescription::where('request_id',$id)->first()->getOriginal();
         $new_ad_desc['ad_desc_id'] = $ad_desc['id'];
         $ad_desc = array_slice($ad_desc, 1, -1);
@@ -340,7 +347,7 @@ class RequestFormController extends Controller
             'item' => $item,
             'userRole' => $userRole
         ]);
-        
+
     }
 
     public function storeRequest(Request $request)
@@ -367,10 +374,13 @@ class RequestFormController extends Controller
 
             else if($request->input('action') === 'Submit')
             {
-                //DELETE BEFORE SAVE
-                AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
-                RequestForm::where('request_id', $request->request_id)->delete();
-                
+                $get_request = RequestForm::where('request_id', $request->request_id)->first();
+                if(!is_null($get_request)){
+                    //DELETE BEFORE SAVE
+                    AdDescription::where('request_id',RequestForm::where('request_id', $request->request_id)->first()->getOriginal()['id'] )->delete();
+                    RequestForm::where('request_id', $request->request_id)->delete();
+                }               
+
                 $request_id = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 9);
                 //Save new request and ad description
                     $request_form = RequestForm::create([
@@ -419,12 +429,12 @@ class RequestFormController extends Controller
                         'ptd_ad_detail'=> (isset($request->ptd_ad_detail) ? json_encode((object) $request->ptd_ad_detail) : json_encode((object) array(NULL)) ),
                         'ptd_campaign_budget'=>(isset($request->ptd_campaign_budget) ? $request->ptd_campaign_budget : NULL),
                     ]);
-               
+
                     //echo "<pre/>"; print_r($b); echo "<pre/>";
 
                 //Send email to ...
-                $this->sendEmail();
-                
+                NotificationHelper::sendNotificationEmail();
+
                 return view('new.success_request_submit');
             }
             else if($request->input('action') === 'Approve')
@@ -483,36 +493,55 @@ class RequestFormController extends Controller
             }
     }
 
-    public function sendEmail()
-    {
-        //Find team leader email by user team id
-        $team_id = Auth::user()->getOriginal()['team_id'];
-        $all_user = User::where('team_id', '=', $team_id)->get();
-        $email = "";
-        foreach($all_user as $key=>$value)
-        {
-            if(User::getUserRoleById($value['id']) == 'sale-management')
-            {   
-                $email =  $value['email'];
-                break;
-            }
-        }
-        if($email == "")
-        {
-            $email = "watcharapon.piam@gmail.com";
-        }
-
-        $details = [
-            'title' => 'Notification!, Request form has been created',
-            'body' => 'This is for testing email using smtp'
-        ];
-       
-        return \Mail::to($email)->send(new \App\Mail\SendMail($details));
-    }
 
     public function success()
     {
         return view('new.success');
     }
-    
+
+    public function GetApproveRequest()
+    {
+        $data_temp = [];
+        $data = [];
+        $r_keys = [];
+        $request = (array) RequestForm::where('status','Approve')->get();
+        $request = $request[array_keys($request)[0]];
+        foreach($request as $item)
+        {
+             array_push($r_keys,$item['id']);
+        }
+        $ad_desc = (array) AdDescription::whereIn('request_id', $r_keys)->get();
+        $ad_desc = $ad_desc[array_keys($ad_desc)[0]];
+
+        foreach($request as $key=>$item)
+        {
+            $data_temp['request_item'][$key] = $item->getOriginal();
+            $data_temp['ad_item'][$key] = $ad_desc[$key]->getOriginal();
+        }
+
+        foreach($data_temp['request_item'] as $key=>$item)
+        {
+            foreach($data_temp['ad_item'] as $key2=>$item2)
+            {
+                if(isset($data_temp['request_item'][$key]['matching']))
+                {
+                    break;
+                }else{
+                    if($item['id'] == $item2['request_id'])
+                    {
+                        unset($item2['id']);
+                        $data[$key] = array_merge($item,$item2);
+                        unset($data[$key]['id']);
+                        $data_temp['request_item'][$key]['matching'] = 1;
+                    }
+                }
+            }
+        }
+         echo "<pre/>"; print_r($data);
+    }
+
+    public static function test()
+    {
+        echo URL::to('/');
+    }
 }

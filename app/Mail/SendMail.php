@@ -20,7 +20,7 @@ class SendMail extends Mailable
      */
     public function __construct($details)
     {
-        $this->details = $details;
+        $this->details = $details;  //get email detail Ex. subject ,Email To ,
     }
    
     /**
@@ -30,7 +30,10 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email sending test')
-                    ->view('emails.email');
+        return $this->subject($this->details['subject'])->view($this->details['template'])
+                ->with([
+                    'text' => 'aaasssddd',
+                    // 'orderPrice' => $this->order->price,
+                ]);
     }
 }

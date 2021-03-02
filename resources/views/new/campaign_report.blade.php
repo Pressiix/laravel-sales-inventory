@@ -5,7 +5,7 @@
         <div class="content-inventory">
           <div class="box-title">
             <h2>Campaign Report</h2>
-            <div class="btn-create"><a href="/campaign_report_create">Create Campaign Report</a></div>
+            <div class="btn-create"><a href="<?= Url('/') ?>/campaign_report_create">Create Campaign Report</a></div>
           </div>
           <form>
             <div class="content-pdb2">
@@ -51,8 +51,8 @@
                   <td><?= $value['advertiser_name'] ?></td>
                   <td><?= $value['report_type'] ?></td>
                   <td><?= $value['campaign_name'] ?></td>
-                  <td><a href="/campaign_report_preview2/<?= $value['id'] ?>" class="btn-click">Edit</a></td>
-                  <td><a href="/campaign_report_download/<?= $value['id'] ?>" target="_blank" class="btn-click">Click</a></td>
+                  <td><a href="<?= Url('/') ?>/campaign_report_preview2/<?= $value['id'] ?>" class="btn-click">Edit</a></td>
+                  <td><a href="<?= Url('/') ?>/campaign_report_download/<?= $value['id'] ?>" target="_blank" class="btn-click">Click</a></td>
                 </tr>
                 <?php $i++; } ?>
               </tbody>
