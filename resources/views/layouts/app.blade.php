@@ -103,14 +103,14 @@
                 <div class="nav-inventory">
                     <ul>
                     <?php if(Auth::user()->hasRole('admin') && Auth::user()->username == "admin" ){ ?>
-                        <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
+                        <li><a href="<?= URL::to('/') ?>/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
                     <?php } ?>
-                    <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}" onclick="_des_page='/profile';showConfirmPopUp();">Profile</a></li>
-                    <li><a href="/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}" onclick="_des_page='/request_form';showConfirmPopUp();">Request Form</a></li>
-                    <li><a href="/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}" onclick="_des_page='/inventory';showConfirmPopUp();">Booking Inventory</a></li>
-                    <li><a href="/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}" onclick="_des_page='/revenue';showConfirmPopUp();">Revenue</a></li>
-                    <li><a href="/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}" onclick="_des_page='/campaign_report';showConfirmPopUp();">Campaign Report</a></li>
-                    <li><a href="/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}" onclick="_des_page='/ad_network';showConfirmPopUp();">Ad Network</a></li>
+                    <li><a href="<?= URL::to('/') ?>/profile" class="{{ Request::is('profile') ? 'actived' : '' }}" onclick="_des_page='/profile';showConfirmPopUp();">Profile</a></li>
+                    <li><a href="<?= URL::to('/') ?>/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}" onclick="_des_page='/request_form';showConfirmPopUp();">Request Form</a></li>
+                    <li><a href="<?= URL::to('/') ?>/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}" onclick="_des_page='/inventory';showConfirmPopUp();">Booking Inventory</a></li>
+                    <li><a href="<?= URL::to('/') ?>/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}" onclick="_des_page='/revenue';showConfirmPopUp();">Revenue</a></li>
+                    <li><a href="<?= URL::to('/') ?>/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}" onclick="_des_page='/campaign_report';showConfirmPopUp();">Campaign Report</a></li>
+                    <li><a href="<?= URL::to('/') ?>/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}" onclick="_des_page='/ad_network';showConfirmPopUp();">Ad Network</a></li>
                     </ul>
                     <div class="box-logout"><a href="{{ url('/logout') }}">logout</a></div>
                 </div>
@@ -136,7 +136,7 @@
                         <a data-target="#myModal" data-toggle="modal">
                             <div class="profile-avatar">
                                 <span>Change</span>
-                                <img src="<?= ($user->profile_picture && file_exists(public_path().$user->profile_picture) ? $user->profile_picture : "/assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
+                                <img src="<?= ($user->profile_picture && file_exists(public_path().$user->profile_picture) ? url('/').$user->profile_picture : "/assets/images/icon-svg/avatar.svg") ?> " class="img-fluid">
                             </div>
                         </a>
                             <!-- modal -->
@@ -173,9 +173,9 @@
                         </div>
                         <div class="nav-profile">
                         <ul>
-                            <li><a href="/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">My Account</a></li>
-                            <li><a href="/profile2" class="{{ Request::is('profile2') ? 'actived' : '' }}">Inbox</a></li>
-                            <li><a href="/profile3" class="{{ Request::is('profile3') ? 'actived' : '' }}">My Activities</a></li>
+                            <li><a href="<?= URL::to('/') ?>/profile" class="{{ Request::is('profile') ? 'actived' : '' }}">My Account</a></li>
+                            <li><a href="<?= URL::to('/') ?>/profile2" class="{{ Request::is('profile2') ? 'actived' : '' }}">Inbox</a></li>
+                            <li><a href="<?= URL::to('/') ?>/profile3" class="{{ Request::is('profile3') ? 'actived' : '' }}">My Activities</a></li>
                         </ul>
                         </div>
                     </div>
@@ -190,9 +190,9 @@
                         </div>
                         <div class="nav-profile">
                         <ul>
-                            <li><a href="/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">User</a></li>
-                            <li><a href="/backend/roles-display" class="{{ Request::is('backend/roles-display') ? 'actived' : '' }}">Role</a></li>
-                            <li><a href="/backend/permissions-display" class="{{ Request::is('backend/permissions-display') ? 'actived' : '' }}">Permission</a></li>
+                            <li><a href="<?= URL::to('/') ?>/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">User</a></li>
+                            <li><a href="<?= URL::to('/') ?>/backend/roles-display" class="{{ Request::is('backend/roles-display') ? 'actived' : '' }}">Role</a></li>
+                            <li><a href="<?= URL::to('/') ?>/backend/permissions-display" class="{{ Request::is('backend/permissions-display') ? 'actived' : '' }}">Permission</a></li>
                         </ul>
                         </div>
                     </div>

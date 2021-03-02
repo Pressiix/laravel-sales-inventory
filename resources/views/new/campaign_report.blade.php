@@ -5,7 +5,7 @@
         <div class="content-inventory">
           <div class="box-title">
             <h2>Campaign Report</h2>
-            <div class="btn-create"><a href="/campaign_report_create">Create Campaign Report</a></div>
+            <div class="btn-create"><a href="<?= Url('/') ?>/campaign_report_create">Create Campaign Report</a></div>
           </div>
           <form>
             <div class="content-pdb2">

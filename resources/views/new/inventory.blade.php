@@ -611,7 +611,7 @@
 
 <div id="showJson"></div>
 
-<script src="/assets/js/jquery.table2excel.js"></script>
+<script src="<?= url('/') ?>/assets/js/jquery.table2excel.js"></script>
 <script>
     
 
@@ -685,7 +685,7 @@
         console.log($("#"+(table_name == "bkp" ? "bangkokpost" : "posttoday")).find("h3").text());
         $.ajax({
           type:'POST',
-          url:'/ajaxSave',
+          url:'<?= url('/') ?>/ajaxSave',
           data:{data:data,month:month,year:year,section:section,web:table_name},
           success:function(messege){
             alert(messege.success);

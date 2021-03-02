@@ -542,8 +542,6 @@ class RequestFormController extends Controller
 
     public static function test()
     {
-        NotificationHelper::sendNotificationEmail();
-        //Log::useFiles('logs/mycustom.log');
-        //Log::channel('mail')->info('Hello world!sss');
+        echo URL::to('/');
     }
 }
