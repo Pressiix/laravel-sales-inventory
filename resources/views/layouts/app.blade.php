@@ -77,7 +77,7 @@
         //Confirm dialog for request form unload
         function showConfirmPopUp()
         {
-            var _path = window.location.pathname;
+            var _path = '<?= url('/') ?>'+window.location.pathname;
             if (_path.indexOf("request_form") >= 0)
             {
                 event.preventDefault();
@@ -103,14 +103,14 @@
                 <div class="nav-inventory">
                     <ul>
                     <?php if(Auth::user()->hasRole('admin') && Auth::user()->username == "admin" ){ ?>
-                        <li><a href="<?= URL::to('/') ?>/backend/users-display" class="{{ Request::is('backend/users-display') ? 'actived' : '' }}">Backend</a></li>
+                        <li><a href="<?= URL::to('/') ?>/backend/users-display" class="{{ Request::is('backend/users-display') || Request::is('backend/roles-display') || Request::is('backend/permissions-display') ? 'actived' : '' }}">Backend</a></li>
                     <?php } ?>
-                    <li><a href="<?= URL::to('/') ?>/profile" class="{{ Request::is('profile') ? 'actived' : '' }}" onclick="_des_page='/profile';showConfirmPopUp();">Profile</a></li>
-                    <li><a href="<?= URL::to('/') ?>/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}" onclick="_des_page='/request_form';showConfirmPopUp();">Request Form</a></li>
-                    <li><a href="<?= URL::to('/') ?>/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}" onclick="_des_page='/inventory';showConfirmPopUp();">Booking Inventory</a></li>
-                    <li><a href="<?= URL::to('/') ?>/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}" onclick="_des_page='/revenue';showConfirmPopUp();">Revenue</a></li>
-                    <li><a href="<?= URL::to('/') ?>/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}" onclick="_des_page='/campaign_report';showConfirmPopUp();">Campaign Report</a></li>
-                    <li><a href="<?= URL::to('/') ?>/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}" onclick="_des_page='/ad_network';showConfirmPopUp();">Ad Network</a></li>
+                    <li><a href="<?= URL::to('/') ?>/profile" class="{{ Request::is('profile') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/profile';showConfirmPopUp();">Profile</a></li>
+                    <li><a href="<?= URL::to('/') ?>/request_form" class="{{ Request::is('request_form') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/request_form';showConfirmPopUp();">Request Form</a></li>
+                    <li><a href="<?= URL::to('/') ?>/inventory" class="{{ Request::is('inventory') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/inventory';showConfirmPopUp();">Booking Inventory</a></li>
+                    <li><a href="<?= URL::to('/') ?>/revenue" class="{{ Request::is('revenue') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/revenue';showConfirmPopUp();">Revenue</a></li>
+                    <li><a href="<?= URL::to('/') ?>/campaign_report" class="{{ Request::is('campaign_report') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/campaign_report';showConfirmPopUp();">Campaign Report</a></li>
+                    <li><a href="<?= URL::to('/') ?>/ad_network" class="{{ Request::is('ad_network') ? 'actived' : '' }}" onclick="_des_page='<?= URL::to('/') ?>/ad_network';showConfirmPopUp();">Ad Network</a></li>
                     </ul>
                     <div class="box-logout"><a href="{{ url('/logout') }}">logout</a></div>
                 </div>
